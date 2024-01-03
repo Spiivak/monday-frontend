@@ -27,12 +27,10 @@ export function WorkSpaceSideBar() {
         <div className="side-bar-container flex">
           <div className="side-bar-link-container">
             <NavLinkBtn Route={"/"} svgPath={HomeSvg}>
-              {" "}
               Home
             </NavLinkBtn>
             <NavLinkBtn Route={"/my-work"} svgPath={MyWeekSvg}>
-              {" "}
-              My work{" "}
+              My work
             </NavLinkBtn>
           </div>
           <div className="side-bar-footer">
