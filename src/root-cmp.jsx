@@ -1,23 +1,22 @@
-import { useState } from 'react'
-import { Provider } from 'react-redux'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './assets/style/main.scss'
+import { BoardPage } from './pages/BoardPage'
 import { HomePage } from './pages/HomePage'
-import { Route, Router, Routes } from 'react-router-dom'
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
 
-function App() {
-  const [count, setCount] = useState(0)
+export function App() {
+
 
   return (
-    // <Provider>
+    <>
+      <h1>Hello</h1>
       <Router>
         <Routes>
-          <Route element={<HomePage />} path="/" />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/boards" element={<BoardPage />} />
         </Routes>
       </Router>
-    // </Provider>
+    </>
   )
 }
 
-export default App
+
