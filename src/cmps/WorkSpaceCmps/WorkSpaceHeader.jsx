@@ -5,7 +5,6 @@ import inboxSvg from '../../assets/icons/Inbox.svg'
 import inviteMembersSvg from '../../assets/icons/Invite.svg'
 import searchSvg from '../../assets/icons/Search.svg'
 import helpSvg from '../../assets/icons/Help.svg'
-import upgradeSvg from '../../assets/icons/Upgrade.svg'
 
 export function WorkSpaceHeader() {
   return (
@@ -126,7 +125,7 @@ export function WorkSpaceHeader() {
         <h1 className="logo-title">
           monday <span className="logo-title-span">work management</span>
         </h1>
-        <LogoBtn iconSvg={upgradeSvg}>See plans</LogoBtn>
+        <LogoBtn>See plans</LogoBtn>
       </section>
 
       <section className="header-action-btns-sect">
