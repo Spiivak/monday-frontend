@@ -11,11 +11,17 @@
 @import 'setup/functions';
 
 // COMPONENTS
-  //Board Page Components
+  //Workspace Page Components
 @import 'cmps/WorkSpaceCmps/WorkSpaceHeader';
-
-// WORKSPACE PAGE COMPONENTS
-@import 'pages/WorkSpace';
-// HOME PAGE COMPONENTS
+@import 'cmps/WorkSpaceCmps/WorkSpaceBoardHeader';
+@import 'cmps/WorkSpaceCmps/WorkSpaceBoardTabs';
+@import 'cmps/WorkSpaceCmps/WorkSpaceFilter';
+  //Home page Components
 @import 'pages/home-page/home-header';
+
+
+
+// PAGE
 @import 'pages/home-page/home-index';
+@import 'pages/WorkSpace';
+@import 'pages/WorkSpaceBoard'

@@ -1,0 +1,10 @@
+.work-space-board{
+  background-color: #fff;
+  min-height: calc(100dvh - $header-height);
+
+  border-top-left-radius: $border-radius-medium;
+
+  padding: $spacing-medium $spacing-xl;
+
+  margin-left: calc(250px + $spacing-medium);
+}

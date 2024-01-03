@@ -1,75 +1,31 @@
-.work-space-header{
-  padding: 0 $spacing-medium;
+.work-space-header {
+  padding: 0 $spacing-small;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  background-color: $color-ui-grey;
+  background-color: #eceff8;
 
   height: $header-height;
   font-family: Figtree;
 
-  .header-logo-sect{
+  .header-logo-sect {
     display: flex;
     align-items: center;
-    gap: $spacing-medium;
+    gap: $spacing-small;
 
-    .logo-title-span{
-      font-weight: 400;
+    .logo-title{
+      font-size: 1rem;
+
+      .logo-title-span {
+        font-weight: 400;
+      }
     }
 
-  .switcher-btn{
-    border: none;
-    background-color: $color-ui-grey;
 
-    width: 40px;
-    height: 40px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    transition: background-color .07s cubic-bezier(0.4, 0, 0.2, 1);
-
-    svg{
-      width: 20px;
-      height: 20px;
-    }
-  }
-  .switcher-btn:hover{
-    background-color: rgb(220, 223, 236);
-    border-radius: $border-radius-small;
-  }
-
-  .work-management-logo{
-    display: flex;
-    align-items: center;
-  }
-
-  .logo-btn{
-    background-color: none;
-    color: #0073ea;
-
-    border: 1px solid #0073ea;
-    border-radius: $border-radius-small;
-
-    height: 30px;
-    .logo-btn-content{
-      display: flex;
-      align-items: center;
-    }
-  }
-  .logo-btn:hover{
-    color: #fff;
-    background-color: #0073ea;
-  }
-}
-
-  .header-action-btns-sect{
-    display: flex;
-    .action-btn{
+    .switcher-btn {
       border: none;
-      background-color: $color-ui-grey;
+      background-color: #eceff8;
 
       width: 40px;
       height: 40px;
@@ -78,14 +34,63 @@
       justify-content: center;
       align-items: center;
 
-      transition: background-color .07s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: background-color 0.07s cubic-bezier(0.4, 0, 0.2, 1);
 
-      img{
+      svg {
         width: 20px;
         height: 20px;
       }
     }
-    .action-btn:hover{
+    .switcher-btn:hover {
+      background-color: rgb(220, 223, 236);
+      border-radius: $border-radius-small;
+    }
+
+    .work-management-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-btn {
+      background-color: none;
+      color: #0073ea;
+
+      border: 1px solid #0073ea;
+      border-radius: $border-radius-small;
+
+      height: 30px;
+      .logo-btn-content {
+        display: flex;
+        align-items: center;
+      }
+    }
+    .logo-btn:hover {
+      color: #fff;
+      background-color: #0073ea;
+    }
+  }
+
+  .header-action-btns-sect {
+    display: flex;
+    .action-btn {
+      border: none;
+      background-color: #eceff8;
+
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      transition: background-color 0.07s cubic-bezier(0.4, 0, 0.2, 1);
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .action-btn:hover {
       background-color: rgb(220, 223, 236);
       border-radius: $border-radius-small;
     }
