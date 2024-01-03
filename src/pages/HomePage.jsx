@@ -93,14 +93,6 @@ export function HomePage() {
                 </div>
               </div>
             </div>
-
-
-
-
-
-
-
-
           </div>
         </section>
         <section className="boost-your-team">
