@@ -17,11 +17,13 @@
 @import 'cmps/WorkSpaceCmps/WorkSpaceBoardTabs';
 @import 'cmps/WorkSpaceCmps/WorkSpaceFilter';
   //Home page Components
-@import 'pages/home-page/home-header';
 
 
 
 // PAGE
-@import 'pages/home-page/home-index';
 @import 'pages/WorkSpace';
-@import 'pages/WorkSpaceBoard'
+@import 'pages/WorkSpaceBoard';
+
+// HOME PAGE COMPONENTS
+@import 'cmps/HomePage/HomeHeader';
+@import 'pages/HomePage/HomeIndex';
