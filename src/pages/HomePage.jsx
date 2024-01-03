@@ -28,7 +28,8 @@ import Carrefour from '../assets/img/companies/carrefour.png'
 import OBD from '../assets/img/companies/bd.png'
 import Glossier from '../assets/img/companies/glossier.png'
 import Universal from '../assets/img/companies/universal.png'
-
+import GoalsDashboard from '../assets/img/goals_dashboard.mp4'
+import WmDark from '../assets/img/wm-dark.png'
 
 
 
@@ -95,76 +96,156 @@ export function HomePage() {
             </div>
           </div>
         </section>
-        <section className="boost-your-team">
-          <h2>The Work OS that lets you
-            shape workflows, your way
-          </h2>
-          <div className="boost-your-team-cta">
-            <span>Boost your team’s alignment, efficiency, and productivity by customizing any workflow to fit your needs.</span>
-            <button>Get Started</button>
+        <section className="boost-your-team flex">
+          <div className='flex justify-center'>
+
+            <h2>The Work OS that lets you
+              shape workflows, your way
+            </h2>
+            <div className="boost-your-team-cta flex column">
+              <span>Boost your team’s alignment, efficiency, and productivity by customizing any workflow to fit your needs.</span>
+              <div className='flex'>
+
+                <button className='get-started-btn'>Get Started</button>
+              </div>
+            </div>
           </div>
         </section>
         <section className="preview-images-section">
-          <img src={TimeLine} alt="" />
-          <img src={Status} alt="" />
-          <img src={Battery} alt="" />
-          <img src={Integration} alt="" />
-          <img src={Pie} alt="" />
-          <img src={Mobile} alt="" />
-          <img src={Automation} alt="" />
-          <img src={Comment} alt="" />
-          <img src={Dashboard} alt="" />
+          <div className="masonry-grid">
+            <div className="grid-container">
+              <div className="item item1 timeline">
+                <img src={TimeLine} alt="" />
+
+              </div>
+              <div className="item item2 status">
+                <img src={Status} alt="" />
+
+              </div>
+              <div className="item item3 battery">
+                <img src={Battery} alt="" />
+
+              </div>
+              <div className="item item4 integration">
+                <img src={Integration} alt="" />
+
+              </div>
+              <div className="item item5 pie">
+                <img src={Pie} alt="" />
+
+              </div>
+              <div className="item item6 mobile">
+                <img src={Mobile} alt="" />
+
+              </div>
+              <div className="item item7 automation">
+                <img src={Automation} alt="" />
+
+              </div>
+              <div className="item item8 comment">
+                <img src={Comment} alt="" />
+
+              </div>
+              <div className="item item9 dashboard">
+                <img src={Dashboard} alt="" />
+              </div>
+            </div>
+          </div>
         </section>
         <section className="scroll-paralex">
-          <div className="paralex1">
-            <h2>Streamline your work for
-              maximum productivity
-            </h2>
-            <p>
-              Centralize all your work, processes, tools, and files into one Work OS. Connect teams, bridge silos, and maintain one source of truth across your organization.
-            </p>
-            <div className="user-comment">
-              <div className="avatar">
-                <img src="" alt="Avatar" />
-              </div>
-              <div className="comment">
-                <span>“
-                  We use monday.com for a plethora of use cases, the opportunities this platform provides are limitless.”</span>
-                <span>Jane Tham</span> | <span>VP of Collaboration Technologies</span>
-                <span>Universal Music Group</span>
+          <div className="container">
+            <div className="cards">
+              <div className="paralex-cards">
+                <div className="paralex1">
+                  <div className="heading">
+                    <h2>Streamline your work for<br />maximum productivity</h2>
+                  </div>
+                  <div className="paragraph">
+                    <p>
+                      Centralize all your work, processes, tools, and files into one Work OS. Connect teams, bridge silos, and maintain one source of truth across your organization.
+                    </p>
+                  </div>
+                  <div className="user-comment flex align-center">
+                    <div className="avatar">
+                      <img src={WmDark} alt="Avatar" />
+                    </div>
+
+                    <div className="comment">
+                      <div className='avatar-comment'>
+                        <span className='span-comment'>“We use monday.com for a plethora of use cases, the opportunities this platform provides are limitless.”</span>
+                      </div>
+                      <div className="avatar-role-name">
+                        <div className="avatar-name">
+
+                          <span className='span-avatar-name'>Jane Tham</span> | <span className='span-avatar-name'>VP of Collaboration Technologies</span>
+                        </div>
+                        <span className='span-avatar-role'>Universal Music Group</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="paralex2">
+                  <div className="heading">
+                    <h2>Bring teams together to<br />drive business impact</h2>
+                  </div>
+                  <div className="paragraph">
+                    <p>
+                      Collaborate effectively organization-wide to get a clear picture of all your work. Stay in the loop with easy-to-use automations and real-time notifications.
+                    </p>
+                  </div>
+                  <div className="user-comment flex align-center">
+                    <div className="avatar">
+                      <img src={WmDark} alt="Avatar" />
+                    </div>
+                    <div className="comment">
+                      <div className='avatar-comment'>
+                        <span className='span-comment'>“Since adopting monday.com, our global marketing department has seen a 40% improvement in cross-team collaboration.”</span>
+                      </div>
+                      <div className="avatar-role-name">
+                        <div className="avatar-name">
+                          <span className='span-avatar-name'>Sarah Pharr</span> | <span className='span-avatar-name'>AVP Marketing</span>
+                        </div>
+                        <span className='span-avatar-role'>Genpact</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="paralex3">
+                  <div className="heading">
+                    <h2>Stay on track toreach your goals, faster</h2>
+                  </div>
+                  <div className="paragraph">
+
+                    <p>
+                      Get a high-level overview of your organization with customizable dashboards. Make confident decisions and easily scale workflows for your evolving needs.
+                    </p>
+                  </div>
+                  <button className='btn-get-started-stroke'>Get Started</button>
+                  <div className="user-comment flex align-center">
+                    <div className="avatar">
+                      <img src={WmDark} alt="Avatar" />
+                    </div>
+                    <div className="comment">
+                      <div className='avatar-comment'>
+                        <span className='span-comment'>“monday.com allows banks to be synchronized between the top-level management figures and local KPIs.”</span>
+                      </div>
+                      <div className="avatar-role-name">
+                        <div className="avatar-name">
+
+                          <span className='span-avatar-name'>Baptiste Ancey</span> | <span className='span-avatar-name'>Head of Innovation</span>
+                        </div>
+                        <span className='span-avatar-role'>Indosuez Wealth Management</span>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
-          </div>
-          <div className="paralex2">
-            <h2>Bring teams together to drive business impact</h2>
-            <p>
-              Collaborate effectively organization-wide to get a clear picture of all your work. Stay in the loop with easy-to-use automations and real-time notifications.
-            </p>
-            <div className="user-comment">
-              <div className="avatar">
-                <img src="" alt="Avatar" />
-              </div>
-              <div className="comment">
-                <span>“Since adopting monday.com, our global marketing department has seen a 40% improvement in cross-team collaboration.”</span>
-                <span>Sarah Pharr</span> | <span>AVP Marketing</span>
-                <span>Genpact</span>
-              </div>
-            </div>
-          </div>
-          <div className="paralex3">
-            <h2>Stay on track toreach your goals, faster</h2>
-            <p>
-              Get a high-level overview of your organization with customizable dashboards. Make confident decisions and easily scale workflows for your evolving needs.
-            </p>
-            <button>Get Started</button>
-            <div className="user-comment">
-              <div className="avatar">
-                <img src="" alt="Avatar" />
-              </div>
-              <div className="comment">
-                <span>“monday.com allows banks to be synchronized between the top-level management figures and local KPIs.”</span>
-                <span>Baptiste Ancey</span> | <span>Head of Innovation</span>
-                <span>Indosuez Wealth Management</span>
+            <div className="paralex-video">
+              <div className="video">
+                <video src={GoalsDashboard} alt="" />
               </div>
             </div>
           </div>
