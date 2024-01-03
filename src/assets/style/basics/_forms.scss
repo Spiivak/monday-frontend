@@ -1,0 +1,33 @@
+// FORMS.SCSS
+
+/* Form Containers */
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+}
