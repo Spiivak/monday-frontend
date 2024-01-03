@@ -1,7 +1,10 @@
+import { BoardHeader } from "../cmps/BoardCmps/BoardHeader";
+
 export function BoardPage() {
   return (
-    <div>
-      <h1>test2</h1>
-    </div>
+    <section className="page board-page">
+      <BoardHeader />
+
+    </section>
   )
 }
