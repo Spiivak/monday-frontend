@@ -19,6 +19,15 @@ import Video from '../assets/img/7_status.mp4'
 import { BuildingBlocksTabs } from '../cmps/HomeCmps/tabs/BuildingBlocksTabs';
 import { BuildingBlocksContent } from '../cmps/HomeCmps/tabs/BuildingBlocksContent';
 
+import Holt from '../assets/img/companies/HoltCat.avif'
+import Canva from '../assets/img/companies/canva.png'
+import CocaCola from '../assets/img/companies/coca_cola.png'
+import Oxy from '../assets/img/companies/oxy.png'
+import Lionstage from '../assets/img/companies/lionsgate.avif'
+import Carrefour from '../assets/img/companies/carrefour.png'
+import OBD from '../assets/img/companies/bd.png'
+import Glossier from '../assets/img/companies/glossier.png'
+import Universal from '../assets/img/companies/universal.png'
 
 
 
@@ -52,28 +61,48 @@ export function HomePage() {
       <HomeHeader />
       <main>
         <section className="hero-section">
-          <span>A platform built for a new way of working</span>
-          <h2>What would you like to manage?</h2>
+          <h1 className='hero-section-header'>A platform built for a <br /> new way of working</h1>
+          <h2 className='hero-section-header2'>What would you like to manage?</h2>
           <Tabs activeTab={activeTab} onTabClick={handleTabClick} />
-          <div className="tabs-preview">
+          <div className="tabs-preview flex column">
             {renderTabContent()}
-            <button>Get Started</button>
-            <span>No credit card needed &nbsp; ✦ &nbsp;  Unlimited time on Free plan</span>
+            <div className="tabs-preview-actions flex column align-center">
+              <button className='get-started-btn'>Get Started</button>
+              <span className='tabs-preview-info'>No credit card needed ✦ Unlimited time on Free plan</span>
+            </div>
           </div>
-          <img src={QuerterlyRoadmap} alt="" />
+          <div style={{ minHeight: '32vw' }}>
+            <img src={QuerterlyRoadmap} alt="" />
+          </div>
         </section>
-        <secetion className="top-logos-section">
+        <section className="top-logos-section flex column align-center justify-center">
           <h2>Trusted by 180,000+ customers worldwide</h2>
-          <img src="" alt="Holt" />
-          <img src="" alt="Canva" />
-          <img src="" alt="Coca Cola" />
-          <img src="" alt="Oxy" />
-          <img src="" alt="Lionstage" />
-          <img src="" alt="carrefour" />
-          <img src="" alt="OBD" />
-          <img src="" alt="Glossier" />
-          <img src="" alt="Universal" />
-        </secetion>
+          <div className="logos flex justify-center">
+            <div className="images-logos-wrapper">
+              <div className="images-gallery">
+                <div className="images-gallery-row">
+                  <div className="img-gallery"><picture><img src={Holt} alt="Holt" /></picture></div>
+                  <div className="img-gallery"><picture><img src={Canva} alt="Canva" /></picture></div>
+                  <div className="img-gallery"><picture><img src={CocaCola} alt="Coca Cola" /></picture></div>
+                  <div className="img-gallery"><picture><img src={Oxy} alt="Oxy" /></picture></div>
+                  <div className="img-gallery"><picture><img src={Lionstage} alt="Lionstage" /></picture></div>
+                  <div className="img-gallery"><picture><img src={Carrefour} alt="carrefour" /></picture></div>
+                  <div className="img-gallery"><picture><img src={OBD} alt="OBD" /></picture></div>
+                  <div className="img-gallery"><picture><img src={Glossier} alt="Glossier" /></picture></div>
+                  <div className="img-gallery"><picture><img src={Universal} alt="Universal" /></picture></div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+          </div>
+        </section>
         <section className="boost-your-team">
           <h2>The Work OS that lets you
             shape workflows, your way
@@ -170,7 +199,7 @@ export function HomePage() {
               <img src="" alt="logo" />
               <p>For professionals and teams managing tasks & workflows</p>
               <p>Manage tasks, projects, and processes to fuel collaboration and efficiency at scale.</p>
-              <hr/>
+              <hr />
               <span>Top use cases:</span>
               <ul>
                 <li>Project management</li>
@@ -185,7 +214,7 @@ export function HomePage() {
               <img src="" alt="logo" />
               <p>For sales professionals and customer-facing teams</p>
               <p>Track and manage all aspects of your sales cycle, customer data, and more in one place.</p>
-              <hr/>
+              <hr />
               <span>Top use cases:</span>
               <ul>
                 <li>Contact management</li>
@@ -200,7 +229,7 @@ export function HomePage() {
               <img src="" alt="logo" />
               <p>For product and development professionals and teams</p>
               <p>Build agile workflows to drive impact across your product, design, and R&D teams.</p>
-              <hr/>
+              <hr />
               <span>Top use cases:</span>
               <ul>
                 <li>Roadmap planning</li>
@@ -225,15 +254,15 @@ export function HomePage() {
             <span>80%</span>
             <p>of goals achieved with OKRs on monday.com</p>
             <button>Learn More</button>
-            <iframe src="" frameborder="0"></iframe>
+            <iframe src=""></iframe>
           </div>
           <div className="monday-efficiency-explore">
-          <p>Onboard clients successfully </p>
+            <p>Onboard clients successfully </p>
             <img src="" alt="arrow" />
             <span>74%</span>
             <p>Improvement in customer retention</p>
             <button>Learn More</button>
-            <iframe src="" frameborder="0"></iframe>
+            <iframe src=""></iframe>
           </div>
         </section>
       </main>
