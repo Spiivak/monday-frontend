@@ -1,0 +1,16 @@
+.work-space-board {
+  .board-tabs{
+    display: flex;
+    justify-content: space-between;
+    height: 36px;
+    margin-block-start: 8px;
+    .tabs{
+      flex-grow: 0; // Allow title-wrapper to grow and take available space
+      white-space: nowrap; // Prevent text from wrapping to the next line
+      overflow: hidden;
+    }
+    .expend-collapse{
+      padding-inline-start: 5em;
+    }
+  }
+}

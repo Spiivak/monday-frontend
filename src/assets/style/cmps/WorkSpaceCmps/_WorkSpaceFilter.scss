@@ -1,0 +1,11 @@
+.work-space-board{
+  .board-filter{
+    display: flex;
+    padding: $spacing-medium 0;
+    height: 65px;
+
+    input{
+      height: 100%;
+    }
+  }
+}

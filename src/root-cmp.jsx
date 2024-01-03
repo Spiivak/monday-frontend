@@ -1,7 +1,8 @@
 import "./assets/style/main.scss"
-import { BoardPage } from "./pages/BoardPage"
+import { WorkSpacePage } from "./pages/WorkSpacePage"
 import { HomePage } from "./pages/HomePage"
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom"
+import { WorkSpaceBoard } from "./cmps/WorkSpaceCmps/WorkSpaceBoard"
 
 export function App() {
   return (
@@ -9,7 +10,9 @@ export function App() {
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/boards" element={<BoardPage />} />
+          <Route path="/workspace" element={<WorkSpacePage />}>
+            <Route index element={<WorkSpaceBoard />} />
+          </Route>
         </Routes>
       </Router>
     </>
