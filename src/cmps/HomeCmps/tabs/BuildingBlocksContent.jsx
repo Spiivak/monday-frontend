@@ -29,7 +29,7 @@ const tabsData = {
 export function BuildingBlocksContent({ activeTab }) {
   return (
     <div className="iframe-info">
-      <iframe src={Video} frameborder="0"></iframe>
+      <iframe src={Video}></iframe>
       <div className="info">
         <h2>{tabsData[activeTab].label}</h2>
         <p>{tabsData[activeTab].content}</p>
