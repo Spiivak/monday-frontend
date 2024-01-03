@@ -1,0 +1,142 @@
+.side-bar {
+  border-radius: 10px;
+
+  position: relative;
+  min-height: calc(100dvh - 48px);
+  color: #323338;
+  width: 255px;
+  background-color: #ffffff;
+  display: grid;
+  grid-auto-flow: row;
+  button {
+    background-color: transparent;
+    color: #323338;
+    display: flex;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+  }
+  img {
+    margin-right: 8px;
+  }
+  & * {
+    margin-left: 3px;
+  }
+  a {
+    height: 25px;
+    border-radius: 7px;
+    margin-right: 10px;
+    &:hover {
+      background-color: #dcdfec;
+    }
+  }
+}
+
+.side-bar-close {
+  width: 35px;
+  padding: 0;
+}
+
+.side-bar-link {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  gap: 2px;
+  align-items: center;
+}
+
+.side-bar-link-container {
+  border-bottom: 1px solid #d0d4e4;
+  padding: 6px;
+}
+
+.workspace-section {
+  align-items: center;
+}
+
+.side-bar-container {
+  flex-direction: column;
+  gap: 10px;
+}
+
+.work-spaces-list {
+  flex-direction: column;
+  a {
+    margin-top: 10px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.side-bar-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.filter-search {
+  width: 170px;
+  height: 30px;
+  border: 1px solid #d0d4e4;
+  border-radius: 4px;
+  input {
+    border: none;
+    padding: 0;
+  }
+}
+
+.filter-container {
+  align-items: center;
+  .add-btn {
+    margin-left: 10px;
+  }
+}
+
+.filter-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  border-radius: 7px;
+  margin-right: 6px;
+  margin: 2px;
+  padding: 0;
+  &:hover {
+    background-color: #dcdfec;
+  }
+}
+
+.workspace-section {
+  position: relative;
+}
+
+.workspace-context-container {
+  box-shadow: 0px 0px 8px 1.5px rgba(0, 0, 0, 0.2);
+  width: 264px;
+  padding: 8px;
+  left: 5px;
+  position: absolute;
+  background-color: white;
+  border-radius: 15px;
+  z-index: 999;
+}
+
+.work-space-btns {
+  button {
+    flex-direction: row;
+  }
+}
+
+.workspace {
+  align-items: center;
+  .workspace-section {
+    width: 170px;
+    justify-content: space-between;
+  }
+  .menu-btn {
+    align-items: center;
+    img {
+      width: 25px;
+    }
+  }
+}
