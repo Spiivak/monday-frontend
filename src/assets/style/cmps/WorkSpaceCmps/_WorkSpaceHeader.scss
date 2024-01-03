@@ -1,0 +1,93 @@
+.work-space-header{
+  padding: 0 $spacing-medium;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: $color-ui-grey;
+
+  height: $header-height;
+  font-family: Figtree;
+
+  .header-logo-sect{
+    display: flex;
+    align-items: center;
+    gap: $spacing-medium;
+
+    .logo-title-span{
+      font-weight: 400;
+    }
+
+  .switcher-btn{
+    border: none;
+    background-color: $color-ui-grey;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: background-color .07s cubic-bezier(0.4, 0, 0.2, 1);
+
+    svg{
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .switcher-btn:hover{
+    background-color: rgb(220, 223, 236);
+    border-radius: $border-radius-small;
+  }
+
+  .work-management-logo{
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-btn{
+    background-color: none;
+    color: #0073ea;
+
+    border: 1px solid #0073ea;
+    border-radius: $border-radius-small;
+
+    height: 30px;
+    .logo-btn-content{
+      display: flex;
+      align-items: center;
+    }
+  }
+  .logo-btn:hover{
+    color: #fff;
+    background-color: #0073ea;
+  }
+}
+
+  .header-action-btns-sect{
+    display: flex;
+    .action-btn{
+      border: none;
+      background-color: $color-ui-grey;
+
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      transition: background-color .07s cubic-bezier(0.4, 0, 0.2, 1);
+
+      img{
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .action-btn:hover{
+      background-color: rgb(220, 223, 236);
+      border-radius: $border-radius-small;
+    }
+  }
+}

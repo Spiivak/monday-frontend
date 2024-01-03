@@ -4,14 +4,18 @@
 @import 'basics/layout';
 @import 'basics/forms';
 
-
 // SETUP
 @import 'setup/variables';
 @import 'setup/typography';
 @import 'setup/mixins';
 @import 'setup/functions';
 
+// COMPONENTS
+  //Board Page Components
+@import 'cmps/WorkSpaceCmps/WorkSpaceHeader';
 
+// WORKSPACE PAGE COMPONENTS
+@import 'pages/WorkSpace';
 // HOME PAGE COMPONENTS
 @import 'pages/home-page/home-header';
 @import 'pages/home-page/home-index';
