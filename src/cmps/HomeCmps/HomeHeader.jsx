@@ -1,31 +1,26 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-
+import Logo from '../../assets/img/monday-logo-x2.png'
 export  function HomeHeader() {
   return (
     <header className='home-header full flex space-between'>
       <div className="right flex">
-        <img src="" alt="logo" />
-        <div className="links flex">
-          <ul className='clean-list'>
-            <li>Products</li>
-            <li>Teams</li>
-            <li>Platform</li>
-            <li>Resources</li>
-          </ul>
-          {/* <NavLink>Products</NavLink> */}
+        <img src={Logo} alt="logo" />
+        <div className="links flex align-center">
+          <NavLink>Products</NavLink>
+          <NavLink>Teams</NavLink>
+          <NavLink>Platform</NavLink>
+          <NavLink>Resources</NavLink>
         </div>
       </div>
-      <div className="left">
-        <div className="more-links">
-          <ul>
-            <li>Pricing</li>
-            <li>Contact sales</li>
-          </ul>
+      <div className="left flex gap16">
+        <div className="more-links flex gap16">
+          <NavLink>Pricing</NavLink>
+          <NavLink>Contact sales</NavLink>
         </div>
-        <div className="user-actions">
-          <button>Login</button>
-          <button>Get Started</button>
+        <div className="user-actions flex gap16">
+          <NavLink>Login</NavLink>
+          <button className='get-started-btn'>Get Started</button>
         </div>
       </div>
     </header>
