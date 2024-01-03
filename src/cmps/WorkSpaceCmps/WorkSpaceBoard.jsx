@@ -7,7 +7,7 @@ import { WorkSpaceSideBar } from "../BoardCmps/WorkSpaceSideBar"
 
 export function WorkSpaceBoard() {
   return (
-    <div style={{ display: "flex" }}>
+    <div className="main-layout">
       <WorkSpaceSideBar />
       <section className="work-space-board">
         <BoardHeader />
