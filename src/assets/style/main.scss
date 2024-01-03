@@ -4,13 +4,15 @@
 @import 'basics/layout';
 @import 'basics/forms';
 
-
 // SETUP
 @import 'setup/variables';
 @import 'setup/typography';
 @import 'setup/mixins';
 @import 'setup/functions';
 
+// COMPONENTS
+  //Board Page Components
+@import 'cmps/BoardPageCmps/BoardHeader';
 
 // HOME PAGE COMPONENTS
-@import 'pages/home-page/app-header'
+@import 'pages/home-page/app-header';
