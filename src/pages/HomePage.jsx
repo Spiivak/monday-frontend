@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppHeader } from '../cmps/HomeCmps/HomeHeader'
 
-export default function Home() {
+export  function HomePage() {
   return (
     <AppHeader/>
   )
