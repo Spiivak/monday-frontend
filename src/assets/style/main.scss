@@ -1,14 +1,15 @@
-// BASICS
-@import "basics/base";
-@import "basics/helpers";
-@import "basics/layout";
-@import "basics/forms";
-
 // SETUP
 @import "setup/variables";
 @import "setup/typography";
 @import "setup/mixins";
 @import "setup/functions";
+
+// BASICS
+@import "basics/base";
+@import "basics/helpers";
+@import "basics/layout";
+@import "basics/forms";
+@import "basics/UserMsg";
 
 // COMPONENTS
 //Workspace Page Components

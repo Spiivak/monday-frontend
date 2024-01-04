@@ -1,6 +1,5 @@
 .side-bar {
-  border-radius: 10px;
-
+  border-top-right-radius: 10px;
   position: relative;
   min-height: calc(100dvh - 48px);
   color: #323338;
@@ -28,6 +27,9 @@
     margin-right: 10px;
     &:hover {
       background-color: #dcdfec;
+    }
+    &:active {
+      background-color: #cce5ff;
     }
   }
 }
@@ -128,6 +130,7 @@
 }
 
 .workspace {
+  margin-bottom: 10px;
   align-items: center;
   .workspace-section {
     width: 170px;

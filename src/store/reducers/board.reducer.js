@@ -1,13 +1,16 @@
-import { boardService } from '../../services/board.service.js'
-export const SET_BOARDS = 'SET_BOARDS'
-export const REMOVE_BOARD = 'REMOVE_BOARD'
-export const ADD_BOARD = 'ADD_BOARD'
-export const UPDATE_BOARD = 'UPDATE_BOARD'
-export const GET_BOARD_BY_ID = 'GET_BOARD_BY_ID'
+import { boardService } from "../../services/board.service.js"
+export const SET_BOARDS = "SET_BOARDS"
+export const REMOVE_BOARD = "REMOVE_BOARD"
+export const ADD_BOARD = "ADD_BOARD"
+export const UPDATE_BOARD = "UPDATE_BOARD"
+export const GET_BOARD_BY_ID = "GET_BOARD_BY_ID"
+//loading
+export const SET_IS_LOADING = "SET_IS_LOADING"
 export const UPDATE_TASK = 'UPDATE_TASK'
 
 const initialState = {
   boards: [],
+  isLoading: false,
 }
 
 export function boardReducer(state = initialState, action = {}) {
@@ -16,7 +19,7 @@ export function boardReducer(state = initialState, action = {}) {
   switch (action.type) {
     // * BOARDS CRUD
     case SET_BOARDS:
-      return { ...state, boards: action.boards, totalPages: action.totalPages }
+      return { ...state, boards: action.boards }
 
     case REMOVE_BOARD:
       boards = state.boards.filter((board) => board._id !== action.boardId)
@@ -51,6 +54,9 @@ export function boardReducer(state = initialState, action = {}) {
       })
       return { ...state, boards: newBoards }
 
+    // * LOADING
+    case SET_IS_LOADING:
+      return { ...state, isLoading: action.isLoading }
     default:
       return state
   }

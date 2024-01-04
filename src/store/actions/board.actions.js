@@ -1,9 +1,14 @@
-import { boardService } from '../../services/board.service'
+import { boardService } from "../../services/board.service"
 
-import { SET_BOARDS, UPDATE_TASK } from '../reducers/board.reducer'
-import { GET_BOARD_BY_ID } from '../reducers/board.reducer'
+import {
+  REMOVE_BOARD,
+  SET_BOARDS,
+  SET_IS_LOADING,
+  UPDATE_TASK
+} from "../reducers/board.reducer"
+import { GET_BOARD_BY_ID } from "../reducers/board.reducer"
 
-import { store } from '../store'
+import { store } from "../store"
 
 // * BOARD CRUD
 
@@ -13,7 +18,7 @@ export async function loadBoards() {
     store.dispatch({ type: SET_BOARDS, boards })
     return boards
   } catch (err) {
-    console.error('board action -> cannot load boards', err)
+    console.error("board action -> cannot load boards", err)
     throw err
   }
 }
@@ -42,18 +47,18 @@ export async function updateTask(
   } catch (err) {}
 }
 
-// export async function removeBoard(boardId) {
-//   store.dispatch({ type: SET_IS_LOADING, isLoading: true })
-//   try {
-//     await boardService.remove(boardId)
-//     store.dispatch({ type: REMOVE_BOARD, boardId })
-//   } catch (err) {
-//     console.error('board action -> cannot remove board', err)
-//     throw err
-//   } finally {
-//     store.dispatch({ type: SET_IS_LOADING, isLoading: false })
-//   }
-// }
+export async function removeBoard(boardId) {
+  store.dispatch({ type: SET_IS_LOADING, isLoading: true })
+  try {
+    await boardService.remove(boardId)
+    store.dispatch({ type: REMOVE_BOARD, boardId })
+  } catch (err) {
+    console.error("board action -> cannot remove board", err)
+    throw err
+  } finally {
+    store.dispatch({ type: SET_IS_LOADING, isLoading: false })
+  }
+}
 
 // export async function addBoard(user){
 //   const board = boardService.getEmptyBoard()
