@@ -31,3 +31,90 @@ select {
     outline: none;
   }
 }
+
+// Icon Button
+.btn-icon.small-transparent {
+  @include button-style('icon', 'small', 'transparent');
+}
+.btn-icon.medium-transparent {
+  @include button-style('icon', 'medium', 'transparent');
+}
+.btn-icon.large-transparent {
+  @include button-style('icon', 'large', 'transparent');
+}
+// END OF ICONS
+
+.btn-icon.small-primary {
+  @include button-style('icon', 'small', 'primary');
+}
+
+.btn-icon.medium-primary {
+  @include button-style('icon', 'medium', 'primary');
+}
+
+.btn-icon.large-primary {
+  @include button-style('icon', 'large', 'primary');
+}
+
+.btn-icon.small-sec {
+  @include button-style('icon', 'small', 'secondary');
+}
+
+.btn-icon.medium-sec {
+  @include button-style('icon', 'medium', 'secondary');
+}
+
+.btn-icon.large-sec {
+  @include button-style('icon', 'large', 'secondary');
+}
+
+
+// Text Button
+.btn-txt.small-primary {
+  @include button-style('text', 'small', 'primary');
+}
+
+.btn-txt.medium-primary {
+  @include button-style('text', 'medium', 'primary');
+}
+
+.btn-txt.large-primary {
+  @include button-style('text', 'large', 'primary');
+}
+
+.btn-txt.small-sec {
+  @include button-style('text', 'small', 'secondary');
+}
+
+.btn-txt.medium-sec {
+  @include button-style('text', 'medium', 'secondary');
+}
+
+.btn-txt.large-sec {
+  @include button-style('text', 'large', 'secondary');
+}
+
+// Contained Button
+.btn-ctn.small-primary {
+  @include button-style('contained', 'small', 'primary');
+}
+
+.btn-ctn.medium-primary {
+  @include button-style('contained', 'medium', 'primary');
+}
+
+.btn-ctn.large-primary {
+  @include button-style('contained', 'large', 'primary');
+}
+
+.btn-ctn.small-sec {
+  @include button-style('contained', 'small', 'secondary');
+}
+
+.btn-ctn.medium-sec {
+  @include button-style('contained', 'medium', 'secondary');
+}
+
+.btn-ctn.large-sec {
+  @include button-style('contained', 'large', 'secondary');
+}
