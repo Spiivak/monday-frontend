@@ -10,45 +10,43 @@ import { WorkSpaceList } from "../WorkSpaceSideBarCmps/WorkSpaceList"
 import HomeSvg from "../../assets/icons/Home.svg"
 import MyWeekSvg from "../../assets/icons/MyWeek.svg"
 import MenuSvg from "../../assets/icons/Menu.svg"
+import { HomeIcon, MenuIcon, NavigationChevronLeftIcon, NavigationChevronRightIcon, NavigationChevronUpIcon, WorkIcon } from "../Icons"
+import { NavLink } from "react-router-dom"
 export function WorkSpaceSideBar({ onRemoveBoard }) {
   const [sideBar, setOpenSideBar] = useState(true)
   const [workSpace, setOpenWorkSpace] = useState(false)
 
   return (
-    <section
-      className={`side-bar justify-center${sideBar ? "" : " side-bar-close"}`}
-    >
-      <button className="side-bar-btn" onClick={() => setOpenSideBar(!sideBar)}>
-        <img src={sideBar ? DropdownChevronLeft : DropdownChevronRight} />
+    <section className={`side-bar ${sideBar ? "" : "side-bar-close"}`}>
+      <button className="btn-icon small-transparent close-btn" onClick={() => setOpenSideBar(!sideBar)}>
+        {sideBar ? <NavigationChevronRightIcon /> : <NavigationChevronLeftIcon />}
       </button>
       {sideBar && (
         <div className="side-bar-container flex">
-          <div className="side-bar-link-container">
-            <NavLinkBtn Route={"/"} svgPath={HomeSvg}>
-              Home
-            </NavLinkBtn>
-            <NavLinkBtn Route={"/my-work"} svgPath={MyWeekSvg}>
-              My work
-            </NavLinkBtn>
+          {/* ASIDE HEADER LINKS */}
+          <div className="side-bar-link-container flex column">
+            <NavLink Route="/"><HomeIcon /> Home</NavLink>
+            <NavLink Route="/my-work"><WorkIcon /> My Work</NavLink>
           </div>
+
+          {/* ASIDE FOOTER */}
           <div className="side-bar-footer">
             <div className="side-bar-actions">
               <div className="workspace flex">
-                <div
-                  className="workspace-section flex"
-                  onClick={() => setOpenWorkSpace(!workSpace)}
-                >
-                  <div className=" flex justify-center">
-                    <span>Sprint 4</span>
-                  </div>
-                  <div className="filter-btn justify-center">
-                    <img src={DropdownChevronDown} />
+
+
+                <div className="workspace-section flex space-between btn-icon medium-transparent" onClick={() => setOpenWorkSpace(!workSpace)}>
+                    <div className="workspace-header">
+                      <span>Sprint 4</span>
+                    </div>
+                    <div className="btn-icon small-transparent">
+                      <NavigationChevronUpIcon />
                   </div>
                 </div>
 
                 <div className="menu-btn flex justify-center">
-                  <button>
-                    <img src={MenuSvg} />
+                  <button className="btn-icon medium-transparent">
+                    <MenuIcon />
                   </button>
                 </div>
               </div>
