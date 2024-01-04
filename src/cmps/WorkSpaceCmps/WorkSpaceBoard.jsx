@@ -14,7 +14,7 @@ export function WorkSpaceBoard() {
   useEffect(() => {
     loadBoards()
   }, [])
-  console.log(boards)
+
 
   return (
     <div className="main-layout">
@@ -23,7 +23,9 @@ export function WorkSpaceBoard() {
         <BoardHeader />
         <BoardTabs />
         <BoardFilter />
-      {!!boards && <BoardViewList board={boards[0]}/>}
+        {!!boards && (
+          <BoardViewList board={boards[0]} />
+        )}
       </section>
     </div>
   )
