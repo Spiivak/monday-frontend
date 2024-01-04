@@ -4,7 +4,6 @@ import { handleUpdateTask } from "../../store/actions/board.actions"
 import { useParams } from "react-router-dom"
 export function BoardViewGroup({ group, cmpsOrder }) {
   function onTaskUpdate(cmpType, data, task) {
-    console.log("task:", task)
     // const { boardId } = useParams()
     const boardId = "b101"
     handleUpdateTask(boardId, group.id, task.id, cmpType, task, data)

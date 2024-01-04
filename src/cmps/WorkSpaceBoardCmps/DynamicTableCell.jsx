@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { utilService } from "../../services/util.service"
+import { DatePicker } from "antd"
+import dayjs from "dayjs"
 
 export function DynamicTableCell({ cmp, task, onTaskUpdate }) {
   function handleUpdateTask(cmpType, data, task) {
@@ -12,9 +14,11 @@ export function DynamicTableCell({ cmp, task, onTaskUpdate }) {
     case "MemberPicker":
       return <MemberPicker {...{ task, handleUpdateTask }} />
     case "DatePicker":
-      return <DatePicker {...{ task, handleUpdateTask }} />
-    case "Description":
-      return <Description {...{ task, handleUpdateTask }} />
+      return <DatePickerC {...{ task, handleUpdateTask }} />
+    case "DescriptionPicker":
+      return <DescriptionPicker {...{ task, handleUpdateTask }} />
+    case "TimeLinePicker":
+      return <TimeLinePicker {...{ task, handleUpdateTask }} />
   }
 }
 
@@ -101,7 +105,8 @@ function MemberPicker({ task, handleUpdateTask }) {
         <div
           onMouseEnter={() => (shouldActiveRef.current = true)}
           onMouseLeave={() => (shouldActiveRef.current = false)}
-          className="member-details-wrapper">
+          className="member-details-wrapper"
+        >
           <div className={`member-details`}>
             <div className="avatar-logo">
               <img src={selectedMember.imgUrl} alt="" />
@@ -119,11 +124,11 @@ function MemberPicker({ task, handleUpdateTask }) {
         </div>
       )}
       <div
-        className={`member-add-selector ${isActive ? 'active' : 'hidden'}`}
+        className={`member-add-selector ${isActive ? "active" : "hidden"}`}
         onClick={(e) => {
           e.stopPropagation()
         }}
-        >
+      >
         <div className="member-labels">labels</div>
         <div className="member-search">
           <input type="text" placeholder="search" />
@@ -134,30 +139,31 @@ function MemberPicker({ task, handleUpdateTask }) {
   )
 }
 
-function DatePicker({ task, handleUpdateTask }) {
-  const [isActive, setIsActive] = useState(false)
+function DatePickerC({ task, handleUpdateTask }) {
+  const dateFormat = "YYYY/MM/DD"
 
-  function handleUpdateDate(ev) {
-    const date = ev.target.value
-    handleUpdateTask("DatePicker", date, task)
+  function handleUpdateDate(date) {
+    if (date) {
+      const timestampDate = date.valueOf()
+      handleUpdateTask("DatePicker", timestampDate, task)
+    }
   }
-
   return (
-    <div
-      onClick={() => {
-        setIsActive((a) => !a)
-      }}
-      className="cell"
-    >
-      <h4>{task.date || "empty"}</h4>
-      <div className={`cell-context ${isActive ? "active" : "hidden"}`}>
-        <input type="date" value={task.date} onChange={handleUpdateDate} />
-      </div>
+    <div className="cell">
+      {task.date ? (
+        <DatePicker
+          defaultValue={dayjs(task.date)}
+          format={dateFormat}
+          onChange={handleUpdateDate}
+        />
+      ) : (
+        <DatePicker format={dateFormat} onChange={handleUpdateDate} />
+      )}
     </div>
   )
 }
 
-function Description({ task, handleUpdateTask }) {
+function DescriptionPicker({ task, handleUpdateTask }) {
   const [isActive, setIsActive] = useState(false)
   const [desc, setDesc] = useState(task.description)
   handleUpdateTask = useRef(utilService.debounce(handleUpdateTask))
@@ -181,7 +187,7 @@ function Description({ task, handleUpdateTask }) {
   const descriptionToShow = removeLeadingSlashN(desc) || "empty"
 
   useEffect(() => {
-    handleUpdateTask.current("Description", desc, task)
+    handleUpdateTask.current("DescriptionPicker", desc, task)
   }, [desc])
 
   return (
@@ -203,6 +209,39 @@ function Description({ task, handleUpdateTask }) {
           }}
         />
       </div>
+    </div>
+  )
+}
+
+function TimeLinePicker({ task, handleUpdateTask }) {
+  const { RangePicker } = DatePicker
+  const dateFormat = "YYYY/MM/DD"
+
+  function handleDateChange(dates) {
+    if (dates) {
+      const [startDate, endDate] = dates
+      const timestampStartDate = startDate.valueOf()
+      const timestampEndDate = endDate.valueOf()
+
+      handleUpdateTask(
+        "TimeLinePicker",
+        [timestampStartDate, timestampEndDate],
+        task
+      )
+    }
+  }
+
+  return (
+    <div className="cell">
+      {task.timeline ? (
+        <RangePicker
+          defaultValue={task.timeline.map((timestamp) => dayjs(timestamp))}
+          format={dateFormat}
+          onChange={handleDateChange}
+        />
+      ) : (
+        <RangePicker format={dateFormat} onChange={handleDateChange} />
+      )}
     </div>
   )
 }

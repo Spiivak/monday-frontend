@@ -39,8 +39,12 @@ export async function handleUpdateTask(
     case "DatePicker":
       newTask = { ...task, date: data }
       break
-    case "Description":
+    case "DescriptionPicker":
       newTask = { ...task, description: data }
+      break
+    case "TimeLinePicker":
+      newTask = { ...task, timeline: data }
+      console.log("newTask:", newTask)
       break
   }
   try {
