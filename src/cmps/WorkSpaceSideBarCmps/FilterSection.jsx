@@ -1,9 +1,10 @@
-import Filter from "../../assets/icons/Filter.svg"
-import Search from "../../assets/icons/Search.svg"
-import Button from "@mui/material/Button"
+import { useState } from "react"
 import { AddIcon, FilterIcon, SearchIcon } from "../Icons"
+import { FilterModal } from "./FilterModal"
 
 export function FilterSection() {
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
+  const openFilterModal = () => setIsFilterModalOpen(!isFilterModalOpen)
   return (
     <div className="filter-container flex">
       <div className="filter-search flex">
@@ -11,7 +12,7 @@ export function FilterSection() {
           <SearchIcon/>
         </button>
         <input type="text" placeholder="Search" />
-        <button className="btn-icon small-transparent">
+        <button className="btn-icon small-transparent" onClick={() => openFilterModal()}>
           <FilterIcon/>
         </button>
       </div>
@@ -20,6 +21,7 @@ export function FilterSection() {
           <AddIcon/>
         </button>
       </div>
+      {isFilterModalOpen && <FilterModal/>}
     </div>
   )
 }

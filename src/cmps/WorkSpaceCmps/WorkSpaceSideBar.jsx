@@ -4,7 +4,6 @@ import DropdownChevronLeft from "../../assets/icons/DropdownChevronLeft.svg"
 import DropdownChevronRight from "../../assets/icons/DropdownChevronRight.svg"
 import DropdownChevronDown from "../../assets/icons/DropdownChevronDown.svg"
 import { WorkSpaceContext } from "../WorkSpaceSideBarCmps/WorkSpaceContext"
-import { NavLinkBtn } from "../WorkSpaceSideBarCmps/NavLinkBtn"
 import { FilterSection } from "../WorkSpaceSideBarCmps/FilterSection"
 import { WorkSpaceList } from "../WorkSpaceSideBarCmps/WorkSpaceList"
 import HomeSvg from "../../assets/icons/Home.svg"
@@ -12,10 +11,20 @@ import MyWeekSvg from "../../assets/icons/MyWeek.svg"
 import MenuSvg from "../../assets/icons/Menu.svg"
 import { HomeIcon, MenuIcon, NavigationChevronDownIcon, NavigationChevronLeftIcon, NavigationChevronRightIcon, NavigationChevronUpIcon, WorkIcon } from "../Icons"
 import { NavLink } from "react-router-dom"
+import Frame from "../../assets/img/Frame.png"
+import { MoreModal } from "../WorkSpaceSideBarCmps/MoreModal"
 export function WorkSpaceSideBar({ onRemoveBoard }) {
+  const [isWpModalOpen, setIsWpModalOpen] = useState(false)
+  const [isMoreModalOpen, setIsMoreModalOpen] = useState(false)
   const [sideBar, setOpenSideBar] = useState(true)
-  const [workSpace, setOpenWorkSpace] = useState(false)
 
+  const openWorkspaceModal = () => setIsWpModalOpen(!isWpModalOpen)
+  const openMoreModal = () => setIsMoreModalOpen(!isMoreModalOpen)
+
+  function onCloseModal() {
+    setIsWpModalOpen(!isWpModalOpen)
+    setIsMoreModalOpen(!isMoreModalOpen)
+  }
   return (
     <section className={`side-bar ${sideBar ? "" : "side-bar-close"}`}>
       <button className="btn-icon small-transparent close-btn" onClick={() => setOpenSideBar(!sideBar)}>
@@ -25,8 +34,8 @@ export function WorkSpaceSideBar({ onRemoveBoard }) {
         <div className="side-bar-container flex column">
           {/* ASIDE HEADER LINKS */}
           <div className="side-bar-link-container flex column">
-            <NavLink Route="/"><HomeIcon /> Home</NavLink>
-            <NavLink Route="/my-work"><WorkIcon /> My Work</NavLink>
+            <NavLink to="/"><HomeIcon /> Home</NavLink>
+            <NavLink to="/my-work"><WorkIcon /> My Work</NavLink>
           </div>
 
           {/* ASIDE FOOTER */}
@@ -38,28 +47,32 @@ export function WorkSpaceSideBar({ onRemoveBoard }) {
               <div className="home-workspace-items-title">
 
                 <div className="workspace-dropdown-button flex space-between">
-                  <div className="workspace-title flex align-center space-between">
-                    <div className="workspace-icon">
-                      <HomeIcon />
+                  <div className="dropdown-button flex space-between align-center gap8" onClick={() => openWorkspaceModal()}>
+                    <div className="workspace-title flex align-center space-between">
+                      <div className="workspace-icon">
+                        <div className="workspace-name-wrapper flex align-center gap8">
+                          {/* <HomeIcon /> */}
+                          <picture><img src={Frame} alt="" /></picture>
+                          <span>Sprint 4</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="workspace-name-wrapper">
-                      <span>Sprint 4</span>
+                    <div className="dropdown-icon-wrapper flex align-center gap8">
+                      <div className="chvron-down">
+
+                        <NavigationChevronDownIcon className="chvron-down" />
+                      </div>
                     </div>
                   </div>
-                  <div className="dropdown-icon-wrapper flex align-center gap8">
-                    <div className="chvron-down">
-
-                    <NavigationChevronDownIcon className="chvron-down" />
-                    </div>
-                    <div className="header-menu">
-                      <button className="btn-icon small-transparent"><MenuIcon /></button>
-                    </div>
+                  <div className="header-menu">
+                    <button className="btn-icon small-transparent" onClick={()=> openMoreModal()}><MenuIcon /></button>
                   </div>
                 </div>
               </div>
 
               <FilterSection />
-              {workSpace && <WorkSpaceContext />}
+              {isWpModalOpen && <WorkSpaceContext />}
+              {isMoreModalOpen && <MoreModal/>}
             </div>
 
             <WorkSpaceList {...{ onRemoveBoard }} />
