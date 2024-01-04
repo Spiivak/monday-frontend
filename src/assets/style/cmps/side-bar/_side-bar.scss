@@ -114,13 +114,54 @@
 
 .workspace-context-container {
   box-shadow: 0px 0px 8px 1.5px rgba(0, 0, 0, 0.2);
-  width: 264px;
-  padding: 8px;
+  width: 280px;
+  height: 225px;
+  padding: 12px;
   left: 5px;
   position: absolute;
   background-color: white;
-  border-radius: 15px;
+  border-radius: 10px;
   z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: space-between;
+  .workspace-context-header {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #d0d4e4;
+
+    .workspace-context-middle {
+      gap: 12px;
+      display: flex;
+      flex-direction: column;
+      div {
+        margin-bottom: 10px;
+        > * {
+          margin-bottom: 10px;
+        }
+      }
+    }
+    .fav-btn {
+      margin-top: 10px;
+      padding: 0;
+    }
+
+    .workspace-search {
+      input {
+        border: none;
+        &::placeholder {
+          font-size: 0.8rem;
+        }
+      }
+      border: 1px solid #d0d4e4;
+      border-radius: 7px;
+      height: 30px;
+    }
+  }
+  .work-space-btns {
+    font-size: 0.8rem;
+  }
 }
 
 .work-space-btns {

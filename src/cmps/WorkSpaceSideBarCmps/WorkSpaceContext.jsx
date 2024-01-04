@@ -5,22 +5,24 @@ import Favorite from "../../assets/icons/Favorite.svg"
 export function WorkSpaceContext() {
   return (
     <div className="workspace-context-container">
-      <div className="work-space-header">
-        <div className="work-space-search flex">
+      <div className="workspace-context-header">
+        <div className="workspace-search flex">
           <input type="text" placeholder="Search for a workspace" />
           <button>
             <img src={Search} alt="Search" />
           </button>
         </div>
-        <button>
-          <span>
-            <img src={Favorite} />
-          </span>
-          Favorites
-        </button>
-        <div>
-          <p>My workspaces</p>
-          <button>Sprint 4</button>
+        <div className="workspace-context-middle">
+          <button className="fav-btn">
+            <span>
+              <img src={Favorite} />
+            </span>
+            Favorites
+          </button>
+          <div>
+            <p>My workspaces</p>
+            <button>Sprint 4</button>
+          </div>
         </div>
       </div>
       <div className="work-space-btns flex align-center">
