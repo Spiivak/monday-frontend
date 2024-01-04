@@ -54,7 +54,6 @@ function MemberPicker({ task, handleUpdateTask }) {
     hoverTimeoutRef.current = setTimeout(() => {
       if (shouldActiveRef.current) {
         setSelectedMember(member)
-        setIsActive(true)
       }
     }, 1000)
   }
@@ -65,12 +64,13 @@ function MemberPicker({ task, handleUpdateTask }) {
     hoverEndTimeoutRef.current = setTimeout(() => {
       if (!shouldActiveRef.current) {
         setSelectedMember(null)
-        setIsActive(false)
       }
     }, 500)
   }
 
-  function handleClick() {}
+  function handleClick() {
+    setIsActive((a) => !a)
+  }
   return (
     <div
       onMouseEnter={handleHover}
@@ -80,11 +80,12 @@ function MemberPicker({ task, handleUpdateTask }) {
       {(!!task?.members && (
         <div className="avatars-wrapper">
           {task.members.map((member) => (
-            <div
-              onMouseEnter={() => handleHover(member)}
-              className="avatar-logo"
-              key={member._id}>
-              <img src={member.imgUrl} alt="" />
+            <div className="avatar-logo" key={member._id}>
+              <img
+                onMouseEnter={() => handleHover(member)}
+                src={member.imgUrl}
+                alt=""
+              />
             </div>
           ))}
         </div>
@@ -95,7 +96,7 @@ function MemberPicker({ task, handleUpdateTask }) {
           onMouseEnter={() => (shouldActiveRef.current = true)}
           onMouseLeave={() => (shouldActiveRef.current = false)}
           className="member-details-wrapper">
-          <div className={`member-details ${isActive ? 'active' : 'hidden'}`}>
+          <div className={`member-details`}>
             <div className="avatar-logo">
               <img src={selectedMember.imgUrl} alt="" />
             </div>
@@ -111,7 +112,18 @@ function MemberPicker({ task, handleUpdateTask }) {
           </div>
         </div>
       )}
-      <div className="member-add-selector"></div>
+      <div
+        className={`member-add-selector ${isActive ? 'active' : 'hidden'}`}
+        onClick={(e) => {
+          e.stopPropagation()
+        }}
+        >
+        <div className="member-labels">labels</div>
+        <div className="member-search">
+          <input type="text" placeholder="search" />
+        </div>
+        <div className="member-suggestions">suggested members</div>
+      </div>
     </div>
   )
 }

@@ -1,0 +1,15 @@
+.board-view-group{
+  margin-bottom: 1em;
+  table {
+    border-collapse: collapse;
+    border: 1px solid black;
+    border-radius: 4px;
+  }
+  td,
+  th{
+    width: 300px;
+    height: 50px;
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+}

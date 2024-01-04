@@ -1,5 +1,4 @@
 .main-layout {
-  display: grid;
-  grid-template-columns: 255px 1fr;
+  display: flex;
   gap: 10px;
 }
