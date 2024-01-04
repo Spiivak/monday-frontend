@@ -100,6 +100,29 @@ const demoData = [
                 ],
               },
             ],
+            members:[
+              {
+                _id: 'u101',
+                username: 'Tal',
+                fullname: 'Tal Tarablus',
+                imgUrl:
+                  'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+              },
+              {
+                _id: 'u102',
+                username: 'Cal',
+                fullname: 'Cal Tarablus',
+                imgUrl:
+                  'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+              },
+              {
+                _id: 'u103',
+                username: 'Dal',
+                fullname: 'Dal Tarablus',
+                imgUrl:
+                  'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+              },
+            ],
             memberIds: ['u101'],
             labelIds: ['l101', 'l102'],
             dueDate: 16156215211,
