@@ -28,9 +28,13 @@ import Carrefour from '../assets/img/companies/carrefour.png'
 import OBD from '../assets/img/companies/bd.png'
 import Glossier from '../assets/img/companies/glossier.png'
 import Universal from '../assets/img/companies/universal.png'
-
-
-
+import GoalsDashboard from '../assets/img/goals_dashboard.mp4'
+import WmDark from '../assets/img/wm-dark.png'
+import MondayProducts from '../assets/img/mp.png'
+import MWork from '../assets/img/mwm.png'
+import MSales from '../assets/img/msc.png'
+import MDev from '../assets/img/mdev.png'
+import Check from '../assets/icons/Check.svg'
 
 export function HomePage() {
   const [activeTab, setActiveTab] = useState('work-management-tab');
@@ -95,166 +99,237 @@ export function HomePage() {
             </div>
           </div>
         </section>
-        <section className="boost-your-team">
-          <h2>The Work OS that lets you
-            shape workflows, your way
-          </h2>
-          <div className="boost-your-team-cta">
-            <span>Boost your team’s alignment, efficiency, and productivity by customizing any workflow to fit your needs.</span>
-            <button>Get Started</button>
+        <section className="boost-your-team flex">
+          <div className='flex justify-center'>
+
+            <h2>The Work OS that lets you
+              shape workflows, your way
+            </h2>
+            <div className="boost-your-team-cta flex column">
+              <span>Boost your team’s alignment, efficiency, and productivity by customizing any workflow to fit your needs.</span>
+              <div className='flex'>
+
+                <button className='get-started-btn'>Get Started</button>
+              </div>
+            </div>
           </div>
         </section>
         <section className="preview-images-section">
-          <img src={TimeLine} alt="" />
-          <img src={Status} alt="" />
-          <img src={Battery} alt="" />
-          <img src={Integration} alt="" />
-          <img src={Pie} alt="" />
-          <img src={Mobile} alt="" />
-          <img src={Automation} alt="" />
-          <img src={Comment} alt="" />
-          <img src={Dashboard} alt="" />
+          <div className="masonry-grid">
+            <div className="grid-container">
+              <div className="item item1 timeline">
+                <img src={TimeLine} alt="" />
+              </div>
+              <div className="item item2 status">
+                <img src={Status} alt="" />
+              </div>
+              <div className="item item3 battery">
+                <img src={Battery} alt="" />
+              </div>
+              <div className="item item4 integration">
+                <img src={Integration} alt="" />
+              </div>
+              <div className="item item5 pie">
+                <img src={Pie} alt="" />
+              </div>
+              <div className="item item6 mobile">
+                <img src={Mobile} alt="" />
+              </div>
+              <div className="item item7 automation">
+                <img src={Automation} alt="" />
+              </div>
+              <div className="item item8 comment">
+                <img src={Comment} alt="" />
+              </div>
+              <div className="item item9 dashboard">
+                <img src={Dashboard} alt="" />
+              </div>
+            </div>
+          </div>
         </section>
         <section className="scroll-paralex">
-          <div className="paralex1">
-            <h2>Streamline your work for
-              maximum productivity
-            </h2>
-            <p>
-              Centralize all your work, processes, tools, and files into one Work OS. Connect teams, bridge silos, and maintain one source of truth across your organization.
-            </p>
-            <div className="user-comment">
-              <div className="avatar">
-                <img src="" alt="Avatar" />
-              </div>
-              <div className="comment">
-                <span>“
-                  We use monday.com for a plethora of use cases, the opportunities this platform provides are limitless.”</span>
-                <span>Jane Tham</span> | <span>VP of Collaboration Technologies</span>
-                <span>Universal Music Group</span>
+          <div className="container">
+            <div className="cards">
+              <div className="paralex-cards">
+                <div className="paralex1">
+                  <div className="heading">
+                    <h2>Streamline your work for<br />maximum productivity</h2>
+                  </div>
+                  <div className="paragraph">
+                    <p>
+                      Centralize all your work, processes, tools, and files into one Work OS. Connect teams, bridge silos, and maintain one source of truth across your organization.
+                    </p>
+                  </div>
+                  <div className="user-comment flex align-center">
+                    <div className="avatar">
+                      <img src={WmDark} alt="Avatar" />
+                    </div>
+
+                    <div className="comment">
+                      <div className='avatar-comment'>
+                        <span className='span-comment'>“We use monday.com for a plethora of use cases, the opportunities this platform provides are limitless.”</span>
+                      </div>
+                      <div className="avatar-role-name">
+                        <div className="avatar-name">
+
+                          <span className='span-avatar-name'>Jane Tham</span> | <span className='span-avatar-name'>VP of Collaboration Technologies</span>
+                        </div>
+                        <span className='span-avatar-role'>Universal Music Group</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="paralex2">
+                  <div className="heading">
+                    <h2>Bring teams together to<br />drive business impact</h2>
+                  </div>
+                  <div className="paragraph">
+                    <p>
+                      Collaborate effectively organization-wide to get a clear picture of all your work. Stay in the loop with easy-to-use automations and real-time notifications.
+                    </p>
+                  </div>
+                  <div className="user-comment flex align-center">
+                    <div className="avatar">
+                      <img src={WmDark} alt="Avatar" />
+                    </div>
+                    <div className="comment">
+                      <div className='avatar-comment'>
+                        <span className='span-comment'>“Since adopting monday.com, our global marketing department has seen a 40% improvement in cross-team collaboration.”</span>
+                      </div>
+                      <div className="avatar-role-name">
+                        <div className="avatar-name">
+                          <span className='span-avatar-name'>Sarah Pharr</span> | <span className='span-avatar-name'>AVP Marketing</span>
+                        </div>
+                        <span className='span-avatar-role'>Genpact</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="paralex3">
+                  <div className="heading">
+                    <h2>Stay on track toreach your goals, faster</h2>
+                  </div>
+                  <div className="paragraph">
+
+                    <p>
+                      Get a high-level overview of your organization with customizable dashboards. Make confident decisions and easily scale workflows for your evolving needs.
+                    </p>
+                  </div>
+                  <button className='btn-get-started-stroke'>Get Started</button>
+                  <div className="user-comment flex align-center">
+                    <div className="avatar">
+                      <img src={WmDark} alt="Avatar" />
+                    </div>
+                    <div className="comment">
+                      <div className='avatar-comment'>
+                        <span className='span-comment'>“monday.com allows banks to be synchronized between the top-level management figures and local KPIs.”</span>
+                      </div>
+                      <div className="avatar-role-name">
+                        <div className="avatar-name">
+
+                          <span className='span-avatar-name'>Baptiste Ancey</span> | <span className='span-avatar-name'>Head of Innovation</span>
+                        </div>
+                        <span className='span-avatar-role'>Indosuez Wealth Management</span>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
-          </div>
-          <div className="paralex2">
-            <h2>Bring teams together to drive business impact</h2>
-            <p>
-              Collaborate effectively organization-wide to get a clear picture of all your work. Stay in the loop with easy-to-use automations and real-time notifications.
-            </p>
-            <div className="user-comment">
-              <div className="avatar">
-                <img src="" alt="Avatar" />
-              </div>
-              <div className="comment">
-                <span>“Since adopting monday.com, our global marketing department has seen a 40% improvement in cross-team collaboration.”</span>
-                <span>Sarah Pharr</span> | <span>AVP Marketing</span>
-                <span>Genpact</span>
-              </div>
-            </div>
-          </div>
-          <div className="paralex3">
-            <h2>Stay on track toreach your goals, faster</h2>
-            <p>
-              Get a high-level overview of your organization with customizable dashboards. Make confident decisions and easily scale workflows for your evolving needs.
-            </p>
-            <button>Get Started</button>
-            <div className="user-comment">
-              <div className="avatar">
-                <img src="" alt="Avatar" />
-              </div>
-              <div className="comment">
-                <span>“monday.com allows banks to be synchronized between the top-level management figures and local KPIs.”</span>
-                <span>Baptiste Ancey</span> | <span>Head of Innovation</span>
-                <span>Indosuez Wealth Management</span>
+            <div className="paralex-video">
+              <div className="video">
+                <video src={GoalsDashboard} alt="" />
               </div>
             </div>
           </div>
         </section>
         <section className="workflow-section">
-          <h2>Everything you need for any workflow</h2>
-          <span>Easily build your ideal workflow with monday.com building blocks.</span>
-          <div className="building-blocks-tabs">
-            <BuildingBlocksTabs activeTab={buildingBlocksTab} onTabClick={handleBuildingBlocksTabClick} />
-            <BuildingBlocksContent activeTab={buildingBlocksTab} />
+          <div className="worflow-section-wrapper flex column align-center">
+            <h2>Everything you need for any workflow</h2>
+            <span>Easily build your ideal workflow with monday.com building blocks.</span>
+          </div>
+          <div className="building-blocks-tbs flex column align-center">
+            <div className="tabs">
+              <BuildingBlocksTabs activeTab={buildingBlocksTab} onTabClick={handleBuildingBlocksTabClick} />
+            </div>
+            <div>
+              <BuildingBlocksContent activeTab={buildingBlocksTab} />
+            </div>
           </div>
         </section>
-        <section className="monday-products">
-          <div className="monday-products-wrapper">
-            <img src="" alt="Monday products" />
-            <h2>End-to-end products to run
-              the core of your business
-            </h2>
-            <p>Tailored products designed for every aspect of your teams' needs.
-            </p>
-          </div>
-          <div className="monday-products-cards">
-            <div className="monday-work-management">
-              <img src="" alt="logo" />
-              <p>For professionals and teams managing tasks & workflows</p>
+        <div className="monday-products-wrapper flex column justify-center align-center">
+          <img src={MondayProducts} alt="Monday products" />
+          <h2>End-to-end products to run
+            the core of your business
+          </h2>
+          <p className='subtitle'>Tailored products designed for every aspect of your teams' needs.
+          </p>
+        </div>
+        <section className="monday-products flex justify-center">
+          <div className="monday-products-cards flex gap16">
+            <div className="monday-work-management product-card flex column">
+              <div className="product-card-header">
+                <picture><img src={MWork} alt="logo" /></picture>
+                <p>For professionals and teams managing tasks & workflows</p>
+              </div>
               <p>Manage tasks, projects, and processes to fuel collaboration and efficiency at scale.</p>
-              <hr />
-              <span>Top use cases:</span>
-              <ul>
-                <li>Project management</li>
-                <li>Portfolio management</li>
-                <li>Resource management</li>
-                <li>Goals & strategy</li>
-              </ul>
-              <button>Get Started</button>
-              <button>Learn More</button>
+              <div className="product-card-divider"></div>
+              <div className="product-card-use-cases">
+
+                <span className='product-card-use-cases-title'>Top use cases:</span>
+                <ul className=''>
+                  <li className='flex gap8'><img src={Check} alt="logo" />Project management</li>
+                  <li className='flex gap8'><img src={Check} alt="logo" />Portfolio management</li>
+                  <li className='flex gap8'><img src={Check} alt="logo" />Resource management</li>
+                  <li className='flex gap8'><img src={Check} alt="logo" />Goals & strategy</li>
+                </ul>
+              </div>
+              <button className='btn-get-started-stroke'>Get Started</button>
+              <button className='btn-learn-more'>Learn More</button>
             </div>
-            <div className="monday-sales-crm">
-              <img src="" alt="logo" />
-              <p>For sales professionals and customer-facing teams</p>
+            <div className="monday-sales-crm product-card flex column">
+              <div className="product-card-header">
+
+                <picture><img src={MSales} alt="logo" /></picture>
+                <p>For sales professionals and customer-facing teams</p>
+              </div>
               <p>Track and manage all aspects of your sales cycle, customer data, and more in one place.</p>
-              <hr />
-              <span>Top use cases:</span>
-              <ul>
-                <li>Contact management</li>
-                <li>Sales pipeline</li>
-                <li>Post-sales management</li>
-                <li>Lead management</li>
-              </ul>
-              <button>Get Started</button>
-              <button>Learn More</button>
+              <div className="product-card-divider"></div>
+              <div className="product-card-use-cases">
+
+                <span className='product-card-use-cases-title'>Top use cases:</span>
+                <ul>
+                  <li className='flex gap8'><img src={Check} alt="logo" />Contact management</li>
+                  <li className='flex gap8'><img src={Check} alt="logo" />Sales pipeline</li>
+                  <li className='flex gap8'><img src={Check} alt="logo" />Post-sales management</li>
+                  <li className='flex gap8'><img src={Check} alt="logo" />Lead management</li>
+                </ul>
+              </div>
+              <button className='btn-get-started-stroke'>Get Started</button>
+              <button className='btn-learn-more'>Learn More</button>
             </div>
-            <div className="monday-dev">
-              <img src="" alt="logo" />
-              <p>For product and development professionals and teams</p>
-              <p>Build agile workflows to drive impact across your product, design, and R&D teams.</p>
-              <hr />
-              <span>Top use cases:</span>
-              <ul>
-                <li>Roadmap planning</li>
-                <li>Scrum & Kanban</li>
-                <li>Bug tracking</li>
-                <li>Sprint dashboards</li>
-              </ul>
-              <button>Get Started</button>
-              <button>Learn More</button>
+            <div className="monday-dev product-card flex column">
+              <div className="product-card-header">
+                <picture><img src={MDev} alt="logo" /></picture>
+                <p>For product and development professionals and teams</p>
+              </div>
+              <p>Build agile workflows to drive impact across your product, design, and R&D teams. Mister Biton.</p>
+              <div className="product-card-divider"></div>
+              <div className="product-card-use-cases">
+
+                <span className='product-card-use-cases-title'>Top use cases:</span>
+                <ul>
+                  <li className='flex gap8'><img src={Check} alt="logo" />Roadmap planning</li>
+                  <li className='flex gap8'><img src={Check} alt="logo" />Scrum & Kanban</li>
+                  <li className='flex gap8'><img src={Check} alt="logo" />Bug tracking</li>
+                  <li className='flex gap8'><img src={Check} alt="logo" />Sprint dashboards</li>
+                </ul>
+              </div>
+              <button className='btn-get-started-stroke'>Get Started</button>
+              <button className='btn-learn-more'>Learn More</button>
             </div>
-          </div>
-        </section>
-        <section className="monday-efficiency">
-          <div className="monday-efficiency-explore">
-            <img src="" alt="monday efficiency" />
-            <h2>Explore proven ways to work more efficiently </h2>
-            <button>Browse by use case</button>
-          </div>
-          <div className="monday-efficiency-simplify">
-            <p>Simplify OKR tracking </p>
-            <img src="" alt="arrow" />
-            <span>80%</span>
-            <p>of goals achieved with OKRs on monday.com</p>
-            <button>Learn More</button>
-            <iframe src=""></iframe>
-          </div>
-          <div className="monday-efficiency-explore">
-            <p>Onboard clients successfully </p>
-            <img src="" alt="arrow" />
-            <span>74%</span>
-            <p>Improvement in customer retention</p>
-            <button>Learn More</button>
-            <iframe src=""></iframe>
           </div>
         </section>
       </main>
