@@ -1,6 +1,6 @@
 import { boardService } from '../../services/board.service'
 
-import { SET_BOARDS } from '../reducers/board.reducer'
+import { SET_BOARDS, UPDATE_TASK } from '../reducers/board.reducer'
 import { GET_BOARD_BY_ID } from '../reducers/board.reducer'
 
 import { store } from '../store'
@@ -16,6 +16,30 @@ export async function loadBoards() {
     console.error('board action -> cannot load boards', err)
     throw err
   }
+}
+
+export async function updateTask(
+  boardId,
+  groupId,
+  taskId,
+  cmpType,
+  task,
+  data
+) {
+  let newTask
+  switch (cmpType) {
+    case 'StatusPicker':
+      newTask = { ...task, status: data }
+  }
+  try {
+    const task = await boardService.updateTask(
+      boardId,
+      groupId,
+      taskId,
+      newTask
+    )
+    store.dispatch({ type: UPDATE_TASK, boardId, groupId, taskId, task })
+  } catch (err) {}
 }
 
 // export async function removeBoard(boardId) {
