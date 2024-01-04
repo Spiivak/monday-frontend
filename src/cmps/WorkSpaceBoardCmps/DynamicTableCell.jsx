@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from "react"
+import { utilService } from "../../services/util.service"
 
 export function DynamicTableCell({ cmp, task, onTaskUpdate }) {
   function handleUpdateTask(cmpType, data, task) {
@@ -6,12 +7,14 @@ export function DynamicTableCell({ cmp, task, onTaskUpdate }) {
   }
 
   switch (cmp) {
-    case 'StatusPicker':
-      return <StatusPicker task={task} handleUpdateTask={handleUpdateTask} />
-    case 'MemberPicker':
-      return <MemberPicker task={task} handleUpdateTask={handleUpdateTask} />
-    case 'DatePicker':
-      return <DatePicker task={task} handleUpdateTask={handleUpdateTask} />
+    case "StatusPicker":
+      return <StatusPicker {...{ task, handleUpdateTask }} />
+    case "MemberPicker":
+      return <MemberPicker {...{ task, handleUpdateTask }} />
+    case "DatePicker":
+      return <DatePicker {...{ task, handleUpdateTask }} />
+    case "Description":
+      return <Description {...{ task, handleUpdateTask }} />
   }
 }
 
@@ -23,17 +26,19 @@ function StatusPicker({ task, handleUpdateTask }) {
       onClick={() => {
         setIsActive((a) => !a)
       }}
-      className="cell">
-      <h4>{task.status || 'empty'}</h4>
-      <div className={`cell-context ${isActive ? 'active' : 'hidden'}`}>
-        <button onClick={() => handleUpdateTask('StatusPicker', 'done', task)}>
+      className="cell"
+    >
+      <h4>{task.status || "empty"}</h4>
+      <div className={`cell-context ${isActive ? "active" : "hidden"}`}>
+        <button onClick={() => handleUpdateTask("StatusPicker", "done", task)}>
           done
         </button>
         <button
-          onClick={() => handleUpdateTask('StatusPicker', 'in-progress', task)}>
+          onClick={() => handleUpdateTask("StatusPicker", "in-progress", task)}
+        >
           in-progress
         </button>
-        <button onClick={() => handleUpdateTask('StatusPicker', 'stuck', task)}>
+        <button onClick={() => handleUpdateTask("StatusPicker", "stuck", task)}>
           stuck
         </button>
       </div>
@@ -76,7 +81,8 @@ function MemberPicker({ task, handleUpdateTask }) {
       onMouseEnter={handleHover}
       onMouseLeave={handleHoverEnd}
       onClick={handleClick}
-      className="cell">
+      className="cell"
+    >
       {(!!task?.members && (
         <div className="avatars-wrapper">
           {task.members.map((member) => (
@@ -90,7 +96,7 @@ function MemberPicker({ task, handleUpdateTask }) {
           ))}
         </div>
       )) ||
-        'empty'}
+        "empty"}
       {!!selectedMember && (
         <div
           onMouseEnter={() => (shouldActiveRef.current = true)}
@@ -129,9 +135,74 @@ function MemberPicker({ task, handleUpdateTask }) {
 }
 
 function DatePicker({ task, handleUpdateTask }) {
+  const [isActive, setIsActive] = useState(false)
+
+  function handleUpdateDate(ev) {
+    const date = ev.target.value
+    handleUpdateTask("DatePicker", date, task)
+  }
+
+  return (
+    <div
+      onClick={() => {
+        setIsActive((a) => !a)
+      }}
+      className="cell"
+    >
+      <h4>{task.date || "empty"}</h4>
+      <div className={`cell-context ${isActive ? "active" : "hidden"}`}>
+        <input type="date" value={task.date} onChange={handleUpdateDate} />
+      </div>
+    </div>
+  )
+}
+
+function Description({ task, handleUpdateTask }) {
+  const [isActive, setIsActive] = useState(false)
+  const [desc, setDesc] = useState(task.description)
+  handleUpdateTask = useRef(utilService.debounce(handleUpdateTask))
+
+  function handleUpdateDesc(ev) {
+    ev.preventDefault()
+    const txt = ev.target.value
+    setDesc(txt)
+  }
+
+  function removeLeadingSlashN(description) {
+    let modifiedDescription = description
+
+    while (modifiedDescription && modifiedDescription.startsWith("\n")) {
+      modifiedDescription = modifiedDescription.slice(2)
+    }
+
+    return modifiedDescription
+  }
+
+  const descriptionToShow = removeLeadingSlashN(desc) || "empty"
+
+  useEffect(() => {
+    handleUpdateTask.current("Description", desc, task)
+  }, [desc])
+
   return (
     <div className="cell">
-      <h4>{task.date || 'empty'}</h4>
+      <h4
+        onClick={() => {
+          setIsActive((a) => !a)
+        }}
+      >
+        {descriptionToShow}
+      </h4>
+      <div className={`cell-context ${isActive ? "active" : "hidden"}`}>
+        <textarea
+          placeholder="Add description"
+          value={desc}
+          onChange={handleUpdateDesc}
+          onBlur={() => {
+            setIsActive((a) => !a)
+          }}
+        />
+      </div>
     </div>
   )
 }

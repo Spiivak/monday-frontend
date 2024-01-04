@@ -4,7 +4,7 @@ import {
   REMOVE_BOARD,
   SET_BOARDS,
   SET_IS_LOADING,
-  UPDATE_TASK
+  UPDATE_TASK,
 } from "../reducers/board.reducer"
 import { GET_BOARD_BY_ID } from "../reducers/board.reducer"
 
@@ -23,7 +23,7 @@ export async function loadBoards() {
   }
 }
 
-export async function updateTask(
+export async function handleUpdateTask(
   boardId,
   groupId,
   taskId,
@@ -33,8 +33,15 @@ export async function updateTask(
 ) {
   let newTask
   switch (cmpType) {
-    case 'StatusPicker':
+    case "StatusPicker":
       newTask = { ...task, status: data }
+      break
+    case "DatePicker":
+      newTask = { ...task, date: data }
+      break
+    case "Description":
+      newTask = { ...task, description: data }
+      break
   }
   try {
     const task = await boardService.updateTask(
