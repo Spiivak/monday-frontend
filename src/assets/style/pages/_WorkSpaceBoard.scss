@@ -1,7 +1,7 @@
 .work-space-board {
   background-color: #fff;
   min-height: calc(100dvh - $header-height);
-
+  flex: 1;
   border-top-left-radius: $border-radius-medium;
 
   padding: $spacing-medium $spacing-xl;

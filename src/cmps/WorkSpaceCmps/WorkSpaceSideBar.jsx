@@ -10,7 +10,7 @@ import { WorkSpaceList } from "../WorkSpaceSideBarCmps/WorkSpaceList"
 import HomeSvg from "../../assets/icons/Home.svg"
 import MyWeekSvg from "../../assets/icons/MyWeek.svg"
 import MenuSvg from "../../assets/icons/Menu.svg"
-import { HomeIcon, MenuIcon, NavigationChevronLeftIcon, NavigationChevronRightIcon, NavigationChevronUpIcon, WorkIcon } from "../Icons"
+import { HomeIcon, MenuIcon, NavigationChevronDownIcon, NavigationChevronLeftIcon, NavigationChevronRightIcon, NavigationChevronUpIcon, WorkIcon } from "../Icons"
 import { NavLink } from "react-router-dom"
 export function WorkSpaceSideBar({ onRemoveBoard }) {
   const [sideBar, setOpenSideBar] = useState(true)
@@ -22,7 +22,7 @@ export function WorkSpaceSideBar({ onRemoveBoard }) {
         {sideBar ? <NavigationChevronRightIcon /> : <NavigationChevronLeftIcon />}
       </button>
       {sideBar && (
-        <div className="side-bar-container flex">
+        <div className="side-bar-container flex column">
           {/* ASIDE HEADER LINKS */}
           <div className="side-bar-link-container flex column">
             <NavLink Route="/"><HomeIcon /> Home</NavLink>
@@ -31,28 +31,35 @@ export function WorkSpaceSideBar({ onRemoveBoard }) {
 
           {/* ASIDE FOOTER */}
           <div className="side-bar-footer">
-            <div className="side-bar-actions">
-              <div className="workspace flex">
 
 
-                <div className="workspace-section flex space-between btn-icon medium-transparent" onClick={() => setOpenWorkSpace(!workSpace)}>
-                    <div className="workspace-header">
+
+            <div className="title-wrapper">
+              <div className="home-workspace-items-title">
+
+                <div className="workspace-dropdown-button flex space-between">
+                  <div className="workspace-title flex align-center space-between">
+                    <div className="workspace-icon">
+                      <HomeIcon />
+                    </div>
+                    <div className="workspace-name-wrapper">
                       <span>Sprint 4</span>
                     </div>
-                    <div className="btn-icon small-transparent">
-                      <NavigationChevronUpIcon />
                   </div>
-                </div>
+                  <div className="dropdown-icon-wrapper flex align-center gap8">
+                    <div className="chvron-down">
 
-                <div className="menu-btn flex justify-center">
-                  <button className="btn-icon medium-transparent">
-                    <MenuIcon />
-                  </button>
+                    <NavigationChevronDownIcon className="chvron-down" />
+                    </div>
+                    <div className="header-menu">
+                      <button className="btn-icon small-transparent"><MenuIcon /></button>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {workSpace && <WorkSpaceContext />}
               <FilterSection />
+              {workSpace && <WorkSpaceContext />}
             </div>
 
             <WorkSpaceList {...{ onRemoveBoard }} />
