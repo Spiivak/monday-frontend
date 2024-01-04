@@ -5,8 +5,40 @@ import inboxSvg from '../../assets/icons/Inbox.svg'
 import inviteMembersSvg from '../../assets/icons/Invite.svg'
 import searchSvg from '../../assets/icons/Search.svg'
 import helpSvg from '../../assets/icons/Help.svg'
+import { useState } from 'react'
+
+// MODALS
+import { NotificationModal } from './modals/NotificationModal'
+import { InviteMembersModal } from './modals/InviteMembersModal'
+import { SearchModal } from './modals/SearchModal'
+import { HelpModal } from './modals/HelpModal'
+import { ProfileModal } from './modals/ProfileModal'
+import { PlansModal } from './modals/PlansModal'
+import { InboxModal } from './modals/InboxModal'
 
 export function WorkSpaceHeader() {
+  const [isNotificationModalOpen, setNotificationModalOpen] = useState(false);
+  const [isInboxModalOpen, setInboxModalOpen] = useState(false);
+  const [isInviteMembersModalOpen, setInviteMembersModalOpen] = useState(false);
+  const [isSearchModalOpen, setSearchModalOpen] = useState(false);
+  const [isHelpModalOpen, setHelpModalOpen] = useState(false);
+
+  const openNotificationModal = () => setNotificationModalOpen(true);
+  const openInboxModal = () => setInboxModalOpen(true);
+  const openInviteMembersModal = () => setInviteMembersModalOpen(true);
+  const openSearchModal = () => setInviteMembersModalOpen(true);
+  const openHelpModal = () => setInviteMembersModalOpen(true);
+
+  const closeAllModals = () => {
+    console.log('close all')
+    setNotificationModalOpen(false);
+    setInboxModalOpen(false);
+    setInviteMembersModalOpen(false);
+    setSearchModalOpen(false);
+    setHelpModalOpen(false);
+  }
+
+
   return (
     <header className="work-space-header">
       <section className="header-logo-sect">
@@ -129,15 +161,36 @@ export function WorkSpaceHeader() {
       </section>
 
       <section className="header-action-btns-sect">
-        <ActionBtn iconSvg={notificationSvg} />
-        <ActionBtn iconSvg={inboxSvg} />
-        <ActionBtn iconSvg={inviteMembersSvg} />
-        <ActionBtn iconSvg={searchSvg} />
-        <ActionBtn iconSvg={helpSvg} />
+        <button className='btn-icon large-transparent' onClick={() => openNotificationModal()}>
+        <img src={notificationSvg} alt="" />
+        </button>
+        <button className='btn-icon large-transparent' onClick={() => openInboxModal()}>
+        <img src={inboxSvg} alt="" />
+        </button>
+        <button className='btn-icon large-transparent' onClick={() => openInviteMembersModal()}>
+        <img src={inviteMembersSvg} alt="" />
+        </button>
+        <button className='btn-icon large-transparent' onClick={() => openSearchModal()}>
+        <img src={searchSvg} alt="" />
+        </button>
+        <button className='btn-icon large-transparent' onClick={() => openHelpModal()}>
+        <img src={helpSvg} alt="" />
+        </button>
         <button>
           <img src="" alt="" />
           Avatar
         </button>
+
+
+        {/* Render modals */}
+        {isNotificationModalOpen && <NotificationModal onClose={closeAllModals} />}
+        {isInboxModalOpen && <InboxModal onClose={closeAllModals} />}
+        {isInviteMembersModalOpen && <InviteMembersModal onClose={closeAllModals} />}
+        {isSearchModalOpen && <SearchModal onClose={closeAllModals} />}
+        {isHelpModalOpen && <HelpModal onClose={closeAllModals} />}
+        {isInviteMembersModalOpen && <ProfileModal onClose={closeAllModals} />}
+        {isInviteMembersModalOpen && <PlansModal onClose={closeAllModals} />}
+
       </section>
     </header>
   )

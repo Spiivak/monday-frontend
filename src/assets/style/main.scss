@@ -17,6 +17,11 @@
 @import "cmps/WorkSpaceCmps/WorkSpaceBoardHeader";
 @import "cmps/WorkSpaceCmps/WorkSpaceBoardTabs";
 @import "cmps/WorkSpaceCmps/WorkSpaceFilter";
+
+
+// WORKSPACE MODALS
+@import "cmps/WorkSpaceCmps/modals/NotifyModal";
+@import "cmps/WorkSpaceCmps/modals/InboxModal";
 //Workspace Page Board Components
 @import "cmps/WorkSpaceCmps/Board/DynamicTableCell";
 //Home page Components
