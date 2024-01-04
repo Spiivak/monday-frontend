@@ -1,0 +1,19 @@
+.cell {
+  position: relative;
+  .cell-context{
+    z-index: 100;
+    width: 200px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 120%;
+    left: 50%;
+    translate: -50% 0;
+    &.hidden{
+      display: none;
+    }
+    &.active{
+      display: flex;
+    }
+  }
+}
