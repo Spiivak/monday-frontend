@@ -10,13 +10,11 @@ import { WorkSpaceList } from "../WorkSpaceSideBarCmps/WorkSpaceList"
 import HomeSvg from "../../assets/icons/Home.svg"
 import MyWeekSvg from "../../assets/icons/MyWeek.svg"
 import MenuSvg from "../../assets/icons/Menu.svg"
-import Featured from "../../assets/icons/Featured.svg"
-export function WorkSpaceSideBar() {
+export function WorkSpaceSideBar({ onRemoveBoard }) {
   const [sideBar, setOpenSideBar] = useState(true)
   const [workSpace, setOpenWorkSpace] = useState(false)
 
   return (
-    // <section className="side-bar">
     <section
       className={`side-bar justify-center${sideBar ? "" : " side-bar-close"}`}
     >
@@ -59,7 +57,7 @@ export function WorkSpaceSideBar() {
               <FilterSection />
             </div>
 
-            <WorkSpaceList />
+            <WorkSpaceList {...{ onRemoveBoard }} />
           </div>
         </div>
       )}

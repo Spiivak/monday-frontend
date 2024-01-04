@@ -21,6 +21,7 @@ export function FilterSection() {
             color: "white",
             padding: "0px",
             minWidth: "35px",
+            minHeight: "30px",
           }}
           size="small"
           variant="contained"
