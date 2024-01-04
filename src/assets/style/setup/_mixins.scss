@@ -39,7 +39,7 @@ $secondary-color: #F48120;
     $bg-color: $secondary-color;
   } @else if $button-color == 'transparent' {
     $bg-color: transparent;
-    $text-color: $primary-color;
+    $text-color: #323338;
   }
 
   // Style variations based on button type
