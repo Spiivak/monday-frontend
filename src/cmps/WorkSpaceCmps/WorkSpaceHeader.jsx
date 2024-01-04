@@ -17,25 +17,25 @@ import { PlansModal } from './modals/PlansModal'
 import { InboxModal } from './modals/InboxModal'
 
 export function WorkSpaceHeader() {
-  const [isNotificationModalOpen, setNotificationModalOpen] = useState(false);
-  const [isInboxModalOpen, setInboxModalOpen] = useState(false);
-  const [isInviteMembersModalOpen, setInviteMembersModalOpen] = useState(false);
-  const [isSearchModalOpen, setSearchModalOpen] = useState(false);
-  const [isHelpModalOpen, setHelpModalOpen] = useState(false);
+  const [isNotificationModalOpen, setNotificationModalOpen] = useState(false)
+  const [isInboxModalOpen, setInboxModalOpen] = useState(false)
+  const [isInviteMembersModalOpen, setInviteMembersModalOpen] = useState(false)
+  const [isSearchModalOpen, setSearchModalOpen] = useState(false)
+  const [isHelpModalOpen, setHelpModalOpen] = useState(false)
 
-  const openNotificationModal = () => setNotificationModalOpen(true);
-  const openInboxModal = () => setInboxModalOpen(true);
-  const openInviteMembersModal = () => setInviteMembersModalOpen(true);
-  const openSearchModal = () => setInviteMembersModalOpen(true);
-  const openHelpModal = () => setInviteMembersModalOpen(true);
+  const openNotificationModal = () => setNotificationModalOpen(true)
+  const openInboxModal = () => setInboxModalOpen(true)
+  const openInviteMembersModal = () => setInviteMembersModalOpen(true)
+  const openSearchModal = () => setInviteMembersModalOpen(true)
+  const openHelpModal = () => setInviteMembersModalOpen(true)
 
   const closeAllModals = () => {
     console.log('close all')
-    setNotificationModalOpen(false);
-    setInboxModalOpen(false);
-    setInviteMembersModalOpen(false);
-    setSearchModalOpen(false);
-    setHelpModalOpen(false);
+    setNotificationModalOpen(false)
+    setInboxModalOpen(false)
+    setInviteMembersModalOpen(false)
+    setSearchModalOpen(false)
+    setHelpModalOpen(false)
   }
 
 
