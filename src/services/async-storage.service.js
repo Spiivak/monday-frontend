@@ -5,6 +5,7 @@ export const storageService = {
   put,
   remove,
   putTask,
+  postTask,
 }
 
 function query(entityType, delay = 500) {
@@ -33,29 +34,6 @@ function post(entityType, newEntity) {
   })
 }
 
-function putTask(entityType, boardId, groupId, taskId, newTask) {
-  newTask = JSON.parse(JSON.stringify(newTask))
-  return query(entityType).then((boards) => {
-    const newBoards = boards.map((board) => {
-      if (board._id !== boardId) return board
-      return {
-        ...board,
-        groups: board.groups.map((group) => {
-          if (group.id !== groupId) return group
-          return {
-            ...group,
-            tasks: group.tasks.map((task) => {
-              if (task.id !== taskId) return task
-              return newTask
-            }),
-          }
-        }),
-      }
-    })
-    _save(entityType, newBoards)
-    return newTask
-  })
-}
 function put(entityType, updatedEntity) {
   updatedEntity = JSON.parse(JSON.stringify(updatedEntity))
   return query(entityType).then((entities) => {
@@ -82,6 +60,51 @@ function remove(entityType, entityId) {
   })
 }
 
+// task CRUD
+
+function putTask(entityType, boardId, groupId, taskId, newTask) {
+  newTask = JSON.parse(JSON.stringify(newTask))
+  return query(entityType).then((boards) => {
+    const newBoards = boards.map((board) => {
+      if (board._id !== boardId) return board
+      return {
+        ...board,
+        groups: board.groups.map((group) => {
+          if (group.id !== groupId) return group
+          return {
+            ...group,
+            tasks: group.tasks.map((task) => {
+              if (task.id !== taskId) return task
+              return newTask
+            }),
+          }
+        }),
+      }
+    })
+    _save(entityType, newBoards)
+    return newTask
+  })
+}
+
+function postTask(entityType, boardId, groupId, newTask) {
+  newTask = JSON.parse(JSON.stringify(newTask))
+  newTask.id = _makeId()
+  return query(entityType).then((boards) => {
+    const newBoards = boards.map((board) => {
+      if (board._id !== boardId) return board
+      return {
+        ...board,
+        groups: board.groups.map((group) => {
+          if (group.id !== groupId) return group
+          return {...group, tasks: [...group.tasks, newTask]}
+        })
+      }
+    })
+    _save(entityType, newBoards)
+    return newTask
+  })
+}
+
 // Private functions
 
 function _save(entityType, entities) {
@@ -89,9 +112,9 @@ function _save(entityType, entities) {
 }
 
 function _makeId(length = 5) {
-  var text = ""
+  var text = ''
   var possible =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
   for (var i = 0; i < length; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length))
   }

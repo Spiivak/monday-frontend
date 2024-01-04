@@ -1,12 +1,13 @@
-import { boardService } from "../../services/board.service.js"
-export const SET_BOARDS = "SET_BOARDS"
-export const REMOVE_BOARD = "REMOVE_BOARD"
-export const ADD_BOARD = "ADD_BOARD"
-export const UPDATE_BOARD = "UPDATE_BOARD"
-export const GET_BOARD_BY_ID = "GET_BOARD_BY_ID"
+import { boardService } from '../../services/board.service.js'
+export const SET_BOARDS = 'SET_BOARDS'
+export const REMOVE_BOARD = 'REMOVE_BOARD'
+export const ADD_BOARD = 'ADD_BOARD'
+export const UPDATE_BOARD = 'UPDATE_BOARD'
+export const GET_BOARD_BY_ID = 'GET_BOARD_BY_ID'
 //loading
-export const SET_IS_LOADING = "SET_IS_LOADING"
+export const SET_IS_LOADING = 'SET_IS_LOADING'
 export const UPDATE_TASK = 'UPDATE_TASK'
+export const ADD_TASK = 'ADD_TASK'
 
 const initialState = {
   boards: [],
@@ -15,6 +16,7 @@ const initialState = {
 
 export function boardReducer(state = initialState, action = {}) {
   let boards
+  let newBoards
 
   switch (action.type) {
     // * BOARDS CRUD
@@ -35,8 +37,9 @@ export function boardReducer(state = initialState, action = {}) {
       )
       return { ...state, boards }
 
+    // * TASK CRUD
     case UPDATE_TASK:
-      const newBoards = state.boards.map((board) => {
+      newBoards = state.boards.map((board) => {
         if (board._id !== action.boardId) return board
         return {
           ...board,
@@ -49,6 +52,18 @@ export function boardReducer(state = initialState, action = {}) {
                 return action.task
               }),
             }
+          }),
+        }
+      })
+      return { ...state, boards: newBoards }
+    case ADD_TASK:
+      newBoards = state.boards.map((board) => {
+        if (board._id !== action.boardId) return board
+        return {
+          ...board,
+          groups: board.groups.map((group) => {
+            if (group.id !== action.groupId) return group
+            return { ...group, tasks: [...group.tasks, action.task] }
           }),
         }
       })

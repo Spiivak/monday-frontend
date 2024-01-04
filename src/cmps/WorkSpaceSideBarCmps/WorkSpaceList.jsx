@@ -8,13 +8,16 @@ export function WorkSpaceList({ onRemoveBoard }) {
   const boards = useSelector((storeState) => storeState.boardModule.boards)
 
   return (
-    <div className="work-spaces-list flex">
+    <div className="workspaces-list flex column">
       {boards.map((board) => (
-        <div key={board._id} className="flex space-between relative">
-          <div className="flex align-center">
-            <Link to={`/${board._id}`}>
+        <div key={board._id}>
+          <div className="workspace-item flex align-center space-between">
+            <div className="link">
+              
+            <Link to={`/${board._id}`} className="flex gap8 align-center">
               <BoardIcon />{board.title}
             </Link>
+            </div>
             <div className="menu-btn">
               <button className="btn-icon medium-transparent" onClick={() => onRemoveBoard(board._id)}><DeleteIcon /></button>
             </div>
