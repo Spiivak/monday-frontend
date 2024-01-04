@@ -68,6 +68,29 @@ const demoData = [
             id: "c103",
             title: "Do that",
             archivedAt: 1589983468418,
+            members: [
+              {
+                _id: "u101",
+                username: "Tal",
+                fullname: "Tal Tarablus",
+                imgUrl:
+                  "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg",
+              },
+              {
+                _id: "u102",
+                username: "Cal",
+                fullname: "Cal Tarablus",
+                imgUrl:
+                  "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg",
+              },
+              {
+                _id: "u103",
+                username: "Dal",
+                fullname: "Dal Tarablus",
+                imgUrl:
+                  "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg",
+              },
+            ],
           },
           {
             id: "c104",
@@ -101,36 +124,8 @@ const demoData = [
                 ],
               },
             ],
-<<<<<<< HEAD
             memberIds: ["u101"],
             labelIds: ["l101", "l102"],
-=======
-            members:[
-              {
-                _id: 'u101',
-                username: 'Tal',
-                fullname: 'Tal Tarablus',
-                imgUrl:
-                  'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-              },
-              {
-                _id: 'u102',
-                username: 'Cal',
-                fullname: 'Cal Tarablus',
-                imgUrl:
-                  'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-              },
-              {
-                _id: 'u103',
-                username: 'Dal',
-                fullname: 'Dal Tarablus',
-                imgUrl:
-                  'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-              },
-            ],
-            memberIds: ['u101'],
-            labelIds: ['l101', 'l102'],
->>>>>>> master
             dueDate: 16156215211,
             byMember: {
               _id: "u101",
