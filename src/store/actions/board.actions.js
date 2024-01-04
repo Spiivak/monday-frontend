@@ -1,6 +1,7 @@
 import { boardService } from "../../services/board.service"
 
 import {
+  ADD_TASK,
   REMOVE_BOARD,
   SET_BOARDS,
   SET_IS_LOADING,
@@ -52,6 +53,16 @@ export async function handleUpdateTask(
     )
     store.dispatch({ type: UPDATE_TASK, boardId, groupId, taskId, task })
   } catch (err) {}
+}
+
+export async function handleAddTask(boardId, groupId, newTaskTxt){
+  try {
+    const task = await boardService.addTask(boardId, groupId, newTaskTxt)
+    console.log(task)
+    store.dispatch({ type: ADD_TASK, boardId, groupId, task})
+  } catch (err) {
+
+  }
 }
 
 export async function removeBoard(boardId) {

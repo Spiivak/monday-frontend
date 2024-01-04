@@ -189,6 +189,7 @@ export const boardService = {
   remove,
   getById,
   updateTask,
+  addTask,
 }
 
 function query() {
@@ -218,6 +219,10 @@ function save(board) {
 
 function updateTask(boardId, groupId, taskId, task) {
   return storageService.putTask(STORAGE_KEY, boardId, groupId, taskId, task)
+}
+
+function addTask(boardId, groupId, task) {
+  return storageService.postTask(STORAGE_KEY, boardId, groupId, task)
 }
 
 // function addMsg(boardId, msg){
