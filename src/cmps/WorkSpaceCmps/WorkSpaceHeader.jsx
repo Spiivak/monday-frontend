@@ -1,10 +1,4 @@
 import { LogoBtn } from '../WorkSpaceHeaderCmps/LogoBtn'
-import { ActionBtn } from '../WorkSpaceHeaderCmps/ActionBtn'
-import notificationSvg from '../../assets/icons/Notifications.svg'
-import inboxSvg from '../../assets/icons/Inbox.svg'
-import inviteMembersSvg from '../../assets/icons/Invite.svg'
-import searchSvg from '../../assets/icons/Search.svg'
-import helpSvg from '../../assets/icons/Help.svg'
 import { useState } from 'react'
 
 // MODALS
@@ -15,6 +9,8 @@ import { HelpModal } from './modals/HelpModal'
 import { ProfileModal } from './modals/ProfileModal'
 import { PlansModal } from './modals/PlansModal'
 import { InboxModal } from './modals/InboxModal'
+import { HelpIcon, InboxIcon, InviteMembersIcon, NotificationsIcon, SearchIcon } from '../Icons'
+// import { ActiviyIcon } from '../Icons'
 
 export function WorkSpaceHeader() {
   const [isNotificationModalOpen, setNotificationModalOpen] = useState(false)
@@ -162,19 +158,19 @@ export function WorkSpaceHeader() {
 
       <section className="header-action-btns-sect">
         <button className='btn-icon large-transparent' onClick={() => openNotificationModal()}>
-        <img src={notificationSvg} alt="" />
+        <NotificationsIcon/>
         </button>
         <button className='btn-icon large-transparent' onClick={() => openInboxModal()}>
-        <img src={inboxSvg} alt="" />
+        <InboxIcon/>
         </button>
         <button className='btn-icon large-transparent' onClick={() => openInviteMembersModal()}>
-        <img src={inviteMembersSvg} alt="" />
+        <InviteMembersIcon />
         </button>
         <button className='btn-icon large-transparent' onClick={() => openSearchModal()}>
-        <img src={searchSvg} alt="" />
+        <SearchIcon/>
         </button>
         <button className='btn-icon large-transparent' onClick={() => openHelpModal()}>
-        <img src={helpSvg} alt="" />
+        <HelpIcon/>
         </button>
         <button>
           <img src="" alt="" />

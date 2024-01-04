@@ -2,11 +2,7 @@ import React from 'react'
 import { BoardHeaderTitle } from './BoardHeaderTitle'
 
 // ICONS
-import Info from '../../assets/icons/Info.svg'
-import Favorite from '../../assets/icons/Favorite.svg'
-import Menu from '../../assets/icons/Menu.svg'
-import Invite from '../../assets/icons/Invite.svg'
-import Activity from '../../assets/icons/Activity.svg'
+import { ActivityIcon, FavoriteIcon, InfoIcon, InviteMembersIcon, MenuIcon } from '../Icons'
 
 
 export function BoardHeader({}) {
@@ -16,14 +12,14 @@ export function BoardHeader({}) {
 
       <div className="header-btns">
         <div className="left-btns">
-          <button className='btn-icon medium-transparent'><img src={Info} alt="" /></button>
-          <button className='btn-icon medium-transparent'><img src={Favorite} alt="" /></button>
+          <button className='btn-icon medium-transparent'><InfoIcon/></button>
+          <button className='btn-icon medium-transparent'><FavoriteIcon/></button>
         </div>
         <div className="right-btns">
           {/* <button>activities</button> */}
-          <button className='btn-icon medium-transparent'><img src={Activity} alt="" /></button>
-          <button className='btn-icon medium-transparent flex gap8'><img src={Invite} alt="" />Invite / 4</button>
-          <button className='btn-icon medium-transparent'><img src={Menu} alt="" /></button>
+          <button className='btn-icon medium-transparent'><ActivityIcon/></button>
+          <button className='btn-icon medium-transparent flex gap8'><InviteMembersIcon/>Invite / 4</button>
+          <button className='btn-icon medium-transparent'><MenuIcon/></button>
         </div>
       </div>
     </section>

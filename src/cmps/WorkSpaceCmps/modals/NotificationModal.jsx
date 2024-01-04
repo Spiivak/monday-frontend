@@ -1,23 +1,24 @@
 // Example NotificationModal.jsx
 import React from 'react';
-import Close from '../../../assets/icons/Close.svg'
-import Feedback from '../../../assets/icons/Feedback.svg'
-import Menu from '../../../assets/icons/Menu.svg'
-import Search from '../../../assets/icons/Search.svg'
-import PersonRound from '../../../assets/icons/Person.svg'
-import DropdownChevronDown from '../../../assets/icons/DropdownChevronDown.svg'
+import { CloseSmallIcon, FeedbackIcon, MenuIcon, NavigationChevronDownIcon, PersonIcon, SearchIcon } from '../../Icons';
 
 export function NotificationModal({ onClose }) {
   return (
     <div className="notification-modal">
       <div className="notification-header flex space-between">
-        <button className='btn-icon small-transparent' onClick={() => onClose()}><img src={Close} alt="" /></button>
+        <button className='btn-icon small-transparent' onClick={() => onClose()}>
+          <CloseSmallIcon/>
+          </button>
         <div className="notifications-header-btns flex align-center">
           <div className="notification-feedback">
-            <button className='btn-icon medium-transparent'><img src={Feedback} alt="" />Give feedback</button>
+            <button className='btn-icon medium-transparent'>
+              <FeedbackIcon/>
+              Give feedback</button>
           </div>
           <div className="notification-header-menu">
-            <button className='btn-icon small-transparent'><img src={Menu} alt="" /></button>
+            <button className='btn-icon small-transparent'>
+              <MenuIcon/>
+              </button>
           </div>
         </div>
       </div>
@@ -58,15 +59,17 @@ export function NotificationModal({ onClose }) {
             <div className="label-wrapper">
               <div className="input-wrapper">
                 <input type="search" placeholder='Search all notifications'/>
-                <button className='btn-icon small-transparent'><img src={Search} alt="" /></button>
+                <button className='btn-icon small-transparent'>
+                  <SearchIcon/>
+                  </button>
               </div>
             </div>
           </div>
           <div className="notifications-person-filter">
             <button className='btn-icon large-transparent'>
-              <img src={PersonRound} alt="" />
+              <PersonIcon/>
               <span>Filter by person</span>
-              <img src={DropdownChevronDown} alt="" />
+              <NavigationChevronDownIcon/>
             </button>
           </div>
         </div>
