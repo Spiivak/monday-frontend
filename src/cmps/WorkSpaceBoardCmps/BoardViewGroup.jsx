@@ -38,6 +38,11 @@ export function BoardViewGroup({ group, cmpsOrder }) {
               ))}
             </tr>
           ))}
+          <tr>
+            <td colSpan={cmpsOrder.length + 1}>
+              <input type="text" placeholder="Add item"/>
+            </td>
+          </tr>
         </tbody>
       </table>
     </section>
