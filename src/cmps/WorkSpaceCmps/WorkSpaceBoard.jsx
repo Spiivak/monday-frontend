@@ -6,6 +6,7 @@ import { BoardHeader } from '../WorkSpaceBoardCmps/BoardHeader'
 import { useEffect } from 'react'
 import { loadBoards } from '../../store/actions/board.actions'
 import { useSelector } from 'react-redux'
+import { WorkSpaceSideBar } from '../BoardCmps/WorkSpaceSideBar'
 
 export function WorkSpaceBoard() {
   const boards = useSelector((storeState) => storeState.boardModule.boards)
@@ -16,11 +17,14 @@ export function WorkSpaceBoard() {
   console.log(boards)
 
   return (
-    <section className="work-space-board">
-      <BoardHeader />
-      <BoardTabs />
-      <BoardFilter />
+    <div className="main-layout">
+      <WorkSpaceSideBar />
+      <section className="work-space-board">
+        <BoardHeader />
+        <BoardTabs />
+        <BoardFilter />
       {!!boards && <BoardViewList board={boards[0]}/>}
-    </section>
+      </section>
+    </div>
   )
 }
