@@ -1,6 +1,8 @@
 .cell {
   position: relative;
-  .cell-context{
+
+  // Status menu
+  .cell-context {
     z-index: 100;
     width: 200px;
     position: absolute;
@@ -9,11 +11,76 @@
     top: 120%;
     left: 50%;
     translate: -50% 0;
-    &.hidden{
+    &.hidden {
       display: none;
     }
-    &.active{
+    &.active {
       display: flex;
+    }
+  }
+
+  //Members Hover Details
+  .member-details-wrapper {
+    padding: .5em 0;
+    position: absolute;
+    height: fit-content;
+    bottom: 100%;
+    left: 50%;
+    translate: -50% 0;
+    display: flex;
+    align-items: center;
+    .member-details {
+      z-index: 100;
+      display: grid;
+      grid-template-columns: 100px 300px;
+
+      border-radius: $border-radius-small;
+      background-color: white;
+      border: 1px solid black;
+      .avatar-logo {
+        padding: $spacing-medium 0 0 $spacing-large;
+        display: flex;
+        align-items: start;
+        width: 100px;
+        img {
+          height: 72px;
+          width: auto;
+          border-radius: 100%;
+          overflow: hidden;
+        }
+      }
+      &.hidden {
+        display: none;
+      }
+      &.active {
+        display: grid;
+      }
+      .member-details-content {
+        padding: $spacing-medium $spacing-large;
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+      }
+      .member-detail-btns {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: end;
+        justify-content: stretch;
+        button {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  // Members img avatar
+  .avatars-wrapper {
+    display: flex;
+    .avatar-logo {
+      height: 32px;
+      width: 32px;
+      border-radius: 100%;
+      overflow: hidden;
     }
   }
 }
