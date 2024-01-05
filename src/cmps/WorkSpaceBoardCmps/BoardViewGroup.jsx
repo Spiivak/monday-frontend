@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
 import { DynamicTableCell } from './DynamicTableCell'
 import {
-  handleAddTask,
-  handleUpdateTask,
+  addTask,
+  updateTask,
 } from '../../store/actions/board.actions'
 import { useParams } from 'react-router-dom'
 import { AddSmallIcon } from '../Icons'
-export function BoardViewGroup({ group, cmpsOrder }) {
+export function BoardViewGroup({ group, boardId ,cmpsOrder }) {
   const [newTaskTitle, setNewTaskTitle] = useState('')
   function onTaskUpdate(cmpType, data, task) {
-    // const { boardId } = useParams()
-    const boardId = 'b101'
-    handleUpdateTask(boardId, group.id, task.id, cmpType, task, data)
+    updateTask(boardId, group.id, task.id, cmpType, task, data)
   }
   function handleChange(ev) {
     const value = ev.target.value
@@ -19,9 +17,8 @@ export function BoardViewGroup({ group, cmpsOrder }) {
   }
   function handleSubmit(ev) {
     ev.preventDefault()
-    const boardId = 'b101'
     const newTask = { title: newTaskTitle }
-    handleAddTask(boardId, group.id, newTask)
+    addTask(boardId, group.id, newTask)
     setNewTaskTitle('')
   }
   return (
