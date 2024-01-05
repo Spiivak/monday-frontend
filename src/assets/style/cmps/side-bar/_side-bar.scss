@@ -129,6 +129,10 @@
   padding-right: 12px;
   padding-bottom: 8px;
   .workspace-item {
+    & .link a.active{
+      background-color: red;
+      // width: 100%;
+    }
     .link {
       // background-color: red;
       padding: 6px 8px;
@@ -139,12 +143,14 @@
         border-radius: 4px;
       }
       a {
+        width: 100%;
         font: 400 14px/20px Figtree;
         .svg {
           margin-right: 8px;
         }
 
       }
+
     }
     // width: 50%;
     // background-color: blue;
