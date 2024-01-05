@@ -35,10 +35,11 @@ export function MemberPicker({ task, handleUpdateTask }) {
   }
 
   const suggestedUsers = users.filter(
-    (user) => !task.members.some((member) => member._id === user._id)
+    (user) => !task.members?.some((member) => member._id === user._id)
   )
+
   const currentUsers = users.filter((user) =>
-    task.members.some((member) => member._id === user._id)
+    task.members?.some((member) => member._id === user._id)
   )
 
   const items = [
