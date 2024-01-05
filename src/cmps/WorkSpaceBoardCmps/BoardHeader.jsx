@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BoardHeaderTitle } from './BoardHeaderTitle'
 
 // ICONS
@@ -11,9 +11,11 @@ import {
 } from '../Icons'
 import { EditableText } from '../EditableText'
 
-export function BoardHeader({ board }) {
-  function handleTitleSave(newTitle) {
-    console.log('Title saved:', newTitle)
+export function BoardHeader({ board, onUpdateBoard }) {
+  const [inviteModal, setOpenInviteModal] = useState(false)
+  function handleTitleChange(newTitle) {
+    board.title = newTitle
+    onUpdateBoard(board)
   }
 
   return (
@@ -23,7 +25,7 @@ export function BoardHeader({ board }) {
         <h2>
           <EditableText
             initialText={`${board.title}`}
-            onSave={handleTitleSave}
+            onSave={handleTitleChange}
           />
         </h2>
       )}
@@ -38,9 +40,14 @@ export function BoardHeader({ board }) {
         </div>
         <div className="right-btns flex align-center">
           {/* <button>activities</button> */}
-          <button className="btn-icon medium-transparent">
+          <button
+            onClick={() => setOpenInviteModal(!inviteModal)}
+            className="btn-icon medium-transparent"
+          >
             <ActivityIcon />
           </button>
+          {inviteModal ? <div>hey</div> : <div>bye</div>}
+          {/* <div>{inviteModal ? 'hey' : ''}</div> */}
           <button className="btn-icon medium-transparent flex gap8">
             <InviteMembersIcon />
             Invite / 4
