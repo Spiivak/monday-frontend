@@ -94,6 +94,19 @@ export async function updateTask(
     case 'FilePicker':
       newTask = { ...task, file: data }
       break
+    case 'MemberPicker':
+      // Check if the user is already in the task.members array
+      const isUserInMembers = task.members.some(
+        (member) => member._id === data._id
+      )
+
+      // If the user is in the array, remove them; otherwise, add them
+      const updatedMembers = isUserInMembers
+        ? task.members.filter((member) => member._id !== data._id)
+        : [...task.members, data]
+
+      newTask = { ...task, members: updatedMembers }
+      break
   }
   try {
     const task = await boardService.updateTask(
