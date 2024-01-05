@@ -383,9 +383,6 @@ function getEmptyBoard() {
 
     cmpsOrder: [
       { type: 'StatusPicker', id: utilService.makeId(), title: 'Status' },
-      { type: 'StatusPicker', id: utilService.makeId(), title: 'Status' },
-      { type: 'StatusPicker', id: utilService.makeId(), title: 'Status' },
-      { type: 'StatusPicker', id: utilService.makeId(), title: 'Status' },
       { type: 'MemberPicker', id: utilService.makeId(), title: 'Members' },
       { type: 'DatePicker', id: utilService.makeId(), title: 'Date' },
     ],

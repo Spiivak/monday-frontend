@@ -136,6 +136,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   </div>
                 </th>
               ))}
+              <th>+</th>
             </tr>
           </thead>
           <tbody>
@@ -170,6 +171,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                     />
                   </td>
                 ))}
+                <td> </td>
               </tr>
             ))}
             <tr>
@@ -178,7 +180,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   <input type="checkbox" />
                 </div>
               </td>
-              <td colspan={columnHeaders.length + 1}>
+              <td colspan={columnHeaders.length + 2}>
                 <EditableText initialText={'Add item'} onSave={saveNewTask} />
                 {/* <form onSubmit={handleSubmit}>
                   <input
