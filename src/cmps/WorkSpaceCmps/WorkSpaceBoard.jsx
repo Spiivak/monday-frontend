@@ -3,17 +3,25 @@ import { BoardFilter } from '../WorkSpaceBoardCmps/BoardFilter'
 import { BoardTabs } from '../WorkSpaceBoardCmps/BoardTabs'
 
 import { BoardHeader } from '../WorkSpaceBoardCmps/BoardHeader'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { loadBoards, removeBoard } from '../../store/actions/board.actions'
 import { useSelector } from 'react-redux'
 import { WorkSpaceSideBar } from './WorkSpaceSideBar'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
+import { useParams } from 'react-router'
+
+
 
 export function WorkSpaceBoard() {
+  const [selectedBoard, setSelectedBoard] = useState(null)
   const boards = useSelector((storeState) => storeState.boardModule.boards)
+  const { boardId } = useParams()
   useEffect(() => {
     loadBoards()
-  }, [])
+    if( boardId ) setSelectedBoard(boards.find(board => board._id === boardId))
+    else setSelectedBoard(boards[0])
+  }, [boards])
+
 
   async function onRemoveBoard(boardId) {
     try {
@@ -31,7 +39,7 @@ export function WorkSpaceBoard() {
         <BoardHeader />
         <BoardTabs />
         <BoardFilter />
-        {!!boards && <BoardViewList board={boards[0]} />}
+        {!!boards && <BoardViewList board={selectedBoard} />}
       </section>
     </div>
   )
