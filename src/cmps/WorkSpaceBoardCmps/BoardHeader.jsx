@@ -10,10 +10,10 @@ import {
   MenuIcon,
 } from '../Icons'
 
-export function BoardHeader({}) {
+export function BoardHeader({board}) {
   return (
     <section className="board-header">
-      <BoardHeaderTitle>Board Title</BoardHeaderTitle>
+      <BoardHeaderTitle>{board.title}</BoardHeaderTitle>
 
       <div className="header-btns">
         <div className="left-btns">
