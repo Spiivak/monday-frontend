@@ -16,6 +16,7 @@ export function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/workspace" element={<WorkSpacePage />}>
               <Route index element={<WorkSpaceBoard />} />
+              <Route path='/workspace/:boardId' element={<WorkSpaceBoard />} />
             </Route>
           </Routes>
           <UserMsg />
