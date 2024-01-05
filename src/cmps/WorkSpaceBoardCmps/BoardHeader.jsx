@@ -12,8 +12,8 @@ import {
 
 export function BoardHeader({board}) {
   return (
-    <section className="board-header">
-      {!!board && <BoardHeaderTitle>{board.title}</BoardHeaderTitle>}
+    <section className="board-header flex align-center space-between">
+      {!!board && <h2>{board.title}</h2>}
 
       <div className="header-btns">
         <div className="left-btns">

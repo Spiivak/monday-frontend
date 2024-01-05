@@ -53,9 +53,11 @@ export function WorkSpaceBoard() {
     <div className="main-layout">
       <WorkSpaceSideBar {...{ onRemoveBoard, onAddBoard }} />
       <section className="work-space-board">
-        <BoardHeader board={selectedBoard} />
-        <BoardTabs />
-        <BoardFilter />
+        <div className="workspace-board-header">
+          <BoardHeader board={selectedBoard} />
+          <BoardTabs />
+          <BoardFilter />
+        </div>
         {!!boards && (
           <BoardViewList board={selectedBoard} onAddGroup={onAddGroup} />
         )}
