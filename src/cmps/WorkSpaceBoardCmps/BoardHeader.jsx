@@ -13,7 +13,7 @@ import {
 export function BoardHeader({board}) {
   return (
     <section className="board-header">
-      <BoardHeaderTitle>{board.title}</BoardHeaderTitle>
+      {!!board && <BoardHeaderTitle>{board.title}</BoardHeaderTitle>}
 
       <div className="header-btns">
         <div className="left-btns">
