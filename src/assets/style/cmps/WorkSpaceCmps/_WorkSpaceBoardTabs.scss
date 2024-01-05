@@ -1,16 +1,55 @@
 .work-space-board {
-  .board-tabs{
-    display: flex;
-    justify-content: space-between;
-    height: 36px;
+  font: 400 14px/24px Figtree;
+
+  .board-tabs {
+    min-height: 36px;
     margin-block-start: 8px;
-    .tabs{
-      flex-grow: 0; // Allow title-wrapper to grow and take available space
-      white-space: nowrap; // Prevent text from wrapping to the next line
+
+    .tabs {
+      flex-grow: 0;
+      white-space: nowrap;
       overflow: hidden;
+
+      .tab {
+        margin-bottom: 4px;
+      }
+
+      a {
+        display: flex;
+
+        &.active button::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 2px;
+          background-color: #0073EA;
+        }
+      }
+
+      .add-view-btn {
+        margin-top: 2px;
+        padding: 6px;
+        height: 32px;
+      }
     }
-    .expend-collapse{
-      padding-inline-start: 5em;
+
+    .expend-collapse {
+      border-radius: 1000px;
+      width: 26px;
+      height: 26px;
+      border: 1px solid #33333333;
+
+      button {
+        padding: 0;
+        border-radius: 1000px;
+        width: 26px;
+        height: 26px;
+
+        svg {
+          width: 16px;
+        }
+      }
     }
   }
 }
