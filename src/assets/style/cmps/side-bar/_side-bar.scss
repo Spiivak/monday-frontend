@@ -19,8 +19,8 @@
       padding-block: 12px;
       width: 100%;
       align-items: left;
-      
-      a {        
+
+      a {
         font: 400 14px/20px Figtree;
         border-radius: 7px;
         padding: 6px 8px;
@@ -38,10 +38,10 @@
       }
     }
     .side-bar-footer {
-      
+
       .title-wrapper {
         .filter-container {
-          
+
           // background-color: orange;
           padding-left: 14px;
           padding-right: 16px;
@@ -51,7 +51,7 @@
             min-height: 30px;
             border: 1px solid #d0d4e4;
             border-radius: 4px;
-      
+
             input {
               width: 100%;
               border: none;
@@ -122,29 +122,35 @@
 }
 
 .workspaces-list {
-  
+
   // background-color: red;
   justify-content: center;
   padding-left: 14px;
   padding-right: 12px;
   padding-bottom: 8px;
   .workspace-item {
+    & .link a.active{
+      background-color: red;
+      // width: 100%;
+    }
     .link {
       // background-color: red;
       padding: 6px 8px;
-      
+
       width: 100%;
       &:hover {
         background-color: #dbdfec;
         border-radius: 4px;
       }
       a {
+        width: 100%;
         font: 400 14px/20px Figtree;
         .svg {
           margin-right: 8px;
         }
-        
+
       }
+
     }
     // width: 50%;
     // background-color: blue;
@@ -163,7 +169,7 @@
 
 
 .workspace-context-container {
-  box-shadow: 0 4px 17px 6px rgba(0,0,0,.1); 
+  box-shadow: 0 4px 17px 6px rgba(0,0,0,.1);
   color: var(--primary-text-color);
 
   min-width: 280px;
@@ -235,7 +241,7 @@
       // background: red;
       display: flex;
       padding: 4px 0;
-      
+
       button {
         font-size: 14px;
         padding: 9px;
@@ -262,18 +268,20 @@
     flex-direction: row;
   }
 }
-
+.header-menu{
+  position: relative;
+}
 .more-modal-container {
   font: 400 14px/20px Figtree;
-  box-shadow: 0 4px 17px 6px rgba(0,0,0,.1); 
+  box-shadow: 0 4px 17px 6px rgba(0,0,0,.1);
   color: #323338;
 
   min-width: 280px;
   min-height: 225px;
   padding: 12px;
-  top: 196px;
-  left: 208px;
-  position: fixed;
+  top: 100%;
+  left: 50%;
+  position: absolute;
   background-color: white;
   border-radius: 8px;
   z-index: 150;
@@ -293,7 +301,7 @@
       }
     }
   }
-  
+
   .ds-divider {
     width: 100%;
     box-sizing: content-box;
@@ -310,7 +318,7 @@
 
 // .filter-modal {
 //   font: 400 14px/20px Figtree;
-//   box-shadow: 0 4px 17px 6px rgba(0,0,0,.1); 
+//   box-shadow: 0 4px 17px 6px rgba(0,0,0,.1);
 //   color: #323338;
 
 //   min-width: 280px;
@@ -338,7 +346,7 @@
 //       }
 //     }
 //   }
-  
+
 //   .ds-divider {
 //     width: 100%;
 //     box-sizing: content-box;
@@ -373,7 +381,7 @@
     .option {
       margin-bottom: 4px;
     }
-    
+
     .filter-divider {
       width: 100%;
       box-sizing: content-box;

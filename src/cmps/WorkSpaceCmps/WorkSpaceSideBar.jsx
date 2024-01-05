@@ -39,8 +39,7 @@ export function WorkSpaceSideBar({ onRemoveBoard, onAddBoard }) {
     <section className={`side-bar ${sideBar ? '' : 'side-bar-close'}`}>
       <button
         className="btn-icon small-transparent close-btn"
-        onClick={() => setOpenSideBar(!sideBar)}
-      >
+        onClick={() => setOpenSideBar(!sideBar)}>
         {sideBar ? (
           <NavigationChevronRightIcon />
         ) : (
@@ -66,8 +65,7 @@ export function WorkSpaceSideBar({ onRemoveBoard, onAddBoard }) {
                 <div className="workspace-dropdown-button flex space-between">
                   <div
                     className="dropdown-button flex space-between align-center gap8"
-                    onClick={() => openWorkspaceModal()}
-                  >
+                    onClick={() => openWorkspaceModal()}>
                     <div className="workspace-title flex align-center space-between">
                       <div className="workspace-icon">
                         <div className="workspace-name-wrapper flex align-center gap8">
@@ -88,17 +86,16 @@ export function WorkSpaceSideBar({ onRemoveBoard, onAddBoard }) {
                   <div className="header-menu">
                     <button
                       className="btn-icon small-transparent"
-                      onClick={() => openMoreModal()}
-                    >
+                      onClick={() => openMoreModal()}>
                       <MenuIcon />
                     </button>
+                    {isMoreModalOpen && <MoreModal />}
                   </div>
                 </div>
               </div>
 
-              <FilterSection onAddBoard={onAddBoard}/>
+              <FilterSection onAddBoard={onAddBoard} />
               {isWpModalOpen && <WorkSpaceContext />}
-              {isMoreModalOpen && <MoreModal />}
             </div>
 
             <WorkSpaceList {...{ onRemoveBoard }} />

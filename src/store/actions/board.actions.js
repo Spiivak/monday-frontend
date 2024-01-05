@@ -5,6 +5,7 @@ import {
   ADD_GROUP,
   ADD_TASK,
   REMOVE_BOARD,
+  REMOVE_GROUP,
   SET_BOARDS,
   SET_IS_LOADING,
   UPDATE_TASK,
@@ -54,6 +55,13 @@ export async function addGroup(boardId) {
   try {
     const savedGroup = await boardService.addGroup(boardId, group)
     store.dispatch({ type: ADD_GROUP, boardId, savedGroup })
+  } catch (err) {}
+}
+
+export async function removeGroup(boardId, groupId) {
+  try {
+    const deletedGroupId = await boardService.removeGroup(boardId, groupId)
+    store.dispatch({ type: REMOVE_GROUP, boardId, deletedGroupId })
   } catch (err) {}
 }
 
