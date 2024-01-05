@@ -1,6 +1,8 @@
 import { boardService } from '../../services/board.service'
 
 import {
+  ADD_BOARD,
+  ADD_GROUP,
   ADD_TASK,
   REMOVE_BOARD,
   SET_BOARDS,
@@ -23,6 +25,39 @@ export async function loadBoards() {
     throw err
   }
 }
+
+export async function removeBoard(boardId) {
+  store.dispatch({ type: SET_IS_LOADING, isLoading: true })
+  try {
+    await boardService.remove(boardId)
+    store.dispatch({ type: REMOVE_BOARD, boardId })
+  } catch (err) {
+    console.error('board action -> cannot remove board', err)
+    throw err
+  } finally {
+    store.dispatch({ type: SET_IS_LOADING, isLoading: false })
+  }
+}
+
+export async function addBoard(user) {
+  const board = boardService.getEmptyBoard()
+  try {
+    const savedBoard = await boardService.save(board)
+    store.dispatch({ type: ADD_BOARD, savedBoard })
+  } catch (err) {}
+}
+
+// * GROUP CRUD
+
+export async function addGroup(boardId) {
+  const group = boardService.getEmptyGroup()
+  try {
+    const savedGroup = await boardService.addGroup(boardId, group)
+    store.dispatch({ type: ADD_GROUP, boardId, savedGroup })
+  } catch (err) {}
+}
+
+// * TASK CRUD
 
 export async function updateTask(
   boardId,
@@ -57,7 +92,7 @@ export async function updateTask(
       taskId,
       newTask
     )
-    // store.dispatch({ type: UPDATE_TASK, boardId, groupId, taskId, task })
+    store.dispatch({ type: UPDATE_TASK, boardId, groupId, taskId, task })
   } catch (err) {}
 }
 
@@ -65,31 +100,8 @@ export async function addTask(boardId, groupId, newTaskTxt) {
   try {
     const task = await boardService.addTask(boardId, groupId, newTaskTxt)
     console.log(task)
-    // store.dispatch({ type: ADD_TASK, boardId, groupId, task })
+    store.dispatch({ type: ADD_TASK, boardId, groupId, task })
   } catch (err) {}
-}
-
-export async function removeBoard(boardId) {
-  store.dispatch({ type: SET_IS_LOADING, isLoading: true })
-  try {
-    await boardService.remove(boardId)
-    // store.dispatch({ type: REMOVE_BOARD, boardId })
-  } catch (err) {
-    console.error('board action -> cannot remove board', err)
-    throw err
-  } finally {
-    store.dispatch({ type: SET_IS_LOADING, isLoading: false })
-  }
-}
-
-export async function addBoard(user){
-  const board = boardService.getEmptyBoard()
-  try {
-    const savedBoard = await boardService.save(board)
-    console.log(savedBoard)
-  } catch (err) {
-
-  }
 }
 
 // export async function saveBoard(board) {
