@@ -1,10 +1,9 @@
-import { DatePicker } from 'antd'
-
 import { StatusPicker } from './Columns/StatusPicker'
 import { MemberPicker } from './Columns/MemberPicker'
 import { DescriptionPicker } from './Columns/DescriptionPicker'
 import { TimeLinePicker } from './Columns/TimeLinePicker'
 import { FilePicker } from './Columns/FilterPicker'
+import { DatePickerC } from './Columns/DatePickerC'
 
 export function DynamicTableCell({ cmp, task, onTaskUpdate }) {
   function handleUpdateTask(cmpType, data, task) {
@@ -17,7 +16,7 @@ export function DynamicTableCell({ cmp, task, onTaskUpdate }) {
     case 'MemberPicker':
       return <MemberPicker {...{ task, handleUpdateTask }} />
     case 'DatePicker':
-      return <DatePicker {...{ task, handleUpdateTask }} />
+      return <DatePickerC {...{ task, handleUpdateTask }} />
     case 'DescriptionPicker':
       return <DescriptionPicker {...{ task, handleUpdateTask }} />
     case 'TimeLinePicker':
