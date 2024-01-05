@@ -6,6 +6,7 @@ export function BoardViewList({ board }) {
       {!!board &&
         board.groups.map((group) => (
           <BoardViewGroup
+            boardId={board._id}
             key={group.id}
             group={group}
             cmpsOrder={board.cmpsOrder}
