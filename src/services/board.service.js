@@ -61,6 +61,7 @@ const demoData = [
             date: 1589983468418,
             timeline: [1589983468418, 1589983468418],
             file: '',
+            members: [],
           },
           {
             id: 'c107',
@@ -68,6 +69,7 @@ const demoData = [
             date: 1589983468418,
             timeline: [1589983468418, 1589983468418],
             file: '',
+            members: [],
           },
           {
             id: 'c108',
@@ -75,6 +77,7 @@ const demoData = [
             date: 1589983468418,
             timeline: [1589983468418, 1589983468418],
             file: '',
+            members: [],
           },
           {
             id: 'c109',
@@ -82,6 +85,7 @@ const demoData = [
             date: 1589983468418,
             timeline: [1589983468418, 1589983468418],
             file: '',
+            members: [],
           },
           {
             id: 'c102',
