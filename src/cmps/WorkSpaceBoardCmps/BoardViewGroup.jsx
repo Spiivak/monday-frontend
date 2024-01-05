@@ -114,7 +114,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
         <table>
           <thead>
             <tr style={{}}>
-              <th style={{ width: '40px' }}>
+              <th style={{ width: '60px' }}>
                 <div className="flex align-center justify-center">
                   <input type="checkbox" />
                 </div>
@@ -136,12 +136,13 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   </div>
                 </th>
               ))}
-              <th>+</th>
+              <th style={{width:'60px'}}>+</th>
             </tr>
           </thead>
           <tbody>
             {taskRows.map((task) => (
               <tr key={task.id} className="hoverable">
+                {console.log(task)}
                 <td style={{ width: '40px' }}>
                   <div className="flex align-center justify-center relative ">
                     <div className="row-context absolute">
@@ -171,11 +172,11 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                     />
                   </td>
                 ))}
-                <td> </td>
+                <td style={{width:'60px'}}> </td>
               </tr>
             ))}
             <tr>
-              <td style={{ width: '40px' }}>
+              <td style={{ width: '60px' }}>
                 <div className="flex align-center justify-center">
                   <input type="checkbox" />
                 </div>
