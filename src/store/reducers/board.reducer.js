@@ -1,13 +1,17 @@
 import { boardService } from '../../services/board.service.js'
+//board
 export const SET_BOARDS = 'SET_BOARDS'
 export const REMOVE_BOARD = 'REMOVE_BOARD'
 export const ADD_BOARD = 'ADD_BOARD'
 export const UPDATE_BOARD = 'UPDATE_BOARD'
 export const GET_BOARD_BY_ID = 'GET_BOARD_BY_ID'
-//loading
-export const SET_IS_LOADING = 'SET_IS_LOADING'
+//groups
+export const ADD_GROUP = 'ADD_GROUP'
+//tasks
 export const UPDATE_TASK = 'UPDATE_TASK'
 export const ADD_TASK = 'ADD_TASK'
+//loading
+export const SET_IS_LOADING = 'SET_IS_LOADING'
 
 const initialState = {
   boards: [],
@@ -28,7 +32,7 @@ export function boardReducer(state = initialState, action = {}) {
       return { ...state, boards }
 
     case ADD_BOARD:
-      boards = [action.board, ...state.boards]
+      boards = [...state.boards, action.savedBoard]
       return { ...state, boards }
 
     case UPDATE_BOARD:
@@ -36,7 +40,13 @@ export function boardReducer(state = initialState, action = {}) {
         board._id === action.board._id ? action.board : board
       )
       return { ...state, boards }
-
+    // * GROUP CRUD
+    case ADD_GROUP:
+      newBoards = state.boards.map((board) => {
+        if (board._id !== action.boardId) return board
+        return { ...board, groups: [...board.groups, action.savedGroup] }
+      })
+      return {...state, boards: newBoards}
     // * TASK CRUD
     case UPDATE_TASK:
       newBoards = state.boards.map((board) => {
