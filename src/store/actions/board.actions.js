@@ -24,7 +24,7 @@ export async function loadBoards() {
   }
 }
 
-export async function handleUpdateTask(
+export async function updateTask(
   boardId,
   groupId,
   taskId,
@@ -57,15 +57,15 @@ export async function handleUpdateTask(
       taskId,
       newTask
     )
-    store.dispatch({ type: UPDATE_TASK, boardId, groupId, taskId, task })
+    // store.dispatch({ type: UPDATE_TASK, boardId, groupId, taskId, task })
   } catch (err) {}
 }
 
-export async function handleAddTask(boardId, groupId, newTaskTxt) {
+export async function addTask(boardId, groupId, newTaskTxt) {
   try {
     const task = await boardService.addTask(boardId, groupId, newTaskTxt)
     console.log(task)
-    store.dispatch({ type: ADD_TASK, boardId, groupId, task })
+    // store.dispatch({ type: ADD_TASK, boardId, groupId, task })
   } catch (err) {}
 }
 
@@ -73,7 +73,7 @@ export async function removeBoard(boardId) {
   store.dispatch({ type: SET_IS_LOADING, isLoading: true })
   try {
     await boardService.remove(boardId)
-    store.dispatch({ type: REMOVE_BOARD, boardId })
+    // store.dispatch({ type: REMOVE_BOARD, boardId })
   } catch (err) {
     console.error('board action -> cannot remove board', err)
     throw err
@@ -82,11 +82,15 @@ export async function removeBoard(boardId) {
   }
 }
 
-// export async function addBoard(user){
-//   const board = boardService.getEmptyBoard()
-//   board.owner = user
-//   saveBoard(board)
-// }
+export async function addBoard(user){
+  const board = boardService.getEmptyBoard()
+  try {
+    const savedBoard = await boardService.save(board)
+    console.log(savedBoard)
+  } catch (err) {
+
+  }
+}
 
 // export async function saveBoard(board) {
 //   const type = board._id ? UPDATE_BOARD : ADD_BOARD
