@@ -118,7 +118,7 @@ export function boardReducer(state = initialState, action = {}) {
         return {
           ...board,
           cmpsOrder: board.cmpsOrder.filter(
-            (cmp) => cmp !== action.deletedColumn
+            (cmp) => cmp.id !== action.deletedColumnId
           ),
         }
       })

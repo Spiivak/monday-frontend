@@ -202,12 +202,16 @@ const demoData = [
     ],
 
     cmpsOrder: [
-      'StatusPicker',
-      'MemberPicker',
-      'DatePicker',
-      'DescriptionPicker',
-      'TimeLinePicker',
-      'FilePicker',
+      { type: 'StatusPicker', id: utilService.makeId(), title: 'Status' },
+      { type: 'MemberPicker', id: utilService.makeId(), title: 'Member' },
+      { type: 'DatePicker', id: utilService.makeId(), title: 'Date' },
+      {
+        type: 'DescriptionPicker',
+        id: utilService.makeId(),
+        title: 'Description',
+      },
+      { type: 'TimeLinePicker', id: utilService.makeId(), title: 'Time line' },
+      { type: 'FilePicker', id: utilService.makeId(), title: 'File' },
     ],
   },
 ]
@@ -292,8 +296,8 @@ function removeTask(boardId, groupId, taskId) {
 
 // * Columns
 
-function removeColumn(boardId, column) {
-  return storageService.removeColumn(STORAGE_KEY, boardId, column)
+function removeColumn(boardId, columnId) {
+  return storageService.removeColumn(STORAGE_KEY, boardId, columnId)
 }
 
 // function addMsg(boardId, msg){
@@ -381,7 +385,11 @@ function getEmptyBoard() {
     ],
     activities: [],
 
-    cmpsOrder: ['StatusPicker', 'MemberPicker', 'DatePicker'],
+    cmpsOrder: [
+      { type: 'StatusPicker', id: utilService.makeId(), title: 'Status' },
+      { type: 'MemberPicker', id: utilService.makeId(), title: 'Members' },
+      { type: 'DatePicker', id: utilService.makeId(), title: 'Date' },
+    ],
   }
 }
 

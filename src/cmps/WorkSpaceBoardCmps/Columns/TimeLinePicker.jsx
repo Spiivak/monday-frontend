@@ -1,7 +1,7 @@
 import { DatePicker } from 'antd'
 import dayjs from 'dayjs'
 
-export function TimeLinePicker({ task, handleUpdateTask }) {
+export function TimeLinePicker({ task, cmpId, handleUpdateTask }) {
   const { RangePicker } = DatePicker
   const dateFormat = 'YYYY/MM/DD'
 
@@ -21,9 +21,9 @@ export function TimeLinePicker({ task, handleUpdateTask }) {
 
   return (
     <div className="cell">
-      {task.timeline ? (
+      {task['timeline'+cmpId] ? (
         <RangePicker
-          defaultValue={task.timeline.map((timestamp) => dayjs(timestamp))}
+          defaultValue={task['timeline'+cmpId].map((timestamp) => dayjs(timestamp))}
           format={dateFormat}
           onChange={handleDateChange}
         />

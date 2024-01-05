@@ -75,36 +75,40 @@ export async function updateTask(
   groupId,
   taskId,
   cmpType,
+  cmpId,
   task,
   data
 ) {
   let newTask
   switch (cmpType) {
+    case 'task':
+      newTask = { ...task, title: data }
+      break
     case 'StatusPicker':
-      newTask = { ...task, status: data }
+      newTask = { ...task, ['status' + cmpId]: data }
       break
     case 'DatePicker':
-      newTask = { ...task, date: data }
+      newTask = { ...task, ['date' + cmpId]: data }
       break
     case 'DescriptionPicker':
-      newTask = { ...task, description: data }
+      newTask = { ...task, ['description' + cmpId]: data }
       break
     case 'TimeLinePicker':
-      newTask = { ...task, timeline: data }
+      newTask = { ...task, ['timeline' + cmpId]: data }
       break
     case 'FilePicker':
-      newTask = { ...task, file: data }
+      newTask = { ...task, ['file' + cmpId]: data }
       break
     case 'MemberPicker':
-      // Check if the user is already in the task.members array
-      const isUserInMembers = task.members?.some(
+      // Check if the user is already in the task['members'+cmpId] array
+      const isUserInMembers = task['members' + cmpId].some(
         (member) => member._id === data._id
       )
 
       // If the user is in the array, remove them; otherwise, add them
       const updatedMembers = isUserInMembers
-        ? task.members.filter((member) => member._id !== data._id)
-        : [...task.members, data]
+        ? task['members' + cmpId].filter((member) => member._id !== data._id)
+        : [...task['members' + cmpId], data]
 
       newTask = { ...task, members: updatedMembers }
       break
@@ -141,10 +145,10 @@ export async function removeTask(boardId, groupId, taskId) {
 
 // * COLUMN CRUD
 
-export async function removeColumn(boardId, column) {
+export async function removeColumn(boardId, columnId) {
   try {
-    const deletedColumn = await boardService.removeColumn(boardId, column)
-    store.dispatch({ type: REMOVE_COLUMN, boardId, deletedColumn })
+    const deletedColumnId = await boardService.removeColumn(boardId, columnId)
+    store.dispatch({ type: REMOVE_COLUMN, boardId, deletedColumnId })
   } catch (err) {}
 }
 

@@ -11,6 +11,7 @@ import { useParams } from 'react-router-dom'
 import { AddSmallIcon } from '../Icons'
 import { ContextBtn } from '../ContextBtn'
 import { Table } from 'antd'
+import { EditableText } from '../EditableText'
 export function BoardViewGroup({ group, boardId, cmpsOrder }) {
   const [newTaskTitle, setNewTaskTitle] = useState('')
 
@@ -46,70 +47,24 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
     },
   ])
 
+  const [columnHeaders, setColumnHeaders] = useState([])
+  const [taskRows, setTaskRows] = useState([])
+
   useEffect(() => {
-    setColumns([
-      {
-        title: 'task',
-        dataIndex: 'taskTitle',
-        key: 'taskTitle',
-        render: (task) => (
-          <div className="hoverable">
-            <div className="row-context absolute">
-              <ContextBtn
-                type="row"
-                onDeleteRow={() => onDeleteTask(boardId, group.id, task.id)}
-              />
-            </div>
-            <a>{task.title}</a>
-          </div>
-        ),
-      },
-      ...cmpsOrder.map((cmp, idx) => ({
-        title: () => (
-          <div className="flex align-center space-between hoverable">
-            {cmp}
-            <ContextBtn
-              type="column"
-              onDeleteColumn={() => onDeleteColumn(boardId, cmp)}
-            />
-          </div>
-        ),
-        dataIndex: cmp,
-        key: cmp,
-        render: (task) => (
-          <DynamicTableCell
-            cmp={cmp}
-            onTaskUpdate={onTaskUpdate}
-            task={task}
-            key={task.id}
-          />
-        ),
-      })),
-    ])
-    setDataSource(
-      group.tasks.map((task, idx) => ({
-        key: idx + 1,
-        taskTitle: task,
-        StatusPicker: task,
-        MemberPicker: task,
-        DatePicker: task,
-        DescriptionPicker: task,
-        TimeLinePicker: task,
-        FilePicker: task,
-      }))
-    )
+    setColumnHeaders(cmpsOrder)
+    setTaskRows(group.tasks)
   }, [cmpsOrder, group])
 
-  function onTaskUpdate(cmpType, data, task) {
-    updateTask(boardId, group.id, task.id, cmpType, task, data)
+  function onTaskUpdate(cmpType, cmpId, data, task) {
+    updateTask(boardId, group.id, task.id, cmpType, cmpId, task, data)
   }
 
   function onDeleteGroup() {
     removeGroup(boardId, group.id)
   }
 
-  function onDeleteColumn(boardId, cmp) {
-    removeColumn(boardId, cmp)
+  function onDeleteColumn(boardId, cmpId) {
+    removeColumn(boardId, cmpId)
   }
 
   function onDeleteTask(boardId, groupId, taskId) {
@@ -124,6 +79,12 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
   function handleSubmit(ev) {
     ev.preventDefault()
     const newTask = { title: newTaskTitle }
+    addTask(boardId, group.id, newTask)
+    setNewTaskTitle('')
+  }
+
+  function saveNewTask(title) {
+    const newTask = { title }
     addTask(boardId, group.id, newTask)
     setNewTaskTitle('')
   }
@@ -150,15 +111,90 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
         <span>{group.tasks.length} items / 0 subitems</span>
       </h2>
       <div>
-        <Table
-          rootClassName="root-table"
-          pagination={false}
-          columns={columns}
-          dataSource={dataSource}
-        />
-        <form onSubmit={handleSubmit}>
-          <input type="text" value={newTaskTitle} onChange={handleChange} />
-        </form>
+        <table>
+          <thead>
+            <tr style={{}}>
+              <th style={{ width: '60px' }}>
+                <div className="flex align-center justify-center">
+                  <input type="checkbox" />
+                </div>
+              </th>
+              <th>task</th>
+              {columnHeaders.map((columnHeader, idx) => (
+                <th key={idx}>
+                  <div className="flex align-center space-between hoverable">
+                    <EditableText
+                      initialText={columnHeader.title}
+                      onSave={() => {}}
+                    />
+                    <ContextBtn
+                      type="column"
+                      onDeleteColumn={() =>
+                        onDeleteColumn(boardId, columnHeader.id)
+                      }
+                    />
+                  </div>
+                </th>
+              ))}
+              <th style={{width:'60px'}}>+</th>
+            </tr>
+          </thead>
+          <tbody>
+            {taskRows.map((task) => (
+              <tr key={task.id} className="hoverable">
+                {console.log(task)}
+                <td style={{ width: '40px' }}>
+                  <div className="flex align-center justify-center relative ">
+                    <div className="row-context absolute">
+                      <ContextBtn
+                        type="row"
+                        onDeleteRow={() =>
+                          onDeleteTask(boardId, group.id, task.id)
+                        }
+                      />
+                    </div>
+                    <input type="checkbox" />
+                  </div>
+                </td>
+                <td>
+                  <EditableText
+                    initialText={task.title}
+                    onSave={(text) => onTaskUpdate('task', '', text, task)}
+                  />
+                </td>
+                {columnHeaders.map((columnHeader, idx) => (
+                  <td key={idx}>
+                    <DynamicTableCell
+                      cmp={columnHeader.type}
+                      cmpId={columnHeader.id}
+                      onTaskUpdate={onTaskUpdate}
+                      task={task}
+                    />
+                  </td>
+                ))}
+                <td style={{width:'60px'}}> </td>
+              </tr>
+            ))}
+            <tr>
+              <td style={{ width: '60px' }}>
+                <div className="flex align-center justify-center">
+                  <input type="checkbox" />
+                </div>
+              </td>
+              <td colspan={columnHeaders.length + 2}>
+                <EditableText initialText={'Add item'} onSave={saveNewTask} />
+                {/* <form onSubmit={handleSubmit}>
+                  <input
+                    type="text"
+                    value={newTaskTitle}
+                    onChange={handleChange}
+                    placeholder="Add item"
+                  />
+                </form> */}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
   )

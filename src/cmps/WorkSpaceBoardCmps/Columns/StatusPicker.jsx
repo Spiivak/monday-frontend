@@ -1,6 +1,6 @@
 import { Dropdown } from 'antd'
 
-export function StatusPicker({ task, handleUpdateTask }) {
+export function StatusPicker({ task, cmpId, handleUpdateTask }) {
   const items = [
     {
       key: '1',
@@ -10,8 +10,7 @@ export function StatusPicker({ task, handleUpdateTask }) {
         <button
           className="btn-ctn medium-primary"
           style={{ backgroundColor: '#00C875', width: '100%' }}
-          onClick={() => handleUpdateTask('StatusPicker', 'Done', task)}
-        >
+          onClick={() => handleUpdateTask('StatusPicker', 'Done', task)}>
           Done
         </button>
       ),
@@ -26,8 +25,7 @@ export function StatusPicker({ task, handleUpdateTask }) {
           style={{ backgroundColor: '#FDAB3D', width: '100%' }}
           onClick={() =>
             handleUpdateTask('StatusPicker', 'Working on it', task)
-          }
-        >
+          }>
           Working on it
         </button>
       ),
@@ -40,8 +38,7 @@ export function StatusPicker({ task, handleUpdateTask }) {
         <button
           className="btn-ctn medium-primary"
           style={{ backgroundColor: '#E2445C', width: '100%' }}
-          onClick={() => handleUpdateTask('StatusPicker', 'Stuck', task)}
-        >
+          onClick={() => handleUpdateTask('StatusPicker', 'Stuck', task)}>
           Stuck
         </button>
       ),
@@ -55,7 +52,7 @@ export function StatusPicker({ task, handleUpdateTask }) {
     },
   ]
   const bgc = items.reduce((acc, item) => {
-    if (item.status === task.status) {
+    if (item.status === task['status' + cmpId]) {
       return item.backgroundColor
     }
     return acc
@@ -71,17 +68,15 @@ export function StatusPicker({ task, handleUpdateTask }) {
       placement="bottom"
       arrow={{
         pointAtCenter: true,
-      }}
-    >
+      }}>
       <div className="cell">
         <button
           className="label-btn"
           style={{
             backgroundColor: bgc || '#c4c4c4',
             color: 'white',
-          }}
-        >
-          {task.status || "Haven't Started"}
+          }}>
+          {task['status' + cmpId] || "Haven't Started"}
         </button>
       </div>
     </Dropdown>

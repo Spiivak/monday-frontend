@@ -21,7 +21,7 @@ export function EditableText({ initialText, onSave }) {
 
     setEditing(false)
   }
-  
+
   const showTooltip = text.length < 50;
   return (
     <div style={{ width: '100%'}}>

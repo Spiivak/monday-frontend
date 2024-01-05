@@ -3,7 +3,7 @@ import Input from '@mui/joy/Input'
 import { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 
-export function MemberPicker({ task, handleUpdateTask }) {
+export function MemberPicker({ task, cmpId, handleUpdateTask }) {
   const users = useSelector((storeState) => storeState.userModule.users)
 
   function handleUpdateUser(selectedUser) {
@@ -11,11 +11,12 @@ export function MemberPicker({ task, handleUpdateTask }) {
   }
 
   const suggestedUsers = users.filter(
-    (user) => !task.members?.some((member) => member._id === user._id)
+    (user) =>
+      !task['members' + cmpId]?.some((member) => member._id === user._id)
   )
 
   const currentUsers = users.filter((user) =>
-    task.members?.some((member) => member._id === user._id)
+    task['members' + cmpId]?.some((member) => member._id === user._id)
   )
 
   const items = [
@@ -105,9 +106,9 @@ export function MemberPicker({ task, handleUpdateTask }) {
       }}
     >
       <div className="cell">
-        {task.members && task.members.length > 0 ? (
+        {task['members' + cmpId] && task['members' + cmpId].length > 0 ? (
           <div className="avatars-wrapper">
-            {task.members.map((member) => (
+            {task['members' + cmpId].map((member) => (
               <div className="avatar-logo" key={member._id}>
                 <img src={member.imgUrl} alt="" />
               </div>
