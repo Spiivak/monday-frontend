@@ -53,7 +53,7 @@ export function WorkSpaceBoard() {
     <div className="main-layout">
       <WorkSpaceSideBar {...{ onRemoveBoard, onAddBoard }} />
       <section className="work-space-board">
-        <BoardHeader />
+        <BoardHeader board={selectedBoard} />
         <BoardTabs />
         <BoardFilter />
         {!!boards && (
