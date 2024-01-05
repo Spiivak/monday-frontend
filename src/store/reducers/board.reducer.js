@@ -7,6 +7,7 @@ export const UPDATE_BOARD = 'UPDATE_BOARD'
 export const GET_BOARD_BY_ID = 'GET_BOARD_BY_ID'
 //groups
 export const ADD_GROUP = 'ADD_GROUP'
+export const REMOVE_GROUP = 'REMOVE_GROUP'
 //tasks
 export const UPDATE_TASK = 'UPDATE_TASK'
 export const ADD_TASK = 'ADD_TASK'
@@ -46,7 +47,18 @@ export function boardReducer(state = initialState, action = {}) {
         if (board._id !== action.boardId) return board
         return { ...board, groups: [...board.groups, action.savedGroup] }
       })
-      return {...state, boards: newBoards}
+      return { ...state, boards: newBoards }
+    case REMOVE_GROUP:
+      newBoards = state.boards.map((board) => {
+        if (board._id !== action.boardId) return board
+        return {
+          ...board,
+          groups: board.groups.filter(
+            (group) => group.id !== action.deletedGroupId
+          ),
+        }
+      })
+      return { ...state, boards: newBoards }
     // * TASK CRUD
     case UPDATE_TASK:
       newBoards = state.boards.map((board) => {

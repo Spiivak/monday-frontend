@@ -198,6 +198,7 @@ export const boardService = {
   remove,
   getById,
   addGroup,
+  removeGroup,
   updateTask,
   addTask,
   getEmptyBoard,
@@ -228,11 +229,16 @@ function save(board) {
     // return httpService.post(BASE_URL, board)
   }
 }
-
+// * Groups
 function addGroup(boardId, group){
   return storageService.postGroup(STORAGE_KEY, boardId, group)
 }
 
+function removeGroup(boardId, groupId){
+  return storageService.removeGroup(STORAGE_KEY, boardId, groupId)
+}
+
+// * Tasks
 function updateTask(boardId, groupId, taskId, task) {
   return storageService.putTask(STORAGE_KEY, boardId, groupId, taskId, task)
 }
