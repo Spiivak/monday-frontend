@@ -1,52 +1,34 @@
-import { useEffect, useRef, useState } from 'react'
-import { utilService } from '../../../services/util.service'
+import { useEffect, useState } from 'react'
+import Textarea from '@mui/joy/Textarea'
 
 export function DescriptionPicker({ task, handleUpdateTask }) {
-  const [isActive, setIsActive] = useState(false)
-  const [desc, setDesc] = useState(task.description)
-  handleUpdateTask = useRef(utilService.debounce(handleUpdateTask))
+  const [minRows, setMinRows] = useState(1)
+  const [desc, setDesc] = useState(task.description || '')
 
   function handleUpdateDesc(ev) {
     ev.preventDefault()
     const txt = ev.target.value
     setDesc(txt)
+    handleUpdateTask('DescriptionPicker', txt, task)
   }
 
-  function removeLeadingSlashN(description) {
-    let modifiedDescription = description
+  useEffect(() => {}, [desc])
 
-    while (modifiedDescription && modifiedDescription.startsWith('\n')) {
-      modifiedDescription = modifiedDescription.slice(2)
-    }
-
-    return modifiedDescription
+  function handleTextareaBlur() {
+    setMinRows(1)
+    setDesc((prevDesc) => prevDesc.replace(/\n/g, ' ').trim())
   }
-
-  const descriptionToShow = removeLeadingSlashN(desc) || 'empty'
-
-  useEffect(() => {
-    handleUpdateTask.current('DescriptionPicker', desc, task)
-  }, [desc])
 
   return (
     <div className="cell">
-      <h4
-        onClick={() => {
-          setIsActive((a) => !a)
-        }}
-      >
-        {descriptionToShow}
-      </h4>
-      <div className={`cell-context ${isActive ? 'active' : 'hidden'}`}>
-        <textarea
-          placeholder="Add description"
-          value={desc}
-          onChange={handleUpdateDesc}
-          onBlur={() => {
-            setIsActive((a) => !a)
-          }}
-        />
-      </div>
+      <Textarea
+        placeholder="Add description"
+        minRows={minRows}
+        value={task.description ? desc : ''}
+        onChange={handleUpdateDesc}
+        onClick={() => setMinRows(5)}
+        onBlur={handleTextareaBlur}
+      />
     </div>
   )
 }
