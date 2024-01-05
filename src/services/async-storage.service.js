@@ -4,6 +4,7 @@ export const storageService = {
   post,
   put,
   remove,
+  postGroup,
   putTask,
   postTask,
 }
@@ -57,6 +58,19 @@ function remove(entityType, entityId) {
       )
     entities.splice(idx, 1)
     _save(entityType, entities)
+  })
+}
+
+// group CRUD
+function postGroup(entityType, boardId, newGroup) {
+  newGroup = JSON.parse(JSON.stringify(newGroup))
+  return query(entityType).then((boards) => {
+    const newBoards = boards.map((board) => {
+      if (board._id !== boardId) return board
+      return { ...board, groups: [...board.groups, newGroup] }
+    })
+    _save(entityType, newBoards)
+    return newGroup
   })
 }
 
