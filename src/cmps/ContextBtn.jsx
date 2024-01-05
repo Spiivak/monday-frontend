@@ -33,7 +33,10 @@ export function ContextBtn({ type, onDeleteGroup, onDeleteBoard, onDeleteColumn,
           <button
             ref={menuBtnRef}
             className="btn-icon small-transparent"
-            onClick={() => openMoreModal()}>
+            onClick={(ev) => {
+              ev.stopPropagation()
+              openMoreModal()
+              }}>
             <MenuIcon />
           </button>
           {isMoreModalOpen && (
@@ -131,31 +134,31 @@ function GroupModal({ onDeleteGroup, setIsMoreModalOpen, menuBtnRef }) {
   return (
     <div className="more-modal-container flex column" ref={modalRef}>
       <div className="ds-tabs-section">
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
             <EditIcon />
             Rename workspace
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
             <SwitchIcon />
             Change icon
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <SettingsIcon />
             Manage workspace
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
             <Save />
             Save as template
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
             <DeleteIcon />
             Delete workspace
@@ -164,13 +167,13 @@ function GroupModal({ onDeleteGroup, setIsMoreModalOpen, menuBtnRef }) {
       </div>
       <div className="ds-divider"></div>
       <div className="ds-tabs-section">
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <AddSmallIcon />
             Add new workspace
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <AddSmallIcon />
             Browse all workspaces
@@ -179,7 +182,7 @@ function GroupModal({ onDeleteGroup, setIsMoreModalOpen, menuBtnRef }) {
       </div>
       <div className="ds-divider"></div>
       <div className="ds-tabs-section">
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <CollapseIcon />
             Collapse all folders
@@ -188,7 +191,7 @@ function GroupModal({ onDeleteGroup, setIsMoreModalOpen, menuBtnRef }) {
       </div>
       <div className="ds-divider"></div>
       <div className="ds-tabs-section">
-        <div className="tab">
+        <div className="tab flex column">
           <button
             className="btn-icon medium-transparent flex gap16"
             onClick={onDeleteGroup}>
@@ -196,7 +199,7 @@ function GroupModal({ onDeleteGroup, setIsMoreModalOpen, menuBtnRef }) {
             Delete
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <ArchiveIcon />
             Archive
@@ -234,31 +237,31 @@ function BoardModal({ onDeleteBoard, setIsMoreModalOpen, menuBtnRef }) {
   return (
     <div className="more-modal-container flex column" ref={modalRef}>
       <div className="ds-tabs-section">
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
             <EditIcon />
             Rename workspace
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
             <SwitchIcon />
             Change icon
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <SettingsIcon />
             Manage workspace
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
             <Save />
             Save as template
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
             <DeleteIcon />
             Delete workspace
@@ -267,13 +270,13 @@ function BoardModal({ onDeleteBoard, setIsMoreModalOpen, menuBtnRef }) {
       </div>
       <div className="ds-divider"></div>
       <div className="ds-tabs-section">
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <AddSmallIcon />
             Add new workspace
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <AddSmallIcon />
             Browse all workspaces
@@ -282,7 +285,7 @@ function BoardModal({ onDeleteBoard, setIsMoreModalOpen, menuBtnRef }) {
       </div>
       <div className="ds-divider"></div>
       <div className="ds-tabs-section">
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <CollapseIcon />
             Collapse all folders
@@ -291,7 +294,7 @@ function BoardModal({ onDeleteBoard, setIsMoreModalOpen, menuBtnRef }) {
       </div>
       <div className="ds-divider"></div>
       <div className="ds-tabs-section">
-        <div className="tab">
+        <div className="tab flex column">
           <button
             className="btn-icon medium-transparent flex gap16"
             onClick={onDeleteBoard}>
@@ -299,7 +302,7 @@ function BoardModal({ onDeleteBoard, setIsMoreModalOpen, menuBtnRef }) {
             Delete
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <ArchiveIcon />
             Archive
@@ -337,31 +340,31 @@ function ColumnModal({ onDeleteColumn, setIsMoreModalOpen, menuBtnRef }) {
   return (
     <div className="more-modal-container flex column" ref={modalRef}>
       <div className="ds-tabs-section">
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
             <EditIcon />
             Rename workspace
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
             <SwitchIcon />
             Change icon
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <SettingsIcon />
             Manage workspace
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
             <Save />
             Save as template
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
             <DeleteIcon />
             Delete workspace
@@ -370,13 +373,13 @@ function ColumnModal({ onDeleteColumn, setIsMoreModalOpen, menuBtnRef }) {
       </div>
       <div className="ds-divider"></div>
       <div className="ds-tabs-section">
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <AddSmallIcon />
             Add new workspace
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <AddSmallIcon />
             Browse all workspaces
@@ -385,7 +388,7 @@ function ColumnModal({ onDeleteColumn, setIsMoreModalOpen, menuBtnRef }) {
       </div>
       <div className="ds-divider"></div>
       <div className="ds-tabs-section">
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <CollapseIcon />
             Collapse all folders
@@ -394,7 +397,7 @@ function ColumnModal({ onDeleteColumn, setIsMoreModalOpen, menuBtnRef }) {
       </div>
       <div className="ds-divider"></div>
       <div className="ds-tabs-section">
-        <div className="tab">
+        <div className="tab flex column">
           <button
             className="btn-icon medium-transparent flex gap16"
             onClick={onDeleteColumn}>
@@ -402,7 +405,7 @@ function ColumnModal({ onDeleteColumn, setIsMoreModalOpen, menuBtnRef }) {
             Delete
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <ArchiveIcon />
             Archive
@@ -440,31 +443,31 @@ function RowModal({ onDeleteRow, setIsMoreModalOpen, menuBtnRef }) {
   return (
     <div className="more-modal-container flex column" ref={modalRef}>
       <div className="ds-tabs-section">
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
             <EditIcon />
             Rename workspace
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
             <SwitchIcon />
             Change icon
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <SettingsIcon />
             Manage workspace
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
             <Save />
             Save as template
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
             <DeleteIcon />
             Delete workspace
@@ -473,13 +476,13 @@ function RowModal({ onDeleteRow, setIsMoreModalOpen, menuBtnRef }) {
       </div>
       <div className="ds-divider"></div>
       <div className="ds-tabs-section">
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <AddSmallIcon />
             Add new workspace
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <AddSmallIcon />
             Browse all workspaces
@@ -488,7 +491,7 @@ function RowModal({ onDeleteRow, setIsMoreModalOpen, menuBtnRef }) {
       </div>
       <div className="ds-divider"></div>
       <div className="ds-tabs-section">
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <CollapseIcon />
             Collapse all folders
@@ -497,7 +500,7 @@ function RowModal({ onDeleteRow, setIsMoreModalOpen, menuBtnRef }) {
       </div>
       <div className="ds-divider"></div>
       <div className="ds-tabs-section">
-        <div className="tab">
+        <div className="tab flex column">
           <button
             className="btn-icon medium-transparent flex gap16"
             onClick={onDeleteRow}>
@@ -505,7 +508,7 @@ function RowModal({ onDeleteRow, setIsMoreModalOpen, menuBtnRef }) {
             Delete
           </button>
         </div>
-        <div className="tab">
+        <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16">
             <ArchiveIcon />
             Archive
