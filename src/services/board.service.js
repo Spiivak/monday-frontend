@@ -331,14 +331,17 @@ function getEmptyBoard() {
           {
             id: utilService.makeId(),
             title: 'item 1',
+            members: [],
           },
           {
             id: utilService.makeId(),
             title: 'item 2',
+            members: [],
           },
           {
             id: utilService.makeId(),
-            title: 'item 2',
+            title: 'item 3',
+            members: [],
           },
         ],
         style: {},
