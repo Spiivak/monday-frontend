@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { uploadService } from "../services/upload.service"
 import { styled } from "@mui/material/styles"
-import CloudUploadIcon from "@mui/icons-material/CloudUpload"
 import UploadFileIcon from "@mui/icons-material/UploadFile"
 import { IconButton } from "@mui/material"
 const VisuallyHiddenInput = styled("input")({
@@ -37,12 +36,7 @@ export function ImgUploader({ imgUrl, onUploaded = null }) {
       {imgData.imgUrl && (
         <img src={imgData.imgUrl} style={{ maxWidth: "200px" }} />
       )}
-      <IconButton
-        component="label"
-        variant="contained"
-        startIcon={<CloudUploadIcon />}
-        size="small"
-      >
+      <IconButton component="label" size="small">
         <UploadFileIcon />
         <VisuallyHiddenInput
           type="file"
