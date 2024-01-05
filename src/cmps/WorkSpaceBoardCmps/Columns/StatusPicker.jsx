@@ -5,42 +5,44 @@ export function StatusPicker({ task, handleUpdateTask }) {
     {
       key: '1',
       backgroundColor: '#00C875',
-      status: 'done',
+      status: 'Done',
       label: (
         <button
           className="btn-ctn medium-primary"
           style={{ backgroundColor: '#00C875', width: '100%' }}
-          onClick={() => handleUpdateTask('StatusPicker', 'done', task)}
+          onClick={() => handleUpdateTask('StatusPicker', 'Done', task)}
         >
-          done
+          Done
         </button>
       ),
     },
     {
       key: '2',
       backgroundColor: '#FDAB3D',
-      status: 'in-progress',
+      status: 'Working on it',
       label: (
         <button
           className="btn-ctn medium-primary "
           style={{ backgroundColor: '#FDAB3D', width: '100%' }}
-          onClick={() => handleUpdateTask('StatusPicker', 'in-progress', task)}
+          onClick={() =>
+            handleUpdateTask('StatusPicker', 'Working on it', task)
+          }
         >
-          in-progress
+          Working on it
         </button>
       ),
     },
     {
       key: '3',
       backgroundColor: '#E2445C',
-      status: 'stuck',
+      status: 'Stuck',
       label: (
         <button
           className="btn-ctn medium-primary"
           style={{ backgroundColor: '#E2445C', width: '100%' }}
-          onClick={() => handleUpdateTask('StatusPicker', 'stuck', task)}
+          onClick={() => handleUpdateTask('StatusPicker', 'Stuck', task)}
         >
-          stuck
+          Stuck
         </button>
       ),
     },
@@ -72,8 +74,14 @@ export function StatusPicker({ task, handleUpdateTask }) {
       }}
     >
       <div className="cell">
-        <button className="label-btn" style={{ backgroundColor: bgc }}>
-          {task.status || 'empty'}
+        <button
+          className="label-btn"
+          style={{
+            backgroundColor: bgc || '#c4c4c4',
+            color: 'white',
+          }}
+        >
+          {task.status || "Haven't Started"}
         </button>
       </div>
     </Dropdown>

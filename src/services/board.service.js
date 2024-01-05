@@ -97,7 +97,7 @@ const demoData = [
           {
             id: 'c104',
             title: 'Help me',
-            status: 'in-progress', // monday
+            status: 'Working on it', // monday
             priority: 'high',
             description: 'description',
             comments: [
@@ -229,7 +229,7 @@ function save(board) {
   }
 }
 
-function addGroup(boardId, group){
+function addGroup(boardId, group) {
   return storageService.postGroup(STORAGE_KEY, boardId, group)
 }
 
@@ -245,7 +245,7 @@ function addTask(boardId, groupId, task) {
 //   return httpService.post(BASE_URL + 'msg/' ,{ boardId, msg })
 // }
 
-function getEmptyGroup(){
+function getEmptyGroup() {
   return {
     id: utilService.makeId(),
     title: 'New Group',
@@ -321,15 +321,9 @@ function getEmptyBoard() {
         style: {},
       },
     ],
-    activities: [
+    activities: [],
 
-    ],
-
-    cmpsOrder: [
-      'StatusPicker',
-      'MemberPicker',
-      'DatePicker',
-    ],
+    cmpsOrder: ['StatusPicker', 'MemberPicker', 'DatePicker'],
   }
 }
 
