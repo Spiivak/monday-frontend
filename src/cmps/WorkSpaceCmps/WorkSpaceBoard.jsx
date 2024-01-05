@@ -4,13 +4,16 @@ import { BoardTabs } from '../WorkSpaceBoardCmps/BoardTabs'
 
 import { BoardHeader } from '../WorkSpaceBoardCmps/BoardHeader'
 import { useEffect, useState } from 'react'
-import { loadBoards, removeBoard } from '../../store/actions/board.actions'
+import {
+  addBoard,
+  addGroup,
+  loadBoards,
+  removeBoard,
+} from '../../store/actions/board.actions'
 import { useSelector } from 'react-redux'
 import { WorkSpaceSideBar } from './WorkSpaceSideBar'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 import { useParams } from 'react-router'
-
-
 
 export function WorkSpaceBoard() {
   const [selectedBoard, setSelectedBoard] = useState(null)
@@ -18,10 +21,19 @@ export function WorkSpaceBoard() {
   const { boardId } = useParams()
   useEffect(() => {
     loadBoards()
-    if( boardId ) setSelectedBoard(boards.find(board => board._id === boardId))
-    else setSelectedBoard(boards[0])
-  }, [boards])
+  }, [])
+  useEffect(() => {
+    if (boardId) {
+      setSelectedBoard(boards.find((board) => board._id === boardId))
+    } else {
+      setSelectedBoard(boards[0])
+    }
+  }, [boardId, boards])
 
+  //TODO add user to own the added board
+  function onAddBoard() {
+    addBoard()
+  }
 
   async function onRemoveBoard(boardId) {
     try {
@@ -32,14 +44,21 @@ export function WorkSpaceBoard() {
     }
   }
 
+  //TODO add user to own the added group
+  function onAddGroup(boardId) {
+    addGroup(boardId)
+  }
+
   return (
     <div className="main-layout">
-      <WorkSpaceSideBar {...{ onRemoveBoard }} />
+      <WorkSpaceSideBar {...{ onRemoveBoard, onAddBoard }} />
       <section className="work-space-board">
         <BoardHeader />
         <BoardTabs />
         <BoardFilter />
-        {!!boards && <BoardViewList board={selectedBoard} />}
+        {!!boards && (
+          <BoardViewList board={selectedBoard} onAddGroup={onAddGroup} />
+        )}
       </section>
     </div>
   )
