@@ -45,8 +45,8 @@
     }
   }
   .row-context{
-    z-index: 100;
-    right: 100%;
+    z-index: 1000;
+    left: -2em;
     top: 50%;
     translate: -5% -50%;
   }
