@@ -1,56 +1,48 @@
 .side-bar {
   border-top-right-radius: 10px;
-  position: relative;
   color: #323338;
   background-color: #ffffff;
   margin-left: 3px;
   max-width: 255px;
 
   .side-bar-container {
-    // background-color: red;
     .side-bar-link-container {
-      // background-color: blue;
       border-bottom: 1px solid #d0d4e4;
-      display: flex;
-      flex-direction: column;
       gap: 2px;
-      padding-left: 6px;
-      padding-right: 40px;
-      padding-block: 12px;
-      width: 100%;
-      align-items: left;
+      padding-left: $spacing-small;
+      padding-right: $spacing-xxl;
+      padding-block: $spacing-medium;
 
       a {
         font: 400 14px/20px Figtree;
-        border-radius: 7px;
-        padding: 6px 8px;
-        display: flex;
-        gap: 8px;
-        align-items: center;
+        border-radius: $border-radius-medium;
+        padding: $spacing-xs $spacing-small;
 
         &:hover {
           background-color: #dcdfec;
         }
 
         &:active {
-          background-color: #cce5ff;
+          background-color: $color-highlight-blue;
         }
       }
     }
+
     .side-bar-footer {
 
       .title-wrapper {
         .filter-container {
 
           // background-color: orange;
-          padding-left: 14px;
-          padding-right: 16px;
-          padding-bottom: 8px;
+          padding-left: $spacing-medium;
+          padding-right: $spacing-medium;
+          padding-bottom: $spacing-small;
+
           .filter-search {
-            max-width: 180px;
-            min-height: 30px;
+            max-width: rem(180px);
+            min-height: rem(30px);
             border: 1px solid #d0d4e4;
-            border-radius: 4px;
+            border-radius: $border-radius-small;
 
             input {
               width: 100%;
@@ -58,44 +50,41 @@
               padding: 0;
             }
           }
+
           .add-btn {
             margin-left: 10px;
           }
         }
+
         .workspace-dropdown-button {
           align-items: center;
-          padding: 16px;
+          padding: $spacing-medium;
+
           .dropdown-button {
             width: 100%;
             display: flex;
             align-items: center;
-            border-radius: 4px;
-            padding: 5px;
-            padding-right: 4px;
+            border-radius: $border-radius-small;
+            padding: $spacing-xs + 1px;
+            padding-right: $spacing-xs;
 
             &:hover {
               background-color: #dbdfec;
             }
-            picture {
-              display: flex;
-            }
-            .workspace-title{
-              align-items: center;
+
+            .workspace-title {
               font: 600 16px/20px Figtree;
               cursor: pointer;
             }
           }
-          .workspace-icon {
-            display: flex;
-          }
-          .dropdown-icon-wrapper {
 
+          .dropdown-icon-wrapper {
             .chvron-down {
-              display: flex;
-              margin-right: 10px;
+              margin-right: $spacing-small + 2px;
+
               svg {
-                width: 14px;
-                height: 14px;
+                width: 16px;
+                height: 16px;
               }
             }
           }
@@ -105,14 +94,12 @@
   }
 
   .close-btn {
-    border-radius: 0 8px 0 8px;
+    border-radius: 0 $border-radius-medium 0 $border-radius-medium;
     background-color: #f6f7fb;
     position: absolute;
-    padding: 12px $spacing-small 12px $spacing-small;
+    padding: calc($spacing-small + 4px) $spacing-small calc($spacing-small + 4px) $spacing-small;
     right: 0;
     top: 0;
-    display: flex;
-    justify-content: center;
   }
 
   &.side-bar-close {
@@ -122,43 +109,34 @@
 }
 
 .workspaces-list {
+  padding-left: $spacing-medium - 2px;
+  padding-right: $spacing-medium - 4px;
+  padding-bottom: $spacing-small;
 
-  // background-color: red;
-  justify-content: center;
-  padding-left: 14px;
-  padding-right: 12px;
-  padding-bottom: 8px;
   .workspace-item {
-    & .link a.active{
-      background-color: red;
-      // width: 100%;
-    }
-    .link {
-      // background-color: red;
-      padding: 6px 8px;
-
+    a {
       width: 100%;
+      font: 400 14px/20px Figtree;
+
+      .svg {
+        margin-right: $spacing-small;
+      }
+    }
+
+    & a.active {
+      background-color: #CCE5FF;
+      border-radius: $border-radius-small;
+    }
+
+    .link {
+      width: 100%;
+      padding: $spacing-small - 2px $spacing-small;
+
       &:hover {
         background-color: #dbdfec;
-        border-radius: 4px;
+        border-radius: $border-radius-small;
       }
-      a {
-        width: 100%;
-        font: 400 14px/20px Figtree;
-        .svg {
-          margin-right: 8px;
-        }
-
-      }
-
     }
-    // width: 50%;
-    // background-color: blue;
-  }
-  .menu-btn {
-  }
-  a {
-    padding: 0;
   }
 }
 
@@ -169,51 +147,52 @@
 
 
 .workspace-context-container {
-  box-shadow: 0 4px 17px 6px rgba(0,0,0,.1);
-  color: var(--primary-text-color);
+  box-shadow: $box-shadow-small;
+  color: #323338;
 
   min-width: 280px;
   min-height: 225px;
-  padding: 12px;
+  padding: $spacing-medium - 4px;
   top: 196px;
-  left: 8px;
+  left: $spacing-small;
   position: fixed;
   background-color: white;
-  border-radius: 8px;
+  border-radius: $border-radius-medium;
   z-index: 150;
+
   .divider {
     box-sizing: content-box;
     border-width: 1px;
     border-style: solid;
     opacity: 0.1;
-    // border-image: linear-gradient(to right, rgb(97, 97, 255), #ff158a00);
     border-image-slice: 1;
     margin-bottom: 8px;
-    // margin-bottom: 16px;
   }
-  .workspace-context-header {
-    // font: 400 14px/20px Figtree;
 
-      .workspace-options {
-        span {
-          font: 400 14px/20px Figtree;
-        }
-        .option {
-          padding: 4px 0;
-          align-items: flex-start;
-          button {
-            padding: 9px;
-            width: 100%;
-            display: flex;
-            justify-content: start;
+  .workspace-context-header {
+    .workspace-options {
+      span {
+        font: 400 14px/20px Figtree;
+      }
+
+      .option {
+        padding: $spacing-xs 0;
+        align-items: flex-start;
+
+        button {
+          padding: $spacing-small + 1px;
+          width: 100%;
+          display: flex;
+          justify-content: start;
+          align-items: center;
+
+          span {
+            gap: $spacing-small;
             align-items: center;
-            span {
-              gap: 8px;
-              align-items: center;
-            }
           }
         }
       }
+    }
 
 
     .workspace-search {
@@ -226,7 +205,7 @@
       }
 
       border: 1px solid #d0d4e4;
-      border-radius: 4px;
+      border-radius: $border-radius-small;
       height: 30px;
     }
   }
@@ -237,25 +216,28 @@
     p {
       font: 400 14px Figtree
     }
+
     .option {
       // background: red;
       display: flex;
-      padding: 4px 0;
+      padding: $spacing-xs 0;
 
       button {
         font-size: 14px;
-        padding: 9px;
+        padding: $spacing-small + 1px;
         width: 100%;
         display: flex;
         justify-content: start;
         align-items: center;
+
         span {
-          gap: 8px;
+          gap: $spacing-small;
           align-items: center;
         }
       }
     }
   }
+
   .work-space-btns {
     font-size: 0.8rem;
   }
@@ -264,32 +246,33 @@
 .work-space-btns {
   // border-top: 1px solid;
   font: 400 14px Figtree;
+
   button {
     flex-direction: row;
   }
 }
-.header-menu{
+
+.header-menu {
   position: relative;
 }
+
 .more-modal-container {
   font: 400 14px/20px Figtree;
-  box-shadow: 0 4px 17px 6px rgba(0,0,0,.1);
+  box-shadow: $box-shadow-small;
   color: #323338;
 
   min-width: 280px;
   min-height: 225px;
-  padding: 12px;
+  padding: $spacing-small + 4px;
   top: 100%;
   left: 50%;
   position: absolute;
   background-color: white;
-  border-radius: 8px;
+  border-radius: $border-radius-medium;
   z-index: 150;
+
   .ds-tabs-section {
     .tab {
-      // background-color: red;
-      display: flex;
-      flex-direction: column;
       button {
         font: 400 14px/20px Figtree;
         justify-content: flex-start;
@@ -309,56 +292,10 @@
     border-style: solid;
     opacity: 0.1;
     background: red;
-    // border-image: linear-gradient(to right, rgb(97, 97, 255), #ff158a00);
     border-image-slice: 1;
-    margin: 8px 0;
-    // margin-bottom: 16px;
+    margin: $spacing-small 0;
   }
 }
-
-// .filter-modal {
-//   font: 400 14px/20px Figtree;
-//   box-shadow: 0 4px 17px 6px rgba(0,0,0,.1);
-//   color: #323338;
-
-//   min-width: 280px;
-//   min-height: 225px;
-//   padding: 12px;
-//   top: 196px;
-//   left: 208px;
-//   position: fixed;
-//   background-color: white;
-//   border-radius: 8px;
-//   z-index: 150;
-//   .ds-tabs-section {
-//     .tab {
-//       // background-color: red;
-//       display: flex;
-//       flex-direction: column;
-//       button {
-//         font: 400 14px/20px Figtree;
-//         justify-content: flex-start;
-
-//         &:disabled {
-//           cursor: not-allowed;
-//           opacity: 0.3;
-//         }
-//       }
-//     }
-//   }
-
-//   .ds-divider {
-//     width: 100%;
-//     box-sizing: content-box;
-//     border-width: 1px;
-//     border-style: solid;
-//     opacity: 0.1;
-//     // border-image: linear-gradient(to right, rgb(97, 97, 255), #ff158a00);
-//     border-image-slice: 1;
-//     margin: 8px 0;
-//     // margin-bottom: 16px;
-//   }
-// }
 
 .filter-modal {
   font: 400 14px/20px Figtree;
@@ -367,19 +304,21 @@
 
   max-width: 280px;
   min-height: 225px;
-  padding: 8px;
+  padding: $spacing-small;
   top: 248px;
   left: 176px;
   position: fixed;
   background-color: white;
-  border-radius: 8px;
+  border-radius: $spacing-small;
   z-index: 150;
+
   .filter-container {
     .filter-heading {
-      margin-bottom: 8px;
+      margin-bottom: $spacing-small;
     }
+
     .option {
-      margin-bottom: 4px;
+      margin-bottom: $spacing-xs;
     }
 
     .filter-divider {
@@ -388,8 +327,8 @@
       border-width: 1px;
       border-style: solid;
       opacity: 0.1;
-      // border-image: linear-gradient(to right, rgb(97, 97, 255), #ff158a00);
       border-image-slice: 1;
-      margin: 8px 0;    }
+      margin: $spacing-small 0;
+    }
   }
 }

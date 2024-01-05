@@ -1,11 +1,56 @@
-.work-space-board{
-  .board-filter{
+.work-space-board {
+  color: #676879;
+
+  svg {
+    color: #676879;
+  }
+  .board-filter {
+
+    .new-item {
+      .new-item-btn {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        font: 400 14px/24px Figtree;
+      }
+
+      .new-item-arrow {
+        border-left: 1px solid #0060B9;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+
+        svg {
+          color: white;
+          width: 16px;
+          height: 16px;
+        }
+      }
+      margin-right: 14px;
+    }
+
+    button {
+      font: 400 14px/24px Figtree;
+    }
+
+    border-top: 1px solid #d0d4e4;
     display: flex;
     padding: $spacing-medium 0;
     height: 65px;
 
-    input{
-      height: 100%;
+    .filter-item {
+      &:hover {
+        border-radius: $border-radius-small;
+        background-color: #d0d4e4;
+      }
+      .filter-btn-arrow {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-left: 1px solid white;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
     }
   }
 }

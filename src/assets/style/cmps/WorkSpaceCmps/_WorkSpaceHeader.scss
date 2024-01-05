@@ -1,61 +1,51 @@
 .work-space-header {
   padding: 0 $spacing-small;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 
   background-color: #eceff8;
 
   height: $header-height;
   font-family: Figtree;
 
-  .header-logo-sect {
-    display: flex;
+
+  .work-management-logo {
     align-items: center;
-    gap: $spacing-small;
-
+    border-radius: 6px;
+    box-sizing: border-box;
+    display: flex;
+    height: 33px;
+    justify-content: center;
+    padding: 0;
+    width: 33px;
+    margin-bottom: 3px;
+  }
+  .header-logo-sect {
+    // gap: $spacing-small;
+    color: $text-color;
     .logo-title{
+      margin-left: 4px;
+      font: 700 16px/24px Poppins;
+      // background-color: red;
       font-size: 1rem;
-
       .logo-title-span {
-        font-weight: 400;
+        font-weight: 300;
+        margin-right: 12px;
       }
     }
 
 
-    .switcher-btn {
-      border: none;
-      background-color: #eceff8;
-
-      width: 40px;
-      height: 40px;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      transition: background-color 0.07s cubic-bezier(0.4, 0, 0.2, 1);
-
-      svg {
-        width: 20px;
-        height: 20px;
+    .switcher-logo {
+      // padding: 10px;
+      margin-right: 8px;
+      button {
+        margin-left: 4px;
       }
-    }
-    .switcher-btn:hover {
-      background-color: rgb(220, 223, 236);
-      border-radius: $border-radius-small;
-    }
-
-    .work-management-logo {
-      display: flex;
-      align-items: center;
     }
 
     .logo-btn {
-      background-color: none;
-      color: #0073ea;
+      background-color: transparent;
+      color: $primary-color;
 
-      border: 1px solid #0073ea;
+      border: 1px solid $primary-color;
       border-radius: $border-radius-small;
 
       height: 30px;
@@ -66,7 +56,7 @@
     }
     .logo-btn:hover {
       color: #fff;
-      background-color: #0073ea;
+      background-color: $primary-color;
     }
   }
 

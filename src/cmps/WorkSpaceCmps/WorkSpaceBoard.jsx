@@ -63,9 +63,12 @@ export function WorkSpaceBoard() {
           <BoardTabs />
           <BoardFilter />
         </div>
+        <div className="table-section">
+
         {!!boards && (
           <BoardViewList board={selectedBoard} onAddGroup={onAddGroup} />
-        )}
+          )}
+          </div>
       </section>
     </div>
   )

@@ -50,8 +50,8 @@ const demoData = [
           {
             id: 'c101',
             title: 'Replace logo',
-            date: '01-04-2024',
-            timeline: ['2024-02-05', '2024-03-07'],
+            date: 1589983468418,
+            timeline: [1589983468418, 1589983468418],
             file: '',
             members: [],
           },

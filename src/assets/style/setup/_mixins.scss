@@ -1,5 +1,6 @@
 $primary-color: #0073EA;
 $secondary-color: #F48120;
+$text-color: #323338;
 
 // Mixin for button style
 @mixin button-style($button-type, $button-size, $button-color) {
@@ -17,16 +18,26 @@ $secondary-color: #F48120;
   @if $button-size == 'small' {
     padding: 4px;
     font-size: 0.75rem;
-    img {
+    svg {
       width: 16px;
       height: 16px;
     }
   } @else if $button-size == 'medium' {
-    padding: 8px;
+    padding: 6px;
     font-size: 1rem;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   } @else if $button-size == 'large' {
-    padding: 12px;
+    padding: 10px;
     font-size: 1.25rem;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   // Set color variables based on button color
