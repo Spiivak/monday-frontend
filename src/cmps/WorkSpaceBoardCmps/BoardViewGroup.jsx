@@ -53,7 +53,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
         dataIndex: 'taskTitle',
         key: 'taskTitle',
         render: (task) => (
-          <div className='hoverable'>
+          <div className="hoverable">
             <div className="row-context absolute">
               <ContextBtn
                 type="row"
@@ -156,6 +156,9 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
           columns={columns}
           dataSource={dataSource}
         />
+        <form onSubmit={handleSubmit}>
+          <input type="text" value={newTaskTitle} onChange={handleChange} />
+        </form>
       </div>
     </section>
   )
