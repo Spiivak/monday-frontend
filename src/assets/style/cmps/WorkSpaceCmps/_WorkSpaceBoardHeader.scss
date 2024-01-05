@@ -1,15 +1,15 @@
 .work-space-board {
   .workspace-board-header {
-    padding: 30px 30px 0px 30px;
-    padding-top: 16px;
-    padding-left: 38px;
+    padding: $spacing-xl  $spacing-xl  0px $spacing-xl;
+    padding-top: $spacing-medium;
+    padding-left: $spacing-xl + 6px;
 
     .board-header {
       max-height: 40px;
-      padding: 2px 0;
+      padding: $spacing-xs 0;
 
       h2 {
-        padding: 0 4px;
+        padding: 0 $spacing-xs;
         font: 500 24px/30px Poppins;
         letter-spacing: -0.1px;
         color: #323338;
@@ -17,12 +17,12 @@
 
       .header-btns {
         flex-grow: 1;
-        margin-left: 6px;
+        margin-left: $spacing-small - 2px;
 
         .left-btns,
         .right-btns {
           button {
-            padding: 6px;
+            padding: $spacing-small - 2px;
 
             svg {
               color: #676879;

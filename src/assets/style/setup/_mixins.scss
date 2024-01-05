@@ -1,5 +1,7 @@
 $primary-color: #0073EA;
 $secondary-color: #F48120;
+$text-color: #323338;
+$icon-color: #676879;
 
 // Mixin for button style
 @mixin button-style($button-type, $button-size, $button-color) {
@@ -18,6 +20,7 @@ $secondary-color: #F48120;
     padding: 4px;
     font-size: 0.75rem;
     svg {
+      color: $icon-color;
       width: 16px;
       height: 16px;
     }
@@ -26,6 +29,7 @@ $secondary-color: #F48120;
     font-size: 1rem;
 
     svg {
+      color: $icon-color;
       width: 20px;
       height: 20px;
     }
@@ -34,6 +38,7 @@ $secondary-color: #F48120;
     font-size: 1.25rem;
 
     svg {
+      color: $icon-color;
       width: 20px;
       height: 20px;
     }

@@ -53,6 +53,7 @@ const demoData = [
             date: 1589983468418,
             timeline: [1589983468418, 1589983468418],
             file: '',
+            members: [],
           },
           {
             id: 'c105',
@@ -85,6 +86,7 @@ const demoData = [
           {
             id: 'c102',
             title: 'Add Samples',
+            members: [],
           },
         ],
         style: {},
@@ -126,6 +128,8 @@ const demoData = [
             id: 'c104',
             title: 'Help me',
             status: 'Working on it', // monday
+            members: [],
+
             priority: 'high',
             description: 'description',
             comments: [
@@ -278,13 +282,13 @@ function addTask(boardId, groupId, task) {
   return storageService.postTask(STORAGE_KEY, boardId, groupId, task)
 }
 
-function removeTask(boardId, groupId, taskId){
+function removeTask(boardId, groupId, taskId) {
   return storageService.removeTask(STORAGE_KEY, boardId, groupId, taskId)
 }
 
 // * Columns
 
-function removeColumn(boardId, column){
+function removeColumn(boardId, column) {
   return storageService.removeColumn(STORAGE_KEY, boardId, column)
 }
 
@@ -355,14 +359,17 @@ function getEmptyBoard() {
           {
             id: utilService.makeId(),
             title: 'item 1',
+            members: [],
           },
           {
             id: utilService.makeId(),
             title: 'item 2',
+            members: [],
           },
           {
             id: utilService.makeId(),
-            title: 'item 2',
+            title: 'item 3',
+            members: [],
           },
         ],
         style: {},

@@ -1,7 +1,43 @@
+const demoData = [
+  {
+    _id: utilService.makeId(),
+    fullname: 'Nave David',
+    username: 'navedavid@gmail.com',
+    imgUrl:
+      'https://res.cloudinary.com/donnezwy9/image/upload/v1704455572/rzddgfxj4fzkcn6eqgrv.jpg',
+    // mentions: [
+    //   {
+    //     //optional
+    //     id: 'm101',
+    //     boardId: 'm101',
+    //     taskId: 't101',
+    //   },
+    // ],
+  },
+  {
+    _id: utilService.makeId(),
+    fullname: 'Dima Revelson',
+    username: 'dimarevelson@gmail.com',
+    imgUrl:
+      'https://res.cloudinary.com/donnezwy9/image/upload/v1704459492/mv8vwh55b3wgqdflmemw.png',
+    // mentions: [
+    //   {
+    //     //optional
+    //     id: 'm101',
+    //     boardId: 'm101',
+    //     taskId: 't101',
+    //   },
+    // ],
+  },
+]
 import { storageService } from './async-storage.service'
 import { httpService } from './http.service'
+import { utilService } from './util.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
+const STORAGE_KEY = 'userDB'
+
+_demoUserDataLocalStorage()
 
 export const userService = {
   login,
@@ -19,7 +55,7 @@ export const userService = {
 window.userService = userService
 
 function getUsers() {
-  return storageService.query('user')
+  return storageService.query(STORAGE_KEY)
   // return httpService.get(`user`)
 }
 
@@ -96,3 +132,9 @@ function getLoggedinUser() {
 //     await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
 //     await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
 // })()
+
+function _demoUserDataLocalStorage() {
+  const users = utilService.loadFromStorage(STORAGE_KEY)
+  if (!users || users.length === 0)
+    utilService.saveToStorage(STORAGE_KEY, demoData)
+}
