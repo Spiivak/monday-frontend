@@ -1,8 +1,10 @@
 import { Dropdown } from 'antd'
+import Input from '@mui/joy/Input'
 import { useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 export function MemberPicker({ task, handleUpdateTask }) {
-  const [isActive, setIsActive] = useState(false)
+  const users = useSelector((storeState) => storeState.userModule.users)
   const [selectedMember, setSelectedMember] = useState(null)
   const hoverTimeoutRef = useRef(null)
   const hoverEndTimeoutRef = useRef(null)
@@ -28,23 +30,90 @@ export function MemberPicker({ task, handleUpdateTask }) {
     }, 500)
   }
 
+  function handleUpdateUser(selectedUser) {
+    handleUpdateTask('MemberPicker', selectedUser, task)
+  }
+
+  const suggestedUsers = users.filter(
+    (user) => !task.members.some((member) => member._id === user._id)
+  )
+  const currentUsers = users.filter((user) =>
+    task.members.some((member) => member._id === user._id)
+  )
+
   const items = [
     {
       key: '1',
-      label: <h4>labels</h4>,
+      label: (
+        <Input
+          placeholder="Search names, roles or teams"
+          size="sm"
+          type="text"
+          onClick={(e) => e.stopPropagation()}
+        />
+      ),
     },
     {
       key: '2',
-      label: <input type="text"></input>,
+      label: (
+        <div className="flex gap8 row">
+          {currentUsers.map((user) => (
+            <div key={user._id} className="flex align-center gap8">
+              <img
+                src={user.imgUrl}
+                alt={user.fullname}
+                style={{
+                  width: '30px',
+                  height: '30px',
+                  objectFit: 'cover',
+                  borderRadius: '50%',
+                }}
+              />
+              <h5>{user.fullname}</h5>
+              <button onClick={() => handleUpdateUser(user)}>X</button>
+            </div>
+          ))}
+        </div>
+      ),
     },
     {
       key: '3',
-      label: <h4>suggested people</h4>,
+      label: (
+        <div
+          onClick={(e) => {
+            e.stopPropagation()
+            e.preventDefault()
+          }}
+        >
+          <h5>Suggested people</h5>
+        </div>
+      ),
     },
-    {
-      key: '4',
-      label: <button>Avatars</button>,
-    },
+    ...suggestedUsers.map((user, idx) => {
+      return {
+        key: 4 + idx,
+        label: (
+          <div className="flex gap8 column">
+            <div
+              key={user._id}
+              onClick={() => handleUpdateUser(user)}
+              className="flex align-center gap8"
+            >
+              <img
+                src={user.imgUrl}
+                style={{
+                  width: '30px',
+                  height: '30px',
+                  objectFit: 'cover',
+                  borderRadius: '50%',
+                }}
+              />
+              <h5>{user.fullname}</h5>
+            </div>
+          </div>
+        ),
+      }
+    }),
   ]
 
   return (
@@ -63,7 +132,7 @@ export function MemberPicker({ task, handleUpdateTask }) {
         onMouseLeave={handleHoverEnd}
         className="cell"
       >
-        {(!!task?.members && (
+        {task.members && task.members.length > 0 ? (
           <div className="avatars-wrapper">
             {task.members.map((member) => (
               <div className="avatar-logo" key={member._id}>
@@ -75,8 +144,10 @@ export function MemberPicker({ task, handleUpdateTask }) {
               </div>
             ))}
           </div>
-        )) ||
-          'empty'}
+        ) : (
+          <div className="avatars-wrapper">No members selected</div>
+        )}
+
         {!!selectedMember && (
           <div
             onMouseEnter={() => (shouldActiveRef.current = true)}
