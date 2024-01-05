@@ -1,52 +1,39 @@
 .work-space-board {
   .workspace-board-header {
-
-    // background-color: red;
     padding: 30px 30px 0px 30px;
     padding-top: 16px;
     padding-left: 38px;
 
     .board-header {
       max-height: 40px;
-      padding: 2px 5px;
+      padding: 2px 0;
 
       h2 {
-        margin-right: 4px;
+        padding: 0 4px;
         font: 500 24px/30px Poppins;
         letter-spacing: -0.1px;
         color: #323338;
       }
 
       .header-btns {
-        // background-color: yellow;
         flex-grow: 1;
-        display: flex;
-        gap: 10px; // Adjust the gap between buttons
-        justify-content: space-between;
         margin-left: 6px;
-        .left-btns, .right-btns {
-          display: flex;
-          align-items: center;
+
+        .left-btns,
+        .right-btns {
           button {
             padding: 6px;
+
             svg {
               color: #676879;
             }
           }
         }
-
-        .right-btns {
-          display: flex;
-        }
       }
-
     }
-
     @media (max-width: 600px) {
-
-      // Media query for small screens
       .title-wrapper {
-        flex-grow: 0; // Prevent title-wrapper from growing on small screens
+        flex-grow: 0;
       }
     }
   }

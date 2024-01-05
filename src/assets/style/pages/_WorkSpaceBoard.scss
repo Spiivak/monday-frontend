@@ -4,6 +4,11 @@
   flex: 1;
 
   border-top-left-radius: $border-radius-medium;
+  .table-section {
 
+    margin-top: 16px;
+    padding-bottom: 40px;
+    padding-left: 40px;
+  }
   // padding: $spacing-medium $spacing-xl;
 }

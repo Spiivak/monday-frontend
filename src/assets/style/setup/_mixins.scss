@@ -17,16 +17,26 @@ $secondary-color: #F48120;
   @if $button-size == 'small' {
     padding: 4px;
     font-size: 0.75rem;
-    img {
+    svg {
       width: 16px;
       height: 16px;
     }
   } @else if $button-size == 'medium' {
-    padding: 8px;
+    padding: 6px;
     font-size: 1rem;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   } @else if $button-size == 'large' {
-    padding: 12px;
+    padding: 10px;
     font-size: 1.25rem;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   // Set color variables based on button color
