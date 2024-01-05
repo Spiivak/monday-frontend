@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { utilService } from "../../services/util.service"
 import { DatePicker } from "antd"
 import dayjs from "dayjs"
+import { ImgUploader } from "../ImgUploader"
 
 export function DynamicTableCell({ cmp, task, onTaskUpdate }) {
   function handleUpdateTask(cmpType, data, task) {
@@ -19,6 +20,8 @@ export function DynamicTableCell({ cmp, task, onTaskUpdate }) {
       return <DescriptionPicker {...{ task, handleUpdateTask }} />
     case "TimeLinePicker":
       return <TimeLinePicker {...{ task, handleUpdateTask }} />
+    case "FilePicker":
+      return <FilePicker {...{ task, handleUpdateTask }} />
   }
 }
 
@@ -244,4 +247,11 @@ function TimeLinePicker({ task, handleUpdateTask }) {
       )}
     </div>
   )
+}
+
+function FilePicker({ task, handleUpdateTask }) {
+  function handelUpdateFile(imgUrl) {
+    handleUpdateTask("FilePicker", imgUrl, task)
+  }
+  return <ImgUploader imgUrl={task.file} onUploaded={handelUpdateFile} />
 }

@@ -11,7 +11,6 @@ import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
 
 export function WorkSpaceBoard() {
   const boards = useSelector((storeState) => storeState.boardModule.boards)
-
   useEffect(() => {
     loadBoards()
   }, [])

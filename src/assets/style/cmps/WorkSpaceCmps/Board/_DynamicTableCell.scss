@@ -104,3 +104,15 @@
     }
   }
 }
+
+.upload-preview {
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  img {
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+  }
+}

@@ -52,6 +52,7 @@ const demoData = [
             title: "Replace logo",
             date: "01-04-2024",
             timeline: ["2024-02-05", "2024-03-07"],
+            file: "",
           },
           {
             id: "c102",
@@ -170,6 +171,7 @@ const demoData = [
       "DatePicker",
       "DescriptionPicker",
       "TimeLinePicker",
+      "FilePicker",
     ],
   },
 ]
@@ -373,6 +375,7 @@ function getEmptyBoard() {
       "DatePicker",
       "DescriptionPicker",
       "TimeLinePicker",
+      "FilePicker",
     ],
   }
 }

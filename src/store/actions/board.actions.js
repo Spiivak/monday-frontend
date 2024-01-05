@@ -45,7 +45,9 @@ export async function handleUpdateTask(
       break
     case "TimeLinePicker":
       newTask = { ...task, timeline: data }
-      console.log("newTask:", newTask)
+      break
+    case "FilePicker":
+      newTask = { ...task, file: data }
       break
   }
   try {
@@ -59,14 +61,12 @@ export async function handleUpdateTask(
   } catch (err) {}
 }
 
-export async function handleAddTask(boardId, groupId, newTaskTxt){
+export async function handleAddTask(boardId, groupId, newTaskTxt) {
   try {
     const task = await boardService.addTask(boardId, groupId, newTaskTxt)
     console.log(task)
-    store.dispatch({ type: ADD_TASK, boardId, groupId, task})
-  } catch (err) {
-
-  }
+    store.dispatch({ type: ADD_TASK, boardId, groupId, task })
+  } catch (err) {}
 }
 
 export async function removeBoard(boardId) {
