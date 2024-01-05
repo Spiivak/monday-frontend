@@ -14,14 +14,19 @@ import { useSelector } from 'react-redux'
 import { WorkSpaceSideBar } from './WorkSpaceSideBar'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 import { useParams } from 'react-router'
+import { loadUsers } from '../../store/actions/user.actions'
 
 export function WorkSpaceBoard() {
   const [selectedBoard, setSelectedBoard] = useState(null)
   const boards = useSelector((storeState) => storeState.boardModule.boards)
+  const users = useSelector((storeState) => storeState.userModule.users)
   const { boardId } = useParams()
+
   useEffect(() => {
     loadBoards()
+    loadUsers()
   }, [])
+
   useEffect(() => {
     if (boardId) {
       setSelectedBoard(boards.find((board) => board._id === boardId))
