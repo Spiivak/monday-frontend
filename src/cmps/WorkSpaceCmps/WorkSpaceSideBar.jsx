@@ -36,17 +36,17 @@ export function WorkSpaceSideBar({ onRemoveBoard, onAddBoard }) {
   }
 
   return (
-    <section className={`side-bar relative ${sideBar ? '' : 'side-bar-close'}`}>
+    <section className={`side-bar relative ${!sideBar ? 'side-bar-close' : ''}`}>
       <button
         className="btn-icon small-transparent close-btn flex justify-center"
         onClick={() => setOpenSideBar(!sideBar)}>
         {sideBar ? (
           <NavigationChevronRightIcon />
-        ) : (
-          <NavigationChevronLeftIcon />
-        )}
+          ) : (
+            <NavigationChevronLeftIcon />
+            )}
       </button>
-      {sideBar && (
+      {/* {sideBar && ( */}
         <div className="side-bar-container flex column">
           {/* ASIDE HEADER LINKS */}
           <div className="side-bar-link-container flex column">
@@ -83,9 +83,9 @@ export function WorkSpaceSideBar({ onRemoveBoard, onAddBoard }) {
                       </div>
                     </div>
                   </div>
-                  <div className="header-menu">
+                  <div className="header-menu flex">
                     <button
-                      className="btn-icon small-transparent"
+                      className="btn-icon medium-transparent"
                       onClick={() => openMoreModal()}>
                       <MenuIcon />
                     </button>
@@ -101,7 +101,7 @@ export function WorkSpaceSideBar({ onRemoveBoard, onAddBoard }) {
             <WorkSpaceList {...{ onRemoveBoard }} />
           </div>
         </div>
-      )}
+      {/* )} */}
     </section>
   )
 }

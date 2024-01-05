@@ -6,7 +6,7 @@ export function FilterSection({onAddBoard}) {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
   const openFilterModal = () => setIsFilterModalOpen(!isFilterModalOpen)
   return (
-    <div className="filter-container flex">
+    <div className="filter-container flex space-between">
       <div className="filter-search flex">
         <button className="btn-icon small-transparent">
           <SearchIcon />
@@ -20,7 +20,7 @@ export function FilterSection({onAddBoard}) {
         </button>
       </div>
       <div className="add-btn flex align-center justify-center">
-        <button className="btn-ctn small-primary" onClick={onAddBoard}>
+        <button className="btn-ctn medium-primary" onClick={onAddBoard}>
           <AddIcon />
         </button>
       </div>
