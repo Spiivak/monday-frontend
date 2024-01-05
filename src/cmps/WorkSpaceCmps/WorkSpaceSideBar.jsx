@@ -22,7 +22,7 @@ import { NavLink } from 'react-router-dom'
 import Frame from '../../assets/img/Frame.png'
 import { MoreModal } from '../WorkSpaceSideBarCmps/MoreModal'
 import { addBoard } from '../../store/actions/board.actions'
-export function WorkSpaceSideBar({ onRemoveBoard }) {
+export function WorkSpaceSideBar({ onRemoveBoard, onAddBoard }) {
   const [isWpModalOpen, setIsWpModalOpen] = useState(false)
   const [isMoreModalOpen, setIsMoreModalOpen] = useState(false)
   const [sideBar, setOpenSideBar] = useState(true)
@@ -35,9 +35,6 @@ export function WorkSpaceSideBar({ onRemoveBoard }) {
     setIsMoreModalOpen(!isMoreModalOpen)
   }
 
-  function onAddBoard(){
-    addBoard()
-  }
   return (
     <section className={`side-bar ${sideBar ? '' : 'side-bar-close'}`}>
       <button
