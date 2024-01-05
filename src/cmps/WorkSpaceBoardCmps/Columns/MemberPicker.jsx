@@ -5,30 +5,6 @@ import { useSelector } from 'react-redux'
 
 export function MemberPicker({ task, handleUpdateTask }) {
   const users = useSelector((storeState) => storeState.userModule.users)
-  const [selectedMember, setSelectedMember] = useState(null)
-  const hoverTimeoutRef = useRef(null)
-  const hoverEndTimeoutRef = useRef(null)
-  const shouldActiveRef = useRef(false)
-
-  function handleHover(member) {
-    clearTimeout(hoverEndTimeoutRef.current)
-    shouldActiveRef.current = true
-    hoverTimeoutRef.current = setTimeout(() => {
-      if (shouldActiveRef.current) {
-        setSelectedMember(member)
-      }
-    }, 1000)
-  }
-
-  function handleHoverEnd() {
-    clearTimeout(hoverTimeoutRef.current)
-    shouldActiveRef.current = false
-    hoverEndTimeoutRef.current = setTimeout(() => {
-      if (!shouldActiveRef.current) {
-        setSelectedMember(null)
-      }
-    }, 500)
-  }
 
   function handleUpdateUser(selectedUser) {
     handleUpdateTask('MemberPicker', selectedUser, task)
@@ -128,48 +104,17 @@ export function MemberPicker({ task, handleUpdateTask }) {
         pointAtCenter: true,
       }}
     >
-      <div
-        onMouseEnter={handleHover}
-        onMouseLeave={handleHoverEnd}
-        className="cell"
-      >
+      <div className="cell">
         {task.members && task.members.length > 0 ? (
           <div className="avatars-wrapper">
             {task.members.map((member) => (
               <div className="avatar-logo" key={member._id}>
-                <img
-                  onMouseEnter={() => handleHover(member)}
-                  src={member.imgUrl}
-                  alt=""
-                />
+                <img src={member.imgUrl} alt="" />
               </div>
             ))}
           </div>
         ) : (
           <div className="avatars-wrapper">No members selected</div>
-        )}
-
-        {!!selectedMember && (
-          <div
-            onMouseEnter={() => (shouldActiveRef.current = true)}
-            onMouseLeave={() => (shouldActiveRef.current = false)}
-            className="member-details-wrapper"
-          >
-            <div className={`member-details`}>
-              <div className="avatar-logo">
-                <img src={selectedMember.imgUrl} alt="" />
-              </div>
-              <div className="member-details-content">
-                <h4>{selectedMember.fullname}</h4>
-                <p>[logo] Time at current location, location</p>
-                <h4>membership label</h4>
-              </div>
-              <div className="member-detail-btns">
-                <button>Btn 1</button>
-                <button>Btn 2</button>
-              </div>
-            </div>
-          </div>
         )}
       </div>
     </Dropdown>
