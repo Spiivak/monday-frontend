@@ -11,6 +11,9 @@ export const REMOVE_GROUP = 'REMOVE_GROUP'
 //tasks
 export const UPDATE_TASK = 'UPDATE_TASK'
 export const ADD_TASK = 'ADD_TASK'
+export const REMOVE_TASK = 'REMOVE_TASK'
+//column
+export const REMOVE_COLUMN = 'REMOVE_COLUMN'
 //loading
 export const SET_IS_LOADING = 'SET_IS_LOADING'
 
@@ -91,6 +94,35 @@ export function boardReducer(state = initialState, action = {}) {
       })
       return { ...state, boards: newBoards }
 
+    case REMOVE_TASK:
+      newBoards = state.boards.map((board) => {
+        if (board._id !== action.boardId) return board
+        return {
+          ...board,
+          groups: board.groups.map((group) => {
+            if (group.id !== action.groupId) return group
+            return {
+              ...group,
+              tasks: group.tasks.filter(
+                (task) => task.id !== action.deletedTaskId
+              ),
+            }
+          }),
+        }
+      })
+      return { ...state, boards: newBoards }
+
+    case REMOVE_COLUMN:
+      newBoards = state.boards.map((board) => {
+        if (board._id !== action.boardId) return board
+        return {
+          ...board,
+          cmpsOrder: board.cmpsOrder.filter(
+            (cmp) => cmp !== action.deletedColumn
+          ),
+        }
+      })
+      return { ...state, boards: newBoards }
     // * LOADING
     case SET_IS_LOADING:
       return { ...state, isLoading: action.isLoading }

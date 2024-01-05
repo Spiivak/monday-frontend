@@ -5,7 +5,9 @@ import {
   ADD_GROUP,
   ADD_TASK,
   REMOVE_BOARD,
+  REMOVE_COLUMN,
   REMOVE_GROUP,
+  REMOVE_TASK,
   SET_BOARDS,
   SET_IS_LOADING,
   UPDATE_TASK,
@@ -109,6 +111,26 @@ export async function addTask(boardId, groupId, newTaskTxt) {
     const task = await boardService.addTask(boardId, groupId, newTaskTxt)
     console.log(task)
     store.dispatch({ type: ADD_TASK, boardId, groupId, task })
+  } catch (err) {}
+}
+
+export async function removeTask(boardId, groupId, taskId) {
+  try {
+    const deletedTaskId = await boardService.removeTask(
+      boardId,
+      groupId,
+      taskId
+    )
+    store.dispatch({ type: REMOVE_TASK, boardId, groupId, deletedTaskId })
+  } catch (err) {}
+}
+
+// * COLUMN CRUD
+
+export async function removeColumn(boardId, column) {
+  try {
+    const deletedColumn = await boardService.removeColumn(boardId, column)
+    store.dispatch({ type: REMOVE_COLUMN, boardId, deletedColumn })
   } catch (err) {}
 }
 

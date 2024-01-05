@@ -201,6 +201,8 @@ export const boardService = {
   removeGroup,
   updateTask,
   addTask,
+  removeTask,
+  removeColumn,
   getEmptyBoard,
   getEmptyGroup,
 }
@@ -230,6 +232,7 @@ function save(board) {
   }
 }
 // * Groups
+
 function addGroup(boardId, group){
   return storageService.postGroup(STORAGE_KEY, boardId, group)
 }
@@ -239,12 +242,23 @@ function removeGroup(boardId, groupId){
 }
 
 // * Tasks
+
 function updateTask(boardId, groupId, taskId, task) {
   return storageService.putTask(STORAGE_KEY, boardId, groupId, taskId, task)
 }
 
 function addTask(boardId, groupId, task) {
   return storageService.postTask(STORAGE_KEY, boardId, groupId, task)
+}
+
+function removeTask(boardId, groupId, taskId){
+  return storageService.removeTask(STORAGE_KEY, boardId, groupId, taskId)
+}
+
+// * Columns
+
+function removeColumn(boardId, column){
+  return storageService.removeColumn(STORAGE_KEY, boardId, column)
 }
 
 // function addMsg(boardId, msg){

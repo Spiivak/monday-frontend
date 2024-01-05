@@ -8,6 +8,8 @@ export const storageService = {
   removeGroup,
   putTask,
   postTask,
+  removeTask,
+  removeColumn,
 }
 
 function query(entityType, delay = 500) {
@@ -132,6 +134,43 @@ function postTask(entityType, boardId, groupId, newTask) {
     })
     _save(entityType, newBoards)
     return newTask
+  })
+}
+
+function removeTask(entityType, boardId, groupId, taskId) {
+  return query(entityType).then((boards) => {
+    const newBoards = boards.map((board) => {
+      if (board._id !== boardId) return board
+      return {
+        ...board,
+        groups: board.groups.map((group) => {
+          if (group.id !== groupId) return group
+          return {
+            ...group,
+            tasks: group.tasks.filter((task) => task.id !== taskId),
+          }
+        }),
+      }
+    })
+    _save(entityType, newBoards)
+    return taskId
+  })
+}
+
+// columns CRUD
+
+function removeColumn(entityType, boardId, column) {
+  return query(entityType).then((boards) => {
+    const newBoards = boards.map((board) => {
+      if (board._id !== boardId) return board
+      return {
+        ...board,
+        cmpsOrder: board.cmpsOrder.filter((cmp) => cmp !== column),
+      }
+    })
+    console.log(newBoards)
+    _save(entityType, newBoards)
+    return column
   })
 }
 

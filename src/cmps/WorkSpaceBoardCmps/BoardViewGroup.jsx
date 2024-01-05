@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import { DynamicTableCell } from './DynamicTableCell'
 import {
   addTask,
+  removeColumn,
   removeGroup,
+  removeTask,
   updateTask,
 } from '../../store/actions/board.actions'
 import { useParams } from 'react-router-dom'
@@ -19,10 +21,12 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
     removeGroup(boardId, group.id)
   }
 
-  function onDeleteColumn() {}
+  function onDeleteColumn(boardId, cmp) {
+    removeColumn(boardId, cmp)
+  }
 
-  function onDeleteTask(){
-
+  function onDeleteTask(boardId, groupId, taskId) {
+    removeTask(boardId, groupId, taskId)
   }
 
   function handleChange(ev) {
@@ -51,7 +55,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
               <th key={idx}>
                 <div className="flex align-center space-between">
                   {cmp}
-                  <ContextBtn type="column" onDeleteColumn={onDeleteColumn} />
+                  <ContextBtn type="column" onDeleteColumn={()=>onDeleteColumn(boardId,cmp)} />
                 </div>
               </th>
             ))}
@@ -60,10 +64,13 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
         <tbody>
           {group.tasks.map((task) => (
             <tr key={task.id}>
-              <td className='relative hoverable'>
+              <td className="relative hoverable">
                 {task.title}{' '}
                 <div className="row-context absolute">
-                  <ContextBtn type="row" onDeleteRow={onDeleteTask}/>
+                  <ContextBtn
+                    type="row"
+                    onDeleteRow={() => onDeleteTask(boardId, group.id, task.id)}
+                  />
                 </div>
               </td>
               {cmpsOrder.map((cmp, idx) => (
