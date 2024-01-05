@@ -44,6 +44,12 @@
       padding: 0 1.2em;
     }
   }
+  .row-context{
+    z-index: 100;
+    right: 100%;
+    top: 50%;
+    translate: -5% -50%;
+  }
 }
 
 

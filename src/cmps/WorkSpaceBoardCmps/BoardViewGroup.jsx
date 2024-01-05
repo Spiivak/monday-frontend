@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { DynamicTableCell } from './DynamicTableCell'
-import { addTask, removeGroup, updateTask } from '../../store/actions/board.actions'
+import {
+  addTask,
+  removeGroup,
+  updateTask,
+} from '../../store/actions/board.actions'
 import { useParams } from 'react-router-dom'
 import { AddSmallIcon } from '../Icons'
 import { ContextBtn } from '../ContextBtn'
@@ -13,6 +17,12 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
 
   function onDeleteGroup() {
     removeGroup(boardId, group.id)
+  }
+
+  function onDeleteColumn() {}
+
+  function onDeleteTask(){
+
   }
 
   function handleChange(ev) {
@@ -38,14 +48,24 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
           <tr>
             <th>Task</th>
             {cmpsOrder.map((cmp, idx) => (
-              <th key={idx}>{cmp}</th>
+              <th key={idx}>
+                <div className="flex align-center space-between">
+                  {cmp}
+                  <ContextBtn type="column" onDeleteColumn={onDeleteColumn} />
+                </div>
+              </th>
             ))}
           </tr>
         </thead>
         <tbody>
           {group.tasks.map((task) => (
             <tr key={task.id}>
-              <td>{task.title}</td>
+              <td className='relative hoverable'>
+                {task.title}{' '}
+                <div className="row-context absolute">
+                  <ContextBtn type="row" onDeleteRow={onDeleteTask}/>
+                </div>
+              </td>
               {cmpsOrder.map((cmp, idx) => (
                 <td key={idx}>
                   <DynamicTableCell
