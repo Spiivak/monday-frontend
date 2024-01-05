@@ -1,4 +1,5 @@
 import { Dropdown } from "antd"
+import { useRef, useState } from "react"
 
 export function MemberPicker({ task, handleUpdateTask }) {
   const [isActive, setIsActive] = useState(false)
@@ -29,19 +30,19 @@ export function MemberPicker({ task, handleUpdateTask }) {
 
   const items = [
     {
-      key: '1',
+      key: "1",
       label: <h4>labels</h4>,
     },
     {
-      key: '2',
+      key: "2",
       label: <input type="text"></input>,
     },
     {
-      key: '3',
+      key: "3",
       label: <h4>suggested people</h4>,
     },
     {
-      key: '4',
+      key: "4",
       label: <button>Avatars</button>,
     },
   ]
@@ -51,15 +52,17 @@ export function MemberPicker({ task, handleUpdateTask }) {
       menu={{
         items,
       }}
-      trigger={['click']}
+      trigger={["click"]}
       placement="bottom"
       arrow={{
         pointAtCenter: true,
-      }}>
+      }}
+    >
       <div
         onMouseEnter={handleHover}
         onMouseLeave={handleHoverEnd}
-        className="cell">
+        className="cell"
+      >
         {(!!task?.members && (
           <div className="avatars-wrapper">
             {task.members.map((member) => (
@@ -73,12 +76,13 @@ export function MemberPicker({ task, handleUpdateTask }) {
             ))}
           </div>
         )) ||
-          'empty'}
+          "empty"}
         {!!selectedMember && (
           <div
             onMouseEnter={() => (shouldActiveRef.current = true)}
             onMouseLeave={() => (shouldActiveRef.current = false)}
-            className="member-details-wrapper">
+            className="member-details-wrapper"
+          >
             <div className={`member-details`}>
               <div className="avatar-logo">
                 <img src={selectedMember.imgUrl} alt="" />
