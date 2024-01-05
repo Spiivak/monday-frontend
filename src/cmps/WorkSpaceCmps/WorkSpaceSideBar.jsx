@@ -36,9 +36,9 @@ export function WorkSpaceSideBar({ onRemoveBoard, onAddBoard }) {
   }
 
   return (
-    <section className={`side-bar ${sideBar ? '' : 'side-bar-close'}`}>
+    <section className={`side-bar relative ${sideBar ? '' : 'side-bar-close'}`}>
       <button
-        className="btn-icon small-transparent close-btn"
+        className="btn-icon small-transparent close-btn flex justify-center"
         onClick={() => setOpenSideBar(!sideBar)}>
         {sideBar ? (
           <NavigationChevronRightIcon />
@@ -50,10 +50,10 @@ export function WorkSpaceSideBar({ onRemoveBoard, onAddBoard }) {
         <div className="side-bar-container flex column">
           {/* ASIDE HEADER LINKS */}
           <div className="side-bar-link-container flex column">
-            <NavLink to="/">
+            <NavLink to="/" className={'flex align-center gap8'}>
               <HomeIcon /> Home
             </NavLink>
-            <NavLink to="/my-work">
+            <NavLink to="/my-work" className={'flex align-center gap8'}>
               <WorkIcon /> My Work
             </NavLink>
           </div>
@@ -70,7 +70,7 @@ export function WorkSpaceSideBar({ onRemoveBoard, onAddBoard }) {
                       <div className="workspace-icon">
                         <div className="workspace-name-wrapper flex align-center gap8">
                           {/* <HomeIcon /> */}
-                          <picture>
+                          <picture className='flex'>
                             <img src={Frame} alt="" />
                           </picture>
                           <span>Sprint 4</span>
@@ -78,7 +78,7 @@ export function WorkSpaceSideBar({ onRemoveBoard, onAddBoard }) {
                       </div>
                     </div>
                     <div className="dropdown-icon-wrapper flex align-center gap8">
-                      <div className="chvron-down">
+                      <div className="chvron-down flex">
                         <NavigationChevronDownIcon className="chvron-down" />
                       </div>
                     </div>

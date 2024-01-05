@@ -3,7 +3,7 @@
 
   .board-tabs {
     min-height: 36px;
-    margin-block-start: 8px;
+    margin-block-start: $spacing-small;
 
     .tabs {
       flex-grow: 0;
@@ -11,7 +11,7 @@
       overflow: hidden;
 
       .tab {
-        margin-bottom: 4px;
+        margin-bottom: $spacing-xs;
       }
 
       a {
@@ -28,8 +28,8 @@
       }
 
       .add-view-btn {
-        margin-top: 2px;
-        padding: 6px;
+        margin-top: $spacing-xs - 2px;
+        padding: $spacing-small - 2px;
         height: 32px;
       }
     }
