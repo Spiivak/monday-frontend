@@ -45,7 +45,13 @@ export function WorkSpaceBoard() {
     } catch (err) {
       console.log('Cannot add board', err)
     }
-    // addBoard()
+  }
+  async function onUpdateBoard(boardId) {
+    try {
+      await saveBoard(boardId)
+    } catch (err) {
+      console.log('Cannot add board', err)
+    }
   }
 
   async function onRemoveBoard(boardId) {
@@ -67,7 +73,7 @@ export function WorkSpaceBoard() {
       <WorkSpaceSideBar {...{ onRemoveBoard, onAddBoard }} />
       <section className="work-space-board">
         <div className="workspace-board-header">
-          <BoardHeader board={selectedBoard} />
+          <BoardHeader board={selectedBoard} {...{ onUpdateBoard }} />
           <BoardTabs />
           <BoardFilter />
         </div>
