@@ -159,18 +159,18 @@ function removeTask(entityType, boardId, groupId, taskId) {
 
 // columns CRUD
 
-function removeColumn(entityType, boardId, column) {
+function removeColumn(entityType, boardId, columnId) {
   return query(entityType).then((boards) => {
     const newBoards = boards.map((board) => {
       if (board._id !== boardId) return board
       return {
         ...board,
-        cmpsOrder: board.cmpsOrder.filter((cmp) => cmp !== column),
+        cmpsOrder: board.cmpsOrder.filter((cmp) => cmp.id !== columnId),
       }
     })
     console.log(newBoards)
     _save(entityType, newBoards)
-    return column
+    return columnId
   })
 }
 

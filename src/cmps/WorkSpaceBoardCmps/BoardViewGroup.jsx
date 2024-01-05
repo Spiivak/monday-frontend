@@ -11,6 +11,7 @@ import { useParams } from 'react-router-dom'
 import { AddSmallIcon } from '../Icons'
 import { ContextBtn } from '../ContextBtn'
 import { Table } from 'antd'
+import { EditableText } from '../EditableText'
 export function BoardViewGroup({ group, boardId, cmpsOrder }) {
   const [newTaskTitle, setNewTaskTitle] = useState('')
 
@@ -49,75 +50,21 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
   const [columnHeaders, setColumnHeaders] = useState([])
   const [taskRows, setTaskRows] = useState([])
 
-  // useEffect(() => {
-  //   setColumns([
-  //     {
-  //       title: 'task',
-  //       dataIndex: 'taskTitle',
-  //       key: 'taskTitle',
-  //       render: (task) => (
-  //         <div className="hoverable">
-  //           <div className="row-context absolute">
-  //             <ContextBtn
-  //               type="row"
-  //               onDeleteRow={() => onDeleteTask(boardId, group.id, task.id)}
-  //             />
-  //           </div>
-  //           <a>{task.title}</a>
-  //         </div>
-  //       ),
-  //     },
-  //     ...cmpsOrder.map((cmp, idx) => ({
-  //       title: () => (
-  //         <div className="flex align-center space-between hoverable">
-  //           {cmp}
-  //           <ContextBtn
-  //             type="column"
-  //             onDeleteColumn={() => onDeleteColumn(boardId, cmp)}
-  //           />
-  //         </div>
-  //       ),
-  //       dataIndex: cmp,
-  //       key: cmp,
-  //       render: (task) => (
-  //         <DynamicTableCell
-  //           cmp={cmp}
-  //           onTaskUpdate={onTaskUpdate}
-  //           task={task}
-  //           key={task.id}
-  //         />
-  //       ),
-  //     })),
-  //   ])
-  //   setDataSource(
-  //     group.tasks.map((task, idx) => ({
-  //       key: idx + 1,
-  //       taskTitle: task,
-  //       StatusPicker: task,
-  //       MemberPicker: task,
-  //       DatePicker: task,
-  //       DescriptionPicker: task,
-  //       TimeLinePicker: task,
-  //       FilePicker: task,
-  //     }))
-  //   )
-  // }, [cmpsOrder, group])
-
   useEffect(() => {
     setColumnHeaders(cmpsOrder)
     setTaskRows(group.tasks)
   }, [cmpsOrder, group])
 
-  function onTaskUpdate(cmpType, data, task) {
-    updateTask(boardId, group.id, task.id, cmpType, task, data)
+  function onTaskUpdate(cmpType, cmpId, data, task) {
+    updateTask(boardId, group.id, task.id, cmpType, cmpId, task, data)
   }
 
   function onDeleteGroup() {
     removeGroup(boardId, group.id)
   }
 
-  function onDeleteColumn(boardId, cmp) {
-    removeColumn(boardId, cmp)
+  function onDeleteColumn(boardId, cmpId) {
+    removeColumn(boardId, cmpId)
   }
 
   function onDeleteTask(boardId, groupId, taskId) {
@@ -132,6 +79,12 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
   function handleSubmit(ev) {
     ev.preventDefault()
     const newTask = { title: newTaskTitle }
+    addTask(boardId, group.id, newTask)
+    setNewTaskTitle('')
+  }
+
+  function saveNewTask(title){
+    const newTask = { title }
     addTask(boardId, group.id, newTask)
     setNewTaskTitle('')
   }
@@ -170,10 +123,10 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
               {columnHeaders.map((columnHeader, idx) => (
                 <th key={idx}>
                   <div className="flex align-center space-between hoverable">
-                    {columnHeader}
+                    <EditableText initialText={columnHeader.title} onSave={()=>{}}/>
                     <ContextBtn
                       type="column"
-                      onDeleteColumn={() => onDeleteColumn(boardId, columnHeader)}
+                      onDeleteColumn={() => onDeleteColumn(boardId, columnHeader.id)}
                     />
                   </div>
                 </th>
@@ -196,11 +149,12 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                     <input type="checkbox" />
                   </div>
                 </td>
-                <td>{task.title}</td>
+                <td><EditableText initialText={task.title} onSave={(text)=>onTaskUpdate('task',text,task)}/></td>
                 {columnHeaders.map((columnHeader, idx) => (
                   <td key={idx}>
                     <DynamicTableCell
-                      cmp={columnHeader}
+                      cmp={columnHeader.type}
+                      cmpId={columnHeader.id}
                       onTaskUpdate={onTaskUpdate}
                       task={task}
                     />
@@ -215,14 +169,15 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                 </div>
               </td>
               <td colspan={columnHeaders.length + 1}>
-                <form onSubmit={handleSubmit}>
+              <EditableText initialText={'Add item'} onSave={saveNewTask} />
+                {/* <form onSubmit={handleSubmit}>
                   <input
                     type="text"
                     value={newTaskTitle}
                     onChange={handleChange}
                     placeholder="Add item"
                   />
-                </form>
+                </form> */}
               </td>
             </tr>
           </tbody>

@@ -1,7 +1,7 @@
 import { DatePicker } from 'antd'
 import dayjs from 'dayjs'
 
-export function DatePickerC({ task, handleUpdateTask }) {
+export function DatePickerC({ task, cmpId, handleUpdateTask }) {
   const dateFormat = 'YYYY/MM/DD'
 
   function handleUpdateDate(date) {
@@ -12,9 +12,9 @@ export function DatePickerC({ task, handleUpdateTask }) {
   }
   return (
     <div className="cell">
-      {task.date ? (
+      {task['date'+cmpId] ? (
         <DatePicker
-          defaultValue={dayjs(task.date)}
+          defaultValue={dayjs(task['date'+cmpId])}
           format={dateFormat}
           onChange={handleUpdateDate}
         />

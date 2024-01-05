@@ -5,23 +5,23 @@ import { TimeLinePicker } from './Columns/TimeLinePicker'
 import { FilePicker } from './Columns/FilePicker'
 import { DatePickerC } from './Columns/DatePickerC'
 
-export function DynamicTableCell({ cmp, task, onTaskUpdate }) {
+export function DynamicTableCell({ cmp, cmpId, task, onTaskUpdate }) {
   function handleUpdateTask(cmpType, data, task) {
-    onTaskUpdate(cmpType, data, task)
+    onTaskUpdate(cmpType, cmpId, data, task)
   }
 
   switch (cmp) {
     case 'StatusPicker':
-      return <StatusPicker {...{ task, handleUpdateTask }} />
+      return <StatusPicker {...{ task, cmpId, handleUpdateTask }} />
     case 'MemberPicker':
-      return <MemberPicker {...{ task, handleUpdateTask }} />
+      return <MemberPicker {...{ task, cmpId, handleUpdateTask }} />
     case 'DatePicker':
-      return <DatePickerC {...{ task, handleUpdateTask }} />
+      return <DatePickerC {...{ task, cmpId, handleUpdateTask }} />
     case 'DescriptionPicker':
-      return <DescriptionPicker {...{ task, handleUpdateTask }} />
+      return <DescriptionPicker {...{ task, cmpId, handleUpdateTask }} />
     case 'TimeLinePicker':
-      return <TimeLinePicker {...{ task, handleUpdateTask }} />
+      return <TimeLinePicker {...{ task, cmpId, handleUpdateTask }} />
     case 'FilePicker':
-      return <FilePicker {...{ task, handleUpdateTask }} />
+      return <FilePicker {...{ task, cmpId, handleUpdateTask }} />
   }
 }

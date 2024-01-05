@@ -3,7 +3,7 @@ import Input from '@mui/joy/Input'
 import { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 
-export function MemberPicker({ task, handleUpdateTask }) {
+export function MemberPicker({ task, cmpId, handleUpdateTask }) {
   const users = useSelector((storeState) => storeState.userModule.users)
   const [selectedMember, setSelectedMember] = useState(null)
   const hoverTimeoutRef = useRef(null)
@@ -35,11 +35,12 @@ export function MemberPicker({ task, handleUpdateTask }) {
   }
 
   const suggestedUsers = users.filter(
-    (user) => !task.members?.some((member) => member._id === user._id)
+    (user) =>
+      !task['members' + cmpId]?.some((member) => member._id === user._id)
   )
 
   const currentUsers = users.filter((user) =>
-    task.members?.some((member) => member._id === user._id)
+    task['members' + cmpId]?.some((member) => member._id === user._id)
   )
 
   const items = [
@@ -84,8 +85,7 @@ export function MemberPicker({ task, handleUpdateTask }) {
           onClick={(e) => {
             e.stopPropagation()
             e.preventDefault()
-          }}
-        >
+          }}>
           <h5>Suggested people</h5>
         </div>
       ),
@@ -98,8 +98,7 @@ export function MemberPicker({ task, handleUpdateTask }) {
             <div
               key={user._id}
               onClick={() => handleUpdateUser(user)}
-              className="flex align-center gap8"
-            >
+              className="flex align-center gap8">
               <img
                 src={user.imgUrl}
                 style={{
@@ -126,16 +125,14 @@ export function MemberPicker({ task, handleUpdateTask }) {
       placement="bottom"
       arrow={{
         pointAtCenter: true,
-      }}
-    >
+      }}>
       <div
         onMouseEnter={handleHover}
         onMouseLeave={handleHoverEnd}
-        className="cell"
-      >
-        {task.members && task.members.length > 0 ? (
+        className="cell">
+        {task['members' + cmpId] && task['members' + cmpId].length > 0 ? (
           <div className="avatars-wrapper">
-            {task.members.map((member) => (
+            {task['members' + cmpId].map((member) => (
               <div className="avatar-logo" key={member._id}>
                 <img
                   onMouseEnter={() => handleHover(member)}
@@ -153,8 +150,7 @@ export function MemberPicker({ task, handleUpdateTask }) {
           <div
             onMouseEnter={() => (shouldActiveRef.current = true)}
             onMouseLeave={() => (shouldActiveRef.current = false)}
-            className="member-details-wrapper"
-          >
+            className="member-details-wrapper">
             <div className={`member-details`}>
               <div className="avatar-logo">
                 <img src={selectedMember.imgUrl} alt="" />
