@@ -53,7 +53,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
         dataIndex: 'taskTitle',
         key: 'taskTitle',
         render: (task) => (
-          <>
+          <div className="hoverable">
             <div className="row-context absolute">
               <ContextBtn
                 type="row"
@@ -61,7 +61,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
               />
             </div>
             <a>{task.title}</a>
-          </>
+          </div>
         ),
       },
       ...cmpsOrder.map((cmp, idx) => ({
@@ -151,71 +151,15 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
       </h2>
       <div>
         <Table
-          rowSelection={{
-            type: 'checkbox',
-            ...rowSelection,
-          }}
+          rootClassName="root-table"
+          pagination={false}
           columns={columns}
           dataSource={dataSource}
         />
+        <form onSubmit={handleSubmit}>
+          <input type="text" value={newTaskTitle} onChange={handleChange} />
+        </form>
       </div>
-
-      {/* <table>
-        <thead>
-          <tr>
-            <th>Task</th>
-            {cmpsOrder.map((cmp, idx) => (
-              <th key={idx}>
-                <div className="flex align-center space-between">
-                  {cmp}
-                  <ContextBtn type="column" onDeleteColumn={()=>onDeleteColumn(boardId,cmp)} />
-                </div>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {group.tasks.map((task) => (
-            <tr key={task.id}>
-              <td className="relative hoverable">
-                {task.title}{' '}
-                <div className="row-context absolute">
-                  <ContextBtn
-                    type="row"
-                    onDeleteRow={() => onDeleteTask(boardId, group.id, task.id)}
-                  />
-                </div>
-              </td>
-              {cmpsOrder.map((cmp, idx) => (
-                <td key={idx}>
-                  <DynamicTableCell
-                    cmp={cmp}
-                    task={task}
-                    onTaskUpdate={onTaskUpdate}
-                  />
-                </td>
-              ))}
-            </tr>
-          ))}
-          <tr>
-            <td colSpan={cmpsOrder.length + 1}>
-              <div className="input-wrapper">
-                <div className="icon-wrapper">
-                  <AddSmallIcon />
-                </div>
-                <form action="" onSubmit={handleSubmit}>
-                  <input
-                    type="text"
-                    value={newTaskTitle}
-                    onChange={handleChange}
-                    placeholder={`Add item`}
-                  />
-                </form>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table> */}
     </section>
   )
 }

@@ -2,14 +2,12 @@
   border-top-right-radius: 10px;
   color: #323338;
   background-color: #ffffff;
-  margin-left: 3px;
-  width: 255px;
+  min-width: 255px;
   position: relative;
-  overflow: hidden;
   transition: width 0.3s;
 
   &:hover {
-    width: 255px;
+    min-width: 255px;
   }
 
   .side-bar-container {
@@ -118,11 +116,11 @@
   }
 
   &.side-bar-close {
-    width: 35px;
+    min-width: 35px;
     padding: 0;
 
     &:hover {
-      width: 255px;
+      min-width: 255px;
     }
 
     .side-bar-container {
@@ -131,6 +129,7 @@
 
     &:hover .side-bar-container {
       display: block;
+      min-width: 255px;
     }
   }
 }
