@@ -46,58 +46,66 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
     },
   ])
 
+  const [columnHeaders, setColumnHeaders] = useState([])
+  const [taskRows, setTaskRows] = useState([])
+
+  // useEffect(() => {
+  //   setColumns([
+  //     {
+  //       title: 'task',
+  //       dataIndex: 'taskTitle',
+  //       key: 'taskTitle',
+  //       render: (task) => (
+  //         <div className="hoverable">
+  //           <div className="row-context absolute">
+  //             <ContextBtn
+  //               type="row"
+  //               onDeleteRow={() => onDeleteTask(boardId, group.id, task.id)}
+  //             />
+  //           </div>
+  //           <a>{task.title}</a>
+  //         </div>
+  //       ),
+  //     },
+  //     ...cmpsOrder.map((cmp, idx) => ({
+  //       title: () => (
+  //         <div className="flex align-center space-between hoverable">
+  //           {cmp}
+  //           <ContextBtn
+  //             type="column"
+  //             onDeleteColumn={() => onDeleteColumn(boardId, cmp)}
+  //           />
+  //         </div>
+  //       ),
+  //       dataIndex: cmp,
+  //       key: cmp,
+  //       render: (task) => (
+  //         <DynamicTableCell
+  //           cmp={cmp}
+  //           onTaskUpdate={onTaskUpdate}
+  //           task={task}
+  //           key={task.id}
+  //         />
+  //       ),
+  //     })),
+  //   ])
+  //   setDataSource(
+  //     group.tasks.map((task, idx) => ({
+  //       key: idx + 1,
+  //       taskTitle: task,
+  //       StatusPicker: task,
+  //       MemberPicker: task,
+  //       DatePicker: task,
+  //       DescriptionPicker: task,
+  //       TimeLinePicker: task,
+  //       FilePicker: task,
+  //     }))
+  //   )
+  // }, [cmpsOrder, group])
+
   useEffect(() => {
-    setColumns([
-      {
-        title: 'task',
-        dataIndex: 'taskTitle',
-        key: 'taskTitle',
-        render: (task) => (
-          <div className="hoverable">
-            <div className="row-context absolute">
-              <ContextBtn
-                type="row"
-                onDeleteRow={() => onDeleteTask(boardId, group.id, task.id)}
-              />
-            </div>
-            <a>{task.title}</a>
-          </div>
-        ),
-      },
-      ...cmpsOrder.map((cmp, idx) => ({
-        title: () => (
-          <div className="flex align-center space-between hoverable">
-            {cmp}
-            <ContextBtn
-              type="column"
-              onDeleteColumn={() => onDeleteColumn(boardId, cmp)}
-            />
-          </div>
-        ),
-        dataIndex: cmp,
-        key: cmp,
-        render: (task) => (
-          <DynamicTableCell
-            cmp={cmp}
-            onTaskUpdate={onTaskUpdate}
-            task={task}
-            key={task.id}
-          />
-        ),
-      })),
-    ])
-    setDataSource(
-      group.tasks.map((task, idx) => ({
-        key: idx + 1,
-        taskTitle: task,
-        StatusPicker: task,
-        MemberPicker: task,
-        DatePicker: task,
-        DescriptionPicker: task,
-        TimeLinePicker: task,
-        FilePicker: task,
-      }))
-    )
+    setColumnHeaders(cmpsOrder)
+    setTaskRows(group.tasks)
   }, [cmpsOrder, group])
 
   function onTaskUpdate(cmpType, data, task) {
@@ -150,15 +158,75 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
         <span>{group.tasks.length} items / 0 subitems</span>
       </h2>
       <div>
-        <Table
-          rootClassName="root-table"
-          pagination={false}
-          columns={columns}
-          dataSource={dataSource}
-        />
-        <form onSubmit={handleSubmit}>
-          <input type="text" value={newTaskTitle} onChange={handleChange} />
-        </form>
+        <table>
+          <thead>
+            <tr style={{}}>
+              <th style={{ width: '40px' }}>
+                <div className="flex align-center justify-center">
+                  <input type="checkbox" />
+                </div>
+              </th>
+              <th>task</th>
+              {columnHeaders.map((columnHeader, idx) => (
+                <th key={idx}>
+                  <div className="flex align-center space-between hoverable">
+                    {columnHeader}
+                    <ContextBtn
+                      type="column"
+                      onDeleteColumn={() => onDeleteColumn(boardId, columnHeader)}
+                    />
+                  </div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {taskRows.map((task) => (
+              <tr key={task.id} className="hoverable">
+                <td style={{ width: '40px' }}>
+                  <div className="flex align-center justify-center relative ">
+                    <div className="row-context absolute">
+                      <ContextBtn
+                        type="row"
+                        onDeleteRow={() =>
+                          onDeleteTask(boardId, group.id, task.id)
+                        }
+                      />
+                    </div>
+                    <input type="checkbox" />
+                  </div>
+                </td>
+                <td>{task.title}</td>
+                {columnHeaders.map((columnHeader, idx) => (
+                  <td key={idx}>
+                    <DynamicTableCell
+                      cmp={columnHeader}
+                      onTaskUpdate={onTaskUpdate}
+                      task={task}
+                    />
+                  </td>
+                ))}
+              </tr>
+            ))}
+            <tr>
+              <td style={{ width: '40px' }}>
+                <div className="flex align-center justify-center">
+                  <input type="checkbox" />
+                </div>
+              </td>
+              <td colspan={columnHeaders.length + 1}>
+                <form onSubmit={handleSubmit}>
+                  <input
+                    type="text"
+                    value={newTaskTitle}
+                    onChange={handleChange}
+                    placeholder="Add item"
+                  />
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
   )

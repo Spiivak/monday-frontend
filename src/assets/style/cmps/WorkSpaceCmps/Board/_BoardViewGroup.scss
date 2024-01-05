@@ -1,34 +1,36 @@
 .board-view-group {
   margin-bottom: 1em;
   table {
+    border-collapse: collapse;
     border-radius: 12px;
+    overflow-x: scroll;
   }
   td,
   th {
-    width: 300px;
-    height: 50px;
+    width: 500px;
+    height: 36px;
   }
   th:not(:first-child, :last-child),
   td:not(:first-child, :last-child),
   tr:not(:last-of-type) td:first-child,
   tr:not(:last-of-type) td:last-child {
-    box-shadow: 0 0 0 0.5px rgba(0, 0, 122, .3);
+    box-shadow: 0 0 0 0.2px rgba(0, 0, 122, .3);
   }
   th:first-child {
     border-top-left-radius: 12px;
-    box-shadow: 0 0 0 0.5px rgba(0, 0, 122, .3);
+    box-shadow: 0 0 0 0.2px rgba(0, 0, 122, .3);
   }
   th:last-child {
     border-top-right-radius: 12px;
-    box-shadow: 0 0 0 0.5px rgba(0, 0, 122, .3);
+    box-shadow: 0 0 0 0.2px rgba(0, 0, 122, .3);
   }
   tr:last-child td:first-child {
     border-bottom-left-radius: 12px;
-    box-shadow: 0 0 0 0.5px rgba(0, 0, 122, .3);
+    box-shadow: 0 0 0 0.2px rgba(0, 0, 122, .3);
   }
   tr:last-child td:last-child {
     border-bottom-right-radius: 12px;
-    box-shadow: 0 0 0 0.5px rgba(0, 0, 122, .3);
+    box-shadow: 0 0 0 0.2px rgba(0, 0, 122, .3);
   }
 
   .input-wrapper{
@@ -46,7 +48,7 @@
   }
   .row-context{
     z-index: 1000;
-    left: -2em;
+    right: 100%;
     top: 50%;
     translate: -5% -50%;
   }
