@@ -10,6 +10,7 @@ import {
   REMOVE_TASK,
   SET_BOARDS,
   SET_IS_LOADING,
+  UPDATE_BOARD,
   UPDATE_TASK,
 } from '../reducers/board.reducer'
 import { GET_BOARD_BY_ID } from '../reducers/board.reducer'
@@ -42,13 +43,13 @@ export async function removeBoard(boardId) {
   }
 }
 
-export async function addBoard(user) {
-  const board = boardService.getEmptyBoard()
-  try {
-    const savedBoard = await boardService.save(board)
-    store.dispatch({ type: ADD_BOARD, savedBoard })
-  } catch (err) {}
-}
+// export async function addBoard(user) {
+//   const board = boardService.getEmptyBoard()
+//   try {
+//     const savedBoard = await boardService.save(board)
+//     store.dispatch({ type: ADD_BOARD, savedBoard })
+//   } catch (err) {}
+// }
 
 // * GROUP CRUD
 
@@ -147,22 +148,17 @@ export async function removeColumn(boardId, column) {
   } catch (err) {}
 }
 
-// export async function saveBoard(board) {
-//   const type = board._id ? UPDATE_BOARD : ADD_BOARD
-//   const errType = board._id ? 'update' : 'add'
-//   let boardToSave = {...board}
-//   store.dispatch({ type: SET_IS_LOADING, isLoading: true })
-//   try {
-//     boardToSave = await boardService.save(board)
-//     store.dispatch({ type, board: boardToSave})
-//   } catch (err) {
-//     console.error(`board action -> cannot ${errType}`, err)
-//     throw err
-//   } finally {
-//     store.dispatch({ type: SET_IS_LOADING, isLoading: false })
-//     return boardToSave
-//   }
-// }
+export async function saveBoard(board) {
+  const type = board._id ? UPDATE_BOARD : ADD_BOARD
+  const errType = board._id ? 'update' : 'add'
+  try {
+    const boardToSave = await boardService.save(board)
+    store.dispatch({ type, board: boardToSave })
+  } catch (err) {
+    console.error(`board action -> cannot ${errType}`, err)
+    throw err
+  }
+}
 
 // export async function addBoardMsg(boardId,msg,user){
 //   const newMsg = {...boardService.getEmptyMsg(), content:msg}

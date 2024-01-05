@@ -21,7 +21,7 @@ import {
 import { NavLink } from 'react-router-dom'
 import Frame from '../../assets/img/Frame.png'
 import { MoreModal } from '../WorkSpaceSideBarCmps/MoreModal'
-import { addBoard } from '../../store/actions/board.actions'
+// import { addBoard } from '../../store/actions/board.actions'
 export function WorkSpaceSideBar({ onRemoveBoard, onAddBoard }) {
   const [isWpModalOpen, setIsWpModalOpen] = useState(false)
   const [isMoreModalOpen, setIsMoreModalOpen] = useState(false)
@@ -36,71 +36,76 @@ export function WorkSpaceSideBar({ onRemoveBoard, onAddBoard }) {
   }
 
   return (
-    <section className={`side-bar relative ${!sideBar ? 'side-bar-close' : ''}`}>
+    <section
+      className={`side-bar relative ${!sideBar ? 'side-bar-close' : ''}`}
+    >
       <button
         className="btn-icon small-transparent close-btn flex justify-center"
-        onClick={() => setOpenSideBar(!sideBar)}>
+        onClick={() => setOpenSideBar(!sideBar)}
+      >
         {sideBar ? (
           <NavigationChevronRightIcon />
-          ) : (
-            <NavigationChevronLeftIcon />
-            )}
+        ) : (
+          <NavigationChevronLeftIcon />
+        )}
       </button>
       {/* {sideBar && ( */}
-        <div className="side-bar-container flex column">
-          {/* ASIDE HEADER LINKS */}
-          <div className="side-bar-link-container flex column">
-            <NavLink to="/" className={'flex align-center gap8'}>
-              <HomeIcon /> Home
-            </NavLink>
-            <NavLink to="/my-work" className={'flex align-center gap8'}>
-              <WorkIcon /> My Work
-            </NavLink>
-          </div>
+      <div className="side-bar-container flex column">
+        {/* ASIDE HEADER LINKS */}
+        <div className="side-bar-link-container flex column">
+          <NavLink to="/" className={'flex align-center gap8'}>
+            <HomeIcon /> Home
+          </NavLink>
+          <NavLink to="/my-work" className={'flex align-center gap8'}>
+            <WorkIcon /> My Work
+          </NavLink>
+        </div>
 
-          {/* ASIDE FOOTER */}
-          <div className="side-bar-footer">
-            <div className="title-wrapper">
-              <div className="home-workspace-items-title">
-                <div className="workspace-dropdown-button flex space-between">
-                  <div
-                    className="dropdown-button flex space-between align-center gap8"
-                    onClick={() => openWorkspaceModal()}>
-                    <div className="workspace-title flex align-center space-between">
-                      <div className="workspace-icon">
-                        <div className="workspace-name-wrapper flex align-center gap8">
-                          {/* <HomeIcon /> */}
-                          <picture className='flex'>
-                            <img src={Frame} alt="" />
-                          </picture>
-                          <span>Sprint 4</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="dropdown-icon-wrapper flex align-center gap8">
-                      <div className="chvron-down flex">
-                        <NavigationChevronDownIcon className="chvron-down" />
+        {/* ASIDE FOOTER */}
+        <div className="side-bar-footer">
+          <div className="title-wrapper">
+            <div className="home-workspace-items-title">
+              <div className="workspace-dropdown-button flex space-between">
+                <div
+                  className="dropdown-button flex space-between align-center gap8"
+                  onClick={() => openWorkspaceModal()}
+                >
+                  <div className="workspace-title flex align-center space-between">
+                    <div className="workspace-icon">
+                      <div className="workspace-name-wrapper flex align-center gap8">
+                        {/* <HomeIcon /> */}
+                        <picture className="flex">
+                          <img src={Frame} alt="" />
+                        </picture>
+                        <span>Sprint 4</span>
                       </div>
                     </div>
                   </div>
-                  <div className="header-menu flex">
-                    <button
-                      className="btn-icon medium-transparent"
-                      onClick={() => openMoreModal()}>
-                      <MenuIcon />
-                    </button>
-                    {isMoreModalOpen && <MoreModal />}
+                  <div className="dropdown-icon-wrapper flex align-center gap8">
+                    <div className="chvron-down flex">
+                      <NavigationChevronDownIcon className="chvron-down" />
+                    </div>
                   </div>
                 </div>
+                <div className="header-menu flex">
+                  <button
+                    className="btn-icon medium-transparent"
+                    onClick={() => openMoreModal()}
+                  >
+                    <MenuIcon />
+                  </button>
+                  {isMoreModalOpen && <MoreModal />}
+                </div>
               </div>
-
-              <FilterSection onAddBoard={onAddBoard} />
-              {isWpModalOpen && <WorkSpaceContext />}
             </div>
 
-            <WorkSpaceList {...{ onRemoveBoard }} />
+            <FilterSection onAddBoard={onAddBoard} />
+            {isWpModalOpen && <WorkSpaceContext />}
           </div>
+
+          <WorkSpaceList {...{ onRemoveBoard }} />
         </div>
+      </div>
       {/* )} */}
     </section>
   )
