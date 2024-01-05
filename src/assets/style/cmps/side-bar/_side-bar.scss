@@ -6,9 +6,9 @@
   position: relative;
   transition: width 0.3s;
 
-  &:hover {
-    min-width: 255px;
-  }
+  // &:hover {
+  //   min-width: 255px;
+  // }
 
   .side-bar-container {
     .side-bar-link-container {
@@ -34,10 +34,8 @@
     }
 
     .side-bar-footer {
-
       .title-wrapper {
         .filter-container {
-
           padding-left: $spacing-medium;
           padding-right: $spacing-medium;
           padding-bottom: $spacing-small;
@@ -47,7 +45,7 @@
             max-width: 180px;
             border: 1px solid #d0d4e4;
             border-radius: $border-radius-small;
-            
+
             input {
               font-size: 14px;
               width: 100%;
@@ -94,7 +92,7 @@
 
           .dropdown-icon-wrapper {
             .chvron-down {
-            margin-right: 12px;
+              margin-right: 12px;
               svg {
                 width: 16px;
                 height: 16px;
@@ -110,7 +108,8 @@
     border-radius: 0 $border-radius-medium 0 $border-radius-medium;
     background-color: #f6f7fb;
     position: absolute;
-    padding: calc($spacing-small + 4px) $spacing-small calc($spacing-small + 4px) $spacing-small;
+    padding: calc($spacing-small + 4px) $spacing-small
+      calc($spacing-small + 4px) $spacing-small;
     right: 0;
     top: 0;
   }
@@ -129,18 +128,9 @@
 
     &:hover .side-bar-container {
       display: block;
-      min-width: 255px;
+      // min-width: 255px;
     }
   }
-}
-
-.close-btn {
-  border-radius: 0 $border-radius-medium 0 $border-radius-medium;
-  background-color: #f6f7fb;
-  position: relative;
-  padding: calc($spacing-small + 4px) $spacing-small calc($spacing-small + 4px) $spacing-small;
-  right: 0;
-  top: 0;
 }
 
 .workspaces-list {
@@ -159,7 +149,7 @@
     }
 
     & a.active {
-      background-color: #CCE5FF;
+      background-color: #cce5ff;
       border-radius: $border-radius-small;
     }
 
@@ -174,12 +164,6 @@
     }
   }
 }
-
-
-
-
-
-
 
 .workspace-context-container {
   box-shadow: $box-shadow-small;
@@ -229,7 +213,6 @@
       }
     }
 
-
     .workspace-search {
       input {
         border: none;
@@ -249,7 +232,7 @@
     font: 400 14px/20px Figtree;
 
     p {
-      font: 400 14px Figtree
+      font: 400 14px Figtree;
     }
 
     .option {
