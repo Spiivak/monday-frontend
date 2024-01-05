@@ -101,7 +101,7 @@ export async function updateTask(
       break
     case 'MemberPicker':
       // Check if the user is already in the task['members'+cmpId] array
-      const isUserInMembers = task['members' + cmpId].some(
+      const isUserInMembers = task['members' + cmpId]?.some(
         (member) => member._id === data._id
       )
 
