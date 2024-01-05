@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { AddIcon, FilterIcon, SearchIcon } from '../Icons'
 import { FilterModal } from './FilterModal'
 
-export function FilterSection() {
+export function FilterSection({onAddBoard}) {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
   const openFilterModal = () => setIsFilterModalOpen(!isFilterModalOpen)
   return (
@@ -20,7 +20,7 @@ export function FilterSection() {
         </button>
       </div>
       <div className="add-btn flex align-center justify-center">
-        <button className="btn-ctn small-primary">
+        <button className="btn-ctn small-primary" onClick={onAddBoard}>
           <AddIcon />
         </button>
       </div>
