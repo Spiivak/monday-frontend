@@ -53,10 +53,12 @@ const demoData = [
             date: '01-04-2024',
             timeline: ['2024-02-05', '2024-03-07'],
             file: '',
+            members: [],
           },
           {
             id: 'c102',
             title: 'Add Samples',
+            members: [],
           },
         ],
         style: {},
@@ -98,6 +100,8 @@ const demoData = [
             id: 'c104',
             title: 'Help me',
             status: 'Working on it', // monday
+            members: [],
+
             priority: 'high',
             description: 'description',
             comments: [
@@ -250,13 +254,13 @@ function addTask(boardId, groupId, task) {
   return storageService.postTask(STORAGE_KEY, boardId, groupId, task)
 }
 
-function removeTask(boardId, groupId, taskId){
+function removeTask(boardId, groupId, taskId) {
   return storageService.removeTask(STORAGE_KEY, boardId, groupId, taskId)
 }
 
 // * Columns
 
-function removeColumn(boardId, column){
+function removeColumn(boardId, column) {
   return storageService.removeColumn(STORAGE_KEY, boardId, column)
 }
 
