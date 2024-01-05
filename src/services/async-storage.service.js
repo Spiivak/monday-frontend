@@ -10,6 +10,7 @@ export const storageService = {
   postTask,
   removeTask,
   removeColumn,
+  updateColumn,
 }
 
 function query(entityType, delay = 500) {
@@ -171,6 +172,23 @@ function removeColumn(entityType, boardId, columnId) {
     console.log(newBoards)
     _save(entityType, newBoards)
     return columnId
+  })
+}
+
+function updateColumn(entityType, boardId, columnId, column){
+  return query(entityType).then((boards) => {
+    const newBoards = boards.map((board) => {
+      if (board._id !== boardId) return board
+      return {
+        ...board,
+        cmpsOrder: board.cmpsOrder.map((cmp) => {
+          if(cmp.id !== columnId) return cmp
+          return column
+        })
+      }
+    })
+    _save(entityType, newBoards)
+    return column
   })
 }
 

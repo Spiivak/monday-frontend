@@ -5,6 +5,7 @@ import {
   removeColumn,
   removeGroup,
   removeTask,
+  updateColumn,
   updateTask,
 } from '../../store/actions/board.actions'
 import { useParams } from 'react-router-dom'
@@ -67,6 +68,11 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
     removeColumn(boardId, cmpId)
   }
 
+  function onUpdateColumn(boardId, columnId, column, data) {
+    const columnToUpdate = { ...column, title: data }
+    updateColumn(boardId, columnId, columnToUpdate)
+  }
+
   function onDeleteTask(boardId, groupId, taskId) {
     removeTask(boardId, groupId, taskId)
   }
@@ -125,7 +131,14 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   <div className="flex align-center space-between hoverable">
                     <EditableText
                       initialText={columnHeader.title}
-                      onSave={() => {}}
+                      onSave={(text) => {
+                        onUpdateColumn(
+                          boardId,
+                          columnHeader.id,
+                          columnHeader,
+                          text
+                        )
+                      }}
                     />
                     <ContextBtn
                       type="column"
@@ -136,13 +149,12 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   </div>
                 </th>
               ))}
-              <th style={{width:'60px'}}>+</th>
+              <th style={{ width: '60px' }}>+</th>
             </tr>
           </thead>
           <tbody>
             {taskRows.map((task) => (
               <tr key={task.id} className="hoverable">
-                {console.log(task)}
                 <td style={{ width: '40px' }}>
                   <div className="flex align-center justify-center relative ">
                     <div className="row-context absolute">
@@ -172,7 +184,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                     />
                   </td>
                 ))}
-                <td style={{width:'60px'}}> </td>
+                <td style={{ width: '60px' }}> </td>
               </tr>
             ))}
             <tr>

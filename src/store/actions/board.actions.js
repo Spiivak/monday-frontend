@@ -101,14 +101,14 @@ export async function updateTask(
       break
     case 'MemberPicker':
       // Check if the user is already in the task['members'+cmpId] array
-      const isUserInMembers = task['members'+cmpId].some(
+      const isUserInMembers = task['members' + cmpId].some(
         (member) => member._id === data._id
       )
 
       // If the user is in the array, remove them; otherwise, add them
       const updatedMembers = isUserInMembers
-        ? task['members'+cmpId].filter((member) => member._id !== data._id)
-        : [...task['members'+cmpId], data]
+        ? task['members' + cmpId].filter((member) => member._id !== data._id)
+        : [...task['members' + cmpId], data]
 
       newTask = { ...task, members: updatedMembers }
       break
@@ -149,6 +149,17 @@ export async function removeColumn(boardId, columnId) {
   try {
     const deletedColumnId = await boardService.removeColumn(boardId, columnId)
     store.dispatch({ type: REMOVE_COLUMN, boardId, deletedColumnId })
+  } catch (err) {}
+}
+
+export async function updateColumn(boardId, columnId, column) {
+  try {
+    const updatedColumn = await boardService.updateColumn(
+      boardId,
+      columnId,
+      column
+    )
+    store.dispatch({ type: UPDATE_COLUMN, boardId, columnId, updatedColumn })
   } catch (err) {}
 }
 
