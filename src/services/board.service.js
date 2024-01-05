@@ -197,9 +197,11 @@ export const boardService = {
   save,
   remove,
   getById,
+  addGroup,
   updateTask,
   addTask,
   getEmptyBoard,
+  getEmptyGroup,
 }
 
 function query() {
@@ -227,6 +229,10 @@ function save(board) {
   }
 }
 
+function addGroup(boardId, group){
+  return storageService.postGroup(STORAGE_KEY, boardId, group)
+}
+
 function updateTask(boardId, groupId, taskId, task) {
   return storageService.putTask(STORAGE_KEY, boardId, groupId, taskId, task)
 }
@@ -238,6 +244,29 @@ function addTask(boardId, groupId, task) {
 // function addMsg(boardId, msg){
 //   return httpService.post(BASE_URL + 'msg/' ,{ boardId, msg })
 // }
+
+function getEmptyGroup(){
+  return {
+    id: utilService.makeId(),
+    title: 'New Group',
+    archivedAt: Date.now(),
+    tasks: [
+      {
+        id: utilService.makeId(),
+        title: 'item 1',
+      },
+      {
+        id: utilService.makeId(),
+        title: 'item 2',
+      },
+      {
+        id: utilService.makeId(),
+        title: 'item 2',
+      },
+    ],
+    style: {},
+  }
+}
 
 function getEmptyBoard() {
   return {
