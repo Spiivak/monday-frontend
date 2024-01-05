@@ -1,17 +1,17 @@
-import { useState } from "react"
-import { uploadService } from "../services/upload.service"
-import { styled } from "@mui/material/styles"
-import UploadFileIcon from "@mui/icons-material/UploadFile"
-import { IconButton } from "@mui/material"
-const VisuallyHiddenInput = styled("input")({
-  clip: "rect(0 0 0 0)",
-  clipPath: "inset(50%)",
+import { useState } from 'react'
+import { uploadService } from '../services/upload.service'
+import { styled } from '@mui/material/styles'
+import UploadFileIcon from '@mui/icons-material/UploadFile'
+import { IconButton } from '@mui/material'
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
   height: 1,
-  overflow: "hidden",
-  position: "absolute",
+  overflow: 'hidden',
+  position: 'absolute',
   bottom: 0,
   left: 0,
-  whiteSpace: "nowrap",
+  whiteSpace: 'nowrap',
   width: 1,
 })
 
@@ -34,7 +34,7 @@ export function ImgUploader({ imgUrl, onUploaded = null }) {
   return (
     <div className="upload-preview cell">
       {imgData.imgUrl && (
-        <img src={imgData.imgUrl} style={{ maxWidth: "200px" }} />
+        <img src={imgData.imgUrl} style={{ maxWidth: '200px' }} />
       )}
       <IconButton component="label" size="small">
         <UploadFileIcon />

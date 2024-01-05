@@ -1,7 +1,7 @@
 import { DatePicker } from 'antd'
 import dayjs from 'dayjs'
 
-export function DatePicker({ task, handleUpdateTask }) {
+export function DatePickerC({ task, handleUpdateTask }) {
   const dateFormat = 'YYYY/MM/DD'
 
   function handleUpdateDate(date) {

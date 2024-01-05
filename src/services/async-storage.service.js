@@ -4,6 +4,7 @@ export const storageService = {
   post,
   put,
   remove,
+  postGroup,
   putTask,
   postTask,
 }
@@ -60,6 +61,19 @@ function remove(entityType, entityId) {
   })
 }
 
+// group CRUD
+function postGroup(entityType, boardId, newGroup) {
+  newGroup = JSON.parse(JSON.stringify(newGroup))
+  return query(entityType).then((boards) => {
+    const newBoards = boards.map((board) => {
+      if (board._id !== boardId) return board
+      return { ...board, groups: [...board.groups, newGroup] }
+    })
+    _save(entityType, newBoards)
+    return newGroup
+  })
+}
+
 // task CRUD
 
 function putTask(entityType, boardId, groupId, taskId, newTask) {
@@ -96,8 +110,8 @@ function postTask(entityType, boardId, groupId, newTask) {
         ...board,
         groups: board.groups.map((group) => {
           if (group.id !== groupId) return group
-          return {...group, tasks: [...group.tasks, newTask]}
-        })
+          return { ...group, tasks: [...group.tasks, newTask] }
+        }),
       }
     })
     _save(entityType, newBoards)

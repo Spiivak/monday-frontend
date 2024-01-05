@@ -43,7 +43,6 @@ export function SalesCrmTab() {
         <img src="" alt="" />
         <span>Other</span>
       </div>
-
     </div>
   )
 }

@@ -1,15 +1,17 @@
-import { boardService } from "../../services/board.service"
+import { boardService } from '../../services/board.service'
 
 import {
+  ADD_BOARD,
+  ADD_GROUP,
   ADD_TASK,
   REMOVE_BOARD,
   SET_BOARDS,
   SET_IS_LOADING,
   UPDATE_TASK,
-} from "../reducers/board.reducer"
-import { GET_BOARD_BY_ID } from "../reducers/board.reducer"
+} from '../reducers/board.reducer'
+import { GET_BOARD_BY_ID } from '../reducers/board.reducer'
 
-import { store } from "../store"
+import { store } from '../store'
 
 // * BOARD CRUD
 
@@ -19,12 +21,45 @@ export async function loadBoards() {
     store.dispatch({ type: SET_BOARDS, boards })
     return boards
   } catch (err) {
-    console.error("board action -> cannot load boards", err)
+    console.error('board action -> cannot load boards', err)
     throw err
   }
 }
 
-export async function handleUpdateTask(
+export async function removeBoard(boardId) {
+  store.dispatch({ type: SET_IS_LOADING, isLoading: true })
+  try {
+    await boardService.remove(boardId)
+    store.dispatch({ type: REMOVE_BOARD, boardId })
+  } catch (err) {
+    console.error('board action -> cannot remove board', err)
+    throw err
+  } finally {
+    store.dispatch({ type: SET_IS_LOADING, isLoading: false })
+  }
+}
+
+export async function addBoard(user) {
+  const board = boardService.getEmptyBoard()
+  try {
+    const savedBoard = await boardService.save(board)
+    store.dispatch({ type: ADD_BOARD, savedBoard })
+  } catch (err) {}
+}
+
+// * GROUP CRUD
+
+export async function addGroup(boardId) {
+  const group = boardService.getEmptyGroup()
+  try {
+    const savedGroup = await boardService.addGroup(boardId, group)
+    store.dispatch({ type: ADD_GROUP, boardId, savedGroup })
+  } catch (err) {}
+}
+
+// * TASK CRUD
+
+export async function updateTask(
   boardId,
   groupId,
   taskId,
@@ -34,19 +69,19 @@ export async function handleUpdateTask(
 ) {
   let newTask
   switch (cmpType) {
-    case "StatusPicker":
+    case 'StatusPicker':
       newTask = { ...task, status: data }
       break
-    case "DatePicker":
+    case 'DatePicker':
       newTask = { ...task, date: data }
       break
-    case "DescriptionPicker":
+    case 'DescriptionPicker':
       newTask = { ...task, description: data }
       break
-    case "TimeLinePicker":
+    case 'TimeLinePicker':
       newTask = { ...task, timeline: data }
       break
-    case "FilePicker":
+    case 'FilePicker':
       newTask = { ...task, file: data }
       break
   }
@@ -61,32 +96,13 @@ export async function handleUpdateTask(
   } catch (err) {}
 }
 
-export async function handleAddTask(boardId, groupId, newTaskTxt) {
+export async function addTask(boardId, groupId, newTaskTxt) {
   try {
     const task = await boardService.addTask(boardId, groupId, newTaskTxt)
     console.log(task)
     store.dispatch({ type: ADD_TASK, boardId, groupId, task })
   } catch (err) {}
 }
-
-export async function removeBoard(boardId) {
-  store.dispatch({ type: SET_IS_LOADING, isLoading: true })
-  try {
-    await boardService.remove(boardId)
-    store.dispatch({ type: REMOVE_BOARD, boardId })
-  } catch (err) {
-    console.error("board action -> cannot remove board", err)
-    throw err
-  } finally {
-    store.dispatch({ type: SET_IS_LOADING, isLoading: false })
-  }
-}
-
-// export async function addBoard(user){
-//   const board = boardService.getEmptyBoard()
-//   board.owner = user
-//   saveBoard(board)
-// }
 
 // export async function saveBoard(board) {
 //   const type = board._id ? UPDATE_BOARD : ADD_BOARD

@@ -6,7 +6,7 @@ import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 import { useSelector } from 'react-redux'
 import { LoginSignup } from '../LoginSignup'
 export function HomeHeader() {
-  const user = useSelector(storeState => storeState.userModule.user)
+  const user = useSelector((storeState) => storeState.userModule.user)
 
   async function onLogin(credentials) {
     try {
@@ -33,7 +33,7 @@ export function HomeHeader() {
     }
   }
   return (
-    <header className='home-header full flex space-between'>
+    <header className="home-header full flex space-between">
       <div className="right flex">
         <img src={Logo} alt="logo" />
         <div className="links flex align-center">
@@ -49,7 +49,7 @@ export function HomeHeader() {
           <NavLink>Contact sales</NavLink>
         </div>
         <div className="user-actions flex gap16">
-          {user &&
+          {user && (
             <span className="user-info">
               <Link to={`user/${user._id}`}>
                 {user.imgUrl && <img src={user.imgUrl} />}
@@ -58,12 +58,12 @@ export function HomeHeader() {
               <span className="score">{user.score?.toLocaleString()}</span>
               <button onClick={onLogout}>Logout</button>
             </span>
-          }
-          {!user &&
+          )}
+          {!user && (
             <section className="user-info">
               <LoginSignup onLogin={onLogin} onSignup={onSignup} />
             </section>
-          }
+          )}
           {/* <NavLink>Login</NavLink>
           <button className='get-started-btn'>Get Started</button> */}
         </div>

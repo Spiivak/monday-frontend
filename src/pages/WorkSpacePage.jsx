@@ -1,5 +1,5 @@
-import { Outlet } from "react-router-dom"
-import { WorkSpaceHeader } from "../cmps/WorkSpaceCmps/WorkSpaceHeader"
+import { Outlet } from 'react-router-dom'
+import { WorkSpaceHeader } from '../cmps/WorkSpaceCmps/WorkSpaceHeader'
 
 export function WorkSpacePage() {
   return (

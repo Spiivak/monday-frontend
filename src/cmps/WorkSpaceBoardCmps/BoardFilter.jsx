@@ -7,7 +7,7 @@ import {
   PersonIcon,
   SearchIcon,
   SortIcon,
-} from "../Icons"
+} from '../Icons'
 
 export function BoardFilter({}) {
   return (

@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 
 export function TimeLinePicker({ task, handleUpdateTask }) {
   const { RangePicker } = DatePicker
-  const dateFormat = "YYYY/MM/DD"
+  const dateFormat = 'YYYY/MM/DD'
 
   function handleDateChange(dates) {
     if (dates) {
@@ -12,7 +12,7 @@ export function TimeLinePicker({ task, handleUpdateTask }) {
       const timestampEndDate = endDate.valueOf()
 
       handleUpdateTask(
-        "TimeLinePicker",
+        'TimeLinePicker',
         [timestampStartDate, timestampEndDate],
         task
       )
