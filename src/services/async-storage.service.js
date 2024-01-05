@@ -96,8 +96,8 @@ function postTask(entityType, boardId, groupId, newTask) {
         ...board,
         groups: board.groups.map((group) => {
           if (group.id !== groupId) return group
-          return {...group, tasks: [...group.tasks, newTask]}
-        })
+          return { ...group, tasks: [...group.tasks, newTask] }
+        }),
       }
     })
     _save(entityType, newBoards)

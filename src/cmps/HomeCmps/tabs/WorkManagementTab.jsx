@@ -44,6 +44,5 @@ export function WorkManagementTab() {
         <span>More workflow</span>
       </div>
     </div>
-
   )
 }

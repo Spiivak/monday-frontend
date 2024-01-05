@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { DynamicTableCell } from './DynamicTableCell'
-import { handleAddTask, handleUpdateTask } from '../../store/actions/board.actions'
+import {
+  handleAddTask,
+  handleUpdateTask,
+} from '../../store/actions/board.actions'
 import { useParams } from 'react-router-dom'
 import { AddSmallIcon } from '../Icons'
 export function BoardViewGroup({ group, cmpsOrder }) {
@@ -10,14 +13,14 @@ export function BoardViewGroup({ group, cmpsOrder }) {
     const boardId = 'b101'
     handleUpdateTask(boardId, group.id, task.id, cmpType, task, data)
   }
-  function handleChange(ev){
+  function handleChange(ev) {
     const value = ev.target.value
     setNewTaskTitle(value)
   }
   function handleSubmit(ev) {
     ev.preventDefault()
     const boardId = 'b101'
-    const newTask = {title: newTaskTitle}
+    const newTask = { title: newTaskTitle }
     handleAddTask(boardId, group.id, newTask)
     setNewTaskTitle('')
   }
@@ -57,7 +60,12 @@ export function BoardViewGroup({ group, cmpsOrder }) {
                   <AddSmallIcon />
                 </div>
                 <form action="" onSubmit={handleSubmit}>
-                  <input type="text" value={newTaskTitle} onChange={handleChange} placeholder={`Add item`} />
+                  <input
+                    type="text"
+                    value={newTaskTitle}
+                    onChange={handleChange}
+                    placeholder={`Add item`}
+                  />
                 </form>
               </div>
             </td>

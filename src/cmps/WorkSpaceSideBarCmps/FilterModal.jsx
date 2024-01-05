@@ -2,7 +2,7 @@ import React from 'react'
 
 export function FilterModal() {
   return (
-    <section className='filter-modal'>
+    <section className="filter-modal">
       <div className="filter-container flex column">
         <div className="filter-heading">
           <span>Filter by</span>

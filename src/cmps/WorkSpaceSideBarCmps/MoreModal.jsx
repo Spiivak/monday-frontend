@@ -1,13 +1,27 @@
-import { AddSmallIcon, ArchiveIcon, CollapseIcon, DeleteIcon, EditIcon, FavoriteIcon, GalleryIcon, HomeIcon, MwmIcon, SearchIcon, SettingsIcon, SwitchIcon, WorkspaceIcon } from "../Icons"
+import {
+  AddSmallIcon,
+  ArchiveIcon,
+  CollapseIcon,
+  DeleteIcon,
+  EditIcon,
+  FavoriteIcon,
+  GalleryIcon,
+  HomeIcon,
+  MwmIcon,
+  SearchIcon,
+  SettingsIcon,
+  SwitchIcon,
+  WorkspaceIcon,
+} from '../Icons'
 import Mwm from '../../assets/img/mwm.png'
-import { Save } from "@mui/icons-material"
+import { Save } from '@mui/icons-material'
 export function MoreModal() {
   return (
     <div className="more-modal-container flex column">
       <div className="ds-tabs-section">
         <div className="tab">
           <button className="btn-icon small-transparent flex gap16">
-            <MwmIcon/>
+            <MwmIcon />
             work management overview
           </button>
         </div>
@@ -27,7 +41,7 @@ export function MoreModal() {
           </button>
         </div>
         <div className="tab">
-          <button className="btn-icon medium-transparent flex gap16" >
+          <button className="btn-icon medium-transparent flex gap16">
             <SettingsIcon />
             Manage workspace
           </button>
@@ -78,7 +92,6 @@ export function MoreModal() {
           </button>
         </div>
       </div>
-
     </div>
   )
 }

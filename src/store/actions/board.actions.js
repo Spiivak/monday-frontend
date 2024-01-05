@@ -1,4 +1,4 @@
-import { boardService } from "../../services/board.service"
+import { boardService } from '../../services/board.service'
 
 import {
   ADD_TASK,
@@ -6,10 +6,10 @@ import {
   SET_BOARDS,
   SET_IS_LOADING,
   UPDATE_TASK,
-} from "../reducers/board.reducer"
-import { GET_BOARD_BY_ID } from "../reducers/board.reducer"
+} from '../reducers/board.reducer'
+import { GET_BOARD_BY_ID } from '../reducers/board.reducer'
 
-import { store } from "../store"
+import { store } from '../store'
 
 // * BOARD CRUD
 
@@ -19,7 +19,7 @@ export async function loadBoards() {
     store.dispatch({ type: SET_BOARDS, boards })
     return boards
   } catch (err) {
-    console.error("board action -> cannot load boards", err)
+    console.error('board action -> cannot load boards', err)
     throw err
   }
 }
@@ -34,19 +34,19 @@ export async function handleUpdateTask(
 ) {
   let newTask
   switch (cmpType) {
-    case "StatusPicker":
+    case 'StatusPicker':
       newTask = { ...task, status: data }
       break
-    case "DatePicker":
+    case 'DatePicker':
       newTask = { ...task, date: data }
       break
-    case "DescriptionPicker":
+    case 'DescriptionPicker':
       newTask = { ...task, description: data }
       break
-    case "TimeLinePicker":
+    case 'TimeLinePicker':
       newTask = { ...task, timeline: data }
       break
-    case "FilePicker":
+    case 'FilePicker':
       newTask = { ...task, file: data }
       break
   }
@@ -75,7 +75,7 @@ export async function removeBoard(boardId) {
     await boardService.remove(boardId)
     store.dispatch({ type: REMOVE_BOARD, boardId })
   } catch (err) {
-    console.error("board action -> cannot remove board", err)
+    console.error('board action -> cannot remove board', err)
     throw err
   } finally {
     store.dispatch({ type: SET_IS_LOADING, isLoading: false })
