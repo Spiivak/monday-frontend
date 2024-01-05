@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import Board from '../../assets/icons/Board.svg'
-import Delete from '../../assets/icons/Delete.svg'
 import { BoardIcon, DeleteIcon } from '../Icons'
 
 export function WorkSpaceList({ onRemoveBoard }) {
@@ -13,7 +11,7 @@ export function WorkSpaceList({ onRemoveBoard }) {
         <div key={board._id}>
           <div className="workspace-item flex align-center space-between">
             <div className="link">
-              <Link to={`/${board._id}`} className="flex gap8 align-center">
+              <Link to={`/workspace/${board._id}`} className="flex gap8 align-center">
                 <BoardIcon />
                 {board.title}
               </Link>
