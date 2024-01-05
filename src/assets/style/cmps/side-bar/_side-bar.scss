@@ -53,6 +53,7 @@
             border-radius: 4px;
       
             input {
+              width: 100%;
               border: none;
               padding: 0;
             }
@@ -62,17 +63,27 @@
           }
         }
         .workspace-dropdown-button {
-          display: flex;
           align-items: center;
-          width: unset;
-          border-radius: 4px;
           padding: 16px;
-          .workspace-title{
-            gap: 8px;
+          .dropdown-button {
+            width: 100%;
+            display: flex;
             align-items: center;
-            font: 600 14px/20px Figtree;
-            // font-weight: 600;
+            border-radius: 4px;
+            padding: 5px;
+            padding-right: 4px;
 
+            &:hover {
+              background-color: #dbdfec;
+            }
+            picture {
+              display: flex;
+            }
+            .workspace-title{
+              align-items: center;
+              font: 600 16px/20px Figtree;
+              cursor: pointer;
+            }
           }
           .workspace-icon {
             display: flex;
@@ -111,6 +122,7 @@
 }
 
 .workspaces-list {
+  
   // background-color: red;
   justify-content: center;
   padding-left: 14px;
@@ -151,38 +163,52 @@
 
 
 .workspace-context-container {
-  box-shadow: 0px 0px 8px 1.5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 17px 6px rgba(0,0,0,.1); 
+  color: var(--primary-text-color);
+
   min-width: 280px;
   min-height: 225px;
   padding: 12px;
-  left: 5px;
-  position: absolute;
+  top: 196px;
+  left: 8px;
+  position: fixed;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 8px;
   z-index: 150;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  // justify-content: space-between;
-
+  .divider {
+    box-sizing: content-box;
+    border-width: 1px;
+    border-style: solid;
+    opacity: 0.1;
+    // border-image: linear-gradient(to right, rgb(97, 97, 255), #ff158a00);
+    border-image-slice: 1;
+    margin-bottom: 8px;
+    // margin-bottom: 16px;
+  }
   .workspace-context-header {
-    display: flex;
-    flex-direction: column;
-    border-bottom: 1px solid #d0d4e4;
+    // font: 400 14px/20px Figtree;
 
-    .workspace-context-middle {
-      gap: 12px;
-      display: flex;
-      flex-direction: column;
-
-      div {
-        margin-bottom: 10px;
-
-        >* {
-          margin-bottom: 10px;
+      .workspace-options {
+        span {
+          font: 400 14px/20px Figtree;
+        }
+        .option {
+          padding: 4px 0;
+          align-items: flex-start;
+          button {
+            padding: 9px;
+            width: 100%;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            span {
+              gap: 8px;
+              align-items: center;
+            }
+          }
         }
       }
-    }
+
 
     .workspace-search {
       input {
@@ -194,18 +220,168 @@
       }
 
       border: 1px solid #d0d4e4;
-      border-radius: 7px;
+      border-radius: 4px;
       height: 30px;
     }
   }
 
+  .workspace-context-body {
+    font: 400 14px/20px Figtree;
+
+    p {
+      font: 400 14px Figtree
+    }
+    .option {
+      // background: red;
+      display: flex;
+      padding: 4px 0;
+      
+      button {
+        font-size: 14px;
+        padding: 9px;
+        width: 100%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        span {
+          gap: 8px;
+          align-items: center;
+        }
+      }
+    }
+  }
   .work-space-btns {
     font-size: 0.8rem;
   }
 }
 
 .work-space-btns {
+  // border-top: 1px solid;
+  font: 400 14px Figtree;
   button {
     flex-direction: row;
+  }
+}
+
+.more-modal-container {
+  font: 400 14px/20px Figtree;
+  box-shadow: 0 4px 17px 6px rgba(0,0,0,.1); 
+  color: #323338;
+
+  min-width: 280px;
+  min-height: 225px;
+  padding: 12px;
+  top: 196px;
+  left: 208px;
+  position: fixed;
+  background-color: white;
+  border-radius: 8px;
+  z-index: 150;
+  .ds-tabs-section {
+    .tab {
+      // background-color: red;
+      display: flex;
+      flex-direction: column;
+      button {
+        font: 400 14px/20px Figtree;
+        justify-content: flex-start;
+
+        &:disabled {
+          cursor: not-allowed;
+          opacity: 0.3;
+        }
+      }
+    }
+  }
+  
+  .ds-divider {
+    width: 100%;
+    box-sizing: content-box;
+    border-width: 1px;
+    border-style: solid;
+    opacity: 0.1;
+    background: red;
+    // border-image: linear-gradient(to right, rgb(97, 97, 255), #ff158a00);
+    border-image-slice: 1;
+    margin: 8px 0;
+    // margin-bottom: 16px;
+  }
+}
+
+// .filter-modal {
+//   font: 400 14px/20px Figtree;
+//   box-shadow: 0 4px 17px 6px rgba(0,0,0,.1); 
+//   color: #323338;
+
+//   min-width: 280px;
+//   min-height: 225px;
+//   padding: 12px;
+//   top: 196px;
+//   left: 208px;
+//   position: fixed;
+//   background-color: white;
+//   border-radius: 8px;
+//   z-index: 150;
+//   .ds-tabs-section {
+//     .tab {
+//       // background-color: red;
+//       display: flex;
+//       flex-direction: column;
+//       button {
+//         font: 400 14px/20px Figtree;
+//         justify-content: flex-start;
+
+//         &:disabled {
+//           cursor: not-allowed;
+//           opacity: 0.3;
+//         }
+//       }
+//     }
+//   }
+  
+//   .ds-divider {
+//     width: 100%;
+//     box-sizing: content-box;
+//     border-width: 1px;
+//     border-style: solid;
+//     opacity: 0.1;
+//     // border-image: linear-gradient(to right, rgb(97, 97, 255), #ff158a00);
+//     border-image-slice: 1;
+//     margin: 8px 0;
+//     // margin-bottom: 16px;
+//   }
+// }
+
+.filter-modal {
+  font: 400 14px/20px Figtree;
+  box-shadow: $box-shadow-medium;
+  color: #323338;
+
+  max-width: 280px;
+  min-height: 225px;
+  padding: 8px;
+  top: 248px;
+  left: 176px;
+  position: fixed;
+  background-color: white;
+  border-radius: 8px;
+  z-index: 150;
+  .filter-container {
+    .filter-heading {
+      margin-bottom: 8px;
+    }
+    .option {
+      margin-bottom: 4px;
+    }
+    
+    .filter-divider {
+      width: 100%;
+      box-sizing: content-box;
+      border-width: 1px;
+      border-style: solid;
+      opacity: 0.1;
+      // border-image: linear-gradient(to right, rgb(97, 97, 255), #ff158a00);
+      border-image-slice: 1;
+      margin: 8px 0;    }
   }
 }

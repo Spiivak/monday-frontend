@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react"
 import { utilService } from "../../services/util.service"
 import { DatePicker } from "antd"
 import dayjs from "dayjs"
+
+import { Dropdown } from "antd"
 import { ImgUploader } from "../ImgUploader"
 
 export function DynamicTableCell({ cmp, task, onTaskUpdate }) {
@@ -26,30 +28,82 @@ export function DynamicTableCell({ cmp, task, onTaskUpdate }) {
 }
 
 function StatusPicker({ task, handleUpdateTask }) {
-  const [isActive, setIsActive] = useState(false)
-
-  return (
-    <div
-      onClick={() => {
-        setIsActive((a) => !a)
-      }}
-      className="cell"
-    >
-      <h4>{task.status || "empty"}</h4>
-      <div className={`cell-context ${isActive ? "active" : "hidden"}`}>
-        <button onClick={() => handleUpdateTask("StatusPicker", "done", task)}>
+  const items = [
+    {
+      key: "1",
+      backgroundColor: "#00C875",
+      status: "done",
+      label: (
+        <button
+          className="btn-ctn medium-primary"
+          style={{ backgroundColor: "#00C875", width: "100%" }}
+          onClick={() => handleUpdateTask("StatusPicker", "done", task)}
+        >
           done
         </button>
+      ),
+    },
+    {
+      key: "2",
+      backgroundColor: "#FDAB3D",
+      status: "in-progress",
+      label: (
         <button
+          className="btn-ctn medium-primary "
+          style={{ backgroundColor: "#FDAB3D", width: "100%" }}
           onClick={() => handleUpdateTask("StatusPicker", "in-progress", task)}
         >
           in-progress
         </button>
-        <button onClick={() => handleUpdateTask("StatusPicker", "stuck", task)}>
+      ),
+    },
+    {
+      key: "3",
+      backgroundColor: "#E2445C",
+      status: "stuck",
+      label: (
+        <button
+          className="btn-ctn medium-primary"
+          style={{ backgroundColor: "#E2445C", width: "100%" }}
+          onClick={() => handleUpdateTask("StatusPicker", "stuck", task)}
+        >
           stuck
         </button>
+      ),
+    },
+    {
+      type: "divider",
+    },
+    {
+      key: "4",
+      label: <button className="label-btn">Edit Labels</button>,
+    },
+  ]
+  const bgc = items.reduce((acc, item) => {
+    if (item.status === task.status) {
+      return item.backgroundColor
+    }
+    return acc
+  }, "")
+
+  return (
+    <Dropdown
+      rootClassName="dropdown-status-picker"
+      menu={{
+        items,
+      }}
+      trigger={["click"]}
+      placement="bottom"
+      arrow={{
+        pointAtCenter: true,
+      }}
+    >
+      <div className="cell">
+        <button className="label-btn" style={{ backgroundColor: bgc }}>
+          {task.status || "empty"}
+        </button>
       </div>
-    </div>
+    </Dropdown>
   )
 }
 
@@ -80,65 +134,79 @@ function MemberPicker({ task, handleUpdateTask }) {
     }, 500)
   }
 
-  function handleClick() {
-    setIsActive((a) => !a)
-  }
+  const items = [
+    {
+      key: "1",
+      label: <h4>labels</h4>,
+    },
+    {
+      key: "2",
+      label: <input type="text"></input>,
+    },
+    {
+      key: "3",
+      label: <h4>suggested people</h4>,
+    },
+    {
+      key: "4",
+      label: <button>Avatars</button>,
+    },
+  ]
+
   return (
-    <div
-      onMouseEnter={handleHover}
-      onMouseLeave={handleHoverEnd}
-      onClick={handleClick}
-      className="cell"
+    <Dropdown
+      menu={{
+        items,
+      }}
+      trigger={["click"]}
+      placement="bottom"
+      arrow={{
+        pointAtCenter: true,
+      }}
     >
-      {(!!task?.members && (
-        <div className="avatars-wrapper">
-          {task.members.map((member) => (
-            <div className="avatar-logo" key={member._id}>
-              <img
-                onMouseEnter={() => handleHover(member)}
-                src={member.imgUrl}
-                alt=""
-              />
-            </div>
-          ))}
-        </div>
-      )) ||
-        "empty"}
-      {!!selectedMember && (
-        <div
-          onMouseEnter={() => (shouldActiveRef.current = true)}
-          onMouseLeave={() => (shouldActiveRef.current = false)}
-          className="member-details-wrapper"
-        >
-          <div className={`member-details`}>
-            <div className="avatar-logo">
-              <img src={selectedMember.imgUrl} alt="" />
-            </div>
-            <div className="member-details-content">
-              <h4>{selectedMember.fullname}</h4>
-              <p>[logo] Time at current location, location</p>
-              <h4>membership label</h4>
-            </div>
-            <div className="member-detail-btns">
-              <button>Btn 1</button>
-              <button>Btn 2</button>
+      <div
+        onMouseEnter={handleHover}
+        onMouseLeave={handleHoverEnd}
+        className="cell"
+      >
+        {(!!task?.members && (
+          <div className="avatars-wrapper">
+            {task.members.map((member) => (
+              <div className="avatar-logo" key={member._id}>
+                <img
+                  onMouseEnter={() => handleHover(member)}
+                  src={member.imgUrl}
+                  alt=""
+                />
+              </div>
+            ))}
+          </div>
+        )) ||
+          "empty"}
+        {!!selectedMember && (
+          <div
+            onMouseEnter={() => (shouldActiveRef.current = true)}
+            onMouseLeave={() => (shouldActiveRef.current = false)}
+            className="member-details-wrapper"
+          >
+            <div className={`member-details`}>
+              <div className="avatar-logo">
+                <img src={selectedMember.imgUrl} alt="" />
+              </div>
+              <div className="member-details-content">
+                <h4>{selectedMember.fullname}</h4>
+                <p>[logo] Time at current location, location</p>
+                <h4>membership label</h4>
+              </div>
+              <div className="member-detail-btns">
+                <button>Btn 1</button>
+                <button>Btn 2</button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-      <div
-        className={`member-add-selector ${isActive ? "active" : "hidden"}`}
-        onClick={(e) => {
-          e.stopPropagation()
-        }}
-      >
-        <div className="member-labels">labels</div>
-        <div className="member-search">
-          <input type="text" placeholder="search" />
-        </div>
-        <div className="member-suggestions">suggested members</div>
+        )}
       </div>
-    </div>
+    </Dropdown>
   )
 }
 
