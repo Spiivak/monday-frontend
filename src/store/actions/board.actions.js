@@ -82,7 +82,7 @@ export async function updateTask(
   let newTask
   switch (cmpType) {
     case 'task':
-      newTask = { ...task, ['title' + cmpId]: data }
+      newTask = { ...task, title: data }
       break
     case 'StatusPicker':
       newTask = { ...task, ['status' + cmpId]: data }

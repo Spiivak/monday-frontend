@@ -83,7 +83,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
     setNewTaskTitle('')
   }
 
-  function saveNewTask(title){
+  function saveNewTask(title) {
     const newTask = { title }
     addTask(boardId, group.id, newTask)
     setNewTaskTitle('')
@@ -123,10 +123,15 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
               {columnHeaders.map((columnHeader, idx) => (
                 <th key={idx}>
                   <div className="flex align-center space-between hoverable">
-                    <EditableText initialText={columnHeader.title} onSave={()=>{}}/>
+                    <EditableText
+                      initialText={columnHeader.title}
+                      onSave={() => {}}
+                    />
                     <ContextBtn
                       type="column"
-                      onDeleteColumn={() => onDeleteColumn(boardId, columnHeader.id)}
+                      onDeleteColumn={() =>
+                        onDeleteColumn(boardId, columnHeader.id)
+                      }
                     />
                   </div>
                 </th>
@@ -149,7 +154,12 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                     <input type="checkbox" />
                   </div>
                 </td>
-                <td><EditableText initialText={task.title} onSave={(text)=>onTaskUpdate('task',text,task)}/></td>
+                <td>
+                  <EditableText
+                    initialText={task.title}
+                    onSave={(text) => onTaskUpdate('task', '', text, task)}
+                  />
+                </td>
                 {columnHeaders.map((columnHeader, idx) => (
                   <td key={idx}>
                     <DynamicTableCell
@@ -169,7 +179,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                 </div>
               </td>
               <td colspan={columnHeaders.length + 1}>
-              <EditableText initialText={'Add item'} onSave={saveNewTask} />
+                <EditableText initialText={'Add item'} onSave={saveNewTask} />
                 {/* <form onSubmit={handleSubmit}>
                   <input
                     type="text"
