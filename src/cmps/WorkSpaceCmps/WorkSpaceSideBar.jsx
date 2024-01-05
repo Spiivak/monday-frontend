@@ -44,9 +44,9 @@ export function WorkSpaceSideBar({ onRemoveBoard, onAddBoard }) {
         onClick={() => setOpenSideBar(!sideBar)}
       >
         {sideBar ? (
-          <NavigationChevronRightIcon />
-        ) : (
           <NavigationChevronLeftIcon />
+        ) : (
+          <NavigationChevronRightIcon />
         )}
       </button>
       {/* {sideBar && ( */}
