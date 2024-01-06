@@ -40,15 +40,13 @@ export function BoardHeader({ board, onUpdateBoard }) {
         </div>
         <div className="right-btns flex align-center">
           {/* <button>activities</button> */}
-          <button
-            onClick={() => setOpenInviteModal(!inviteModal)}
-            className="btn-icon medium-transparent"
-          >
+          <button className="btn-icon medium-transparent">
             <ActivityIcon />
           </button>
-          {inviteModal ? <div>hey</div> : <div>bye</div>}
-          {/* <div>{inviteModal ? 'hey' : ''}</div> */}
-          <button className="btn-icon medium-transparent flex gap8">
+          <button
+            onClick={() => setOpenInviteModal(!inviteModal)}
+            className="btn-icon medium-transparent flex gap8"
+          >
             <InviteMembersIcon />
             Invite / 4
           </button>

@@ -88,7 +88,10 @@ export async function updateTask(
       newTask = { ...task, ['status' + cmpId]: data }
       break
     case 'DatePicker':
+      console.log(task)
+      console.log(data)
       newTask = { ...task, ['date' + cmpId]: data }
+      console.log('newTask:', newTask)
       break
     case 'DescriptionPicker':
       newTask = { ...task, ['description' + cmpId]: data }
@@ -100,17 +103,14 @@ export async function updateTask(
       newTask = { ...task, ['file' + cmpId]: data }
       break
     case 'MemberPicker':
-      // Check if the user is already in the task['members'+cmpId] array
-      const isUserInMembers = task['members' + cmpId]?.some(
-        (member) => member._id === data._id
-      )
-
-      // If the user is in the array, remove them; otherwise, add them
-      const updatedMembers = isUserInMembers
-        ? task['members' + cmpId].filter((member) => member._id !== data._id)
-        : [...task['members' + cmpId], data]
-
-      newTask = { ...task, members: updatedMembers }
+      const existingMembers = task['members' + cmpId]
+      const updatedMembers = Array.isArray(existingMembers)
+        ? [...existingMembers, data]
+        : [data]
+      newTask = {
+        ...task,
+        ['members' + cmpId]: updatedMembers,
+      }
       break
   }
   try {

@@ -136,13 +136,12 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   </div>
                 </th>
               ))}
-              <th style={{width:'60px'}}>+</th>
+              <th style={{ width: '60px' }}>+</th>
             </tr>
           </thead>
           <tbody>
             {taskRows.map((task) => (
               <tr key={task.id} className="hoverable">
-                {console.log(task)}
                 <td style={{ width: '40px' }}>
                   <div className="flex align-center justify-center relative ">
                     <div className="row-context absolute">
@@ -172,7 +171,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                     />
                   </td>
                 ))}
-                <td style={{width:'60px'}}> </td>
+                <td style={{ width: '60px' }}> </td>
               </tr>
             ))}
             <tr>
@@ -181,7 +180,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   <input type="checkbox" />
                 </div>
               </td>
-              <td colspan={columnHeaders.length + 2}>
+              <td colSpan={columnHeaders.length + 2}>
                 <EditableText initialText={'Add item'} onSave={saveNewTask} />
                 {/* <form onSubmit={handleSubmit}>
                   <input
