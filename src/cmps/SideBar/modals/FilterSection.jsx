@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { AddIcon, FilterIcon, SearchIcon } from '../../Icons'
 import { FilterModal } from './FilterModal'
 import { saveBoard } from '../../../store/actions/board.actions'
-import { Navigate } from 'react-router'
 import { boardService } from '../../../services/board.service'
 
 export function FilterSection() {
@@ -16,8 +15,15 @@ export function FilterSection() {
     }
   }
 
-  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
-  const openFilterModal = () => setIsFilterModalOpen(!isFilterModalOpen)
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  function onClickFilterModal() {
+    setIsFilterModalOpen((prevIsFilterModalOpen) => !prevIsFilterModalOpen);
+  }
+
+  function onClose() {
+    setIsFilterModalOpen(false)
+  }
+
   return (
     <div className="filter-container flex space-between">
       <div className="filter-search flex">
@@ -27,9 +33,12 @@ export function FilterSection() {
         <input type="text" placeholder="Search" />
         <button
           className="btn-icon small-transparent"
-          onClick={() => openFilterModal()}
+          onClick={onClickFilterModal}
         >
+          <div data-filter-button="true" className='flex align-center'>
+
           <FilterIcon />
+          </div>
         </button>
       </div>
       <div className="add-btn flex align-center justify-center">
@@ -37,7 +46,7 @@ export function FilterSection() {
           <AddIcon />
         </button>
       </div>
-      {isFilterModalOpen && <FilterModal />}
+      {isFilterModalOpen && <FilterModal onClose={onClose} />}
     </div>
   )
 }

@@ -16,12 +16,9 @@ async function uploadImg(ev) {
       body: formData,
     })
     const imgUrl = await res.json()
-    console.log(imgUrl)
     return imgUrl
   } catch (err) {
     console.error('Failed to upload', err)
     throw err
   }
 }
-
-// UN ASSIGNED evfo7s5e

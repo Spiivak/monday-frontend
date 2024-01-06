@@ -8,9 +8,9 @@ export function SideBarWorkSpace() {
   const [isMenuModalOpen, setIsMenuModanOpen] = useState(false)
   const [isWpModalOpen, setIsWpModalOpen] = useState(false)
 
-  function onCloseModal() {
-    setIsWpModalOpen(!isWpModalOpen)
-    setIsMenuModanOpen(!isMenuModalOpen)
+  function onClose() {
+    setIsWpModalOpen(false)
+    setIsMenuModanOpen(false)
   }
   const openWorkspaceModal = () => setIsWpModalOpen(!isWpModalOpen)
   const openMenuModal = () => setIsMenuModanOpen(!isMenuModalOpen)
@@ -21,6 +21,7 @@ export function SideBarWorkSpace() {
         <div
           className="dropdown-button flex space-between align-center gap8"
           onClick={() => openWorkspaceModal()}
+          data-workspace-button="true"
         >
           <div className="workspace-title flex align-center space-between">
             <div className="workspace-icon">
@@ -43,11 +44,13 @@ export function SideBarWorkSpace() {
           <button
             className="btn-icon medium-transparent"
             onClick={() => openMenuModal()}
-          >
+          > 
+          <div className='flex' data-more-button="true">
             <MenuIcon />
+          </div>
           </button>
-          {isMenuModalOpen && <MoreModal />}
-          {isWpModalOpen && <WorkSpaceContext />}
+          {isMenuModalOpen && <MoreModal onClose={onClose} />}
+          {isWpModalOpen && <WorkSpaceContext onClose={onClose}/>}
         </div>
       </div>
     </div>

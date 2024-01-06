@@ -33,7 +33,6 @@ import {
   updateColumn,
   updateTask,
 } from '../../store/actions/board.actions'
-import { useParams } from 'react-router-dom'
 import { AddSmallIcon, MenuIcon, NavigationChevronDownIcon } from '../Icons'
 import { ContextBtn } from '../ContextBtn'
 import { EditableText } from '../EditableText'
@@ -83,8 +82,12 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
   }, [cmpsOrder, group])
 
   // * TASK
-  function onTaskUpdate(cmpType, cmpId, data, task) {
-    updateTask(boardId, group.id, task.id, cmpType, cmpId, task, data)
+  async function onTaskUpdate(cmpType, cmpId, data, task) {
+    try {
+      await updateTask(boardId, group.id, task.id, cmpType, cmpId, task, data)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   function onDeleteTask(boardId, groupId, taskId) {

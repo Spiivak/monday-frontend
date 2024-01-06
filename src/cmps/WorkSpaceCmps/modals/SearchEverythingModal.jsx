@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AddIcon, AddSmallIcon, ArchiveIcon, BookmarkIcon, CloseIcon, CloseSmallIcon, DoubleCheckIcon, FeedbackIcon, FileIcon, InfoIcon, MentionIcon, MenuIcon, NavigationChevronDownIcon, PersonIcon, SearchIcon, SettingsIcon, WorkIcon } from '../../Icons';
 import { ContextBtn } from '../../ContextBtn';
 import { NavLink } from 'react-router-dom';
@@ -6,11 +6,31 @@ import { HotTub, Light } from '@mui/icons-material';
 
 export function SearchEverythingModal({ onClose }) {
   const { readUpdates, setReadUpdates } = useState(false)
+
+
+  const modalRef = useRef()
+
+  const handleClickOutside = (event) => {
+    const isSearchButton = event.target.closest('[data-search-button="true"]');
+    if (!modalRef.current || (!modalRef.current.contains(event.target) && !isSearchButton)) {
+      onClose()
+    }
+  }
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => handleClickOutside(event)
+    window.addEventListener('mousedown', handleOutsideClick)
+
+    return () => {
+      window.removeEventListener('mousedown', handleOutsideClick)
+    }
+  }, [onClose])
+
   return (
     <>
       <div className="overlay"></div>
 
-      <div className="search-modal flex column">
+      <div className="search-modal flex column" ref={modalRef}>
         <div className="header flex column">
           <div className="search-input">
       <button onClick={onClose} className='relative btn-icon small-transparent' style={{ top: '-16px', right: '-1525px' }}><CloseIcon /></button>
