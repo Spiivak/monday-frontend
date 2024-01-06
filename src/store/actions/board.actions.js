@@ -82,6 +82,13 @@ export async function updateTask(
   data
 ) {
   let newTask
+  console.log(boardId,
+    groupId,
+    taskId,
+    cmpType,
+    cmpId,
+    task,
+    data)
   switch (cmpType) {
     case 'task':
       newTask = { ...task, title: data }
