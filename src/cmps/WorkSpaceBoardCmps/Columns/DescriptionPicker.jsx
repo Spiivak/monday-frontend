@@ -30,6 +30,7 @@ export function DescriptionPicker({ task, cmpId, handleUpdateTask }) {
         style: {
           overflow: 'hidden',
           textOverflow: 'ellipsis',
+          boxSizing: 'border-box',
         },
       }}
     />

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { uploadService } from '../services/upload.service'
 import { styled } from '@mui/material/styles'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
@@ -47,7 +47,7 @@ export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
   }
 
   return (
-    <div className="upload-preview cell">
+    <div className="upload-preview cell" style={{ padding: '7px' }}>
       {isLoading ? (
         <CircularProgress size="16px" />
       ) : (
@@ -55,13 +55,22 @@ export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
           {imgData?.imgUrl ? (
             <>
               <img src={imgData.imgUrl} style={{ maxWidth: '200px' }} />
-              <IconButton onClick={removeImg} component="label" size="small">
+              <IconButton
+                onClick={removeImg}
+                component="label"
+                size="small"
+                style={{ padding: '0px' }}
+              >
                 <CloseIcon fontSize="small" />
               </IconButton>
             </>
           ) : (
-            <IconButton component="label" size="small">
-              <UploadFileIcon />
+            <IconButton
+              component="label"
+              size="small"
+              style={{ padding: '0px' }}
+            >
+              <UploadFileIcon fontSize="small" />
               <VisuallyHiddenInput
                 type="file"
                 onChange={uploadImg}
