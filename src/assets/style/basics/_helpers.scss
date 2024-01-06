@@ -30,6 +30,35 @@
   flex-wrap: wrap;
 }
 
+// Grid helpers
+.grid {
+  display: grid;
+}
+
+.grid.c2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid.c3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid.c4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid.r2 {
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.grid.r3 {
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.grid.r4 {
+  grid-template-rows: repeat(4, 1fr);
+}
+
 // Space Helpers
 .flex.gap16 {
   gap: 16px;
