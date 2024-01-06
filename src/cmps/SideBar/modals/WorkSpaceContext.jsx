@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import {
   AddSmallIcon,
   FavoriteIcon,
@@ -6,9 +7,26 @@ import {
   WorkspaceIcon,
 } from '../../Icons'
 
-export function WorkSpaceContext() {
+export function WorkSpaceContext({onClose}) {
+  const modalRef = useRef();
+
+  const handleClickOutside = (event) => {
+    const isFilterButton = event.target.closest('[data-workspace-button="true"]');
+    if (!modalRef.current || (!modalRef.current.contains(event.target) && !isFilterButton)) {
+      onClose();
+    }
+  };
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => handleClickOutside(event);
+    window.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      window.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [onClose]);
   return (
-    <div className="workspace-context-container flex">
+    <div className="workspace-context-container flex" ref={modalRef}>
       <div className="workspace-wrapper flex column space-between">
         <div className="workspace-context-header">
           <div className="workspace-search flex">
