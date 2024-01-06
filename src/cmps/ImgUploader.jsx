@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { uploadService } from '../services/upload.service'
 import { styled } from '@mui/material/styles'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
+import CloseIcon from '@mui/icons-material/Close'
 import { IconButton } from '@mui/material'
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -15,7 +16,7 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 })
 
-export function ImgUploader({ imgUrl, onUploaded = null }) {
+export function ImgUploader({ imgUrl, onUploaded = null, handleDeleteFile }) {
   const [imgData, setImgData] = useState({
     imgUrl,
     height: 500,
@@ -30,21 +31,32 @@ export function ImgUploader({ imgUrl, onUploaded = null }) {
     setIsUploading(false)
     onUploaded && onUploaded(secure_url)
   }
+  function removeImg() {
+    setImgData({ imgUrl: '' })
+    handleDeleteFile()
+  }
 
   return (
     <div className="upload-preview cell">
       {imgData.imgUrl && (
-        <img src={imgData.imgUrl} style={{ maxWidth: '200px' }} />
+        <>
+          <img src={imgData.imgUrl} style={{ maxWidth: '200px' }} />
+          <IconButton onClick={removeImg} component="label" size="small">
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </>
       )}
-      <IconButton component="label" size="small">
-        <UploadFileIcon />
-        <VisuallyHiddenInput
-          type="file"
-          onChange={uploadImg}
-          accept="img/*"
-          id="imgUpload"
-        />
-      </IconButton>
+      {!imgData.imgUrl && (
+        <IconButton component="label" size="small">
+          <UploadFileIcon />
+          <VisuallyHiddenInput
+            type="file"
+            onChange={uploadImg}
+            accept="img/*"
+            id="imgUpload"
+          />
+        </IconButton>
+      )}
     </div>
   )
 }
