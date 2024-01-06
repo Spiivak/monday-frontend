@@ -18,6 +18,8 @@ import {
   SearchIcon,
   SwitcherIcon,
 } from '../Icons'
+import { InviteMemberModal } from './modals/InviteMemberModal'
+import { SearchEverythingModal } from './modals/SearchEverythingModal'
 // import { ActiviyIcon } from '../Icons'
 
 export function WorkSpaceHeader() {
@@ -30,7 +32,7 @@ export function WorkSpaceHeader() {
   const openNotificationModal = () => setNotificationModalOpen(true)
   const openInboxModal = () => setInboxModalOpen(true)
   const openInviteMembersModal = () => setInviteMembersModalOpen(true)
-  const openSearchModal = () => setInviteMembersModalOpen(true)
+  const openSearchModal = () => setSearchModalOpen(true)
   const openHelpModal = () => setInviteMembersModalOpen(true)
 
   const closeAllModals = () => {
@@ -96,17 +98,11 @@ export function WorkSpaceHeader() {
         </button>
 
         {/* Render modals */}
-        {isNotificationModalOpen && (
-          <NotificationModal onClose={closeAllModals} />
-        )}
+        {isNotificationModalOpen && <NotificationModal onClose={closeAllModals} />}
         {isInboxModalOpen && <InboxModal onClose={closeAllModals} />}
-        {isInviteMembersModalOpen && (
-          <InviteMembersModal onClose={closeAllModals} />
-        )}
-        {isSearchModalOpen && <SearchModal onClose={closeAllModals} />}
+        {isInviteMembersModalOpen && <InviteMemberModal onClose={closeAllModals} />}
+        {isSearchModalOpen && <SearchEverythingModal onClose={closeAllModals} />}
         {isHelpModalOpen && <HelpModal onClose={closeAllModals} />}
-        {isInviteMembersModalOpen && <ProfileModal onClose={closeAllModals} />}
-        {isInviteMembersModalOpen && <PlansModal onClose={closeAllModals} />}
       </section>
     </header>
   )

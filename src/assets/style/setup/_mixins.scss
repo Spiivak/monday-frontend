@@ -1,5 +1,5 @@
 $primary-color: #0073EA;
-$secondary-color: #F48120;
+$secondary-color: #dcdfec;
 $text-color: #323338;
 $icon-color: #676879;
 
@@ -46,33 +46,28 @@ $icon-color: #676879;
 
   // Set color variables based on button color
   $bg-color: null;
-  $text-color: #fff;
+  $text-color: #323338;
 
   @if $button-color == 'primary' {
     $bg-color: $primary-color;
   } @else if $button-color == 'secondary' {
+    color: $text-color;
     $bg-color: $secondary-color;
   } @else if $button-color == 'transparent' {
     $bg-color: transparent;
-    $text-color: #323338;
+    color: $icon-color;
   }
 
   // Style variations based on button type
   @if $button-type == 'icon' {
-    // border-radius: 5000px;
-    // height: 40px;
     background-color: transparent;
-    color: $text-color;
-    picture {
-      display: flex;
-
-    }
+    color: $icon-color;
   } @else if $button-type == 'text' {
     background-color: transparent;
-    color: $bg-color;
+    color: $text-color;
   } @else if $button-type == 'contained' {
     background-color: $bg-color;
-    color: $text-color;
+    color: #fff;
   }
 
   // Common hover effect (wave)
@@ -98,7 +93,7 @@ $icon-color: #676879;
   @if $button-type == 'text' {
     &:hover {
       border-radius: $border-radius-small;
-      background-color: lighten($bg-color, 40%);
+      background-color: $secondary-color;
     }
   }
 
@@ -113,6 +108,16 @@ $icon-color: #676879;
   @if $button-type == 'contained' {
     &:hover {
       background-color: darken($bg-color, 10%);
+    }
+  }
+
+  &:disabled {
+    color: $icon-color;
+    opacity: 0.3;
+    cursor: not-allowed;
+    &:hover {
+      background-color: transparent;
+      animation: 0;
     }
   }
 }
