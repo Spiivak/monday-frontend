@@ -4,20 +4,21 @@ export function StatusPicker({ task, cmpId, handleUpdateTask }) {
   const items = [
     {
       key: '1',
-      backgroundColor: '#00C875',
+      backgroundcolor: '#00C875',
       status: 'Done',
       label: (
         <button
           className="btn-ctn medium-primary"
           style={{ backgroundColor: '#00C875', width: '100%' }}
-          onClick={() => handleUpdateTask('StatusPicker', 'Done', task)}>
+          onClick={() => handleUpdateTask('StatusPicker', 'Done', task)}
+        >
           Done
         </button>
       ),
     },
     {
       key: '2',
-      backgroundColor: '#FDAB3D',
+      backgroundcolor: '#FDAB3D',
       status: 'Working on it',
       label: (
         <button
@@ -25,20 +26,22 @@ export function StatusPicker({ task, cmpId, handleUpdateTask }) {
           style={{ backgroundColor: '#FDAB3D', width: '100%' }}
           onClick={() =>
             handleUpdateTask('StatusPicker', 'Working on it', task)
-          }>
+          }
+        >
           Working on it
         </button>
       ),
     },
     {
       key: '3',
-      backgroundColor: '#E2445C',
+      backgroundcolor: '#E2445C',
       status: 'Stuck',
       label: (
         <button
           className="btn-ctn medium-primary"
           style={{ backgroundColor: '#E2445C', width: '100%' }}
-          onClick={() => handleUpdateTask('StatusPicker', 'Stuck', task)}>
+          onClick={() => handleUpdateTask('StatusPicker', 'Stuck', task)}
+        >
           Stuck
         </button>
       ),
@@ -53,7 +56,7 @@ export function StatusPicker({ task, cmpId, handleUpdateTask }) {
   ]
   const bgc = items.reduce((acc, item) => {
     if (item.status === task['status' + cmpId]) {
-      return item.backgroundColor
+      return item.backgroundcolor
     }
     return acc
   }, '')
@@ -68,14 +71,16 @@ export function StatusPicker({ task, cmpId, handleUpdateTask }) {
       placement="bottom"
       arrow={{
         pointAtCenter: true,
-      }}>
+      }}
+    >
       <div className="cell">
         <button
           className="label-btn"
           style={{
             backgroundColor: bgc || '#c4c4c4',
             color: 'white',
-          }}>
+          }}
+        >
           {task['status' + cmpId] || "Haven't Started"}
         </button>
       </div>
