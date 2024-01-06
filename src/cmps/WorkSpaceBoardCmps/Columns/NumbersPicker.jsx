@@ -1,10 +1,10 @@
 import TextField from '@mui/material/TextField'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export function NumbersPickers({ task, cmpId, handleUpdateTask }) {
   const [num, setNum] = useState(task['number' + cmpId] || '')
 
-  async function handleUpdateNumber(ev) {
+  function handleUpdateNumber(ev) {
     const input = ev.target.value
     const sanitizedInput = input.replace(/[^0-9]/g, '')
     setNum(sanitizedInput)
@@ -12,7 +12,7 @@ export function NumbersPickers({ task, cmpId, handleUpdateTask }) {
 
   async function handleBlur() {
     try {
-      await handleUpdateTask('NumbersPicker', sanitizedInput, task)
+      await handleUpdateTask('NumbersPicker', num, task)
     } catch (err) {
       console.log(err)
     }
