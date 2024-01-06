@@ -1,17 +1,13 @@
 import { ImgUploader } from '../../ImgUploader'
 
 export function FilePicker({ task, cmpId, handleUpdateTask }) {
-  function handelUpdateFile(imgUrl) {
-    handleUpdateTask('FilePicker', imgUrl, task)
-  }
-  function handleDeleteFile() {
-    handleUpdateTask('FilePicker', '', task)
+  function handelUpdateFile(fileData) {
+    handleUpdateTask('FilePicker', fileData, task)
   }
   return (
     <ImgUploader
-      imgUrl={task['file' + cmpId]}
-      onUploaded={handelUpdateFile}
-      handleDeleteFile={handleDeleteFile}
+      imgData={task['file' + cmpId]}
+      handleUpdateTaskFile={handelUpdateFile}
     />
   )
 }
