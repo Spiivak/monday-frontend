@@ -1,5 +1,55 @@
 .board-view-group {
   margin-bottom: 1em;
+  .board-title{
+    margin-left: $spacing-small;
+    margin-bottom: $spacing-small;
+    cursor: grab;
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: -38px;
+    width: 100%;
+    .menu-btn{
+      opacity: 0;
+      // position: absolute;
+      // left: -40px;
+      margin-right: 4px;
+      top: 0;
+    }
+    .arrow-btn{
+      display: flex;
+      align-items: center;
+      svg{
+        width: 16px;
+        height: 16px;
+      }
+    }
+    span {
+      display: none;
+      font: 400 14px Figtree;
+      color: #676879;
+      align-items: center;
+      margin-left: $spacing-small;
+    }
+      h2 {
+        cursor: text;
+        // background-color: red;
+        font: 500 18px Poppins;
+        svg {
+          display: none;
+        }
+        margin: 0;
+        padding: 0;
+      }
+      &:hover {
+        span {
+          display: flex;
+        }
+        .menu-btn {
+          opacity: 1;
+        }
+      }
+  }
   table {
     border-collapse: collapse;
     border-radius: 12px;
