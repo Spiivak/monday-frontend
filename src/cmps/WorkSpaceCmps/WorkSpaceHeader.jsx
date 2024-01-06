@@ -3,16 +3,13 @@ import { useState } from 'react'
 
 // MODALS
 import { NotificationModal } from './modals/NotificationModal'
-import { InviteMembersModal } from './modals/InviteMembersModal'
-import { SearchModal } from './modals/SearchModal'
 import { HelpModal } from './modals/HelpModal'
-import { ProfileModal } from './modals/ProfileModal'
-import { PlansModal } from './modals/PlansModal'
 import { InboxModal } from './modals/InboxModal'
 import {
   HelpIcon,
   InboxIcon,
   InviteMembersIcon,
+  MondayIcon,
   MwmIcon,
   NotificationsIcon,
   SearchIcon,
@@ -20,6 +17,7 @@ import {
 } from '../Icons'
 import { InviteMemberModal } from './modals/InviteMemberModal'
 import { SearchEverythingModal } from './modals/SearchEverythingModal'
+import UserProfile from '../../assets/img/user-profile.png'
 // import { ActiviyIcon } from '../Icons'
 
 export function WorkSpaceHeader() {
@@ -92,9 +90,9 @@ export function WorkSpaceHeader() {
         >
           <HelpIcon />
         </button>
-        <button>
-          <img src="" alt="" />
-          Avatar
+        <button className='btn-icon small-transparent flex gap8'>
+          <MondayIcon />
+          <img src={UserProfile} alt="" style={{ maxWidth: "32px", borderRadius:'50px'}}/>
         </button>
 
         {/* Render modals */}

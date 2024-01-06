@@ -34,7 +34,8 @@ import MondayProducts from '../assets/img/mp.png'
 import MWork from '../assets/img/mwm.png'
 import MSales from '../assets/img/msc.png'
 import MDev from '../assets/img/mdev.png'
-import Check from '../assets/icons/Check.svg'
+
+import { CheckIcon } from '../cmps/Icons'
 
 export function HomePage() {
   const [activeTab, setActiveTab] = useState('work-management-tab')
@@ -370,19 +371,19 @@ export function HomePage() {
                 </span>
                 <ul className="">
                   <li className="flex gap8">
-                    <img src={Check} alt="logo" />
+                    <CheckIcon/>
                     Project management
                   </li>
                   <li className="flex gap8">
-                    <img src={Check} alt="logo" />
+                  <CheckIcon/>
                     Portfolio management
                   </li>
                   <li className="flex gap8">
-                    <img src={Check} alt="logo" />
+                  <CheckIcon/>
                     Resource management
                   </li>
                   <li className="flex gap8">
-                    <img src={Check} alt="logo" />
+                  <CheckIcon/>
                     Goals & strategy
                   </li>
                 </ul>
@@ -408,19 +409,19 @@ export function HomePage() {
                 </span>
                 <ul>
                   <li className="flex gap8">
-                    <img src={Check} alt="logo" />
+                  <CheckIcon/>
                     Contact management
                   </li>
                   <li className="flex gap8">
-                    <img src={Check} alt="logo" />
+                  <CheckIcon/>
                     Sales pipeline
                   </li>
                   <li className="flex gap8">
-                    <img src={Check} alt="logo" />
+                  <CheckIcon/>
                     Post-sales management
                   </li>
                   <li className="flex gap8">
-                    <img src={Check} alt="logo" />
+                  <CheckIcon/>
                     Lead management
                   </li>
                 </ul>
@@ -446,19 +447,19 @@ export function HomePage() {
                 </span>
                 <ul>
                   <li className="flex gap8">
-                    <img src={Check} alt="logo" />
+                  <CheckIcon/>
                     Roadmap planning
                   </li>
                   <li className="flex gap8">
-                    <img src={Check} alt="logo" />
+                  <CheckIcon/>
                     Scrum & Kanban
                   </li>
                   <li className="flex gap8">
-                    <img src={Check} alt="logo" />
+                  <CheckIcon/>
                     Bug tracking
                   </li>
                   <li className="flex gap8">
-                    <img src={Check} alt="logo" />
+                  <CheckIcon/>
                     Sprint dashboards
                   </li>
                 </ul>

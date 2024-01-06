@@ -49,7 +49,7 @@ export function HomeHeader() {
           <NavLink>Contact sales</NavLink>
         </div>
         <div className="user-actions flex gap16">
-          {user && (
+          {/* {user && (
             <span className="user-info">
               <Link to={`user/${user._id}`}>
                 {user.imgUrl && <img src={user.imgUrl} />}
@@ -63,9 +63,8 @@ export function HomeHeader() {
             <section className="user-info">
               <LoginSignup onLogin={onLogin} onSignup={onSignup} />
             </section>
-          )}
-          {/* <NavLink>Login</NavLink>
-          <button className='get-started-btn'>Get Started</button> */}
+          )} */}
+          <NavLink to="/workspace" className={'get-started-btn flex align-center justify-center'}>Get Started </NavLink>
         </div>
       </div>
     </header>

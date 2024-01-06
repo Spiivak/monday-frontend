@@ -1,22 +1,26 @@
 // BuildingBlocksTabs.js
 import React from 'react'
-import Board from '../../../assets/icons/Board.svg'
-import Views from '../../../assets/icons/Status.svg'
-import Dashboard from '../../../assets/icons/Dashboard.svg'
-import Integrations from '../../../assets/icons/Integrations.svg'
-import Robot from '../../../assets/icons/Robot.svg'
-import Apps from '../../../assets/icons/Apps.svg'
-import Doc from '../../../assets/icons/Doc.svg'
+// import Board from '../../../assets/icons/Board.svg'
+// import Views from '../../../assets/icons/Status.svg'
+// import Dashboard from '../../../assets/icons/Dashboard.svg'
+// import Integrations from '../../../assets/icons/Integrations.svg'
+// import Robot from '../../../assets/icons/Robot.svg'
+// import Apps from '../../../assets/icons/Apps.svg'
+// import Doc from '../../../assets/icons/Doc.svg'
+
+
+
+import { DocIcon, DashboardIcon, AppsIcon, RobotIcon, IntegrationsIcon, BoardIcon,  } from '../../Icons'
 import { NavLink } from 'react-router-dom'
 
 const tabsData = [
-  { id: 'boards', label: 'Boards', svg: Board },
-  { id: 'views', label: 'Views', svg: Views },
-  { id: 'dashboards', label: 'Dashboards', svg: Dashboard },
-  { id: 'integrations', label: 'Integrations', svg: Integrations },
-  { id: 'automations', label: 'Automations', svg: Robot },
-  { id: 'apps', label: 'Apps', svg: Apps },
-  { id: 'docs', label: 'Docs', svg: Doc },
+  { id: 'boards', label: 'Boards', svg: <BoardIcon/> },
+  { id: 'views', label: 'Views', svg: <BoardIcon/> },
+  { id: 'dashboards', label: 'Dashboards', svg: <DashboardIcon/> },
+  { id: 'integrations', label: 'Integrations', svg: <IntegrationsIcon/> },
+  { id: 'automations', label: 'Automations', svg: <RobotIcon/> },
+  { id: 'apps', label: 'Apps', svg: <AppsIcon/> },
+  { id: 'docs', label: 'Docs', svg: <DocIcon/> },
 ]
 
 export function BuildingBlocksTabs({ activeTab, onTabClick }) {
@@ -31,9 +35,7 @@ export function BuildingBlocksTabs({ activeTab, onTabClick }) {
             }`}
             onClick={() => onTabClick(tab.id)}
           >
-            <picture>
-              <img src={tab.svg} alt={tab.label} />
-            </picture>
+            {tab.svg}
             <span>{tab.label}</span>
           </div>
         </NavLink>
