@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import { useTable } from 'react-table'
 import { DynamicTableCell } from './DynamicTableCell'
 import {
@@ -10,11 +9,12 @@ import {
   updateColumn,
   updateTask,
 } from '../../store/actions/board.actions'
-import { useParams } from 'react-router-dom'
 import { AddSmallIcon, MenuIcon, NavigationChevronDownIcon } from '../Icons'
 import { ContextBtn } from '../ContextBtn'
 import { EditableText } from '../EditableText'
 import AddColumnBtn from './Columns/AddColumnBtn'
+import { useEffect, useState } from 'react'
+
 export function BoardViewGroup({ group, boardId, cmpsOrder }) {
   const [columns, setColumns] = useState([])
   const [data, setData] = useState([])
@@ -57,7 +57,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
     setData(group.tasks)
   }, [cmpsOrder, group])
 
-    // * TASK
+  // * TASK
   async function onTaskUpdate(cmpType, cmpId, data, task) {
     try {
       await updateTask(boardId, group.id, task.id, cmpType, cmpId, task, data)
@@ -87,7 +87,6 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
   }
 
   function onAddColumn(boardId, type) {
-  function onAddColumn(boardId, type) {
     addColumn(boardId, type)
   }
 
@@ -106,8 +105,8 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
           <ContextBtn type="group" onDeleteGroup={onDeleteGroup} />
         </div>
         <div className="arrow-btn">
-          <button className='btn-icon small-transparent'>
-          <NavigationChevronDownIcon />
+          <button className="btn-icon small-transparent">
+            <NavigationChevronDownIcon />
           </button>
         </div>
         <h2 className="group-title flex editable-txt">{group.title}</h2>
@@ -193,7 +192,11 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                 </div>
               </td>
               <td colSpan={columns.length + 2}>
-                <EditableText initialText={''} onSave={saveNewTask} placeholder={'Add Item'} />
+                <EditableText
+                  initialText={''}
+                  onSave={saveNewTask}
+                  placeholder={'Add Item'}
+                />
               </td>
             </tr>
           </tbody>
