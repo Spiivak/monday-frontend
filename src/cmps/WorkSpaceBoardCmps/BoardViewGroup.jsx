@@ -11,8 +11,8 @@ import {
 import { useParams } from 'react-router-dom'
 import { AddSmallIcon } from '../Icons'
 import { ContextBtn } from '../ContextBtn'
-import { Table } from 'antd'
 import { EditableText } from '../EditableText'
+import AddColumnBtn from './Columns/AddColumnBtn'
 export function BoardViewGroup({ group, boardId, cmpsOrder }) {
   const [newTaskTitle, setNewTaskTitle] = useState('')
 
@@ -73,6 +73,10 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
     updateColumn(boardId, columnId, columnToUpdate)
   }
 
+  function onAddColumn(boardId, groupId, type){
+    console.log(boardId, groupId, type)
+  }
+
   function onDeleteTask(boardId, groupId, taskId) {
     removeTask(boardId, groupId, taskId)
   }
@@ -120,7 +124,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
         <table>
           <thead>
             <tr style={{}}>
-              <th style={{ width: '60px' }}>
+              <th style={{ width: '80px' }}>
                 <div className="flex align-center justify-center">
                   <input type="checkbox" />
                 </div>
@@ -149,13 +153,13 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   </div>
                 </th>
               ))}
-              <th style={{ width: '60px' }}>+</th>
+              <th style={{ width: '80px' }}><AddColumnBtn onAddColumn={(type)=>onAddColumn(boardId, group.id, type)}/></th>
             </tr>
           </thead>
           <tbody>
             {taskRows.map((task) => (
               <tr key={task.id} className="hoverable">
-                <td style={{ width: '40px' }}>
+                <td style={{ width: '80px' }}>
                   <div className="flex align-center justify-center relative ">
                     <div className="row-context absolute">
                       <ContextBtn
@@ -184,11 +188,11 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                     />
                   </td>
                 ))}
-                <td style={{ width: '60px' }}> </td>
+                <td style={{ width: '80px' }}> </td>
               </tr>
             ))}
             <tr>
-              <td style={{ width: '60px' }}>
+              <td style={{ width: '80px' }}>
                 <div className="flex align-center justify-center">
                   <input type="checkbox" />
                 </div>
