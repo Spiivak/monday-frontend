@@ -135,7 +135,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                       <ContextBtn
                         type="column"
                         onDeleteColumn={() =>
-                          onDeleteColumn(boardId, columnHeader.id)
+                          onDeleteColumn(boardId, column.cmp.id)
                         }
                       />
                     </div>
@@ -160,7 +160,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                         <ContextBtn
                           type="row"
                           onDeleteRow={() =>
-                            onDeleteTask(boardId, group.id, task.id)
+                            onDeleteTask(boardId, group.id, row.original.id)
                           }
                         />
                       </div>
@@ -187,7 +187,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   <input type="checkbox" />
                 </div>
               </td>
-              <td colSpan={columnHeaders.length + 2}>
+              <td colSpan={columns.length + 2}>
                 <EditableText initialText={''} onSave={saveNewTask} placeholder={'Add Item'} />
               </td>
             </tr>
