@@ -10,6 +10,8 @@ import {
   updateColumn,
   updateTask,
 } from '../../store/actions/board.actions'
+import { useParams } from 'react-router-dom'
+import { AddSmallIcon, MenuIcon, NavigationChevronDownIcon } from '../Icons'
 import { ContextBtn } from '../ContextBtn'
 import { EditableText } from '../EditableText'
 import AddColumnBtn from './Columns/AddColumnBtn'
@@ -94,10 +96,18 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
 
   return (
     <section className="board-view-group">
-      <h2 className="group-title flex gap8">
-        <ContextBtn type="group" onDeleteGroup={onDeleteGroup} /> {group.title}{' '}
+      <div className="board-title flex gap8">
+        <div className="menu-btn flex gap8">
+          <ContextBtn type="group" onDeleteGroup={onDeleteGroup} />
+        </div>
+        <div className="arrow-btn">
+          <button className='btn-icon small-transparent'>
+          <NavigationChevronDownIcon />
+          </button>
+        </div>
+        <h2 className="group-title flex editable-txt">{group.title}</h2>
         <span>{group.tasks.length} items / 0 subitems</span>
-      </h2>
+      </div>
       <div>
         <table {...getTableProps()}>
           <thead>
@@ -177,8 +187,8 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   <input type="checkbox" />
                 </div>
               </td>
-              <td colSpan={columns.length + 2}>
-                <EditableText initialText={'Add item'} onSave={saveNewTask} />
+              <td colSpan={columnHeaders.length + 2}>
+                <EditableText initialText={''} onSave={saveNewTask} placeholder={'Add Item'} />
               </td>
             </tr>
           </tbody>

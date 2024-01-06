@@ -22,7 +22,7 @@ export function BoardHeader({ board, onUpdateBoard }) {
     <section className="board-header flex align-center space-between">
       {/* {!!board && <h2>{board.title}</h2>} */}
       {!!board && (
-        <h2>
+        <h2 className='editable-txt'>
           <EditableText
             initialText={`${board.title}`}
             onSave={handleTitleChange}

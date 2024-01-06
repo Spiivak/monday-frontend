@@ -14,6 +14,7 @@ export function WorkSpaceList({ onRemoveBoard }) {
       {boards.map((board) => (
         <div key={board._id}>
           <div className="workspace-item flex align-center space-between">
+            
             <NavLink
               to={`/workspace/${board._id}`}
               className="flex gap8 align-center hoverable space-between"
@@ -24,13 +25,13 @@ export function WorkSpaceList({ onRemoveBoard }) {
                   <BoardIcon />
                   {board.title}
                 </div>
+              </div>
+            </NavLink>
                 <ContextBtn
                   type="board"
                   onDeleteBoard={() => onRemoveBoard(board._id)}
                   onClick={stopPropagation}
                 />
-              </div>
-            </NavLink>
           </div>
         </div>
       ))}

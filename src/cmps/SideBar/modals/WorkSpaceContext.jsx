@@ -4,7 +4,7 @@ import {
   HomeIcon,
   SearchIcon,
   WorkspaceIcon,
-} from '../Icons'
+} from '../../Icons'
 
 export function WorkSpaceContext() {
   return (

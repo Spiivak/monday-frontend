@@ -4,16 +4,10 @@ import {
   CollapseIcon,
   DeleteIcon,
   EditIcon,
-  FavoriteIcon,
-  GalleryIcon,
-  HomeIcon,
   MwmIcon,
-  SearchIcon,
   SettingsIcon,
   SwitchIcon,
-  WorkspaceIcon,
-} from '../Icons'
-import Mwm from '../../assets/img/mwm.png'
+} from '../../Icons'
 import { Save } from '@mui/icons-material'
 export function MoreModal() {
   return (

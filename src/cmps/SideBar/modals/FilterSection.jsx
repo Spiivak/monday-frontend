@@ -1,8 +1,21 @@
 import { useState } from 'react'
-import { AddIcon, FilterIcon, SearchIcon } from '../Icons'
+import { AddIcon, FilterIcon, SearchIcon } from '../../Icons'
 import { FilterModal } from './FilterModal'
+import { saveBoard } from '../../../store/actions/board.actions'
+import { Navigate } from 'react-router'
+import { boardService } from '../../../services/board.service'
 
-export function FilterSection({onAddBoard}) {
+export function FilterSection() {
+
+  async function onAddBoard() {
+    const board = boardService.getEmptyBoard()
+    try {
+      await saveBoard(board)
+    } catch (err) {
+      console.log('Cannot add board', err)
+    }
+  }
+
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
   const openFilterModal = () => setIsFilterModalOpen(!isFilterModalOpen)
   return (
