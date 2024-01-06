@@ -37,7 +37,7 @@ export function SideBar({ onRemoveBoard, onAddBoard }) {
 
       <button
         className="btn-icon small-transparent close-btn flex justify-center"
-        onClick={() => openSideBar(!isSidebarOpen)}
+        onClick={() => openSideBar()}
       >
         {isSidebarOpen ? (
           <NavigationChevronLeftIcon />
