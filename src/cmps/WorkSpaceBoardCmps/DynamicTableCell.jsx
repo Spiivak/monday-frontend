@@ -4,10 +4,15 @@ import { DescriptionPicker } from './Columns/DescriptionPicker'
 import { TimeLinePicker } from './Columns/TimeLinePicker'
 import { FilePicker } from './Columns/FilePicker'
 import { DatePickerC } from './Columns/DatePickerC'
+import { NumbersPickers } from './Columns/NumbersPicker'
 
 export function DynamicTableCell({ cmp, cmpId, task, onTaskUpdate }) {
-  function handleUpdateTask(cmpType, data, task) {
-    onTaskUpdate(cmpType, cmpId, data, task)
+  async function handleUpdateTask(cmpType, data, task) {
+    try {
+      await onTaskUpdate(cmpType, cmpId, data, task)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   switch (cmp) {
@@ -23,5 +28,7 @@ export function DynamicTableCell({ cmp, cmpId, task, onTaskUpdate }) {
       return <TimeLinePicker {...{ task, cmpId, handleUpdateTask }} />
     case 'FilePicker':
       return <FilePicker {...{ task, cmpId, handleUpdateTask }} />
+    case 'NumbersPicker':
+      return <NumbersPickers {...{ task, cmpId, handleUpdateTask }} />
   }
 }

@@ -90,10 +90,7 @@ export async function updateTask(
       newTask = { ...task, ['status' + cmpId]: data }
       break
     case 'DatePicker':
-      console.log(task)
-      console.log(data)
       newTask = { ...task, ['date' + cmpId]: data }
-      console.log('newTask:', newTask)
       break
     case 'DescriptionPicker':
       newTask = { ...task, ['description' + cmpId]: data }
@@ -103,6 +100,9 @@ export async function updateTask(
       break
     case 'FilePicker':
       newTask = { ...task, ['file' + cmpId]: data }
+      break
+    case 'NumbersPicker':
+      newTask = { ...task, ['number' + cmpId]: data }
       break
     case 'MemberPicker':
       const existingMembers = task['members' + cmpId]
@@ -115,7 +115,6 @@ export async function updateTask(
         ...task,
         ['members' + cmpId]: updatedMembers,
       }
-      console.log('newTask:', newTask)
       break
   }
   try {
@@ -199,10 +198,8 @@ export async function addColumn(boardId, type) {
 
   try {
     const addedColumn = await boardService.addColumn(boardId, newColumn)
-    store.dispatch({type: ADD_COLUMN, boardId, addedColumn})
-  } catch (err) {
-
-  }
+    store.dispatch({ type: ADD_COLUMN, boardId, addedColumn })
+  } catch (err) {}
 }
 
 export async function removeColumn(boardId, columnId) {

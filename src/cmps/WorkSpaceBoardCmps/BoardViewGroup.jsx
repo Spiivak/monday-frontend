@@ -57,8 +57,12 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
     setTaskRows(group.tasks)
   }, [cmpsOrder, group])
 
-  function onTaskUpdate(cmpType, cmpId, data, task) {
-    updateTask(boardId, group.id, task.id, cmpType, cmpId, task, data)
+  async function onTaskUpdate(cmpType, cmpId, data, task) {
+    try {
+      await updateTask(boardId, group.id, task.id, cmpType, cmpId, task, data)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   function onDeleteGroup() {
@@ -74,7 +78,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
     updateColumn(boardId, columnId, columnToUpdate)
   }
 
-  function onAddColumn(boardId, type){
+  function onAddColumn(boardId, type) {
     addColumn(boardId, type)
   }
 
@@ -154,7 +158,11 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   </div>
                 </th>
               ))}
-              <th style={{ width: '80px' }}><AddColumnBtn onAddColumn={(type)=>onAddColumn(boardId, type)}/></th>
+              <th style={{ width: '80px' }}>
+                <AddColumnBtn
+                  onAddColumn={(type) => onAddColumn(boardId, type)}
+                />
+              </th>
             </tr>
           </thead>
           <tbody>
