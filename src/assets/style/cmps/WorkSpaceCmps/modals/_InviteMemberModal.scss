@@ -1,0 +1,49 @@
+.invite-member-modal {
+  position: absolute;
+  inset: 50% 0 0 50%;
+  background: #fff;
+  overflow: visible;
+  border-radius: 8px;
+  height: auto;
+  width: 600px;
+  max-height: 380px;
+  margin: 0 auto;
+  translate: -50% -50%;
+  color: $text-color;
+
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  padding: 40px 40px $spacing-medium;
+
+  .header {
+    margin-top: -28px;
+    margin-bottom: 28px;
+
+    h2 {
+      font: 300 32px Figtree;
+      color: $text-color;
+    }
+  }
+
+  .body {
+    position: relative;
+    width: 100%;
+
+    .buttons {
+      justify-content: flex-end;
+      margin-top: 108px;
+    }
+
+    .select {
+      margin-top: 16px;
+    }
+
+    input[type="email"] {
+      width: 100%;
+    }
+  }
+
+}

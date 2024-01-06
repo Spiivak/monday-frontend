@@ -3,21 +3,21 @@ import { useState } from 'react'
 
 // MODALS
 import { NotificationModal } from './modals/NotificationModal'
-import { InviteMembersModal } from './modals/InviteMembersModal'
-import { SearchModal } from './modals/SearchModal'
 import { HelpModal } from './modals/HelpModal'
-import { ProfileModal } from './modals/ProfileModal'
-import { PlansModal } from './modals/PlansModal'
 import { InboxModal } from './modals/InboxModal'
 import {
   HelpIcon,
   InboxIcon,
   InviteMembersIcon,
+  MondayIcon,
   MwmIcon,
   NotificationsIcon,
   SearchIcon,
   SwitcherIcon,
 } from '../Icons'
+import { InviteMemberModal } from './modals/InviteMemberModal'
+import { SearchEverythingModal } from './modals/SearchEverythingModal'
+import UserProfile from '../../assets/img/user-profile.png'
 // import { ActiviyIcon } from '../Icons'
 
 export function WorkSpaceHeader() {
@@ -27,14 +27,27 @@ export function WorkSpaceHeader() {
   const [isSearchModalOpen, setSearchModalOpen] = useState(false)
   const [isHelpModalOpen, setHelpModalOpen] = useState(false)
 
-  const openNotificationModal = () => setNotificationModalOpen(true)
-  const openInboxModal = () => setInboxModalOpen(true)
-  const openInviteMembersModal = () => setInviteMembersModalOpen(true)
-  const openSearchModal = () => setInviteMembersModalOpen(true)
-  const openHelpModal = () => setInviteMembersModalOpen(true)
+  function onClickNotifyModal() {
+    setNotificationModalOpen((prev) => !prev)
+  }
 
-  const closeAllModals = () => {
-    console.log('close all')
+  function onClickInboxModal() {
+    setInboxModalOpen((prev) => !prev)
+  }
+
+  function onClickInviteModal() {
+    setInviteMembersModalOpen((prev) => !prev)
+  }
+
+  function onClickSearchModal() {
+    setSearchModalOpen((prev) => !prev)
+  }
+
+  function onClickHelpModal() {
+    setHelpModalOpen((prev) => !prev)
+  }
+
+  const onClose = () => {
     setNotificationModalOpen(false)
     setInboxModalOpen(false)
     setInviteMembersModalOpen(false)
@@ -62,51 +75,55 @@ export function WorkSpaceHeader() {
       <section className="header-action-btns-sect">
         <button
           className="btn-icon large-transparent"
-          onClick={() => openNotificationModal()}
+          onClick={onClickNotifyModal}
         >
+          <div className="flex align-center" data-notification-button="true">
           <NotificationsIcon />
+          </div>
         </button>
         <button
           className="btn-icon large-transparent"
-          onClick={() => openInboxModal()}
-        >
+          onClick={onClickInboxModal}
+        > 
+        <div className="flex align-center" data-inbox-button="true">
           <InboxIcon />
+        </div>
         </button>
         <button
           className="btn-icon large-transparent"
-          onClick={() => openInviteMembersModal()}
+          onClick={onClickInviteModal}
         >
+          <div className="flex align-center" data-invite-button="true">
           <InviteMembersIcon />
+          </div>
         </button>
         <button
           className="btn-icon large-transparent"
-          onClick={() => openSearchModal()}
+          onClick={onClickSearchModal}
         >
+          <div className="flex align-center" data-search-button="true">
           <SearchIcon />
+          </div>
         </button>
         <button
           className="btn-icon large-transparent"
-          onClick={() => openHelpModal()}
+          onClick={onClickHelpModal}
         >
+          <div className="flex align-center" data-help-button="true">
           <HelpIcon />
+          </div>
         </button>
-        <button>
-          <img src="" alt="" />
-          Avatar
+        <button className='btn-icon small-transparent flex gap8'>
+          <MondayIcon />
+          <img src={UserProfile} alt="" style={{ maxWidth: "32px", borderRadius:'50px'}}/>
         </button>
 
         {/* Render modals */}
-        {isNotificationModalOpen && (
-          <NotificationModal onClose={closeAllModals} />
-        )}
-        {isInboxModalOpen && <InboxModal onClose={closeAllModals} />}
-        {isInviteMembersModalOpen && (
-          <InviteMembersModal onClose={closeAllModals} />
-        )}
-        {isSearchModalOpen && <SearchModal onClose={closeAllModals} />}
-        {isHelpModalOpen && <HelpModal onClose={closeAllModals} />}
-        {isInviteMembersModalOpen && <ProfileModal onClose={closeAllModals} />}
-        {isInviteMembersModalOpen && <PlansModal onClose={closeAllModals} />}
+        {isNotificationModalOpen && <NotificationModal onClose={onClose} />}
+        {isInboxModalOpen && <InboxModal onClose={onClose} />}
+        {isInviteMembersModalOpen && <InviteMemberModal onClose={onClose} />}
+        {isSearchModalOpen && <SearchEverythingModal onClose={onClose} />}
+        {isHelpModalOpen && <HelpModal onClose={onClose} />}
       </section>
     </header>
   )

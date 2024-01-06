@@ -14,7 +14,7 @@ export function BoardViewList({ board, onAddGroup }) {
               cmpsOrder={board.cmpsOrder}
             />
           ))}
-          <button className='flex' onClick={()=>onAddGroup(board._id)}><Add/> Add new group</button>
+          <button className='btn-outline medium-primary' onClick={()=>onAddGroup(board._id)}><Add/>Add new group</button>
         </>
       )}
     </section>

@@ -12,11 +12,12 @@ import {
   saveBoard,
 } from '../../store/actions/board.actions'
 import { useSelector } from 'react-redux'
-import { WorkSpaceSideBar } from './WorkSpaceSideBar'
+// import { WorkSpaceSideBar } from './WorkSpaceSideBar-old'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 import { useParams } from 'react-router'
 import { loadUsers } from '../../store/actions/user.actions'
 import { boardService } from '../../services/board.service'
+import { SideBar } from '../SideBar/SideBar'
 
 export function WorkSpaceBoard() {
   const [selectedBoard, setSelectedBoard] = useState(null)
@@ -70,7 +71,7 @@ export function WorkSpaceBoard() {
 
   return (
     <div className="main-layout">
-      <WorkSpaceSideBar {...{ onRemoveBoard, onAddBoard }} />
+      <SideBar {...{ onRemoveBoard, onAddBoard }} />
       <section className="work-space-board">
         <div className="workspace-board-header">
           <BoardHeader board={selectedBoard} {...{ onUpdateBoard }} />

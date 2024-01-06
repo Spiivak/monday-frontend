@@ -1,20 +1,18 @@
 .inbox-modal {
-  position: absolute;
+  position: fixed;
   inset: 32px 32px 0 32px;
   z-index: 99999;
-  // background: #fff;
   background-color: white;
-  overflow: hidden auto;
-  border-radius: 16px 16px 0px 0px;
+  border-radius: 16px 16px 0 0;
   outline: none;
   padding: 0px;
-  // width: 100%;
   max-height: 1800px;
   max-width: 2000px;
   color: var(--primary-text-color);
+  overflow: hidden;
 
   .inbox-aside {
-    width: 400px;
+    min-width: 400px;
     height: calc(100% - 32px);
     font-size: 15px;
     font-weight: 400;
@@ -23,10 +21,175 @@
     display: flex;
     flex-direction: column;
     border-right: 1px solid #dcdfec;
+    padding-top: 40px;
+    padding-right: 20px;
+    height: 100%;
+
     .inbox-aside-header {
       padding-bottom: $spacing-xxl;
       padding-left: 15px;
       color: #323338;
+
+      .inbox-aside-title {
+        h2 {
+          letter-spacing: -0.2px;
+          font: 600 32px Figtree;
+        }
+
+        // background-color: blue;
+        span {
+          font: 400 32px Figtree;
+        }
+      }
+
+      .inbox-aside-subtitle {
+        .subtitle-content {
+          span {
+            font: 300 14px Figtree;
+          }
+        }
+      }
+
+      button {
+        font: 300 14px Figtree;
+      }
+    }
+
+    .inbox-aside-footer {
+
+      .inbox-aside-footer-header {
+        padding: 5px 0px 5px 15px;
+
+        h2 {
+          font: 400 18px Poppins;
+        }
+
+        button {
+          font: 400 16px Figtree;
+
+        }
+      }
+
+      .inbox-aside-footer-content {
+
+        .tab-container {
+
+          margin-bottom: 5px;
+          font-size: 14px;
+          // border-radius: 3px;
+          position: relative;
+
+          &:hover .post-count span {
+            display: none;
+          }
+
+          &:hover .post-count .menu-icon {
+            display: flex;
+          }
+
+          button {
+            font-size: 14px;
+            padding: 5px 15px;
+            height: 32px;
+            width: 100%;
+            display: flex;
+            position: relative;
+            justify-content: flex-start;
+          }
+
+          .post-count {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: absolute;
+            width: 20.8px;
+            height: 22px;
+            border-radius: 50px;
+            background-color: #dbdfec;
+            right: 5px;
+            top: 5px;
+
+            span {
+              padding: 5px;
+            }
+
+            .menu-icon {
+              cursor: pointer;
+              display: none;
+
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  .aside-main {
+    background-color: #F6F7FB;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .inbox-aside-main-header {
+
+      .header {
+        padding-left: 40px;
+        padding-top: $spacing-xl;
+        border-bottom: 1px solid #dcdfec;
+
+
+        background-color: #fff;
+
+        .tabs {
+          a{
+            &.active::after {
+              content: "";
+              position: absolute;
+              bottom: 0;
+              width: 100%;
+              height: 2px;
+              background-color: #0073EA;
+            }
+          .tab {
+            height: calc(100% - 1px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 16px;
+            font: 400 16px/22px Figtree;
+            margin-bottom: 1px;
+            
+            }
+            }
+        }
+      }
+    }
+
+    .inbox-body-content {
+      padding-top: $spacing-medium;
+      padding-left: 40px;
+      padding-right: 40px;
+
+    }
+  }
+
+  .no-unread-updates {
+    h2 {
+      color: $text-color;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      margin-top: 20px;
+      line-height: 30px;
+    }
+    p {
+      color: $text-color;
+      font-size: 15px;
+      font-weight: 400;
+      max-width: 400px;
+      text-align: center;
     }
   }
 }

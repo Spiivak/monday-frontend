@@ -1,5 +1,5 @@
 $primary-color: #0073EA;
-$secondary-color: #F48120;
+$secondary-color: #dcdfec;
 $text-color: #323338;
 $icon-color: #676879;
 
@@ -46,32 +46,41 @@ $icon-color: #676879;
 
   // Set color variables based on button color
   $bg-color: null;
-  $text-color: #fff;
+  $text-color: #323338;
 
   @if $button-color == 'primary' {
     $bg-color: $primary-color;
   } @else if $button-color == 'secondary' {
+    color: $text-color;
     $bg-color: $secondary-color;
   } @else if $button-color == 'transparent' {
     $bg-color: transparent;
-    $text-color: #323338;
+    color: $icon-color;
   }
 
   // Style variations based on button type
   @if $button-type == 'icon' {
-    // border-radius: 5000px;
-    // height: 40px;
     background-color: transparent;
-    color: $text-color;
-    picture {
-      display: flex;
-
+    color: $icon-color;
+    &:hover {
+      background-color: rgb(220, 223, 236);
     }
   } @else if $button-type == 'text' {
     background-color: transparent;
-    color: $bg-color;
+    color: $text-color;
+    &:hover {
+      border-radius: $border-radius-small;
+      background-color: $secondary-color;
+    }
   } @else if $button-type == 'contained' {
     background-color: $bg-color;
+    color: #fff;
+    &:hover {
+      background-color: darken($bg-color, 10%);
+    }
+  } @else if $button-type == 'outline' {
+    background-color: transparent;
+    border: 1px solid #c3c6d4;
     color: $text-color;
   }
 
@@ -89,30 +98,41 @@ $icon-color: #676879;
     animation: wave-effect 0.8s forwards;
   }
 
+
   // Click effect (additional small wave)
   &:active::before {
     animation: click-wave 0.3s;
   }
 
   // Specific hover effect for text buttons
-  @if $button-type == 'text' {
-    &:hover {
-      border-radius: $border-radius-small;
-      background-color: lighten($bg-color, 40%);
-    }
-  }
+  // @if $button-type == 'text' {
+  //   &:hover {
+  //     border-radius: $border-radius-small;
+  //     background-color: $secondary-color;
+  //   }
+  // }
 
   // Specific hover effect for icon buttons
-  @if $button-type == 'icon' {
-    &:hover {
-      background-color: rgb(220, 223, 236);
-    }
-  }
+  // @if $button-type == 'icon' {
+  //   &:hover {
+  //     background-color: rgb(220, 223, 236);
+  //   }
+  // }
 
   // Specific hover effect for contained buttons
-  @if $button-type == 'contained' {
+  // @if $button-type == 'contained' {
+  //   &:hover {
+  //     background-color: darken($bg-color, 10%);
+  //   }
+  // }
+
+  &:disabled {
+    color: $icon-color;
+    opacity: 0.3;
+    cursor: not-allowed;
     &:hover {
-      background-color: darken($bg-color, 10%);
+      background-color: transparent;
+      animation: 0;
     }
   }
 }
