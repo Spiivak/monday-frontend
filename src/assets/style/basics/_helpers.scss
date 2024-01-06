@@ -18,6 +18,10 @@
   justify-content: center;
 }
 
+.flex.justify-start {
+  justify-content: start;
+}
+
 .flex.space-between {
   justify-content: space-between;
 }
@@ -75,4 +79,16 @@
   &:hover .hidden-hover {
     opacity: 1;
   }
+}
+
+// Overlay
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(41, 47, 76, 0.7);
+  z-index: 500;
 }
