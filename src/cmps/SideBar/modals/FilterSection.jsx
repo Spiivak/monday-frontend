@@ -2,9 +2,7 @@ import { useState } from 'react'
 import { AddIcon, FilterIcon, SearchIcon } from '../../Icons'
 import { FilterModal } from './FilterModal'
 import { saveBoard } from '../../../store/actions/board.actions'
-import { Navigate } from 'react-router'
 import { boardService } from '../../../services/board.service'
-import { debounce } from 'lodash'
 
 export function FilterSection() {
 
