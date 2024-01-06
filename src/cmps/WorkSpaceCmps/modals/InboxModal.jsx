@@ -1,16 +1,35 @@
 // Example NotificationModal.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BookmarkIcon, CloseIcon, DoubleCheckIcon, FeedbackIcon, InfoIcon, MentionIcon, MenuIcon, NavigationChevronDownIcon, SettingsIcon, WorkIcon } from '../../Icons';
 import { Link, NavLink } from 'react-router-dom';
 import { ContextBtn } from '../../ContextBtn';
 
 export function InboxModal({ onClose }) {
   const { readUpdates, setReadUpdates} = useState(false)
+
+  const modalRef = useRef()
+
+  const handleClickOutside = (event) => {
+    const isInboxButton = event.target.closest('[data-inbox-button="true"]');
+    if (!modalRef.current || (!modalRef.current.contains(event.target) && !isInboxButton)) {
+      onClose()
+    }
+  }
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => handleClickOutside(event)
+    window.addEventListener('mousedown', handleOutsideClick)
+
+    return () => {
+      window.removeEventListener('mousedown', handleOutsideClick)
+    }
+  }, [onClose])
+  
     return (
     <>
       <div className="overlay"></div>
 
-      <div className="inbox-modal flex">
+      <div className="inbox-modal flex" ref={modalRef}>
 
         <div className="inbox-aside">
           <div className="inbox-aside-header">

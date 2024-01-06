@@ -1,9 +1,28 @@
-import React, { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CloseIcon } from '../../Icons';
 
 export function InviteMemberModal({ onClose }) {
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('member');
+
+  const modalRef = useRef()
+
+  const handleClickOutside = (event) => {
+    const isInviteButton = event.target.closest('[data-invite-button="true"]');
+    if (!modalRef.current || (!modalRef.current.contains(event.target) && !isInviteButton)) {
+      onClose()
+    }
+  }
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => handleClickOutside(event)
+    window.addEventListener('mousedown', handleOutsideClick)
+
+    return () => {
+      window.removeEventListener('mousedown', handleOutsideClick)
+    }
+  }, [onClose])
+
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);

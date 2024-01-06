@@ -1,10 +1,29 @@
 // Example NotificationModal.jsx
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { CloseSmallIcon, FeedbackIcon, MenuIcon, NavigationChevronDownIcon, PersonIcon, SearchIcon } from '../../Icons';
 
 export function NotificationModal({ onClose }) {
+  const modalRef = useRef()
+
+  const handleClickOutside = (event) => {
+    const isNotifyButton = event.target.closest('[data-notification-button="true"]');
+    if (!modalRef.current || (!modalRef.current.contains(event.target) && !isNotifyButton)) {
+      onClose()
+    }
+  }
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => handleClickOutside(event)
+    window.addEventListener('mousedown', handleOutsideClick)
+
+    return () => {
+      window.removeEventListener('mousedown', handleOutsideClick)
+    }
+  }, [onClose])
+
+
   return (
-    <div className="notification-modal">
+    <div className="notification-modal" ref={modalRef}>
       <div className="notification-header flex space-between">
         <button className='btn-icon small-transparent' onClick={() => onClose()}>
           <CloseSmallIcon/>
