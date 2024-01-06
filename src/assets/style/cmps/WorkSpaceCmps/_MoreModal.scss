@@ -1,0 +1,107 @@
+.more-modal-container {
+  font: 400 14px/20px Figtree;
+  box-shadow: $box-shadow-small;
+  color: #323338;
+
+  min-width: 280px;
+  min-height: 225px;
+  padding: $spacing-small + 4px;
+  top: 100%;
+  left: 50%;
+  position: absolute;
+  background-color: white;
+  border-radius: $border-radius-medium;
+  z-index: 150;
+
+  .ds-tabs-section {
+    .tab {
+      button {
+        font: 400 14px/20px Figtree;
+        justify-content: flex-start;
+
+        &:disabled {
+          cursor: not-allowed;
+          opacity: 0.3;
+        }
+      }
+    }
+  }
+
+  .ds-divider {
+    width: 100%;
+    box-sizing: content-box;
+    border-width: 1px;
+    border-style: solid;
+    opacity: 0.1;
+    background: red;
+    border-image-slice: 1;
+    margin: $spacing-small 0;
+  }
+}
+
+.add-modal-container {
+  font: 400 14px/20px Figtree;
+  box-shadow: $box-shadow-small;
+  color: #323338;
+
+  min-width: 280px;
+  min-height: 225px;
+  padding: $spacing-small + 4px;
+  top: 100%;
+  right: 50%;
+  position: absolute;
+  background-color: white;
+  border-radius: $border-radius-medium;
+  z-index: 150;
+
+  .ds-tabs-section {
+    .tab {
+      button {
+        font: 400 14px/20px Figtree;
+        justify-content: flex-start;
+
+        &:disabled {
+          cursor: not-allowed;
+          opacity: 0.3;
+        }
+      }
+    }
+  }
+
+  .ds-divider {
+    width: 100%;
+    box-sizing: content-box;
+    border-width: 1px;
+    border-style: solid;
+    opacity: 0.1;
+    background: red;
+    border-image-slice: 1;
+    margin: $spacing-small 0;
+  }
+
+  //SVG WRAPPERS
+
+  .icon-wrapper {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+  }
+  .color-col-wrapper {
+    background-color: rgb(17, 221, 128);
+  }
+  .people-col-wrapper {
+    background-color: rgb(0, 207, 244);
+  }
+  .link-col-wrapper {
+    background-color: rgb(0, 169, 255);
+  }
+  .date-col-wrapper {
+    background-color: rgb(17, 221, 128);
+  }
+  .numbers-col-wrapper {
+    background-color: rgb(255, 204, 0);
+  }
+  .timeline-col-wrapper {
+    background-color: rgb(163, 88, 223);
+  }
+}
