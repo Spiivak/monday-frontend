@@ -1,34 +1,37 @@
-import { useEffect, useState } from 'react'
-import Textarea from '@mui/joy/Textarea'
+import { useState } from 'react'
+import TextField from '@mui/material/TextField'
 
-export function DescriptionPicker({ task,cmpId, handleUpdateTask }) {
-  const [minRows, setMinRows] = useState(1)
-  const [desc, setDesc] = useState(task['description'+cmpId] || '')
+export function DescriptionPicker({ task, cmpId, handleUpdateTask }) {
+  const [desc, setDesc] = useState(task['description' + cmpId] || '')
 
-  function handleUpdateDesc(ev) {
+  async function handleBlur() {
+    try {
+      await handleUpdateTask('DescriptionPicker', desc, task)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  function handleChange(ev) {
     ev.preventDefault()
     const txt = ev.target.value
     setDesc(txt)
-    handleUpdateTask('DescriptionPicker', txt, task)
-  }
-
-  useEffect(() => {}, [desc])
-
-  function handleTextareaBlur() {
-    setMinRows(1)
-    setDesc((prevDesc) => prevDesc.replace(/\n/g, ' ').trim())
   }
 
   return (
-    <div className="cell">
-      <Textarea
-        placeholder="Add description"
-        minRows={minRows}
-        value={task['description'+cmpId] ? desc : ''}
-        onChange={handleUpdateDesc}
-        onClick={() => setMinRows(5)}
-        onBlur={handleTextareaBlur}
-      />
-    </div>
+    <TextField
+      size="small"
+      className="cell"
+      placeholder="Add description"
+      value={desc}
+      onBlur={handleBlur}
+      onChange={handleChange}
+      inputProps={{
+        style: {
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        },
+      }}
+    />
   )
 }
