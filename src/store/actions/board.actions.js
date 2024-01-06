@@ -105,12 +105,15 @@ export async function updateTask(
     case 'MemberPicker':
       const existingMembers = task['members' + cmpId]
       const updatedMembers = Array.isArray(existingMembers)
-        ? [...existingMembers, data]
+        ? existingMembers.some((member) => member._id === data._id)
+          ? existingMembers.filter((member) => member._id !== data._id)
+          : [...existingMembers, data]
         : [data]
       newTask = {
         ...task,
         ['members' + cmpId]: updatedMembers,
       }
+      console.log('newTask:', newTask)
       break
   }
   try {
