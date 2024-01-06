@@ -56,8 +56,9 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
     removeGroup(boardId, group.id)
   }
 
+  if(!group) return <>hi</>
   return (
-    <DnDApp />
+    <DnDApp {...{group, boardId, cmpsOrder}} />
     // <section className="board-view-group">
     //   <h2 className="group-title flex gap8">
     //     <ContextBtn type="group" onDeleteGroup={onDeleteGroup} /> {group.title}{' '}

@@ -25,6 +25,7 @@ const newPerson = (id) => {
   };
 };
 
+
 export default function makeData(...lens) {
   const makeDataLevel = (depth = 0) => {
     const len = lens[depth];

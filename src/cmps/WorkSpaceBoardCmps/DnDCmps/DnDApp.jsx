@@ -1,83 +1,70 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useMemo } from 'react';
+import { useTable, useDrag, useDrop } from 'react-table';
+import { DndContext, closestCenter, KeyboardSensor, PointerSensor } from '@dnd-kit/core';
+import { arrayMove, SortableContext, rectSortingStrategy } from '@dnd-kit/sortable';
 
-import makeData from "./MakeData.js";
-import { Table } from "./Table";
+export function DnDApp({ group, cmpsOrder }) {
+  const getColumns = () => {
+    return [
+      { Header: 'Task', accessor: 'title', id: '0' },
+      ...cmpsOrder.map((column) => ({
+        Header: column.title,
+        accessor: `${column.type}${column.id}`, // Adjusted the accessor format
+        id: column.id,
+      })),
+    ];
+  };
 
-const Styles = styled.div`
-  padding: 1rem;
+  const columns = useMemo(() => getColumns(), [cmpsOrder]);
 
-  table {
-    border-spacing: 0;
-    border: 1px solid black;
+  const data = useMemo(() => group.tasks, [group.tasks]);
 
-    tr {
-      :last-child {
-        td {
-          border-bottom: 0;
-        }
-      }
-    }
-
-    th,
-    td {
-      margin: 0;
-      padding: 0.5rem;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
-
-      :last-child {
-        border-right: 0;
-      }
-    }
-  }
-`;
-
-export function DnDApp() {
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "Name",
-        columns: [
-          {
-            Header: "First Name",
-            accessor: "firstName"
-          },
-          {
-            Header: "Last Name",
-            accessor: "lastName"
-          }
-        ]
-      },
-      {
-        Header: "Info",
-        columns: [
-          {
-            Header: "Age",
-            accessor: "age"
-          },
-          {
-            Header: "Visits",
-            accessor: "visits"
-          },
-          {
-            Header: "Status",
-            accessor: "status"
-          },
-          {
-            Header: "Profile Progress",
-            accessor: "progress"
-          }
-        ]
-      }
-    ],
-    []
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    setColumnOrder,
+  } = useTable(
+    {
+      columns,
+      data,
+    },
+    useDrag,
+    useDrop
   );
 
-  const [data, setData] = React.useState(makeData(2));
+  const handleDrop = ({ over, active }) => {
+    if (over && active) {
+      const newOrder = arrayMove(columns, active.id, over.id);
+      setColumnOrder(newOrder.map((col) => col.id));
+    }
+  };
+
   return (
-    <Styles>
-      <Table columns={columns} data={data} setData={setData} />
-    </Styles>
+    <table {...getTableProps()} className="your-table-class">
+      <thead>
+        {headerGroups.map((headerGroup) => (
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map((column) => (
+              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+      <tbody {...getTableBodyProps()}>
+        {rows.map((row) => {
+          prepareRow(row);
+          return (
+            <tr {...row.getRowProps()}>
+              {row.cells.map((cell) => (
+                <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+              ))}
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 }
