@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import { useTable } from 'react-table'
+import { SortableItem } from './DnD/SortableItem'
 
 //DND imports
 import {
@@ -187,11 +188,11 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
             <thead>
               {headerGroups.map((headerGroup) => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
-                  {/* <th style={{ width: '80px' }}>
+                  <th style={{ width: '80px' }}>
                     <div className="flex align-center justify-center">
                       <input type="checkbox" />
                     </div>
-                  </th> */}
+                  </th>
                   {headerGroup.headers.map((column) => (
                     <th {...column.getHeaderProps()}>
                       <div className="flex align-center space-between hoverable">
@@ -215,11 +216,11 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                       </div>
                     </th>
                   ))}
-                  {/* <th style={{ width: '80px' }}>
+                  <th style={{ width: '80px' }}>
                     <AddColumnBtn
                       onAddColumn={(type) => onAddColumn(boardId, type)}
                     />
-                  </th> */}
+                  </th>
                 </tr>
               ))}
             </thead>
@@ -229,40 +230,17 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                 strategy={verticalListSortingStrategy}>
                 {rows.map((row) => {
                   prepareRow(row)
-                  return <DraggableTableRow onTaskUpdate={onTaskUpdate} key={row.original.id} row={row} />
-
-                  // return (
-                  //   <tr className="hoverable" {...row.getRowProps()}>
-                  //     <td style={{ width: '80px' }}>
-                  //       <div className="flex align-center justify-center relative ">
-                  //         <div className="row-context absolute">
-                  //           <ContextBtn
-                  //             type="row"
-                  //             onDeleteRow={() =>
-                  //               onDeleteTask(boardId, group.id, row.original.id)
-                  //             }
-                  //           />
-                  //         </div>
-                  //         <input type="checkbox" />
-                  //       </div>
-                  //     </td>
-                  //     {row.cells.map((cell) => (
-                  //       <td {...cell.getCellProps()}>
-                  //         <DynamicTableCell
-                  //           cmp={cell.column.cmp.type}
-                  //           cmpId={cell.column.cmp.id}
-                  //           onTaskUpdate={onTaskUpdate}
-                  //           task={cell.row.original}
-                  //         />
-                  //       </td>
-                  //     ))}
-                  //     <td> </td>
-                  //   </tr>
-                  // )
+                  return (
+                    <SortableItem
+                      key={row.original.id}
+                      id={row.original.id}
+                      row={row}
+                      onTaskUpdate={onTaskUpdate}
+                    />
+                  )
                 })}
               </SortableContext>
-
-              {/* <tr>
+              <tr>
                 <td style={{ width: '80px' }}>
                   <div className="flex align-center justify-center">
                     <input type="checkbox" />
@@ -275,20 +253,80 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                     placeholder={'Add Item'}
                   />
                 </td>
-              </tr> */}
+              </tr>
             </tbody>
           </table>
-          <DragOverlay>
+          {/* <DragOverlay>
             {activeId && (
               <table style={{ width: '100%' }}>
                 <tbody>
-                  <StaticTableRow onTaskUpdate={onTaskUpdate} row={selectedRow} />
+                  <StaticTableRow row={selectedRow} />
                 </tbody>
               </table>
             )}
-          </DragOverlay>
+          </DragOverlay> */}
         </DndContext>
       </div>
     </section>
   )
+}
+
+{
+  /* <th style={{ width: '80px' }}>
+                    <div className="flex align-center justify-center">
+                      <input type="checkbox" />
+                    </div>
+                  </th>  */
+}
+
+//  <th style={{ width: '80px' }}>
+//                     <AddColumnBtn
+//                       onAddColumn={(type) => onAddColumn(boardId, type)}
+//                     />
+//                   </th>
+
+// return (
+//                     <tr className="hoverable" {...row.getRowProps()}>
+                      // <td style={{ width: '80px' }}>
+                      //   <div className="flex align-center justify-center relative ">
+                      //     <div className="row-context absolute">
+                      //       <ContextBtn
+                      //         type="row"
+                      //         onDeleteRow={() =>
+                      //           onDeleteTask(boardId, group.id, row.original.id)
+                      //         }
+                      //       />
+                      //     </div>
+                      //     <input type="checkbox" />
+                      //   </div>
+                      // </td>
+//                       {row.cells.map((cell) => (
+//                         <td {...cell.getCellProps()}>
+//                           <DynamicTableCell
+//                             cmp={cell.column.cmp.type}
+//                             cmpId={cell.column.cmp.id}
+//                             onTaskUpdate={onTaskUpdate}
+//                             task={cell.row.original}
+//                           />
+//                         </td>
+//                       ))}
+//                       <td> </td>
+//                     </tr>
+//                   )
+
+{
+  /* <tr>
+                <td style={{ width: '80px' }}>
+                  <div className="flex align-center justify-center">
+                    <input type="checkbox" />
+                  </div>
+                </td>
+                <td colSpan={columns.length + 2}>
+                  <EditableText
+                    initialText={initText}
+                    onSave={saveNewTask}
+                    placeholder={'Add Item'}
+                  />
+                </td>
+              </tr> */
 }
