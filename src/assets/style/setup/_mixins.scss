@@ -3,17 +3,15 @@ $secondary-color: #dcdfec;
 $text-color: #323338;
 $icon-color: #676879;
 
-// Mixin for button style
-@mixin button-style($button-type, $button-size, $button-color) {
-  // Shared styles for all button types
+@mixin button-style($button-type: 'contained', $button-size: 'medium', $button-color: 'primary') {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  position: relative; // Needed for the wave effect
-  transition: background-color 0.3s ease; // Transition for the background-color
+  position: relative;
+  transition: background-color 0.3s ease;
 
   // Size options
   @if $button-size == 'small' {
@@ -27,7 +25,6 @@ $icon-color: #676879;
   } @else if $button-size == 'medium' {
     padding: 6px;
     font-size: 1rem;
-
     svg {
       color: $icon-color;
       width: 20px;
@@ -36,7 +33,6 @@ $icon-color: #676879;
   } @else if $button-size == 'large' {
     padding: 10px;
     font-size: 1.25rem;
-
     svg {
       color: $icon-color;
       width: 20px;
@@ -46,12 +42,10 @@ $icon-color: #676879;
 
   // Set color variables based on button color
   $bg-color: null;
-  $text-color: #323338;
 
   @if $button-color == 'primary' {
     $bg-color: $primary-color;
   } @else if $button-color == 'secondary' {
-    color: $text-color;
     $bg-color: $secondary-color;
   } @else if $button-color == 'transparent' {
     $bg-color: transparent;
@@ -62,12 +56,26 @@ $icon-color: #676879;
   @if $button-type == 'icon' {
     background-color: transparent;
     color: $icon-color;
+    &:hover {
+      background-color: rgb(220, 223, 236);
+    }
   } @else if $button-type == 'text' {
     background-color: transparent;
-    color: $text-color;
+    color: $icon-color;
+    &:hover {
+      border-radius: $border-radius-small;
+      background-color: $secondary-color;
+    }
   } @else if $button-type == 'contained' {
     background-color: $bg-color;
     color: #fff;
+    &:hover {
+      background-color: darken($bg-color, 10%);
+    }
+  } @else if $button-type == 'outline' {
+    background-color: transparent;
+    border: 1px solid #c3c6d4;
+    color: $icon-color;
   }
 
   // Common hover effect (wave)
@@ -78,37 +86,10 @@ $icon-color: #676879;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.3); // Adjust as needed
+    background: rgba(255, 255, 255, 0.3);
     border-radius: inherit;
     pointer-events: none;
     animation: wave-effect 0.8s forwards;
-  }
-
-  // Click effect (additional small wave)
-  &:active::before {
-    animation: click-wave 0.3s;
-  }
-
-  // Specific hover effect for text buttons
-  @if $button-type == 'text' {
-    &:hover {
-      border-radius: $border-radius-small;
-      background-color: $secondary-color;
-    }
-  }
-
-  // Specific hover effect for icon buttons
-  @if $button-type == 'icon' {
-    &:hover {
-      background-color: rgb(220, 223, 236);
-    }
-  }
-
-  // Specific hover effect for contained buttons
-  @if $button-type == 'contained' {
-    &:hover {
-      background-color: darken($bg-color, 10%);
-    }
   }
 
   &:disabled {
@@ -119,6 +100,11 @@ $icon-color: #676879;
       background-color: transparent;
       animation: 0;
     }
+  }
+
+  // Click effect (additional small wave)
+  &:active::before {
+    animation: click-wave 0.3s;
   }
 }
 
