@@ -46,12 +46,9 @@ export function SideBar({ onRemoveBoard, onAddBoard }) {
         )}
       </button>
 
-      {/* {sideBar && ( */}
       <div className="side-bar-container flex column">
-        {/* ASIDE HEADER LINKS */}
         <SideBarLinks />
 
-        {/* ASIDE FOOTER */}
         <div className="side-bar-footer">
           <div className="title-wrapper">
             <SideBarWorkSpace />
@@ -61,7 +58,6 @@ export function SideBar({ onRemoveBoard, onAddBoard }) {
           <WorkSpaceList {...{ onRemoveBoard }} />
         </div>
       </div>
-      {/* )} */}
     </section>
   )
 }
