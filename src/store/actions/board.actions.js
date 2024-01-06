@@ -152,6 +152,17 @@ export async function removeColumn(boardId, columnId) {
   } catch (err) {}
 }
 
+export async function updateColumn(boardId, columnId, column) {
+  try {
+    const updatedColumn = await boardService.updateColumn(
+      boardId,
+      columnId,
+      column
+    )
+    store.dispatch({ type: UPDATE_COLUMN, boardId, columnId, updatedColumn })
+  } catch (err) {}
+}
+
 export async function saveBoard(board) {
   const type = board._id ? UPDATE_BOARD : ADD_BOARD
   const errType = board._id ? 'update' : 'add'

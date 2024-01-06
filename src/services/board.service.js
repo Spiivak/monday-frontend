@@ -243,6 +243,7 @@ export const boardService = {
   addTask,
   removeTask,
   removeColumn,
+  updateColumn,
   getEmptyBoard,
   getEmptyGroup,
 }
@@ -298,6 +299,11 @@ function removeTask(boardId, groupId, taskId) {
 
 function removeColumn(boardId, columnId) {
   return storageService.removeColumn(STORAGE_KEY, boardId, columnId)
+}
+
+function updateColumn(boardId, columnId, column){
+  return storageService.updateColumn(STORAGE_KEY, boardId, columnId, column)
+
 }
 
 // function addMsg(boardId, msg){

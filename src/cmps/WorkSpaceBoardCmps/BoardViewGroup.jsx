@@ -5,6 +5,7 @@ import {
   removeColumn,
   removeGroup,
   removeTask,
+  updateColumn,
   updateTask,
 } from '../../store/actions/board.actions'
 import { useParams } from 'react-router-dom'
@@ -67,6 +68,11 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
     removeColumn(boardId, cmpId)
   }
 
+  function onUpdateColumn(boardId, columnId, column, data) {
+    const columnToUpdate = { ...column, title: data }
+    updateColumn(boardId, columnId, columnToUpdate)
+  }
+
   function onDeleteTask(boardId, groupId, taskId) {
     removeTask(boardId, groupId, taskId)
   }
@@ -125,7 +131,14 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   <div className="flex align-center space-between hoverable">
                     <EditableText
                       initialText={columnHeader.title}
-                      onSave={() => {}}
+                      onSave={(text) => {
+                        onUpdateColumn(
+                          boardId,
+                          columnHeader.id,
+                          columnHeader,
+                          text
+                        )
+                      }}
                     />
                     <ContextBtn
                       type="column"
