@@ -54,6 +54,36 @@
     border-collapse: collapse;
     border-radius: 12px;
     overflow-x: scroll;
+    position: relative;
+    td:first-of-type::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 37px;
+      width: 6px;
+      background-color: rgb(162, 93, 220);
+      border-top-left-radius: 6px;
+      // border-bottom-left-radius: 6px;
+    }
+    td:not(:first-of-type, :last-of-type)::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      height: 27px;
+      width: 6px;
+      background-color: rgb(162, 93, 220);
+    }
+    td:last-of-type::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 36px;
+      width: 6px;
+      background-color: rgba(163, 93, 220, 0.171);
+      border-bottom-left-radius: 6px;
+    }
   }
   td,
   th {
@@ -98,9 +128,10 @@
   }
   .row-context{
     z-index: 1000;
-    right: 100%;
-    top: 50%;
-    translate: -5% -50%;
+    left: -32px;
+    // right: 100%;
+    // top: 50%;
+    // translate: -8% -50%;
   }
 }
 
