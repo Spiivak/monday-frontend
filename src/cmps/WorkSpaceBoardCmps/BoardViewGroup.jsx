@@ -1,5 +1,26 @@
+import React, { useEffect, useState, useMemo } from 'react'
 import { useTable } from 'react-table'
-import { DynamicTableCell } from './DynamicTableCell'
+import { SortableItem } from './DnD/SortableItem'
+
+//DND imports
+import {
+  closestCenter,
+  DndContext,
+  DragOverlay,
+  KeyboardSensor,
+  MouseSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core'
+import { restrictToVerticalAxis } from '@dnd-kit/modifiers'
+import {
+  arrayMove,
+  SortableContext,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable'
+
+//For DnD
 import {
   addColumn,
   addTask,
@@ -9,15 +30,15 @@ import {
   updateColumn,
   updateTask,
 } from '../../store/actions/board.actions'
-import { AddSmallIcon, MenuIcon, NavigationChevronDownIcon } from '../Icons'
+import { NavigationChevronDownIcon } from '../Icons'
 import { ContextBtn } from '../ContextBtn'
 import { EditableText } from '../EditableText'
 import AddColumnBtn from './Columns/AddColumnBtn'
-import { useEffect, useState } from 'react'
 
 export function BoardViewGroup({ group, boardId, cmpsOrder }) {
   const [columns, setColumns] = useState([])
   const [data, setData] = useState([])
+  const [initText, setInitText] = useState('')
 
   useEffect(() => {
     setColumns([
@@ -73,7 +94,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
   function saveNewTask(title) {
     const newTask = { title }
     addTask(boardId, group.id, newTask)
-    setNewTaskTitle('')
+    setInitText('')
   }
 
   // * COLUMN
@@ -95,8 +116,47 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
     removeGroup(boardId, group.id)
   }
 
+  const [activeId, setActiveId] = useState()
+  const items = useMemo(() => data?.map(({ id }) => id), [data])
+
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data })
+
+  const sensors = useSensors(
+    useSensor(MouseSensor, {}),
+    useSensor(TouchSensor, {}),
+    useSensor(KeyboardSensor, {})
+  )
+
+  function handleDragStart(event) {
+    setActiveId(event.active.id)
+  }
+
+  function handleDragEnd(event) {
+    const { active, over } = event
+    if (active.id !== over.id) {
+      setData((data) => {
+        const oldIndex = items.indexOf(active.id)
+        const newIndex = items.indexOf(over.id)
+        return arrayMove(data, oldIndex, newIndex)
+      })
+    }
+
+    setActiveId(null)
+  }
+
+  function handleDragCancel() {
+    setActiveId(null)
+  }
+
+  const selectedRow = useMemo(() => {
+    if (!activeId) {
+      return null
+    }
+    const row = rows.find(({ original }) => original.id === activeId)
+    prepareRow(row)
+    return row
+  }, [activeId, rows, prepareRow])
 
   return (
     <section className="board-view-group">
@@ -113,94 +173,89 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
         <span>{group.tasks.length} items / 0 subitems</span>
       </div>
       <div>
-        <table {...getTableProps()}>
-          <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                <th style={{ width: '80px' }}>
-                  <div className="flex align-center justify-center">
-                    <input type="checkbox" />
-                  </div>
-                </th>
-                {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()}>
-                    <div className="flex align-center space-between hoverable">
-                      <EditableText
-                        initialText={column.render('Header')}
-                        onSave={(text) => {
-                          onUpdateColumn(
-                            boardId,
-                            column.cmp.id,
-                            column.cmp,
-                            text
-                          )
-                        }}
-                      />
-                      <ContextBtn
-                        type="column"
-                        onDeleteColumn={() =>
-                          onDeleteColumn(boardId, column.cmp.id)
-                        }
-                      />
+        <DndContext
+          sensors={sensors}
+          onDragEnd={handleDragEnd}
+          onDragStart={handleDragStart}
+          onDragCancel={handleDragCancel}
+          collisionDetection={closestCenter}
+          modifiers={[restrictToVerticalAxis]}>
+          <table {...getTableProps()}>
+            <thead>
+              {headerGroups.map((headerGroup) => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  <th style={{ width: '80px' }}>
+                    <div className="flex align-center justify-center">
+                      <input type="checkbox" />
                     </div>
                   </th>
-                ))}
-                <th style={{ width: '80px' }}>
-                  <AddColumnBtn
-                    onAddColumn={(type) => onAddColumn(boardId, type)}
-                  />
-                </th>
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows.map((row) => {
-              prepareRow(row)
-              return (
-                <tr className="hoverable" {...row.getRowProps()}>
-                  <td style={{ width: '80px' }}>
-                    <div className="flex align-center justify-center relative ">
-                      <div className="row-context absolute">
+                  {headerGroup.headers.map((column) => (
+                    <th {...column.getHeaderProps()}>
+                      <div className="flex align-center space-between hoverable">
+                        <EditableText
+                          initialText={column.render('Header')}
+                          onSave={(text) => {
+                            onUpdateColumn(
+                              boardId,
+                              column.cmp.id,
+                              column.cmp,
+                              text
+                            )
+                          }}
+                        />
                         <ContextBtn
-                          type="row"
-                          onDeleteRow={() =>
-                            onDeleteTask(boardId, group.id, row.original.id)
+                          type="column"
+                          onDeleteColumn={() =>
+                            onDeleteColumn(boardId, column.cmp.id)
                           }
                         />
                       </div>
-                      <input type="checkbox" />
-                    </div>
-                  </td>
-                  {row.cells.map((cell) => (
-                    <td {...cell.getCellProps()}>
-                      <DynamicTableCell
-                        cmp={cell.column.cmp.type}
-                        cmpId={cell.column.cmp.id}
-                        onTaskUpdate={onTaskUpdate}
-                        task={cell.row.original}
-                      />
-                    </td>
+                    </th>
                   ))}
-                  <td> </td>
+                  <th style={{ width: '80px' }}>
+                    <AddColumnBtn
+                      onAddColumn={(type) => onAddColumn(boardId, type)}
+                    />
+                  </th>
                 </tr>
-              )
-            })}
-            <tr>
-              <td style={{ width: '80px' }}>
-                <div className="flex align-center justify-center">
-                  <input type="checkbox" />
-                </div>
-              </td>
-              <td colSpan={columns.length + 2}>
-                <EditableText
-                  initialText={''}
-                  onSave={saveNewTask}
-                  placeholder={'Add Item'}
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              <SortableContext
+                items={items}
+                strategy={verticalListSortingStrategy}>
+                {rows.map((row) => {
+                  prepareRow(row)
+                  return (
+                    <SortableItem
+                      key={row.original.id}
+                      id={row.original.id}
+                      row={row}
+                      onTaskUpdate={onTaskUpdate}
+                      onDeleteTask={onDeleteTask}
+                      boardId={boardId}
+                      groupId={group.id}
+                    />
+                  )
+                })}
+              </SortableContext>
+              <tr>
+                <td style={{ width: '80px' }}>
+                  <div className="flex align-center justify-center">
+                    <input type="checkbox" />
+                  </div>
+                </td>
+                <td colSpan={columns.length + 2}>
+                  <EditableText
+                    initialText={initText}
+                    onSave={saveNewTask}
+                    placeholder={'Add Item'}
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </DndContext>
       </div>
     </section>
   )
