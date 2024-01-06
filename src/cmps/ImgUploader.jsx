@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { uploadService } from '../services/upload.service'
 import { styled } from '@mui/material/styles'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
+import CloseIcon from '@mui/icons-material/Close'
 import { IconButton } from '@mui/material'
+import { CircularProgress } from '@mui/material'
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
   clipPath: 'inset(50%)',
@@ -15,36 +17,61 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 })
 
-export function ImgUploader({ imgUrl, onUploaded = null }) {
-  const [imgData, setImgData] = useState({
-    imgUrl,
-    height: 500,
-    width: 500,
-  })
-  const [isUploading, setIsUploading] = useState(false)
+export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
+  const [isLoading, setIsLoading] = useState(false)
 
   async function uploadImg(ev) {
-    setIsUploading(true)
-    const { secure_url, height, width } = await uploadService.uploadImg(ev)
-    setImgData({ imgUrl: secure_url, width, height })
-    setIsUploading(false)
-    onUploaded && onUploaded(secure_url)
+    try {
+      setIsLoading(true)
+      const { public_id, secure_url } = await uploadService.uploadImg(ev)
+      const fileData = {
+        publicId: public_id,
+        imgUrl: secure_url,
+      }
+      await handleUpdateTaskFile?.(fileData)
+      setIsLoading(false)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  async function removeImg() {
+    try {
+      setIsLoading(true)
+      await uploadService.destroyImg(imgData.publicId)
+      await handleUpdateTaskFile(undefined)
+      setIsLoading(false)
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   return (
     <div className="upload-preview cell">
-      {imgData.imgUrl && (
-        <img src={imgData.imgUrl} style={{ maxWidth: '200px' }} />
+      {isLoading ? (
+        <CircularProgress size="16px" />
+      ) : (
+        <>
+          {imgData?.imgUrl ? (
+            <>
+              <img src={imgData.imgUrl} style={{ maxWidth: '200px' }} />
+              <IconButton onClick={removeImg} component="label" size="small">
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            </>
+          ) : (
+            <IconButton component="label" size="small">
+              <UploadFileIcon />
+              <VisuallyHiddenInput
+                type="file"
+                onChange={uploadImg}
+                accept="img/*"
+                id="imgUpload"
+              />
+            </IconButton>
+          )}
+        </>
       )}
-      <IconButton component="label" size="small">
-        <UploadFileIcon />
-        <VisuallyHiddenInput
-          type="file"
-          onChange={uploadImg}
-          accept="img/*"
-          id="imgUpload"
-        />
-      </IconButton>
     </div>
   )
 }

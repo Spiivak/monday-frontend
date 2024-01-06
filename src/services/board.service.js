@@ -307,9 +307,8 @@ function removeColumn(boardId, columnId) {
   return storageService.removeColumn(STORAGE_KEY, boardId, columnId)
 }
 
-function updateColumn(boardId, columnId, column){
+function updateColumn(boardId, columnId, column) {
   return storageService.updateColumn(STORAGE_KEY, boardId, columnId, column)
-
 }
 
 // function addMsg(boardId, msg){
@@ -401,6 +400,7 @@ function getEmptyBoard() {
       { type: 'StatusPicker', id: utilService.makeId(), title: 'Status' },
       { type: 'MemberPicker', id: utilService.makeId(), title: 'Members' },
       { type: 'DatePicker', id: utilService.makeId(), title: 'Date' },
+      { type: 'NumbersPicker', id: utilService.makeId(), title: 'Number' },
     ],
   }
 }
