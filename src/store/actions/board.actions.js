@@ -20,6 +20,18 @@ import { GET_BOARD_BY_ID } from '../reducers/board.reducer'
 import { store } from '../store'
 
 // * BOARD CRUD
+export async function saveBoard(board) {
+  console.log('saveBoard  board:', board)
+  const type = board._id ? UPDATE_BOARD : ADD_BOARD
+  const errType = board._id ? 'update' : 'add'
+  try {
+    const boardToSave = await boardService.save(board)
+    store.dispatch({ type, board: boardToSave })
+  } catch (err) {
+    console.error(`board action -> cannot ${errType}`, err)
+    throw err
+  }
+}
 
 export async function loadBoards() {
   try {
@@ -223,17 +235,7 @@ export async function updateColumn(boardId, columnId, column) {
   } catch (err) {}
 }
 
-export async function saveBoard(board) {
-  const type = board._id ? UPDATE_BOARD : ADD_BOARD
-  const errType = board._id ? 'update' : 'add'
-  try {
-    const boardToSave = await boardService.save(board)
-    store.dispatch({ type, board: boardToSave })
-  } catch (err) {
-    console.error(`board action -> cannot ${errType}`, err)
-    throw err
-  }
-}
+
 
 // export async function addBoardMsg(boardId,msg,user){
 //   const newMsg = {...boardService.getEmptyMsg(), content:msg}

@@ -126,7 +126,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
           <NavigationChevronDownIcon />
           </button>
         </div>
-        <h2 className="group-title flex">{group.title}</h2>
+        <h2 className="group-title flex editable-txt">{group.title}</h2>
         <span>{group.tasks.length} items / 0 subitems</span>
       </div>
       <div>
@@ -207,15 +207,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                 </div>
               </td>
               <td colSpan={columnHeaders.length + 2}>
-                <EditableText initialText={'Add item'} onSave={saveNewTask} />
-                {/* <form onSubmit={handleSubmit}>
-                  <input
-                    type="text"
-                    value={newTaskTitle}
-                    onChange={handleChange}
-                    placeholder="Add item"
-                  />
-                </form> */}
+                <EditableText initialText={''} onSave={saveNewTask} placeholder={'Add Item'} />
               </td>
             </tr>
           </tbody>

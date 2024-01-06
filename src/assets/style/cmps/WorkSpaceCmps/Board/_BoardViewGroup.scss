@@ -1,6 +1,7 @@
 .board-view-group {
   margin-bottom: 1em;
-  .board-title{
+
+  .board-title {
     margin-left: $spacing-small;
     margin-bottom: $spacing-small;
     cursor: grab;
@@ -9,21 +10,23 @@
     position: relative;
     left: -38px;
     width: 100%;
-    .menu-btn{
+
+    .menu-btn {
       opacity: 0;
-      // position: absolute;
-      // left: -40px;
       margin-right: 4px;
       top: 0;
     }
-    .arrow-btn{
+
+    .arrow-btn {
       display: flex;
       align-items: center;
-      svg{
+
+      svg {
         width: 16px;
         height: 16px;
       }
     }
+
     span {
       display: none;
       font: 400 14px Figtree;
@@ -31,26 +34,35 @@
       align-items: center;
       margin-left: $spacing-small;
     }
-      h2 {
-        cursor: text;
-        // background-color: red;
-        font: 500 18px Poppins;
-        svg {
-          display: none;
-        }
-        margin: 0;
-        padding: 0;
+
+    h2 {
+      cursor: text;
+      font: 500 18px Poppins;
+      margin: 0;
+      padding: 0;
+
+      svg {
+        display: none;
       }
-      &:hover {
-        span {
-          display: flex;
-        }
-        .menu-btn {
-          opacity: 1;
-        }
+    }
+
+    &:hover {
+      span {
+        display: flex;
       }
+
+      .menu-btn {
+        opacity: 1;
+      }
+    }
   }
+
   table {
+    td {
+      height: 36px;
+      max-width: 36px;
+    }
+
     border-collapse: collapse;
     border-radius: 12px;
     overflow-x: scroll;
@@ -64,75 +76,67 @@
       width: 6px;
       background-color: rgb(162, 93, 220);
       border-top-left-radius: 6px;
-      // border-bottom-left-radius: 6px;
     }
     td:not(:first-of-type, :last-of-type)::before {
       content: '';
       position: absolute;
       left: 0;
-      height: 27px;
+      height: 37px;
       width: 6px;
       background-color: rgb(162, 93, 220);
     }
+
     td:last-of-type::before {
       content: '';
       position: absolute;
       left: 0;
       bottom: 0;
-      height: 36px;
+      height: 37px;
       width: 6px;
       background-color: rgba(163, 93, 220, 0.171);
       border-bottom-left-radius: 6px;
+
+      
+    }
+    td,
+    th {
+      width: 500px;
+      height: 36px;
+      max-height: 36px;
     }
   }
-  td,
-  th {
-    width: 500px;
-    height: 36px;
-  }
+
+
   th:not(:first-child, :last-child),
   td:not(:first-child, :last-child),
   tr:not(:last-of-type) td:first-child,
   tr:not(:last-of-type) td:last-child {
     box-shadow: 0 0 0 0.2px rgba(0, 0, 122, .3);
+    max-height: 36px;
   }
+
   th:first-child {
     border-top-left-radius: 12px;
     box-shadow: 0 0 0 0.2px rgba(0, 0, 122, .3);
   }
+
   th:last-child {
     // border-top-right-radius: 12px;
     box-shadow: 0 0 0 0.2px rgba(0, 0, 122, .3);
   }
+
   tr:last-child td:first-child {
     border-bottom-left-radius: 12px;
     box-shadow: 0 0 0 0.2px rgba(0, 0, 122, .3);
   }
+
   tr:last-child td:last-child {
     // border-bottom-right-radius: 12px;
     box-shadow: 0 0 0 0.2px rgba(0, 0, 122, .3);
   }
 
-  .input-wrapper{
-    position: relative;
-    padding: 0 1em;
-    .icon-wrapper{
-      position: absolute;
-      top: 50%;
-      left: 1.7em;
-      translate: -50% -40%;
-    }
-    input{
-      padding: 0 1.2em;
-    }
-  }
-  .row-context{
-    z-index: 1000;
+  .row-context {
+    z-index: 500;
     left: -32px;
-    // right: 100%;
-    // top: 50%;
-    // translate: -8% -50%;
   }
 }
-
-

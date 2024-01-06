@@ -1,69 +1,71 @@
-// HELPERS.SCSS
+// Layout
 .flex {
   display: flex;
+
+  &.column {
+    flex-direction: column;
+  }
+
+  &.justify-center {
+    justify-content: center;
+  }
+
+  &.justify-start {
+    justify-content: start;
+  }
+
+  &.space-between {
+    justify-content: space-between;
+  }
+
+  &.align-center {
+    align-items: center;
+  }
+
+  &.wrap {
+    flex-wrap: wrap;
+  }
 }
 
-.flex.column {
-  flex-direction: column;
-}
-
+// Positioning
 .relative {
   position: relative;
 }
+
 .absolute {
   position: absolute;
 }
 
-.flex.justify-center {
-  justify-content: center;
-}
-
-.flex.justify-start {
-  justify-content: start;
-}
-
-.flex.space-between {
-  justify-content: space-between;
-}
-
-.flex.align-center {
-  align-items: center;
-}
-
-.flex.wrap {
-  flex-wrap: wrap;
-}
-
-// Grid helpers
+// Grid
 .grid {
   display: grid;
+
+  &.c2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &.c3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &.c4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &.r2 {
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  &.r3 {
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  &.r4 {
+    grid-template-rows: repeat(4, 1fr);
+  }
 }
 
-.grid.c2 {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.grid.c3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.grid.c4 {
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.grid.r2 {
-  grid-template-rows: repeat(2, 1fr);
-}
-
-.grid.r3 {
-  grid-template-rows: repeat(3, 1fr);
-}
-
-.grid.r4 {
-  grid-template-rows: repeat(4, 1fr);
-}
-
-// Space Helpers
+// Spacing
 .flex.gap16 {
   gap: 16px;
 }
@@ -72,8 +74,7 @@
   gap: 8px;
 }
 
-/* text helpers */
-
+// Text
 .text-center {
   text-align: center;
 }
@@ -82,7 +83,7 @@
   font-weight: bold;
 }
 
-/* list helpers */
+// List
 .list-inline {
   display: inline-block;
   margin: 0;
@@ -100,18 +101,18 @@
   list-style-type: none;
 }
 
-// hover
+// Hover
 .hoverable {
   & .hidden-hover {
     opacity: 0;
   }
+
   &:hover .hidden-hover {
     opacity: 1;
   }
 }
 
 // Overlay
-
 .overlay {
   position: fixed;
   top: 0;
@@ -120,4 +121,15 @@
   height: 100%;
   background-color: rgba(41, 47, 76, 0.7);
   z-index: 500;
+}
+
+// Editable Text
+.editable-txt {
+  border-radius: $border-radius-small;
+  cursor: text;
+
+  &:hover {
+    outline: 1px solid #33333336;
+    padding-inline: 2px;
+  }
 }

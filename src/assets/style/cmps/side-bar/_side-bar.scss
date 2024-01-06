@@ -1,5 +1,5 @@
 .side-bar {
-  border-top-right-radius: 10px;
+  border-top-right-radius: 8px;
   color: #323338;
   background-color: #ffffff;
   min-width: 255px;
@@ -137,17 +137,21 @@
   padding-left: $spacing-medium - 2px;
   padding-right: $spacing-medium - 4px;
   padding-bottom: $spacing-small;
-
+ .context-menu {
+  position: absolute;
+  right: 16px;
+ }
   .workspace-item {
+    width: 100%;
     a {
       width: 100%;
       font: 400 14px/20px Figtree;
-
+      
       .svg {
         margin-right: $spacing-small;
       }
     }
-
+    
     & a.active {
       background-color: #cce5ff;
       border-radius: $border-radius-small;
@@ -156,7 +160,12 @@
     .link {
       width: 100%;
       padding: $spacing-small - 2px $spacing-small;
-
+      .nav-link-content {
+        // background-color: blue;
+        // width: 100%;
+        display: flex;
+        justify-content: flex-start;
+      }
       &:hover {
         background-color: #dbdfec;
         border-radius: $border-radius-small;
