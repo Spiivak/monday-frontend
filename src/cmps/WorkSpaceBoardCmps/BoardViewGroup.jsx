@@ -9,46 +9,10 @@ import {
   updateColumn,
   updateTask,
 } from '../../store/actions/board.actions'
-import { useParams } from 'react-router-dom'
-import { AddSmallIcon } from '../Icons'
 import { ContextBtn } from '../ContextBtn'
 import { EditableText } from '../EditableText'
 import AddColumnBtn from './Columns/AddColumnBtn'
 export function BoardViewGroup({ group, boardId, cmpsOrder }) {
-  const [newTaskTitle, setNewTaskTitle] = useState('')
-
-  const [dataSource, setDataSource] = useState([
-    {
-      key: '1',
-      name: 'Mike',
-      age: 32,
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
-    },
-  ])
-  const [columns, setColumns] = useState([
-    {
-      title: 'Item',
-      dataIndex: 'item',
-      key: 'item',
-    },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-    },
-    {
-      title: 'Members',
-      dataIndex: 'members',
-      key: 'members',
-    },
-  ])
-
   const [columnHeaders, setColumnHeaders] = useState([])
   const [taskRows, setTaskRows] = useState([])
 
@@ -57,14 +21,22 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
     setTaskRows(group.tasks)
   }, [cmpsOrder, group])
 
+  // * TASK
   function onTaskUpdate(cmpType, cmpId, data, task) {
     updateTask(boardId, group.id, task.id, cmpType, cmpId, task, data)
   }
 
-  function onDeleteGroup() {
-    removeGroup(boardId, group.id)
+  function onDeleteTask(boardId, groupId, taskId) {
+    removeTask(boardId, groupId, taskId)
   }
 
+  function saveNewTask(title) {
+    const newTask = { title }
+    addTask(boardId, group.id, newTask)
+    setNewTaskTitle('')
+  }
+
+  // * COLUMN
   function onDeleteColumn(boardId, cmpId) {
     removeColumn(boardId, cmpId)
   }
@@ -74,45 +46,13 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
     updateColumn(boardId, columnId, columnToUpdate)
   }
 
-  function onAddColumn(boardId, type){
+  function onAddColumn(boardId, type) {
     addColumn(boardId, type)
   }
 
-  function onDeleteTask(boardId, groupId, taskId) {
-    removeTask(boardId, groupId, taskId)
-  }
-
-  function handleChange(ev) {
-    const value = ev.target.value
-    setNewTaskTitle(value)
-  }
-
-  function handleSubmit(ev) {
-    ev.preventDefault()
-    const newTask = { title: newTaskTitle }
-    addTask(boardId, group.id, newTask)
-    setNewTaskTitle('')
-  }
-
-  function saveNewTask(title) {
-    const newTask = { title }
-    addTask(boardId, group.id, newTask)
-    setNewTaskTitle('')
-  }
-
-  const rowSelection = {
-    onChange: (selectedRowKeys, selectedRows) => {
-      console.log(
-        `selectedRowKeys: ${selectedRowKeys}`,
-        'selectedRows: ',
-        selectedRows
-      )
-    },
-    getCheckboxProps: (record) => ({
-      disabled: record.name === 'Disabled User',
-      // Column configuration not to be checked
-      name: record.name,
-    }),
+  // * GROUP
+  function onDeleteGroup() {
+    removeGroup(boardId, group.id)
   }
 
   return (
@@ -154,7 +94,11 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   </div>
                 </th>
               ))}
-              <th style={{ width: '80px' }}><AddColumnBtn onAddColumn={(type)=>onAddColumn(boardId, type)}/></th>
+              <th style={{ width: '80px' }}>
+                <AddColumnBtn
+                  onAddColumn={(type) => onAddColumn(boardId, type)}
+                />
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -200,14 +144,6 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
               </td>
               <td colSpan={columnHeaders.length + 2}>
                 <EditableText initialText={'Add item'} onSave={saveNewTask} />
-                {/* <form onSubmit={handleSubmit}>
-                  <input
-                    type="text"
-                    value={newTaskTitle}
-                    onChange={handleChange}
-                    placeholder="Add item"
-                  />
-                </form> */}
               </td>
             </tr>
           </tbody>
