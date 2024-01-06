@@ -21,10 +21,6 @@ import {
 } from '@dnd-kit/sortable'
 
 //For DnD
-import { DraggableTableRow } from './DnD/DraggableTableRow'
-import { StaticTableRow } from './DnD/StaticTableRow'
-
-import { DynamicTableCell } from './DynamicTableCell'
 import {
   addColumn,
   addTask,
@@ -34,7 +30,7 @@ import {
   updateColumn,
   updateTask,
 } from '../../store/actions/board.actions'
-import { AddSmallIcon, MenuIcon, NavigationChevronDownIcon } from '../Icons'
+import { NavigationChevronDownIcon } from '../Icons'
 import { ContextBtn } from '../ContextBtn'
 import { EditableText } from '../EditableText'
 import AddColumnBtn from './Columns/AddColumnBtn'
@@ -236,6 +232,9 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                       id={row.original.id}
                       row={row}
                       onTaskUpdate={onTaskUpdate}
+                      onDeleteTask={onDeleteTask}
+                      boardId={boardId}
+                      groupId={group.id}
                     />
                   )
                 })}
@@ -256,77 +255,8 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
               </tr>
             </tbody>
           </table>
-          {/* <DragOverlay>
-            {activeId && (
-              <table style={{ width: '100%' }}>
-                <tbody>
-                  <StaticTableRow row={selectedRow} />
-                </tbody>
-              </table>
-            )}
-          </DragOverlay> */}
         </DndContext>
       </div>
     </section>
   )
-}
-
-{
-  /* <th style={{ width: '80px' }}>
-                    <div className="flex align-center justify-center">
-                      <input type="checkbox" />
-                    </div>
-                  </th>  */
-}
-
-//  <th style={{ width: '80px' }}>
-//                     <AddColumnBtn
-//                       onAddColumn={(type) => onAddColumn(boardId, type)}
-//                     />
-//                   </th>
-
-// return (
-//                     <tr className="hoverable" {...row.getRowProps()}>
-                      // <td style={{ width: '80px' }}>
-                      //   <div className="flex align-center justify-center relative ">
-                      //     <div className="row-context absolute">
-                      //       <ContextBtn
-                      //         type="row"
-                      //         onDeleteRow={() =>
-                      //           onDeleteTask(boardId, group.id, row.original.id)
-                      //         }
-                      //       />
-                      //     </div>
-                      //     <input type="checkbox" />
-                      //   </div>
-                      // </td>
-//                       {row.cells.map((cell) => (
-//                         <td {...cell.getCellProps()}>
-//                           <DynamicTableCell
-//                             cmp={cell.column.cmp.type}
-//                             cmpId={cell.column.cmp.id}
-//                             onTaskUpdate={onTaskUpdate}
-//                             task={cell.row.original}
-//                           />
-//                         </td>
-//                       ))}
-//                       <td> </td>
-//                     </tr>
-//                   )
-
-{
-  /* <tr>
-                <td style={{ width: '80px' }}>
-                  <div className="flex align-center justify-center">
-                    <input type="checkbox" />
-                  </div>
-                </td>
-                <td colSpan={columns.length + 2}>
-                  <EditableText
-                    initialText={initText}
-                    onSave={saveNewTask}
-                    placeholder={'Add Item'}
-                  />
-                </td>
-              </tr> */
 }

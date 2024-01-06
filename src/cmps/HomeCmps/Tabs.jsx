@@ -24,7 +24,6 @@ const tabsData = [
     img: DevDark,
   },
 ]
-console.log('tabsData:', tabsData)
 
 export function Tabs({ activeTab, onTabClick }) {
   return (

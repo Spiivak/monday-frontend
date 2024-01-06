@@ -13,7 +13,6 @@ export function NumbersPickers({ task, cmpId, handleUpdateTask }) {
   async function handleBlur() {
     try {
       await handleUpdateTask('NumbersPicker', sanitizedInput, task)
-      console.log('succsess')
     } catch (err) {
       console.log(err)
     }

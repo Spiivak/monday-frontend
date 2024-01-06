@@ -3,7 +3,7 @@ import { CSS } from '@dnd-kit/utilities'
 import { DynamicTableCell } from '../DynamicTableCell'
 import { ContextBtn } from '../../ContextBtn'
 
-export function SortableItem({ id, row, onTaskUpdate }) {
+export function SortableItem({ id, row, onTaskUpdate, onDeleteTask, boardId, groupId }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id })
 
@@ -20,14 +20,14 @@ export function SortableItem({ id, row, onTaskUpdate }) {
             <ContextBtn
               type="row"
               onDeleteRow={() =>
-                onDeleteTask(boardId, group.id, row.original.id)
+                onDeleteTask(boardId, groupId, row.original.id)
               }
             />
           </div>
           <input type="checkbox" {...listeners} />
         </div>
       </td>
-      {row.cells.map((cell, idx) => (
+      {row.cells.map((cell) => (
         <td {...cell.getCellProps()}>
           <DynamicTableCell
             cmp={cell.column.cmp.type}

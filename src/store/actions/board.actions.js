@@ -21,7 +21,6 @@ import { store } from '../store'
 
 // * BOARD CRUD
 export async function saveBoard(board) {
-  console.log('saveBoard  board:', board)
   const type = board._id ? UPDATE_BOARD : ADD_BOARD
   const errType = board._id ? 'update' : 'add'
   try {
@@ -94,13 +93,6 @@ export async function updateTask(
   data
 ) {
   let newTask
-  console.log(boardId,
-    groupId,
-    taskId,
-    cmpType,
-    cmpId,
-    task,
-    data)
   switch (cmpType) {
     case 'task':
       newTask = { ...task, title: data }
@@ -150,7 +142,6 @@ export async function updateTask(
 export async function addTask(boardId, groupId, newTaskTxt) {
   try {
     const task = await boardService.addTask(boardId, groupId, newTaskTxt)
-    console.log(task)
     store.dispatch({ type: ADD_TASK, boardId, groupId, task })
   } catch (err) {}
 }

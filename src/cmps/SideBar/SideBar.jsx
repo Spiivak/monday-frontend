@@ -13,7 +13,6 @@ import { SideBarWorkSpace } from './SideBarWorkSpace'
 import { WorkSpaceList } from './WorkSpaceList'
 export function SideBar({ onRemoveBoard, onAddBoard }) {
   const boards = useSelector((storeState) => storeState.boardModule.boards)
-  console.log('SideBar  boards:', boards)
   const filterBy = useSelector((storeState) => storeState.boardModule.filterBy)
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)

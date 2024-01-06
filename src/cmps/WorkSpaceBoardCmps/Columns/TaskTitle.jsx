@@ -7,7 +7,6 @@ export function TaskTitle({ task, cmpId, handleUpdateTask }) {
         initialText={task.title}
         onSave={(text) => handleUpdateTask('task', text, task)}
       />
-      {/* {console.log(task, cmpId, handleUpdateTask)} */}
     </div>
   )
 }
