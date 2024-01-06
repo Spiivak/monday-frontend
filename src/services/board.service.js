@@ -50,47 +50,47 @@ const demoData = [
           {
             id: 'c101',
             title: 'Replace logo',
-            date: 1589983468418,
-            timeline: [1589983468418, 1589983468418],
-            file: '',
-            members: [],
+            datec3: 1589983468418,
+            timelinec5: [1589983468418, 1589983468418],
+            filec6: '',
+            membersc2: [],
           },
           {
             id: 'c105',
             title: 'Replace logo',
-            date: 1589983468418,
-            timeline: [1589983468418, 1589983468418],
-            file: '',
-            members: [],
+            datec3: 1589983468418,
+            timelinec5: [1589983468418, 1589983468418],
+            filec6: '',
+            membersc2: [],
           },
           {
             id: 'c107',
             title: 'Replace logo',
-            date: 1589983468418,
-            timeline: [1589983468418, 1589983468418],
-            file: '',
-            members: [],
+            datec3: 1589983468418,
+            timelinec5: [1589983468418, 1589983468418],
+            filec6: '',
+            membersc2: [],
           },
           {
             id: 'c108',
             title: 'Replace logo',
-            date: 1589983468418,
-            timeline: [1589983468418, 1589983468418],
-            file: '',
-            members: [],
+            datec3: 1589983468418,
+            timelinec5: [1589983468418, 1589983468418],
+            filec6: '',
+            membersc2: [],
           },
           {
             id: 'c109',
             title: 'Replace logo',
             date: 1589983468418,
-            timeline: [1589983468418, 1589983468418],
-            file: '',
-            members: [],
+            timelinec5: [1589983468418, 1589983468418],
+            filec6: '',
+            membersc2: [],
           },
           {
             id: 'c102',
             title: 'Add Samples',
-            members: [],
+            membersc2: [],
           },
         ],
         style: {},
@@ -104,7 +104,7 @@ const demoData = [
             id: 'c103',
             title: 'Do that',
             archivedAt: 1589983468418,
-            members: [
+            membersc2: [
               {
                 _id: 'u101',
                 username: 'Tal',
@@ -131,11 +131,11 @@ const demoData = [
           {
             id: 'c104',
             title: 'Help me',
-            status: 'Working on it', // monday
-            members: [],
+            statusc1: 'Working on it', // monday
+            membersc2: [],
 
             priority: 'high',
-            description: 'description',
+            descriptionc4: 'description',
             comments: [
               {
                 id: 'ZdPnm',
@@ -202,16 +202,16 @@ const demoData = [
     ],
 
     cmpsOrder: [
-      { type: 'StatusPicker', id: utilService.makeId(), title: 'Status' },
-      { type: 'MemberPicker', id: utilService.makeId(), title: 'Member' },
-      { type: 'DatePicker', id: utilService.makeId(), title: 'Date' },
+      { type: 'StatusPicker', id: 'c1', title: 'Status' },
+      { type: 'MemberPicker', id: 'c2', title: 'Member' },
+      { type: 'DatePicker', id: 'c3', title: 'Date' },
       {
         type: 'DescriptionPicker',
-        id: utilService.makeId(),
+        id: 'c4',
         title: 'Description',
       },
-      { type: 'TimeLinePicker', id: utilService.makeId(), title: 'Time line' },
-      { type: 'FilePicker', id: utilService.makeId(), title: 'File' },
+      { type: 'TimeLinePicker', id: 'c5', title: 'Time line' },
+      { type: 'FilePicker', id: 'c6', title: 'File' },
     ],
   },
 ]

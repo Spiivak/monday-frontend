@@ -12,6 +12,7 @@ import {
   SET_BOARDS,
   SET_IS_LOADING,
   UPDATE_BOARD,
+  UPDATE_COLUMN,
   UPDATE_TASK,
 } from '../reducers/board.reducer'
 import { GET_BOARD_BY_ID } from '../reducers/board.reducer'
