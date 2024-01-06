@@ -2,6 +2,7 @@ import { boardService } from '../../services/board.service'
 
 import {
   ADD_BOARD,
+  ADD_COLUMN,
   ADD_GROUP,
   ADD_TASK,
   REMOVE_BOARD,
@@ -147,6 +148,61 @@ export async function removeTask(boardId, groupId, taskId) {
 }
 
 // * COLUMN CRUD
+
+export async function addColumn(boardId, type) {
+  let newColumn
+  switch (type) {
+    case 'numbers':
+      newColumn = {
+        title: 'Numbers',
+        type: 'NumbersPicker',
+      }
+      break
+    case 'timeline':
+      newColumn = {
+        title: 'Time line',
+        type: 'TimeLinePicker',
+      }
+      break
+    case 'people':
+      newColumn = {
+        title: 'Member',
+        type: 'MemberPicker',
+      }
+
+      break
+    case 'date':
+      newColumn = {
+        title: 'Date',
+        type: 'DatePicker',
+      }
+
+      break
+    case 'status':
+      newColumn = {
+        title: 'Status',
+        type: 'StatusPicker',
+      }
+
+      break
+    case 'link':
+      newColumn = {
+        title: 'Link',
+        type: 'LinkPicker',
+      }
+      break
+
+    default:
+      break
+  }
+
+  try {
+    const addedColumn = await boardService.addColumn(boardId, newColumn)
+    store.dispatch({type: ADD_COLUMN, boardId, addedColumn})
+  } catch (err) {
+
+  }
+}
 
 export async function removeColumn(boardId, columnId) {
   try {

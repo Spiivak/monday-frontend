@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { DynamicTableCell } from './DynamicTableCell'
 import {
+  addColumn,
   addTask,
   removeColumn,
   removeGroup,
@@ -73,8 +74,8 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
     updateColumn(boardId, columnId, columnToUpdate)
   }
 
-  function onAddColumn(boardId, groupId, type){
-    console.log(boardId, groupId, type)
+  function onAddColumn(boardId, type){
+    addColumn(boardId, type)
   }
 
   function onDeleteTask(boardId, groupId, taskId) {
@@ -153,7 +154,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   </div>
                 </th>
               ))}
-              <th style={{ width: '80px' }}><AddColumnBtn onAddColumn={(type)=>onAddColumn(boardId, group.id, type)}/></th>
+              <th style={{ width: '80px' }}><AddColumnBtn onAddColumn={(type)=>onAddColumn(boardId, type)}/></th>
             </tr>
           </thead>
           <tbody>

@@ -9,6 +9,7 @@ export const storageService = {
   putTask,
   postTask,
   removeTask,
+  addColumn,
   removeColumn,
   updateColumn,
 }
@@ -160,6 +161,17 @@ function removeTask(entityType, boardId, groupId, taskId) {
 
 // columns CRUD
 
+function addColumn(entityType, boardId, column) {
+  return query(entityType).then((boards) => {
+    const newBoards = boards.map((board) => {
+      if (board._id !== boardId) return board
+      return { ...board, cmpsOrder: [...board.cmpsOrder, column] }
+    })
+    _save(entityType, newBoards)
+    return column
+  })
+}
+
 function removeColumn(entityType, boardId, columnId) {
   return query(entityType).then((boards) => {
     const newBoards = boards.map((board) => {
@@ -169,22 +181,21 @@ function removeColumn(entityType, boardId, columnId) {
         cmpsOrder: board.cmpsOrder.filter((cmp) => cmp.id !== columnId),
       }
     })
-    console.log(newBoards)
     _save(entityType, newBoards)
     return columnId
   })
 }
 
-function updateColumn(entityType, boardId, columnId, column){
+function updateColumn(entityType, boardId, columnId, column) {
   return query(entityType).then((boards) => {
     const newBoards = boards.map((board) => {
       if (board._id !== boardId) return board
       return {
         ...board,
         cmpsOrder: board.cmpsOrder.map((cmp) => {
-          if(cmp.id !== columnId) return cmp
+          if (cmp.id !== columnId) return cmp
           return column
-        })
+        }),
       }
     })
     _save(entityType, newBoards)
