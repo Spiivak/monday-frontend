@@ -41,7 +41,6 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
   const [data, setData] = useState([])
   const [initText, setInitText] = useState('')
 
-
   useEffect(() => {
     setColumns([
       {
@@ -124,8 +123,8 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
     removeGroup(boardId, group.id)
   }
 
-  function onUpdateGroup(boardId, groupId, group, data){
-    const newGroup = {...group, title: data}
+  function onUpdateGroup(boardId, groupId, group, data) {
+    const newGroup = { ...group, title: data }
     console.log(boardId, groupId, newGroup)
     updateGroup(boardId, groupId, newGroup)
   }
@@ -183,17 +182,24 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
             <NavigationChevronDownIcon />
           </button>
         </div>
-        <h2 className="group-title flex editable-txt"><EditableText initialText={group.title} onSave={()=>{}} placeholder={group.title} /></h2>
+        <h2 className="group-title flex editable-txt">
+          <EditableText
+            initialText={group.title}
+            onSave={() => {}}
+            placeholder={group.title}
+          />
+        </h2>
         <span>{group.tasks.length} items / 0 subitems</span>
       </div>
-      <div className='board-table-container'>
+      <div className="board-table-container">
         <DndContext
           sensors={sensors}
           onDragEnd={handleDragEnd}
           onDragStart={handleDragStart}
           onDragCancel={handleDragCancel}
           collisionDetection={closestCenter}
-          modifiers={[restrictToVerticalAxis]}>
+          modifiers={[restrictToVerticalAxis]}
+        >
           <table {...getTableProps()}>
             <thead>
               {headerGroups.map((headerGroup) => (
@@ -237,7 +243,8 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
             <tbody {...getTableBodyProps()}>
               <SortableContext
                 items={items}
-                strategy={verticalListSortingStrategy}>
+                strategy={verticalListSortingStrategy}
+              >
                 {rows.map((row) => {
                   prepareRow(row)
                   return (

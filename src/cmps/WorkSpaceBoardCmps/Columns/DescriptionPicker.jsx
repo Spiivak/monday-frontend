@@ -32,22 +32,20 @@ export function DescriptionPicker({ task, cmpId, handleUpdateTask }) {
 
   return (
     <div className="description-picker-cell relative">
-      <TextField
-        size="small"
-        className="cell"
-        placeholder="Add description"
-        value={displayValue}
+      <div
         onClick={() => setOpenMultiLine(true)}
-        style={{ padding: '7px' }}
-        inputProps={{
-          style: {
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            boxSizing: 'border-box',
-            padding: '0px',
-          },
+        style={{
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          // width: '150px',
+          padding: '5px',
         }}
-      />
+      >
+        {displayValue || (
+          <span style={{ color: '#00000044' }}>Add description</span>
+        )}
+      </div>
       {multiLine && (
         <TextField
           value={desc}
