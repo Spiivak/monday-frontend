@@ -12,7 +12,6 @@ import {
   saveBoard,
 } from '../../store/actions/board.actions'
 import { useSelector } from 'react-redux'
-// import { WorkSpaceSideBar } from './WorkSpaceSideBar-old'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 import { useParams } from 'react-router'
 import { loadUsers } from '../../store/actions/user.actions'
