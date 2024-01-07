@@ -40,11 +40,11 @@
 .grid {
   display: grid;
 
-  &.c2 {
+  .c2 {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  &.c3 {
+  .c3 {
     grid-template-columns: repeat(3, 1fr);
   }
 
@@ -63,6 +63,14 @@
   &.r4 {
     grid-template-rows: repeat(4, 1fr);
   }
+}
+
+.gc1 {
+  grid-column: 1 !important;
+}
+
+.gc2 {
+  grid-column: 2 o !important;
 }
 
 // Spacing

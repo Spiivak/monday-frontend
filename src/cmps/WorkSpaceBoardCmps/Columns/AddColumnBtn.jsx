@@ -80,7 +80,7 @@ function AddModal({ setIsMoreModalOpen, menuBtnRef,onAddColumn }) {
             <p>Essentials</p>
           </div>
           <div className="btn-group grid c2">
-            <button className="btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('numbers')}>
+            <button className="gc1 btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('numbers')}>
               <div className="icon-wrapper numbers-col-wrapper flex align-center justify-center">
                 <NumbersCol />
               </div>
@@ -94,7 +94,7 @@ function AddModal({ setIsMoreModalOpen, menuBtnRef,onAddColumn }) {
             </button>
           </div>
           <div className="btn-group grid c2">
-            <button className="btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('people')}>
+            <button className="gc1 btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('people')}>
               <div className="icon-wrapper people-col-wrapper flex align-center justify-center">
                 <PeopleCol />
               </div>
@@ -108,7 +108,7 @@ function AddModal({ setIsMoreModalOpen, menuBtnRef,onAddColumn }) {
             </button>
           </div>
           <div className="btn-group grid c2">
-            <button className="btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('status')}>
+            <button className="gc1 btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('status')}>
               <div className="icon-wrapper color-col-wrapper flex align-center justify-center">
                 <ColorCol />
               </div>
