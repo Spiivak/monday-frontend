@@ -1,14 +1,11 @@
 .side-bar {
   border-top-right-radius: 8px;
   color: #323338;
-  background-color: #ffffff;
-  min-width: 255px;
+  max-width: 255px;
   position: relative;
-  transition: width 0.3s;
+  background-color: white;
+  // transition: width 0.3s;
 
-  // &:hover {
-  //   min-width: 255px;
-  // }
 
   .side-bar-container {
     .side-bar-link-container {
@@ -65,7 +62,6 @@
 
         .workspace-dropdown-button {
           align-items: center;
-          // padding: $spacing-medium;
           margin-right: 16px;
           margin-left: 8px;
           margin-bottom: 10px;
@@ -76,10 +72,7 @@
             align-items: center;
             border-radius: $border-radius-small;
             padding: 5px;
-            // margin-right: 16px;
             margin-left: 8px;
-            // margin-bottom: 10px;
-            // margin-top: 12px;
             &:hover {
               background-color: #dbdfec;
             }
@@ -113,22 +106,13 @@
     right: 0;
     top: 0;
   }
+}
 
-  &.side-bar-close {
-    min-width: 35px;
-    padding: 0;
-
-    &:hover {
-      min-width: 255px;
-    }
-
-    .side-bar-container {
-      display: none;
-    }
-
-    &:hover .side-bar-container {
-      display: block;
-    }
+.side-bar-close {
+  // background-color: red;
+  // width: 35px;
+  .side-bar-container {
+    display: none;
   }
 }
 

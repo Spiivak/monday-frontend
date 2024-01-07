@@ -69,7 +69,7 @@ export function WorkSpaceBoard() {
   }
 
   return (
-    <div className="main-layout">
+    <main >
       <SideBar {...{ onRemoveBoard, onAddBoard }} />
       <section className="work-space-board">
         <div className="workspace-board-header">
@@ -83,6 +83,6 @@ export function WorkSpaceBoard() {
           )}
         </div>
       </section>
-    </div>
+    </main>
   )
 }
