@@ -49,7 +49,6 @@ export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
   }
 
   return (
-    <>
       <div
         className="upload-preview cell"
         style={{ padding: '7px' }}
@@ -60,12 +59,16 @@ export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
           <>
             {imgData?.imgUrl ? (
               <>
+                <div className="image-preview flex align-center">
                 <img
                   src={imgData.imgUrl}
                   onMouseEnter={() => setIsModalOpen(true)}
                   // onMouseLeave={() => setIsModalOpen(false)}
-                />
-                {isModalOpen && <ImageModal src={imgData} />}
+                  />
+                  <div className="modal">
+                <ImageModal src={imgData} />
+                  </div>
+                  </div>
                 <IconButton
                   onClick={removeImg}
                   component="label"
@@ -93,6 +96,5 @@ export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
           </>
         )}
       </div>
-    </>
   )
 }

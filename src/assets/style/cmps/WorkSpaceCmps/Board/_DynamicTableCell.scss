@@ -2,11 +2,13 @@
   padding: 0;
   margin: 0;
   gap: 0;
+
   .label-btn {
     // width: 100%;
     height: 100%;
   }
 }
+
 .label-btn {
   border: none;
   outline: none;
@@ -32,9 +34,11 @@
     top: 120%;
     left: 50%;
     translate: -50% 0;
+
     &.hidden {
       display: none;
     }
+
     &.active {
       display: flex;
     }
@@ -50,6 +54,7 @@
     translate: -50% 0;
     display: flex;
     align-items: center;
+
     .member-details {
       z-index: 100;
       display: grid;
@@ -57,11 +62,13 @@
 
       border-radius: $border-radius-small;
       background-color: white;
+
       .avatar-logo {
         padding: $spacing-medium 0 0 $spacing-large;
         display: flex;
         align-items: start;
         width: 100px;
+
         img {
           height: 72px;
           width: auto;
@@ -69,17 +76,20 @@
           // overflow: hidden;
         }
       }
+
       .member-details-content {
         padding: $spacing-medium $spacing-large;
         width: 200px;
         display: flex;
         flex-direction: column;
       }
+
       .member-detail-btns {
         grid-column: 1 / -1;
         display: flex;
         align-items: end;
         justify-content: stretch;
+
         button {
           width: 100%;
         }
@@ -104,6 +114,7 @@
     &.hidden {
       display: none;
     }
+
     &.active {
       display: flex;
     }
@@ -112,6 +123,7 @@
   // Members img avatar
   .avatars-wrapper {
     display: flex;
+
     .avatar-logo {
       height: 32px;
       width: 32px;
@@ -125,19 +137,21 @@
   gap: 8px;
   padding: 8px;
 
-  img {
-    border-radius: 50%;
-    width: 17px;
-    height: 17px;
-    object-fit: cover;
-    transition: opacity 0.3s ease-in-out;
-  }
+  .image-preview {
+    .image-modal {
+      display: none;
+    }
 
-  .image-modal {
-    display: none;
-  }
+    img {
+      border-radius: 50%;
+      width: 17px;
+      height: 17px;
+      object-fit: cover;
+      transition: opacity 0.3s ease-in-out;
+    }
 
-  &:hover .image-modal {
-    display: block;
+    &:hover .image-modal {
+      display: flex;
+    }
   }
 }
