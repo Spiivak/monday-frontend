@@ -6,7 +6,7 @@ import { NavigationChevronRightIcon, OpenIcon } from "../../Icons";
 export function TaskTitle({ task, cmpId, handleUpdateTask }) {
   const activeTask = useSelector(storeState => storeState.boardModule.activeTask)
   function onOpenTask() {
-    if (activeTask)  {
+    if (activeTask) {
       deactivateTask()
     } else {
       setActiveTask(task)
@@ -14,12 +14,18 @@ export function TaskTitle({ task, cmpId, handleUpdateTask }) {
   }
   return (
     <div className="flex space-between" data-task-details="true">
-      <button className="btn-icon small-transparent"><NavigationChevronRightIcon/></button>
-      <EditableText
-        initialText={task.title}
-        onSave={(text) => handleUpdateTask('task', text, task)}
-      />
-      <button className="btn-icon small-transparent" onClick={onOpenTask}><OpenIcon/></button>
+      <div className="wrapper flex">
+        <button className="btn-icon small-transparent"><NavigationChevronRightIcon /></button>
+        <div className="editable-txt">
+          
+          <EditableText
+            initialText={task.title}
+            onSave={(text) => handleUpdateTask('task', text, task)}
+          />
+
+        </div>
+      </div>
+      <button className="btn-icon small-transparent" onClick={onOpenTask}><OpenIcon /></button>
     </div>
   )
 }

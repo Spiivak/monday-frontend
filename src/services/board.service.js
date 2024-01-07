@@ -731,7 +731,7 @@ const demoData = [
             },
           },
           {
-            id: 'c129',
+            id: 'c300',
             title: 'Knowledge Transfer Sessions',
             statusc1: 'Working on it', // monday
             membersc2: [
@@ -914,12 +914,12 @@ const demoData = [
     ],
 
     cmpsOrder: [
-      { type: 'StatusPicker', id: 'c1', title: 'Progress' },
-      { type: 'MemberPicker', id: 'c2', title: 'Owner' },
-      { type: 'DatePicker', id: 'c3', title: 'Due Date' },
-      { type: 'DescriptionPicker', id: 'c4', title: 'Notes',},
-      { type: 'TimeLinePicker', id: 'c5', title: 'Time Frame' },
-      { type: 'FilePicker', id: 'c6', title: 'Additional files' },
+      { type: 'StatusPicker', id: 'c1', title: 'Status' },
+      { type: 'MemberPicker', id: 'c2', title: 'Person' },
+      { type: 'DatePicker', id: 'c3', title: 'Date' },
+      { type: 'DescriptionPicker', id: 'c4', title: 'Description',},
+      { type: 'TimeLinePicker', id: 'c5', title: 'Time Line' },
+      { type: 'FilePicker', id: 'c6', title: 'Files' },
     ],
   },
 ]
