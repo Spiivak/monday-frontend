@@ -16,28 +16,58 @@ import {
 } from '../../Icons'
 import { Save } from '@mui/icons-material'
 import { useEffect, useRef } from 'react'
-export function RowModal({
-  onDeleteRow,
-  setIsMoreModalOpen,
-  menuBtnRef
-}) {
-  const modalRef = useRef();
+import { deactivateContextBtn } from '../../../store/actions/board.actions'
+export function RowModal({ onDeleteRow, setIsMoreModalOpen, menuBtnRef }) {
+  const modalRef = useRef()
   useEffect(() => {
     // Add event listener to close modal when clicking outside
-    const handleOutsideClick = event => {
-      if (modalRef.current && !modalRef.current.contains(event.target) && menuBtnRef.current && !menuBtnRef.current.contains(event.target)) {
-        setIsMoreModalOpen(false);
+    const handleOutsideClick = (event) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target) &&
+        menuBtnRef &&
+        !menuBtnRef.contains(event.target)
+      ) {
+        deactivateContextBtn()
       }
-    }; // Add event listener to the document body
+    } // Add event listener to the document body
 
-
-    document.body.addEventListener('click', handleOutsideClick); // Remove event listener on component unmount
+    document.body.addEventListener('click', handleOutsideClick) // Remove event listener on component unmount
 
     return () => {
-      document.body.removeEventListener('click', handleOutsideClick);
-    };
-  }, [setIsMoreModalOpen]);
-  return <div className="more-modal-container flex column" ref={modalRef}>
+      document.body.removeEventListener('click', handleOutsideClick)
+    }
+  }, [setIsMoreModalOpen])
+
+  function clickDeleteRow(){
+    deactivateContextBtn()
+    onDeleteRow()
+  }
+
+  let newRight, newLeft, newTop, newBottom
+  const { innerWidth, innerHeight } = window
+  const { top, left, height, width } = menuBtnRef.getBoundingClientRect()
+  if (left > innerWidth / 2) {
+    newLeft = left - 280 + width / 2
+  } else {
+    newLeft = left + width / 2
+  }
+  if (top > innerHeight / 2) {
+    newTop = top - 400 + height - 6
+  } else {
+    newTop = top + height + 6
+  }
+
+  return (
+    <div
+      className="more-modal-container flex column"
+      ref={modalRef}
+      style={{
+        position: 'absolute',
+        top: newTop,
+        left: newLeft,
+        zIndex: 1000,
+      }}>
       <div className="ds-tabs-section">
         <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
@@ -97,7 +127,9 @@ export function RowModal({
       <div className="ds-divider"></div>
       <div className="ds-tabs-section">
         <div className="tab flex column">
-          <button className="btn-icon medium-transparent flex gap16" onClick={onDeleteRow}>
+          <button
+            className="btn-icon medium-transparent flex gap16"
+            onClick={clickDeleteRow}>
             <DeleteIcon />
             Delete
           </button>
@@ -109,5 +141,6 @@ export function RowModal({
           </button>
         </div>
       </div>
-    </div>;
+    </div>
+  )
 }

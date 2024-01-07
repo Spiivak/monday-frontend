@@ -18,10 +18,15 @@ export const REMOVE_COLUMN = 'REMOVE_COLUMN'
 export const UPDATE_COLUMN = 'UPDATE_COLUMN'
 //loading
 export const SET_IS_LOADING = 'SET_IS_LOADING'
+//context-btns
+export const SET_ACTIVE_CONTEXT_BTN = 'SET_ACTIVE_CONTEXT_BTN'
+export const DEACTIVATE_CONTEXT_BTN = 'DEACTIVATE_CONTEXT_BTN'
 
 const initialState = {
   boards: [],
   isLoading: false,
+  activeContextBtn: null,
+  activeContextBtnData: null
 }
 
 export function boardReducer(state = initialState, action = {}) {
@@ -150,6 +155,12 @@ export function boardReducer(state = initialState, action = {}) {
     // * LOADING
     case SET_IS_LOADING:
       return { ...state, isLoading: action.isLoading }
+
+    // * CONTEXT BTN
+    case SET_ACTIVE_CONTEXT_BTN:
+      return {...state, activeContextBtn: action.contextBtn, activeContextBtnData: action.contextBtnData }
+      case DEACTIVATE_CONTEXT_BTN:
+      return {...state, activeContextBtn: null, activeContextBtnData: null }
     default:
       return state
   }

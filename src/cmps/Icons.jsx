@@ -2545,6 +2545,7 @@ export function MentionIcon() {
 export function MenuIcon() {
   return (
     <svg
+      style={{pointerEvents:'none'}}
       width="20"
       height="20"
       viewBox="0 0 20 20"
