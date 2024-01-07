@@ -61,12 +61,12 @@ const demoData = [
         tasks: [
           {
             id: 'c101',
-            title: 'Push new demo data',
-            statusc1: 'Done',
+            title: 'Create project board',
+            statusc1: 'Stuck',
             datec3: 1704355563730,
             timelinec5: [1704355563730, 1704528363730],
             filec6: '',
-            descriptionc4: 'Demodata... demodata... demodata....',
+            descriptionc4: 'Demodata',
             membersc2: [
               {
                 _id: 'u1',
@@ -102,7 +102,7 @@ const demoData = [
           },
           {
             id: 'c105',
-            title: 'Fix a few bugs',
+            title: 'Define projects goal',
             statusc1: 'Working on it',
             datec3: 1704441963730,
             filec6: '',
@@ -122,11 +122,31 @@ const demoData = [
           },
           {
             id: 'c107',
-            title: 'Talk about design',
+            title: 'Assamble project team',
+            statusc1: 'Done',
+            datec3: 1704528363730,
+            timelinec5: [1704355563730, 1704528363730],
+            descriptionc4: 'Centering a div is hard!',
+            filec6: '',
+            membersc2: [],
+          },
+          {
+            id: 'c108',
+            title: 'Set up communication channels',
             statusc1: 'Stuck',
             datec3: 1704528363730,
             timelinec5: [1704355563730, 1704528363730],
             descriptionc4: 'Centering a div is hard!',
+            filec6: '',
+            membersc2: [],
+          },
+          {
+            id: 'c500',
+            title: 'Adding a task',
+            statusc1: 'Done',
+            datec3: 1704528363730,
+            timelinec5: [1704355563730, 1704528363730],
+            descriptionc4: 'Just added a line!',
             filec6: '',
             membersc2: [],
           },
@@ -136,18 +156,141 @@ const demoData = [
 
       {
         id: 'g102',
-        title: 'Take over the world',
+        title: 'Planning Phase',
         tasks: [
           {
             id: 'c103',
-            title: 'Finish bootlegging monday',
+            title: 'Conduct Project Kick-off Meeting',
+            statusc1: 'Haven\'t Started',
             archivedAt: 1589983468418,
             membersc2: [],
             timelinec5: [1704528729979, 1735719129979],
           },
           {
             id: 'c104',
-            title: 'Take over the world',
+            title: 'Define Project Scope',
+            statusc1: 'Done', // monday
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+          {
+            id: 'c105',
+            title: 'Develop Project Schedule',
+            statusc1: 'Stuck',
+            archivedAt: 1589983468418,
+            membersc2: [],
+            timelinec5: [1704528729979, 1735719129979],
+          },
+          {
+            id: 'c106',
+            title: 'Identify Stakeholders',
+            statusc1: 'Haven\'t Started',
+            archivedAt: 1589983468418,
+            membersc2: [],
+            timelinec5: [1704528729979, 1735719129979],
+          },
+          {
+            id: 'c107',
+            title: 'Establish Budget',
+            statusc1: 'Done',
+            archivedAt: 1589983468418,
+            membersc2: [],
+            timelinec5: [1704528729979, 1735719129979],
+          },
+          {
+            id: 'c108',
+            title: 'Risk Assessment and Mitigation Planning',
+            statusc1: 'Done',
+            archivedAt: 1589983468418,
+            membersc2: [],
+            timelinec5: [1704528729979, 1735719129979],
+          },
+        ],
+        style: {},
+      },
+
+      {
+        id: 'g103',
+        title: 'Research and Analysis:',
+        tasks: [
+          {
+            id: 'c108',
+            title: 'Market Research',
+            archivedAt: 1589983468418,
+            membersc2: [],
+            timelinec5: [1704528729979, 1735719129979],
+          },
+          {
+            id: 'c109',
+            title: 'Competitor Analysis',
+            statusc1: 'Working on it', // monday
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+          {
+            id: 'c110',
+            title: 'User Requirements Gathering',
+            statusc1: 'Working on it', // monday
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+          {
+            id: 'c111',
+            title: 'Technology Assessment',
             statusc1: 'Working on it', // monday
             membersc2: [
               {
@@ -173,6 +316,581 @@ const demoData = [
         ],
         style: {},
       },
+
+      {
+        id: 'g104',
+        title: 'Design and Architecture:',
+        tasks: [
+          {
+            id: 'c112',
+            title: 'Create System Architecture',
+            statusc1: 'Stuck',
+            archivedAt: 1589983468418,
+            membersc2: [],
+            timelinec5: [1704528729979, 1735719129979],
+          },
+          {
+            id: 'c113',
+            title: 'User Interface (UI) Design',
+            statusc1: 'Stuck', // monday
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+          {
+            id: 'c114',
+            title: 'User Experience (UX) Design',
+            statusc1: 'Done', // monday
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+          {
+            id: 'c115',
+            title: 'Database Design',
+            statusc1: 'Done', // monday
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+        ],
+        style: {},
+      },
+
+      {
+        id: 'g105',
+        title: 'Development:',
+        tasks: [
+          {
+            id: 'c116',
+            title: 'Setup Development Environments',
+            statusc1: 'Stuck',
+            archivedAt: 1589983468418,
+            membersc2: [],
+            timelinec5: [1704528729979, 1735719129979],
+          },
+          {
+            id: 'c117',
+            title: 'Code Development',
+            statusc1: 'Done', // monday
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+          {
+            id: 'c118',
+            title: 'Unit Testing',
+            statusc1: 'Working on it', // monday
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+          {
+            id: 'c119',
+            title: 'Continuous Integration Setup',
+            statusc1: 'Done', // monday
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+        ],
+        style: {},
+      },
+
+      {
+        id: 'g106',
+        title: 'Quality Assurance (QA):',
+        tasks: [
+          {
+            id: 'c120',
+            title: 'Test Planning',
+            statusc1: 'Done',
+            archivedAt: 1589983468418,
+            membersc2: [],
+            timelinec5: [1704528729979, 1735719129979],
+          },
+          {
+            id: 'c121',
+            title: 'Test case development',
+            statusc1: 'Done',
+            membersc2: [],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+          {
+            id: 'c122',
+            title: 'Functional testing',
+            statusc1: 'Done',
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+          {
+            id: 'c123',
+            title: 'Performance Testing',
+            statusc1: 'Done',
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },   
+          },
+          {
+            id: 'c124',
+            title: 'User Acceptance Testing (UAT)',
+            statusc1: 'Working on it', // monday
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },   
+          },
+        ],
+        style: {},
+      },
+
+      {
+        id: 'g107',
+        title: 'Deployment:',
+        statusc1: 'Done',
+        tasks: [
+          {
+            id: 'c125',
+            title: 'Deployment Planning',
+            archivedAt: 1589983468418,
+            membersc2: [],
+            timelinec5: [1704528729979, 1735719129979],
+          },
+          {
+            id: 'c126',
+            title: 'Production Environment Setup',
+            statusc1: 'Stuck',
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+          {
+            id: 'c127',
+            title: 'System Deployment',
+            statusc1: 'Stuck',
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+          {
+            id: 'c128',
+            title: 'Post-Deployment Testing',
+            statusc1: 'Stuck',
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+        ],
+        style: {},
+      },
+
+      {
+        id: 'g108',
+        title: 'Documentation::',
+        tasks: [
+          {
+            id: 'c128',
+            title: 'Technical Documentation',
+            statusc1: 'Stuck',
+            archivedAt: 1589983468418,
+            membersc2: [],
+            timelinec5: [1704528729979, 1735719129979],
+          },
+          {
+            id: 'c129',
+            title: 'User Manuals',
+            statusc1: 'Working on it',
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+          {
+            id: 'c129',
+            title: 'Knowledge Transfer Sessions',
+            statusc1: 'Working on it', // monday
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+        ],
+        style: {},
+      },
+
+      {
+        id: 'g109',
+        title: 'Training:',
+        tasks: [
+          {
+            id: 'c130',
+            title: 'End-User Training',
+            statusc1: 'Working on it',
+            archivedAt: 1589983468418,
+            membersc2: [],
+            timelinec5: [1704528729979, 1735719129979],
+          },
+          {
+            id: 'c131',
+            title: 'Admin Training',
+            statusc1: 'Working on it', // monday
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+          {
+            id: 'c132',
+            title: 'Training Material Preparation',
+            statusc1: 'Working on it', // monday
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+        ],
+        style: {},
+      },
+
+      {
+        id: 'g110',
+        title: 'Maintenance and Support::',
+        tasks: [
+          {
+            id: 'c133',
+            title: 'Establish Support Processes',
+            statusc1: 'Working on it', // monday
+            archivedAt: 1589983468418,
+            membersc2: [],
+            timelinec5: [1704528729979, 1735719129979],
+          },
+          {
+            id: 'c134',
+            title: 'Bug Tracking and Resolution',
+            statusc1: 'Working on it', // monday
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+          {
+            id: 'c135',
+            title: 'Continuous Improvement',
+            statusc1: 'Working on it', // monday
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                _id: 'u4',
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
+
+            priority: 'high',
+            descriptionc4: 'description',
+            style: {
+              backgroundColor: '#26de81',
+            },
+          },
+        ],
+        style: {},
+      },
+
     ],
     activities: [
       {
