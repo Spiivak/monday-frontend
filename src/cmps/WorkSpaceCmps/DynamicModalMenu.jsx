@@ -19,15 +19,15 @@ export function DynamicModalMenu() {
   const onDeleteRow = activeContextBtnData?.onDeleteRow || null
 
   console.log('Dynamic', activeContextBtnData, activeContextBtn)
-  if(!type) return
+  if (!type) return
   switch (type) {
     case 'row':
-      return <RowModal menuBtnRef={activeContextBtn} onDeleteRow={onDeleteRow}/>
-      case 'column':
-      return <ColumnModal menuBtnRef={activeContextBtn} onDeleteColumn={onDeleteColumn}/>
-      case 'group':
+      return <RowModal menuBtnRef={activeContextBtn} onDeleteRow={onDeleteRow} />
+    case 'column':
+      return <ColumnModal menuBtnRef={activeContextBtn} onDeleteColumn={onDeleteColumn} />
+    case 'group':
       return <GroupModal menuBtnRef={activeContextBtn} onDeleteGroup={onDeleteGroup} />
-      case 'board':
-      return <BoardModal menuBtnRef={activeContextBtn} onDeleteBoard={onDeleteBoard}/>
+    case 'board':
+      return <BoardModal menuBtnRef={activeContextBtn} onDeleteBoard={onDeleteBoard} />
   }
 }

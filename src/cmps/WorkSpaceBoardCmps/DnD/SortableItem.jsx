@@ -16,6 +16,7 @@ export function SortableItem({ id, row, onTaskUpdate, onDeleteTask, boardId, gro
     <tr className="hoverable" ref={setNodeRef} style={style} {...attributes}>
       <td style={{ width: '80px' }}>
         <div className="flex align-center justify-center relative ">
+
           <div style={{ cursor: 'grab' }} className="row-context absolute">
             <ContextBtn
               type="row"
@@ -24,8 +25,10 @@ export function SortableItem({ id, row, onTaskUpdate, onDeleteTask, boardId, gro
               }
             />
           </div>
+
           <input type="checkbox" {...listeners} />
         </div>
+        
       </td>
       {row.cells.map((cell) => (
         <td {...cell.getCellProps()}>

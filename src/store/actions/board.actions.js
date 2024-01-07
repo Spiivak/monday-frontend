@@ -6,11 +6,13 @@ import {
   ADD_GROUP,
   ADD_TASK,
   DEACTIVATE_CONTEXT_BTN,
+  DEACTIVATE_TASK,
   REMOVE_BOARD,
   REMOVE_COLUMN,
   REMOVE_GROUP,
   REMOVE_TASK,
   SET_ACTIVE_CONTEXT_BTN,
+  SET_ACTIVE_TASK,
   SET_BOARDS,
   SET_IS_LOADING,
   UPDATE_BOARD,
@@ -249,6 +251,14 @@ export function setActiveContextBtn(contextBtn, contextBtnData){
 
 export function deactivateContextBtn(){
   store.dispatch({ type: DEACTIVATE_CONTEXT_BTN})
+}
+
+export function setActiveTask(activeTask){
+  store.dispatch({ type: SET_ACTIVE_TASK, activeTask})
+}
+
+export function deactivateTask(){
+  store.dispatch({ type: DEACTIVATE_TASK})
 }
 
 

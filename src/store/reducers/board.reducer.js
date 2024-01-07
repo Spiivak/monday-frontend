@@ -1,4 +1,3 @@
-import { boardService } from '../../services/board.service.js'
 //board
 export const SET_BOARDS = 'SET_BOARDS'
 export const REMOVE_BOARD = 'REMOVE_BOARD'
@@ -21,12 +20,16 @@ export const SET_IS_LOADING = 'SET_IS_LOADING'
 //context-btns
 export const SET_ACTIVE_CONTEXT_BTN = 'SET_ACTIVE_CONTEXT_BTN'
 export const DEACTIVATE_CONTEXT_BTN = 'DEACTIVATE_CONTEXT_BTN'
+// active task
+export const SET_ACTIVE_TASK = 'SET_ACTIVE_TASK'
+export const DEACTIVATE_TASK = 'DEACTIVATE_TASK'
 
 const initialState = {
   boards: [],
   isLoading: false,
   activeContextBtn: null,
-  activeContextBtnData: null
+  activeContextBtnData: null,
+  activeTask: null,
 }
 
 export function boardReducer(state = initialState, action = {}) {
@@ -51,6 +54,7 @@ export function boardReducer(state = initialState, action = {}) {
         board._id === action.board._id ? action.board : board
       )
       return { ...state, boards }
+
     // * GROUP CRUD
     case ADD_GROUP:
       newBoards = state.boards.map((board) => {
@@ -58,6 +62,7 @@ export function boardReducer(state = initialState, action = {}) {
         return { ...board, groups: [...board.groups, action.savedGroup] }
       })
       return { ...state, boards: newBoards }
+
     case REMOVE_GROUP:
       newBoards = state.boards.map((board) => {
         if (board._id !== action.boardId) return board
@@ -69,6 +74,7 @@ export function boardReducer(state = initialState, action = {}) {
         }
       })
       return { ...state, boards: newBoards }
+
     // * TASK CRUD
     case UPDATE_TASK:
       newBoards = state.boards.map((board) => {
@@ -88,6 +94,7 @@ export function boardReducer(state = initialState, action = {}) {
         }
       })
       return { ...state, boards: newBoards }
+
     case ADD_TASK:
       newBoards = state.boards.map((board) => {
         if (board._id !== action.boardId) return board
@@ -118,6 +125,7 @@ export function boardReducer(state = initialState, action = {}) {
         }
       })
       return { ...state, boards: newBoards }
+
     case ADD_COLUMN:
       newBoards = state.boards.map((board) => {
         if (board._id !== action.boardId) return board
@@ -139,6 +147,7 @@ export function boardReducer(state = initialState, action = {}) {
         }
       })
       return { ...state, boards: newBoards }
+
     case UPDATE_COLUMN:
       newBoards = state.boards.map((board) => {
         if (board._id !== action.boardId) return board
@@ -158,9 +167,16 @@ export function boardReducer(state = initialState, action = {}) {
 
     // * CONTEXT BTN
     case SET_ACTIVE_CONTEXT_BTN:
-      return {...state, activeContextBtn: action.contextBtn, activeContextBtnData: action.contextBtnData }
-      case DEACTIVATE_CONTEXT_BTN:
-      return {...state, activeContextBtn: null, activeContextBtnData: null }
+      return { ...state, activeContextBtn: action.contextBtn, activeContextBtnData: action.contextBtnData }
+    case DEACTIVATE_CONTEXT_BTN:
+      return { ...state, activeContextBtn: null, activeContextBtnData: null }
+
+    // * ACTIVE TASK
+    case SET_ACTIVE_TASK:
+      return { ...state, activeTask: action.activeTask }
+    case DEACTIVATE_TASK:
+      return { ...state, activeTask: null }
+
     default:
       return state
   }
