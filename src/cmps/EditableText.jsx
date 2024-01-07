@@ -30,13 +30,13 @@ const onKeyDown = (event) => {
     } else {
       setText(initialText);
     }
-    
+
     setEditing(false);
   }
 
   const showTooltip = text.length < 50;
   return (
-    <div style={{ width: '100%'}}>
+    <>
       {isEditing ? (
           <input
             style={{ minWidth: Math.ceil(text.length) + "ch", maxHeight: '34px'}}
@@ -57,6 +57,6 @@ const onKeyDown = (event) => {
         </div>
         </Tooltip>
       )}
-    </div>
+    </>
   );
 }
