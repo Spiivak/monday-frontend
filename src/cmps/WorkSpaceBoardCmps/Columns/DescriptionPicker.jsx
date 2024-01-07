@@ -38,11 +38,13 @@ export function DescriptionPicker({ task, cmpId, handleUpdateTask }) {
         placeholder="Add description"
         value={displayValue}
         onClick={() => setOpenMultiLine(true)}
+        style={{ padding: '7px' }}
         inputProps={{
           style: {
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             boxSizing: 'border-box',
+            padding: '0px',
           },
         }}
       />
