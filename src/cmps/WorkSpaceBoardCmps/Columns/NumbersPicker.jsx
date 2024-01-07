@@ -19,20 +19,22 @@ export function NumbersPickers({ task, cmpId, handleUpdateTask }) {
   }
 
   return (
-    <TextField
-      className="cell"
-      placeholder="Type a number..."
-      id="outlined-number"
-      onChange={handleUpdateNumber}
-      onBlur={handleBlur}
-      value={num}
-      type="number"
-      inputProps={{
-        style: {
-          boxSizing: 'border-box',
-          width: '130px',
-        },
-      }}
-    />
+    <div className="number-picker-cell">
+      <TextField
+        className="cell"
+        placeholder="Type a number..."
+        id="outlined-number"
+        onChange={handleUpdateNumber}
+        onBlur={handleBlur}
+        value={num}
+        type="number"
+        inputProps={{
+          style: {
+            boxSizing: 'border-box',
+            width: '130px',
+          },
+        }}
+      />
+    </div>
   )
 }

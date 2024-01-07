@@ -61,8 +61,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
           onClick={(e) => {
             e.stopPropagation()
             e.preventDefault()
-          }}
-        >
+          }}>
           <h5>Suggested people</h5>
         </div>
       ),
@@ -75,8 +74,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
             <div
               key={user._id}
               onClick={() => handleUpdateUser(user)}
-              className="flex align-center gap8"
-            >
+              className="flex align-center gap8">
               <img
                 src={user.imgUrl}
                 style={{
@@ -95,29 +93,30 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
   ]
 
   return (
-    <Dropdown
-      menu={{
-        items,
-      }}
-      trigger={['click']}
-      placement="bottom"
-      arrow={{
-        pointAtCenter: true,
-      }}
-    >
-      <div className="cell">
-        {task['members' + cmpId] && task['members' + cmpId].length > 0 ? (
-          <div className="avatars-wrapper">
-            {task['members' + cmpId].map((member) => (
-              <div className="avatar-logo" key={member._id}>
-                <img src={member.imgUrl} alt="" />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="avatars-wrapper">No members selected</div>
-        )}
-      </div>
-    </Dropdown>
+    <div className="member-picker-cell">
+      <Dropdown
+        menu={{
+          items,
+        }}
+        trigger={['click']}
+        placement="bottom"
+        arrow={{
+          pointAtCenter: true,
+        }}>
+        <div className="cell">
+          {task['members' + cmpId] && task['members' + cmpId].length > 0 ? (
+            <div className="avatars-wrapper">
+              {task['members' + cmpId].map((member) => (
+                <div className="avatar-logo" key={member._id}>
+                  <img src={member.imgUrl} alt="" />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="avatars-wrapper">No members selected</div>
+          )}
+        </div>
+      </Dropdown>
+    </div>
   )
 }

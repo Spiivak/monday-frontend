@@ -57,9 +57,14 @@
     }
   }
 
+  .board-table{
+    // display: flex;
+    width: fit-content;
+  }
+
   table {
     width: max-content;
-    min-width: 100%;
+    // min-width: 100%;
     td,
     th {
       height: 36px;

@@ -5,9 +5,11 @@ export function FilePicker({ task, cmpId, handleUpdateTask }) {
     handleUpdateTask('FilePicker', fileData, task)
   }
   return (
-    <ImgUploader
-      imgData={task['file' + cmpId]}
-      handleUpdateTaskFile={handelUpdateFile}
-    />
+    <div className="file-picker-cell">
+      <ImgUploader
+        imgData={task['file' + cmpId]}
+        handleUpdateTaskFile={handelUpdateFile}
+      />
+    </div>
   )
 }

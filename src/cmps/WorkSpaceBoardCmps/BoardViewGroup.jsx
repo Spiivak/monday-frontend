@@ -186,7 +186,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
         <h2 className="group-title flex editable-txt"><EditableText initialText={group.title} onSave={()=>{}} placeholder={group.title} /></h2>
         <span>{group.tasks.length} items / 0 subitems</span>
       </div>
-      <div>
+      <div className='board-table-container'>
         <DndContext
           sensors={sensors}
           onDragEnd={handleDragEnd}

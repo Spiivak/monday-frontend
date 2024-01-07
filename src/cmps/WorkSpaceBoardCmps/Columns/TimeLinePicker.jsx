@@ -20,7 +20,7 @@ export function TimeLinePicker({ task, cmpId, handleUpdateTask }) {
   }
 
   return (
-    <div className="cell">
+    <div className="timeline-picker-cell">
       {task['timeline'+cmpId] ? (
         <RangePicker
           defaultValue={task['timeline'+cmpId].map((timestamp) => dayjs(timestamp))}

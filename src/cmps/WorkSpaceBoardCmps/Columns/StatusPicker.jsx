@@ -62,28 +62,30 @@ export function StatusPicker({ task, cmpId, handleUpdateTask }) {
   }, '')
 
   return (
-    <Dropdown
-      rootClassName="dropdown-status-picker"
-      menu={{
-        items,
-      }}
-      trigger={['click']}
-      placement="bottom"
-      arrow={{
-        pointAtCenter: true,
-      }}
-    >
-      <div className="cell">
-        <button
-          className="label-btn"
-          style={{
-            backgroundColor: bgc || '#c4c4c4',
-            color: 'white',
-          }}
-        >
-          {task['status' + cmpId] || "Haven't Started"}
-        </button>
-      </div>
-    </Dropdown>
+    <div className="status-picker-cell">
+      <Dropdown
+        rootClassName="dropdown-status-picker"
+        menu={{
+          items,
+        }}
+        trigger={['click']}
+        placement="bottom"
+        arrow={{
+          pointAtCenter: true,
+        }}
+      >
+        <div className="cell">
+          <button
+            className="label-btn"
+            style={{
+              backgroundColor: bgc || '#c4c4c4',
+              color: 'white',
+            }}
+          >
+            {task['status' + cmpId] || "Haven't Started"}
+          </button>
+        </div>
+      </Dropdown>
+    </div>
   )
 }
