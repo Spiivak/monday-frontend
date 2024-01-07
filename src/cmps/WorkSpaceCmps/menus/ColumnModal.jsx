@@ -23,8 +23,33 @@ export function ColumnModal({
   menuBtnRef,
 }) {
   const modalRef = useRef()
+
+  // State for position
+  const [position, setPosition] = useState({ top: 0, left: 0 })
+
   useEffect(() => {
-    // Add event listener to close modal when clicking outside
+    const handleResize = () => {
+      // Your logic for calculating newLeft and newTop
+      const { innerWidth, innerHeight } = window
+      const { top, left, height, width } = menuBtnRef.getBoundingClientRect()
+      let newLeft, newTop
+
+      if (left > innerWidth / 2) {
+        newLeft = left - 280 + width / 2
+      } else {
+        newLeft = left + width / 2
+      }
+
+      if (top > innerHeight / 2) {
+        newTop = top - 400 + height - 6
+      } else {
+        newTop = top + height + 6
+      }
+
+      // Update the state with the new position
+      setPosition({ top: newTop, left: newLeft })
+    }
+
     const handleOutsideClick = (event) => {
       if (
         modalRef.current &&
@@ -36,59 +61,36 @@ export function ColumnModal({
       }
     } // Add event listener to the document body
 
-    document.body.addEventListener('click', handleOutsideClick)
-    document.body.addEventListener('resize', handleResize)
+    // Initial setup
+    handleResize()
+
+    // Event listeners
+    window.addEventListener('resize', handleResize)
+    window.addEventListener('scroll', handleResize)
+    window.addEventListener('click', handleOutsideClick)
+    // Cleanup
     return () => {
-      document.body.removeEventListener('click', handleOutsideClick)
-      document.body.removeEventListener('resize', handleResize)
+      window.removeEventListener('click', handleOutsideClick)
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('scroll', handleResize)
     }
-  }, [setIsMoreModalOpen])
+  }, [menuBtnRef])
 
   function clickDeleteColumn() {
     deactivateContextBtn()
     onDeleteColumn()
   }
 
-  let newLeft, newTop
-  const { innerWidth, innerHeight } = window
-  const { top, left, height, width } = menuBtnRef.getBoundingClientRect()
-  if (left > innerWidth / 2) {
-    newLeft = left - 280 + width / 2
-  } else {
-    newLeft = left + width / 2
-  }
-  if (top > innerHeight / 2) {
-    newTop = top - 400 + height - 6
-  } else {
-    newTop = top + height + 6
-  }
-
-  function handleResize() {
-    let newLeft, newTop
-    const { innerWidth, innerHeight } = window
-    const { top, left, height, width } = menuBtnRef.getBoundingClientRect()
-    if (left > innerWidth / 2) {
-      newLeft = left - 280 + width / 2
-    } else {
-      newLeft = left + width / 2
-    }
-    if (top > innerHeight / 2) {
-      newTop = top - 400 + height - 6
-    } else {
-      newTop = top + height + 6
-    }
-  }
-
   return (
     <div
+      className="more-modal-container flex column"
+      ref={modalRef}
       style={{
         position: 'fixed',
-        top: newTop,
-        left: newLeft,
+        top: position.top,
+        left: position.left,
         zIndex: 1000,
-      }}
-      className="more-modal-container flex column"
-      ref={modalRef}>
+      }}>
       <div className="ds-tabs-section">
         <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>

@@ -15,12 +15,37 @@ import {
   WorkspaceIcon,
 } from '../../Icons'
 import { Save } from '@mui/icons-material'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { deactivateContextBtn } from '../../../store/actions/board.actions'
 export function GroupModal({ onDeleteGroup, setIsMoreModalOpen, menuBtnRef }) {
   const modalRef = useRef()
+
+  // State for position
+  const [position, setPosition] = useState({ top: 0, left: 0 })
+
   useEffect(() => {
-    // Add event listener to close modal when clicking outside
+    const handleResize = () => {
+      // Your logic for calculating newLeft and newTop
+      const { innerWidth, innerHeight } = window
+      const { top, left, height, width } = menuBtnRef.getBoundingClientRect()
+      let newLeft, newTop
+
+      if (left > innerWidth / 2) {
+        newLeft = left - 280 + width / 2
+      } else {
+        newLeft = left + width / 2
+      }
+
+      if (top > innerHeight / 2) {
+        newTop = top - 400 + height - 6
+      } else {
+        newTop = top + height + 6
+      }
+
+      // Update the state with the new position
+      setPosition({ top: newTop, left: newLeft })
+    }
+
     const handleOutsideClick = (event) => {
       if (
         modalRef.current &&
@@ -32,47 +57,24 @@ export function GroupModal({ onDeleteGroup, setIsMoreModalOpen, menuBtnRef }) {
       }
     } // Add event listener to the document body
 
-    document.body.addEventListener('click', handleOutsideClick)
-    document.body.addEventListener('resize', handleResize)
-    return () => {
-      document.body.removeEventListener('click', handleOutsideClick)
-      document.body.removeEventListener('resize', handleResize)
-    }
-  }, [setIsMoreModalOpen])
+    // Initial setup
+    handleResize()
 
-  function clickDeleteGroup(){
+    // Event listeners
+    window.addEventListener('resize', handleResize)
+    window.addEventListener('scroll', handleResize)
+    window.addEventListener('click', handleOutsideClick)
+    // Cleanup
+    return () => {
+      window.removeEventListener('click', handleOutsideClick)
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('scroll', handleResize)
+    }
+  }, [menuBtnRef])
+
+  function clickDeleteGroup() {
     deactivateContextBtn()
     onDeleteGroup()
-  }
-
-  let newLeft, newTop
-  const { innerWidth, innerHeight } = window
-  const { top, left, height, width } = menuBtnRef.getBoundingClientRect()
-  if (left > innerWidth / 2) {
-    newLeft = left - 280 + width / 2
-  } else {
-    newLeft = left + width / 2
-  }
-  if (top > innerHeight / 2) {
-    newTop = top - 400 + height - 6
-  } else {
-    newTop = top + height + 6
-  }
-
-  function handleResize() {
-    let newLeft, newTop
-    const { innerWidth, innerHeight } = window
-    const { top, left, height, width } = menuBtnRef.getBoundingClientRect()
-    if (left > innerWidth / 2) {
-      newLeft = left - 280 + width / 2
-    } else {
-      newLeft = left + width / 2
-    }
-    if (top > innerHeight / 2) {
-      newTop = top - 400 + height - 6
-    } else {
-      newTop = top + height + 6
-    }
   }
 
   return (
@@ -80,9 +82,9 @@ export function GroupModal({ onDeleteGroup, setIsMoreModalOpen, menuBtnRef }) {
       className="more-modal-container flex column"
       ref={modalRef}
       style={{
-        position: 'absolute',
-        top: newTop,
-        left: newLeft,
+        position: 'fixed',
+        top: position.top,
+        left: position.left,
         zIndex: 1000,
       }}>
       <div className="ds-tabs-section">
