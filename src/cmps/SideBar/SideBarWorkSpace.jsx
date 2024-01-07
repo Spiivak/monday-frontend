@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { MenuIcon, NavigationChevronDownIcon } from '../Icons'
+import { MenuIcon, NavigationChevronDownIcon, TestIcon } from '../Icons'
 import { MoreModal } from './modals/MoreModal'
 import Frame from '../../assets/img/Frame.png'
 import { WorkSpaceContext } from './modals/WorkSpaceContext'
@@ -24,19 +24,17 @@ export function SideBarWorkSpace() {
           data-workspace-button="true"
         >
           <div className="workspace-title flex align-center space-between">
-            <div className="workspace-icon">
-              <div className="workspace-name-wrapper flex align-center gap8">
+              <div className="workspace-name-wrapper flex align-center">
                 {/* <HomeIcon /> */}
                 <picture className="flex">
                   <img src={Frame} alt="" />
                 </picture>
                 <span>Sprint 4</span>
               </div>
-            </div>
           </div>
           <div className="dropdown-icon-wrapper flex align-center gap8">
             <div className="chvron-down flex">
-              <NavigationChevronDownIcon className="chvron-down" />
+              <TestIcon />
             </div>
           </div>
         </div>

@@ -4,6 +4,11 @@
     padding-top: $spacing-medium;
     padding-left: $spacing-xl + 6px;
 
+    position: sticky;
+    left: 0;
+    top: 0;
+    background-color: #fff;
+    z-index: 999999;
     .board-header {
       max-height: 40px;
       padding: $spacing-xs 0;
