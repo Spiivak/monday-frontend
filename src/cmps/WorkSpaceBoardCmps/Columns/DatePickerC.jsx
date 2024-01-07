@@ -43,7 +43,7 @@ export function DatePickerC({ task, cmpId, handleUpdateTask }) {
         </div>
       ) : (
         <DatePicker
-          style={{ opacity: '0', padding: '0' }}
+          style={{ opacity: '0', padding: '0', width: '115px' }}
           onClick={() => setDateModal(true)}
           format={dateFormat}
           onChange={handleUpdateDate}
