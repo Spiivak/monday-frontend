@@ -12,7 +12,7 @@ const labels = [
 const demoData = [
   {
     _id: 'b101',
-    title: 'Placeholder',
+    title: 'Best Board!💥',
     archivedAt: Date.now(),
     createdBy: {
       _id: 'u101',
@@ -44,52 +44,62 @@ const demoData = [
     groups: [
       {
         id: 'g101',
-        title: 'Group 1',
+        title: 'Bootleg Monday',
         archivedAt: 1589983468418,
         tasks: [
           {
             id: 'c101',
-            title: 'Replace logo',
-            datec3: 1589983468418,
-            timelinec5: [1589983468418, 1589983468418],
+            title: 'Push new demo data',
+            statusc1: 'Done',
+            datec3: 1704355563730,
+            timelinec5: [1704355563730, 1704528363730],
             filec6: '',
-            membersc2: [],
+            descriptionc4: 'Demodata... demodata... demodata....',
+            membersc2: [
+              {
+                _id: 'u1',
+                fullname: 'Nave David',
+                username: 'navedavid@gmail.com',
+                imgUrl:
+                  'https://res.cloudinary.com/donnezwy9/image/upload/v1704455572/rzddgfxj4fzkcn6eqgrv.jpg',
+              },
+              {
+                _id: 'u2',
+                fullname: 'Dima Revelson',
+                username: 'dimarevelson@gmail.com',
+                imgUrl:
+                  'https://res.cloudinary.com/donnezwy9/image/upload/v1704459492/mv8vwh55b3wgqdflmemw.png',
+              },
+            ],
           },
           {
             id: 'c105',
-            title: 'Replace logo',
-            datec3: 1589983468418,
-            timelinec5: [1589983468418, 1589983468418],
+            title: 'Fix a few bugs',
+            statusc1: 'Working on it',
+            datec3: 1704441963730,
             filec6: '',
-            membersc2: [],
+            membersc2: [
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                username: 'dimarevelson@gmail.com',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+              },
+            ],
+            filesc6: {
+              imgUrl:
+                'https://res.cloudinary.com/donnezwy9/image/upload/v1704615276/oqjwh1iue57jvwmydje9.png',
+              publicId: 'oqjwh1iue57jvwmydje9',
+            },
           },
           {
             id: 'c107',
-            title: 'Replace logo',
-            datec3: 1589983468418,
-            timelinec5: [1589983468418, 1589983468418],
+            title: 'Talk about design',
+            statusc1: 'Stuck',
+            datec3: 1704528363730,
+            timelinec5: [1704355563730, 1704528363730],
+            descriptionc4: 'Centering a div is hard!',
             filec6: '',
-            membersc2: [],
-          },
-          {
-            id: 'c108',
-            title: 'Replace logo',
-            datec3: 1589983468418,
-            timelinec5: [1589983468418, 1589983468418],
-            filec6: '',
-            membersc2: [],
-          },
-          {
-            id: 'c109',
-            title: 'Replace logo',
-            date: 1589983468418,
-            timelinec5: [1589983468418, 1589983468418],
-            filec6: '',
-            membersc2: [],
-          },
-          {
-            id: 'c102',
-            title: 'Add Samples',
             membersc2: [],
           },
         ],
@@ -98,80 +108,34 @@ const demoData = [
 
       {
         id: 'g102',
-        title: 'Group 2',
+        title: 'Take over the world',
         tasks: [
           {
             id: 'c103',
-            title: 'Do that',
+            title: 'Finish bootlegging monday',
             archivedAt: 1589983468418,
-            membersc2: [
-              {
-                _id: 'u101',
-                username: 'Tal',
-                fullname: 'Tal Tarablus',
-                imgUrl:
-                  'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-              },
-              {
-                _id: 'u102',
-                username: 'Cal',
-                fullname: 'Cal Tarablus',
-                imgUrl:
-                  'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-              },
-              {
-                _id: 'u103',
-                username: 'Dal',
-                fullname: 'Dal Tarablus',
-                imgUrl:
-                  'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-              },
-            ],
+            membersc2: [],
+            timelinec5: [1704528729979, 1735719129979],
           },
           {
             id: 'c104',
-            title: 'Help me',
+            title: 'Take over the world',
             statusc1: 'Working on it', // monday
-            membersc2: [],
+            membersc2: [
+              {
+                fullname: 'Emily Kristensen',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+                username: 'dimarevelson@gmail.com',
+              },
+              {
+                fullname: 'Isabelle Anderson',
+                imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+                username: 'isabelle.anderson@example.com',
+              },
+            ],
 
             priority: 'high',
             descriptionc4: 'description',
-            comments: [
-              {
-                id: 'ZdPnm',
-                txt: 'also @yaronb please CR this',
-                createdAt: 1590999817436,
-                byMember: {
-                  _id: 'u101',
-                  fullname: 'Tal Tarablus',
-                  imgUrl:
-                    'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-                },
-              },
-            ],
-            checklists: [
-              {
-                id: 'YEhmF',
-                title: 'Checklist',
-                todos: [
-                  {
-                    id: '212jX',
-                    title: 'To Do 1',
-                    isDone: false,
-                  },
-                ],
-              },
-            ],
-            memberIds: ['u101'],
-            labelIds: ['l101', 'l102'],
-            dueDate: 16156215211,
-            byMember: {
-              _id: 'u101',
-              username: 'Tal',
-              fullname: 'Tal Tarablus',
-              imgUrl:
-                'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-            },
             style: {
               backgroundColor: '#26de81',
             },
@@ -202,16 +166,16 @@ const demoData = [
     ],
 
     cmpsOrder: [
-      { type: 'StatusPicker', id: 'c1', title: 'Status' },
-      { type: 'MemberPicker', id: 'c2', title: 'Member' },
-      { type: 'DatePicker', id: 'c3', title: 'Date' },
+      { type: 'StatusPicker', id: 'c1', title: 'Progress' },
+      { type: 'MemberPicker', id: 'c2', title: 'Owner' },
+      { type: 'DatePicker', id: 'c3', title: 'Due Date' },
       {
         type: 'DescriptionPicker',
         id: 'c4',
-        title: 'Description',
+        title: 'Notes',
       },
-      { type: 'TimeLinePicker', id: 'c5', title: 'Time line' },
-      { type: 'FilePicker', id: 'c6', title: 'File' },
+      { type: 'TimeLinePicker', id: 'c5', title: 'Time Frame' },
+      { type: 'FilePicker', id: 'c6', title: 'Additional files' },
     ],
   },
 ]
