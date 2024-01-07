@@ -72,6 +72,9 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
           case 'LinkPicker':
             accessor = 'link' + cmp.id
             break
+          case 'NumbersPicker':
+            accessor = 'number' + cmp.id
+            break
           default:
             break
         }
@@ -204,8 +207,8 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
             <thead>
               {headerGroups.map((headerGroup) => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
-                  <th style={{ width: '80px' }}>
-                    <div className="flex align-center justify-center">
+                  <th>
+                    <div className="checkbox-cell flex align-center justify-center">
                       <input type="checkbox" />
                     </div>
                   </th>
@@ -232,7 +235,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                       </div>
                     </th>
                   ))}
-                  <th style={{ width: '80px' }}>
+                  <th>
                     <AddColumnBtn
                       onAddColumn={(type) => onAddColumn(boardId, type)}
                     />
@@ -260,9 +263,9 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   )
                 })}
               </SortableContext>
-              <tr>
-                <td style={{ width: '80px' }}>
-                  <div className="flex align-center justify-center">
+              <tr className='hoverable'>
+                <td>
+                  <div className=" checkbox-cell flex align-center justify-center">
                     <input type="checkbox" />
                   </div>
                 </td>

@@ -1,0 +1,53 @@
+// status-picker-cell
+// number-picker-cell
+// timeline-picker-cell
+// description-picker-cell
+// file-picker-cell
+// member-picker-cell
+// date-picker-cell
+// checkbox-cell
+// empty-add-cell
+// task-title
+
+.checkbox-cell{
+  width: 50px;
+  input{
+    scale: 1.4;
+  }
+}
+
+.task-title {
+  min-width: 350px;
+}
+
+.status-picker-cell {
+  min-width: 260px;
+}
+
+.member-picker-cell{
+  min-width: 260px;
+}
+
+.date-picker-cell{
+  min-width: 260px;
+}
+
+.timeline-picker-cell{
+  min-width: 260px;
+}
+
+.description-picker-cell{
+  min-width: 260px;
+}
+
+.file-picker-cell{
+  min-width: 260px;
+}
+
+.number-picker-cell{
+  min-width: 260px;
+}
+
+.empty-add-cell{
+}
+

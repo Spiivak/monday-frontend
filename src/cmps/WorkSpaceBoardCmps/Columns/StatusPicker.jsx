@@ -62,7 +62,7 @@ export function StatusPicker({ task, cmpId, handleUpdateTask }) {
   }, '')
 
   return (
-    <div className="status-picker-cell">
+    <div className="cell status-picker-cell">
       <Dropdown
         rootClassName="dropdown-status-picker"
         menu={{

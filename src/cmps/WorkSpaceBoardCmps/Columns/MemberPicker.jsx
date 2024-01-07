@@ -2,6 +2,7 @@ import { Dropdown } from 'antd'
 import Input from '@mui/joy/Input'
 import { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { PersonRoundedIcon } from '../../Icons'
 
 export function MemberPicker({ task, cmpId, handleUpdateTask }) {
   const users = useSelector((storeState) => storeState.userModule.users)
@@ -93,7 +94,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
   ]
 
   return (
-    <div className="member-picker-cell">
+    <div className="cell member-picker-cell">
       <Dropdown
         menu={{
           items,
@@ -113,7 +114,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
               ))}
             </div>
           ) : (
-            <div className="avatars-wrapper">No members selected</div>
+            <div className="avatars-wrapper" style={{ opacity: '0.2'}}><PersonRoundedIcon/></div>
           )}
         </div>
       </Dropdown>

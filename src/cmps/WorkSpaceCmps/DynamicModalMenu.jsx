@@ -18,7 +18,6 @@ export function DynamicModalMenu() {
   const onDeleteColumn = activeContextBtnData?.onDeleteColumn || null
   const onDeleteRow = activeContextBtnData?.onDeleteRow || null
 
-  console.log('Dynamic', activeContextBtnData, activeContextBtn)
   if (!type) return
   switch (type) {
     case 'row':

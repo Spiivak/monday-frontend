@@ -1,4 +1,4 @@
-import { Add, Save } from '@mui/icons-material'
+import { Add, Description, Save, UploadFile } from '@mui/icons-material'
 import { useEffect, useRef, useState } from 'react'
 import {
   AddSmallIcon,
@@ -8,7 +8,9 @@ import {
   DateCol,
   DeleteIcon,
   EditIcon,
+  FileIcon,
   LinkCol,
+  LinkIcon,
   NumbersCol,
   PeopleCol,
   SettingsIcon,
@@ -24,8 +26,9 @@ export default function AddColumnBtn({onAddColumn}) {
     setIsMoreModalOpen((isOpen) => !isOpen)
   }
   return (
-    <div className="flex align-center justify-center relative">
+    <div className="flex align-center relative">
       <button
+      style={{ paddingLeft: '16px'}}
         ref={menuBtnRef}
         className="btn-icon small-transparent"
         onClick={(ev) => {
@@ -114,9 +117,23 @@ function AddModal({ setIsMoreModalOpen, menuBtnRef,onAddColumn }) {
               </div>
               Status
             </button>
-            <button className="btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('link')}>
+            <button className="btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('file')}>
               <div className="icon-wrapper link-col-wrapper flex align-center justify-center">
-                <LinkCol />
+                <UploadFile style={{color:'#eee'}} />
+              </div>
+              File
+            </button>
+          </div>
+          <div className="btn-group grid c2">
+            <button className="gc1 btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('description')}>
+              <div className="icon-wrapper color-col-wrapper flex align-center justify-center">
+                <Description style={{color: '#eee'}} />
+              </div>
+              Status
+            </button>
+            <button disabled className="btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('file')}>
+              <div className="icon-wrapper link-col-wrapper flex align-center justify-center">
+                <LinkIcon />
               </div>
               Link
             </button>

@@ -31,7 +31,7 @@ export function DescriptionPicker({ task, cmpId, handleUpdateTask }) {
   }
 
   return (
-    <div className="description-picker-cell relative">
+    <div className="description-picker-cell relative cell">
       <div
         onClick={() => setOpenMultiLine(true)}
         style={{
