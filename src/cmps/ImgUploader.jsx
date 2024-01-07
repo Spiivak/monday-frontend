@@ -20,6 +20,7 @@ const VisuallyHiddenInput = styled('input')({
 
 export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
   const [isLoading, setIsLoading] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   async function uploadImg(ev) {
     try {
@@ -48,41 +49,50 @@ export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
   }
 
   return (
-    <div className="upload-preview cell" style={{ padding: '7px' }}>
-      {isLoading ? (
-        <CircularProgress size="16px" />
-      ) : (
-        <>
-          {imgData?.imgUrl ? (
-            <>
-              <img src={imgData.imgUrl} style={{ maxWidth: '200px' }} />
+    <>
+      <div
+        className="upload-preview cell"
+        style={{ padding: '7px' }}
+      >
+        {isLoading ? (
+          <CircularProgress size="16px" />
+        ) : (
+          <>
+            {imgData?.imgUrl ? (
+              <>
+                <img
+                  src={imgData.imgUrl}
+                  onMouseEnter={() => setIsModalOpen(true)}
+                  // onMouseLeave={() => setIsModalOpen(false)}
+                />
+                {isModalOpen && <ImageModal src={imgData} />}
+                <IconButton
+                  onClick={removeImg}
+                  component="label"
+                  size="small"
+                  style={{ padding: '0px' }}
+                >
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </>
+            ) : (
               <IconButton
-                onClick={removeImg}
                 component="label"
                 size="small"
                 style={{ padding: '0px' }}
               >
-                <CloseIcon fontSize="small" />
+                <UploadFileIcon fontSize="small" />
+                <VisuallyHiddenInput
+                  type="file"
+                  onChange={uploadImg}
+                  accept="img/*"
+                  id="imgUpload"
+                />
               </IconButton>
-              
-            </>
-          ) : (
-            <IconButton
-              component="label"
-              size="small"
-              style={{ padding: '0px' }}
-            >
-              <UploadFileIcon fontSize="small" />
-              <VisuallyHiddenInput
-                type="file"
-                onChange={uploadImg}
-                accept="img/*"
-                id="imgUpload"
-              />
-            </IconButton>
-          )}
-        </>
-      )}
-    </div>
+            )}
+          </>
+        )}
+      </div>
+    </>
   )
 }
