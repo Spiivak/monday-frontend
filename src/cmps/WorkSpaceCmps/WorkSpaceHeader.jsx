@@ -56,7 +56,7 @@ export function WorkSpaceHeader() {
   }
 
   return (
-    <header className="work-space-header flex space-between align-center">
+    <header className="work-space-header full flex space-between align-center">
       <section className="header-logo-sect flex align-center">
         <div className="switcher-logo">
           <button className="btn-icon medium-transparent">

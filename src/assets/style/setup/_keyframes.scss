@@ -1,0 +1,41 @@
+@keyframes sideBarClose {
+  from {
+    display: block;
+    width: 255px;
+    overflow: hidden;
+    text-wrap: nowrap;
+  }
+
+  99% {
+    width: 0;
+    overflow: hidden;
+    text-wrap: nowrap;
+  }
+
+  to {
+    display: none;
+    overflow: hidden;
+    text-wrap: nowrap;
+  }
+}
+
+@keyframes sideBarOpen {
+  from {
+    display: none;
+    overflow: hidden;
+    text-wrap: nowrap;
+  }
+
+  1% {
+    width: 0;
+    overflow: hidden;
+    text-wrap: nowrap;
+    display: block;
+  }
+
+  to {
+    overflow: hidden;
+    width: 255px;
+    text-wrap: nowrap;
+  }
+}
