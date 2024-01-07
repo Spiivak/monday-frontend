@@ -12,9 +12,10 @@ export function DatePickerC({ task, cmpId, handleUpdateTask }) {
       try {
         const timestampDate = date.valueOf()
         await handleUpdateTask('DatePicker', timestampDate, task)
-        setDateModal(false)
       } catch (err) {
         console.log('cannot change date', err)
+      } finally {
+        setDateModal(false)
       }
     }
   }
@@ -42,6 +43,7 @@ export function DatePickerC({ task, cmpId, handleUpdateTask }) {
         </div>
       ) : (
         <DatePicker
+          style={{ opacity: '0', padding: '0', width: '115px' }}
           onClick={() => setDateModal(true)}
           format={dateFormat}
           onChange={handleUpdateDate}

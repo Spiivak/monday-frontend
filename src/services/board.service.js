@@ -9,18 +9,30 @@ const labels = [
   'Battery Powered',
 ]
 
+const gColors = [
+  '#ffcb00',
+  '#007038',
+  '#469e9b',
+  '#579bfc',
+  '#9aadbd',
+  '#bba5e8',
+  '#8050ab',
+  '#4f3a65',
+  '#92334c',
+  '#bb3354',
+  '#ff7575',
+]
+
 const demoData = [
   {
     _id: 'b101',
-    title: 'Best Board!💥',
+    title: 'DemoData!💥',
     archivedAt: Date.now(),
     createdBy: {
-      _id: 'u101',
-      fullname: 'test teston',
-      imgUrl: 'http://some-img',
-    },
-    style: {
-      backgroundImage: '',
+      _id: 'u1',
+      fullname: 'Nave David',
+      username: 'navedavid@gmail.com',
+      imgUrl: 'https://res.cloudinary.com/donnezwy9/image/upload/v1704455572/rzddgfxj4fzkcn6eqgrv.jpg',
     },
     labels: [
       {
@@ -44,7 +56,7 @@ const demoData = [
     groups: [
       {
         id: 'g101',
-        title: 'Bootleg Monday',
+        title: 'Project Initialization',
         archivedAt: 1589983468418,
         tasks: [
           {
@@ -71,6 +83,22 @@ const demoData = [
                   'https://res.cloudinary.com/donnezwy9/image/upload/v1704459492/mv8vwh55b3wgqdflmemw.png',
               },
             ],
+            comments: [
+              {
+                id: 'cm1',
+                user: {
+                  _id: 'u1',
+                  fullname: 'Nave David',
+                  username: 'navedavid@gmail.com',
+                  imgUrl:
+                    'https://res.cloudinary.com/donnezwy9/image/upload/v1704455572/rzddgfxj4fzkcn6eqgrv.jpg',
+                },
+                msg: 'Mister biton ya gever',
+                createdAt: 1589983468418,
+                likes: 3,
+                seen: ['u1', 'u2']
+              }
+            ]
           },
           {
             id: 'c105',
@@ -171,11 +199,7 @@ const demoData = [
       { type: 'StatusPicker', id: 'c1', title: 'Progress' },
       { type: 'MemberPicker', id: 'c2', title: 'Owner' },
       { type: 'DatePicker', id: 'c3', title: 'Due Date' },
-      {
-        type: 'DescriptionPicker',
-        id: 'c4',
-        title: 'Notes',
-      },
+      { type: 'DescriptionPicker', id: 'c4', title: 'Notes',},
       { type: 'TimeLinePicker', id: 'c5', title: 'Time Frame' },
       { type: 'FilePicker', id: 'c6', title: 'Additional files' },
     ],
@@ -213,6 +237,7 @@ export const boardService = {
   updateColumn,
   getEmptyBoard,
   getEmptyGroup,
+  geColors,
 }
 
 function query() {
@@ -378,6 +403,9 @@ function getEmptyBoard() {
 // function getDefaultFilter() {
 //   return { name: '', price: 0, labels: '', Date: '', availability: 'all' }
 // }
+function geColors() {
+  return gColors
+}
 
 function _demoDataLocalStorage() {
   const boards = utilService.loadFromStorage(STORAGE_KEY)
