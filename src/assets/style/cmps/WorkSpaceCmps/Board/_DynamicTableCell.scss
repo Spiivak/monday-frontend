@@ -59,7 +59,6 @@
       z-index: 100;
       display: grid;
       grid-template-columns: 100px 300px;
-
       border-radius: $border-radius-small;
       background-color: white;
 
@@ -123,12 +122,18 @@
   // Members img avatar
   .avatars-wrapper {
     display: flex;
-
     .avatar-logo {
-      height: 32px;
-      width: 32px;
+      max-height: 32px;
+      max-width: 32px;
       border-radius: 100%;
       overflow: hidden;
+      &:hover .member-modal {
+        display: flex;
+      }
+
+      .member-modal {
+        display: none;
+      }
     }
   }
 }
@@ -136,12 +141,12 @@
 .upload-preview {
   gap: 8px;
   padding: 8px;
-
+  
   .image-preview {
     .image-modal {
       display: none;
     }
-
+    
     img {
       border-radius: 50%;
       width: 17px;
@@ -149,7 +154,7 @@
       object-fit: cover;
       transition: opacity 0.3s ease-in-out;
     }
-
+    
     &:hover .image-modal {
       display: flex;
     }

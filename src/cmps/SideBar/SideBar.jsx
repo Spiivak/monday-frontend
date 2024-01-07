@@ -6,7 +6,6 @@ import {
   NavigationChevronRightIcon,
 } from '../Icons'
 import { loadBoards } from '../../store/actions/board.actions'
-import { ADD_BOARD } from '../../store/reducers/board.reducer'
 import { useSelector } from 'react-redux'
 import { SideBarLinks } from './SideBarLinks'
 import { SideBarWorkSpace } from './SideBarWorkSpace'
@@ -15,7 +14,7 @@ export function SideBar({ onRemoveBoard, onAddBoard }) {
   const boards = useSelector((storeState) => storeState.boardModule.boards)
   const filterBy = useSelector((storeState) => storeState.boardModule.filterBy)
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
 
   const openSideBar = () => setIsSidebarOpen(!isSidebarOpen)
 

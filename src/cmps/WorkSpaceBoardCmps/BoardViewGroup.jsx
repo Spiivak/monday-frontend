@@ -31,7 +31,7 @@ import {
   updateGroup,
   updateTask,
 } from '../../store/actions/board.actions'
-import { NavigationChevronDownIcon } from '../Icons'
+import { AddSmallIcon, NavigationChevronDownIcon } from '../Icons'
 import { ContextBtn } from '../ContextBtn'
 import { EditableText } from '../EditableText'
 import AddColumnBtn from './Columns/AddColumnBtn'
@@ -265,16 +265,20 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
               </SortableContext>
               <tr className='hoverable'>
                 <td>
-                  <div className=" checkbox-cell flex align-center justify-center">
+                  <div className="checkbox-cell flex align-center justify-center">
                     <input type="checkbox" />
                   </div>
                 </td>
                 <td colSpan={columns.length + 2}>
+                  <div className="wrapper flex align-center gap4">
+
+                  <AddSmallIcon/>
                   <EditableText
                     initialText={initText}
                     onSave={saveNewTask}
                     placeholder={'Add Item'}
-                  />
+                    />
+                    </div>
                 </td>
               </tr>
             </tbody>

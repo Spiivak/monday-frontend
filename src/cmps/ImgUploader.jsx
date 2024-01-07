@@ -21,7 +21,7 @@ const VisuallyHiddenInput = styled('input')({
 export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
   const [isLoading, setIsLoading] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  
   async function uploadImg(ev) {
     try {
       setIsLoading(true)
@@ -36,6 +36,7 @@ export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
       console.error(err)
     }
   }
+  
 
   async function removeImg() {
     try {

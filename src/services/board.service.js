@@ -26,7 +26,7 @@ const gColors = [
 const demoData = [
   {
     _id: 'b101',
-    title: 'DemoData!💥',
+    title: 'Monday Management',
     archivedAt: Date.now(),
     createdBy: {
       _id: 'u1',
