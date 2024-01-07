@@ -198,7 +198,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   </th>
                   {headerGroup.headers.map((column) => (
                     <th {...column.getHeaderProps()}>
-                      <div className="flex align-center space-between hoverable">
+                      <div className="flex align-center space-between pad8x gap16 hoverable">
                         <EditableText
                           initialText={column.render('Header')}
                           onSave={(text) => {
