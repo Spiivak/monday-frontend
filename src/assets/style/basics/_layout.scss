@@ -22,7 +22,7 @@ main {
   overflow: auto;
   display: grid;
   transition: grid-template-columns 1s;
-  gap: 16px;
+  // gap: 16px;
 
   .side-bar {
     grid-column: 1;
@@ -55,7 +55,7 @@ main {
 
   .work-space-board {
     grid-column: 2;
-    // height: 100%;
+    margin-left: 16px;
     overflow-y: auto;
   }
 }
