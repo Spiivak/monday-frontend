@@ -25,19 +25,55 @@ export function BoardModal({
   useEffect(() => {
     // Add event listener to close modal when clicking outside
     const handleOutsideClick = event => {
-      if (modalRef.current && !modalRef.current.contains(event.target) && menuBtnRef.current && !menuBtnRef.current.contains(event.target)) {
+      if (modalRef.current && !modalRef.current.contains(event.target) && menuBtnRef && !menuBtnRef.contains(event.target)) {
         setIsMoreModalOpen(false);
       }
     }; // Add event listener to the document body
 
 
-    document.body.addEventListener('click', handleOutsideClick); // Remove event listener on component unmount
-
+    document.body.addEventListener('click', handleOutsideClick)
+    document.body.addEventListener('resize', handleResize)
     return () => {
-      document.body.removeEventListener('click', handleOutsideClick);
-    };
+      document.body.removeEventListener('click', handleOutsideClick)
+      document.body.removeEventListener('resize', handleResize)
+    }
   }, [setIsMoreModalOpen]);
-  return <div className="more-modal-container flex column" ref={modalRef}>
+
+  let newLeft, newTop
+  const { innerWidth, innerHeight } = window
+  const { top, left, height, width } = menuBtnRef.getBoundingClientRect()
+  if (left > innerWidth / 2) {
+    newLeft = left - 280 + width / 2
+  } else {
+    newLeft = left + width / 2
+  }
+  if (top > innerHeight / 2) {
+    newTop = top - 400 + height - 6
+  } else {
+    newTop = top + height + 6
+  }
+
+  function handleResize() {
+    let newLeft, newTop
+    const { innerWidth, innerHeight } = window
+    const { top, left, height, width } = menuBtnRef.getBoundingClientRect()
+    if (left > innerWidth / 2) {
+      newLeft = left - 280 + width / 2
+    } else {
+      newLeft = left + width / 2
+    }
+    if (top > innerHeight / 2) {
+      newTop = top - 400 + height - 6
+    } else {
+      newTop = top + height + 6
+    }
+  }
+  return <div className="more-modal-container flex column" ref={modalRef} style={{
+    position: 'fixed',
+    top: newTop,
+    left: newLeft,
+    zIndex: 1000,
+  }}>
       <div className="ds-tabs-section">
         <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>

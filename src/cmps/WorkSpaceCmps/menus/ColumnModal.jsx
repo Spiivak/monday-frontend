@@ -15,7 +15,7 @@ import {
   WorkspaceIcon,
 } from '../../Icons'
 import { Save } from '@mui/icons-material'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { deactivateContextBtn } from '../../../store/actions/board.actions'
 export function ColumnModal({
   onDeleteColumn,
@@ -36,22 +36,37 @@ export function ColumnModal({
       }
     } // Add event listener to the document body
 
-    document.body.addEventListener('click', handleOutsideClick) // Remove event listener on component unmount
-
+    document.body.addEventListener('click', handleOutsideClick)
+    document.body.addEventListener('resize', handleResize)
     return () => {
       document.body.removeEventListener('click', handleOutsideClick)
+      document.body.removeEventListener('resize', handleResize)
     }
   }, [setIsMoreModalOpen])
 
-  function clickDeleteColumn(){
+  function clickDeleteColumn() {
     deactivateContextBtn()
     onDeleteColumn()
   }
 
-  let newRight, newLeft, newTop, newBottom
+  let newLeft, newTop
+  const { innerWidth, innerHeight } = window
+  const { top, left, height, width } = menuBtnRef.getBoundingClientRect()
+  if (left > innerWidth / 2) {
+    newLeft = left - 280 + width / 2
+  } else {
+    newLeft = left + width / 2
+  }
+  if (top > innerHeight / 2) {
+    newTop = top - 400 + height - 6
+  } else {
+    newTop = top + height + 6
+  }
+
+  function handleResize() {
+    let newLeft, newTop
     const { innerWidth, innerHeight } = window
-    const { top, left, height, width } =
-      menuBtnRef.getBoundingClientRect()
+    const { top, left, height, width } = menuBtnRef.getBoundingClientRect()
     if (left > innerWidth / 2) {
       newLeft = left - 280 + width / 2
     } else {
@@ -62,11 +77,12 @@ export function ColumnModal({
     } else {
       newTop = top + height + 6
     }
+  }
 
   return (
     <div
       style={{
-        position: 'absolute',
+        position: 'fixed',
         top: newTop,
         left: newLeft,
         zIndex: 1000,

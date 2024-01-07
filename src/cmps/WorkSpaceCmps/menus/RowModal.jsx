@@ -32,19 +32,20 @@ export function RowModal({ onDeleteRow, setIsMoreModalOpen, menuBtnRef }) {
       }
     } // Add event listener to the document body
 
-    document.body.addEventListener('click', handleOutsideClick) // Remove event listener on component unmount
-
+    document.body.addEventListener('click', handleOutsideClick)
+    document.body.addEventListener('resize', handleResize)
     return () => {
       document.body.removeEventListener('click', handleOutsideClick)
+      document.body.removeEventListener('resize', handleResize)
     }
   }, [setIsMoreModalOpen])
 
-  function clickDeleteRow(){
+  function clickDeleteRow() {
     deactivateContextBtn()
     onDeleteRow()
   }
 
-  let newRight, newLeft, newTop, newBottom
+  let newLeft, newTop
   const { innerWidth, innerHeight } = window
   const { top, left, height, width } = menuBtnRef.getBoundingClientRect()
   if (left > innerWidth / 2) {
@@ -56,6 +57,22 @@ export function RowModal({ onDeleteRow, setIsMoreModalOpen, menuBtnRef }) {
     newTop = top - 400 + height - 6
   } else {
     newTop = top + height + 6
+  }
+
+  function handleResize() {
+    let newLeft, newTop
+    const { innerWidth, innerHeight } = window
+    const { top, left, height, width } = menuBtnRef.getBoundingClientRect()
+    if (left > innerWidth / 2) {
+      newLeft = left - 280 + width / 2
+    } else {
+      newLeft = left + width / 2
+    }
+    if (top > innerHeight / 2) {
+      newTop = top - 400 + height - 6
+    } else {
+      newTop = top + height + 6
+    }
   }
 
   return (
