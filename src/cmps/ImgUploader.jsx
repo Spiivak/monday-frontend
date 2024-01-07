@@ -5,6 +5,7 @@ import UploadFileIcon from '@mui/icons-material/UploadFile'
 import CloseIcon from '@mui/icons-material/Close'
 import { IconButton } from '@mui/material'
 import { CircularProgress } from '@mui/material'
+import { ImageModal } from './WorkSpaceBoardCmps/Columns/modals/ImageModal'
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
   clipPath: 'inset(50%)',
@@ -63,6 +64,8 @@ export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
               >
                 <CloseIcon fontSize="small" />
               </IconButton>
+          <ImageModal src={imgData}/>
+
             </>
           ) : (
             <IconButton
