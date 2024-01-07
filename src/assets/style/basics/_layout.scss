@@ -1,53 +1,58 @@
 .main-layout {
   display: grid;
   grid-template-columns: 0 1fr 0;
+}
 
-  .full {
-    grid-column: 1 / -1;
+.full {
+  grid-column: 1 / -1;
+}
+
+:not(.full) {
+  grid-column: 2;
+}
+
+main {
+  overflow: auto; /* Apply overflow to the main element */
+  display: grid;
+  transition: grid-template-columns 1s;
+  gap: 16px;
+
+  .side-bar {
+    grid-column: 1;
+    transition: width 1s;
   }
 
-  :not(.full) {
-    grid-column: 2;
-  }
-
-  main {
-    display: grid;
-    transition: grid-template-columns 1s;
-    gap: 16px;
+  &:has(.side-bar) {
+    grid-template-columns: 255px 1fr;
 
     .side-bar {
-      grid-column: 1;
-      transition: width 1s;
-    }
+      width: 255px;
 
-    &:has(.side-bar) {
-      grid-template-columns: 255px 1fr;
-
-      .side-bar {
-        width: 255px;
-
-        .side-bar-container {
-
-          animation: sideBarOpen 1s;
-        }
+      .side-bar-container {
+        animation: sideBarOpen 1s;
       }
     }
+  }
 
-    &:has(.side-bar-close) {
-      grid-template-columns: 35px 1fr;
+  &:has(.side-bar-close) {
+    grid-template-columns: 35px 1fr;
 
-      .side-bar {
-        width: 35px;
+    .side-bar {
+      width: 35px;
 
-        .side-bar-container {
-          animation: sideBarClose 1s;
-        }
+      .side-bar-container {
+        animation: sideBarClose 1s;
       }
     }
+  }
 
-    .work-space-board {
-      grid-column: 2;
+  .work-space-board {
+    grid-column: 2;
+    height: 100%;
+    overflow-y: hidden;
+    .table-section {
+      overflow-x: auto;
+      height: 74.9dvh;
     }
   }
 }
-
