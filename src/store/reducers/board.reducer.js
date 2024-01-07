@@ -24,6 +24,7 @@ export const DEACTIVATE_CONTEXT_BTN = 'DEACTIVATE_CONTEXT_BTN'
 export const SET_ACTIVE_TASK = 'SET_ACTIVE_TASK'
 export const DEACTIVATE_TASK = 'DEACTIVATE_TASK'
 //
+export const START_ADD_COLUMN = 'START_ADD_COLUMN'
 export const COMPLETE_ADD_COLUMN = 'COMPLETE_ADD_COLUMN'
 
 const initialState = {
@@ -137,7 +138,7 @@ export function boardReducer(state = initialState, action = {}) {
           cmpsOrder: [...board.cmpsOrder, action.addedColumn],
         }
       })
-      return { ...state, boards: newBoards, isAddingColumn: true }
+      return { ...state, boards: newBoards}
 
     case REMOVE_COLUMN:
       newBoards = state.boards.map((board) => {
@@ -184,6 +185,8 @@ export function boardReducer(state = initialState, action = {}) {
     case DEACTIVATE_TASK:
       return { ...state, activeTask: null }
 
+    case START_ADD_COLUMN:
+      return { ...state, isAddingColumn: true }
     case COMPLETE_ADD_COLUMN:
       return { ...state, isAddingColumn: false }
     default:
