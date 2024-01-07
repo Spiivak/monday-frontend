@@ -19,7 +19,7 @@ export function NumbersPickers({ task, cmpId, handleUpdateTask }) {
   }
 
   return (
-    <div className="number-picker-cell">
+    <div className="cell number-picker-cell">
       <TextField
         className="cell"
         placeholder="Type a number..."

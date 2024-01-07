@@ -1,3 +1,4 @@
+import { EmptyStreachableCell } from './EmptyStreachableCell'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { DynamicTableCell } from '../DynamicTableCell'
@@ -14,8 +15,8 @@ export function SortableItem({ id, row, onTaskUpdate, onDeleteTask, boardId, gro
 
   return (
     <tr className="hoverable" ref={setNodeRef} style={style} {...attributes}>
-      <td style={{ width: '80px' }}>
-        <div className="flex align-center justify-center relative ">
+      <td>
+        <div className="checkbox-cell flex align-center justify-center relative ">
 
           <div style={{ cursor: 'grab' }} className="row-context absolute">
             <ContextBtn
@@ -28,7 +29,7 @@ export function SortableItem({ id, row, onTaskUpdate, onDeleteTask, boardId, gro
 
           <input type="checkbox" {...listeners} />
         </div>
-        
+
       </td>
       {row.cells.map((cell) => (
         <td {...cell.getCellProps()}>
@@ -40,7 +41,7 @@ export function SortableItem({ id, row, onTaskUpdate, onDeleteTask, boardId, gro
           />
         </td>
       ))}
-      <td> </td>
+      <EmptyStreachableCell     />
     </tr>
   )
 }

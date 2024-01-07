@@ -49,7 +49,7 @@ export function TimeLinePicker({ task, cmpId, handleUpdateTask }) {
   }
 
   return (
-    <div className="timeline-picker-cell">
+    <div className="cell timeline-picker-cell">
       {!dateModal ? (
         <div
           className="bill"

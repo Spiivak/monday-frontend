@@ -59,7 +59,9 @@
 
   .board-table{
     // display: flex;
-    width: fit-content;
+    width: 100%;
+    overflow-x: auto;
+    // width: fit-content;
   }
 
   table {
@@ -75,10 +77,10 @@
     th:nth-child(1) {
       width: 33px !important;
     }
-    td:nth-child(2),
-    th:nth-child(2) {
-      width: 360px !important;
-    }
+    // td:nth-child(2),
+    // th:nth-child(2) {
+    //   width: 360px !important;
+    // }
 
     border-collapse: collapse;
     border-radius: 12px;

@@ -5,6 +5,7 @@ import {
   ADD_COLUMN,
   ADD_GROUP,
   ADD_TASK,
+  COMPLETE_ADD_COLUMN,
   DEACTIVATE_CONTEXT_BTN,
   DEACTIVATE_TASK,
   REMOVE_BOARD,
@@ -253,6 +254,8 @@ export function deactivateContextBtn(){
   store.dispatch({ type: DEACTIVATE_CONTEXT_BTN})
 }
 
+// * ACTIVE TASK
+
 export function setActiveTask(activeTask){
   store.dispatch({ type: SET_ACTIVE_TASK, activeTask})
 }
@@ -261,7 +264,11 @@ export function deactivateTask(){
   store.dispatch({ type: DEACTIVATE_TASK})
 }
 
+// *
 
+export function finishAddingColumn(){
+  store.dispatch({ type: COMPLETE_ADD_COLUMN})
+}
 // export async function addBoardMsg(boardId,msg,user){
 //   const newMsg = {...boardService.getEmptyMsg(), content:msg}
 //   if(user) newMsg.owner = user
