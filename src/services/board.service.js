@@ -123,11 +123,13 @@ const demoData = [
             statusc1: 'Working on it', // monday
             membersc2: [
               {
+                _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
                 username: 'dimarevelson@gmail.com',
               },
               {
+                _id: 'u4',
                 fullname: 'Isabelle Anderson',
                 imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
                 username: 'isabelle.anderson@example.com',
