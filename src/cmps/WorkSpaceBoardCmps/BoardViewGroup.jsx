@@ -41,6 +41,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
   const [data, setData] = useState([])
   const [initText, setInitText] = useState('')
 
+
   useEffect(() => {
     setColumns([
       {
