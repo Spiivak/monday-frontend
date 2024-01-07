@@ -256,7 +256,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   )
                 })}
               </SortableContext>
-              <tr>
+              <tr className='hoverable'>
                 <td>
                   <div className=" checkbox-cell flex align-center justify-center">
                     <input type="checkbox" />

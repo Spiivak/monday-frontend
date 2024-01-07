@@ -43,7 +43,7 @@ export function ContextBtn({
   }
 
   return (
-    <div className="context-menu">
+    <div className="context-menu hidden-hover">
       <button
         className="btn-icon small-transparent"
         onClick={(ev) => {
