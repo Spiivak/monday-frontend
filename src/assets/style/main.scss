@@ -3,6 +3,7 @@
 @import "setup/typography";
 @import "setup/mixins";
 @import "setup/functions";
+@import "setup/keyframes";
 
 // BASICS
 @import "basics/base";
@@ -26,6 +27,7 @@
 @import "cmps/WorkSpaceCmps/modals/InboxModal";
 @import "cmps/WorkSpaceCmps/modals/InviteMemberModal";
 @import "cmps/WorkSpaceCmps/modals/SearchEverythingModal";
+@import "cmps/WorkSpaceCmps/modals/ImageModal";
 //Workspace Page Board Components
 @import "cmps/WorkSpaceCmps/Board/DynamicTableCell";
 @import "cmps/WorkSpaceCmps/Board/BoardViewGroup";

@@ -28,6 +28,7 @@ import {
   removeGroup,
   removeTask,
   updateColumn,
+  updateGroup,
   updateTask,
 } from '../../store/actions/board.actions'
 import { NavigationChevronDownIcon } from '../Icons'
@@ -116,6 +117,12 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
     removeGroup(boardId, group.id)
   }
 
+  function onUpdateGroup(boardId, groupId, group, data){
+    const newGroup = {...group, title: data}
+    console.log(boardId, groupId, newGroup)
+    updateGroup(boardId, groupId, newGroup)
+  }
+
   const [activeId, setActiveId] = useState()
   const items = useMemo(() => data?.map(({ id }) => id), [data])
 
@@ -169,7 +176,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
             <NavigationChevronDownIcon />
           </button>
         </div>
-        <h2 className="group-title flex editable-txt">{group.title}</h2>
+        <h2 className="group-title flex editable-txt"><EditableText initialText={group.title} onSave={()=>{}} placeholder={group.title} /></h2>
         <span>{group.tasks.length} items / 0 subitems</span>
       </div>
       <div>
@@ -191,7 +198,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   </th>
                   {headerGroup.headers.map((column) => (
                     <th {...column.getHeaderProps()}>
-                      <div className="flex align-center space-between hoverable">
+                      <div className="flex align-center space-between pad8x gap16 hoverable">
                         <EditableText
                           initialText={column.render('Header')}
                           onSave={(text) => {

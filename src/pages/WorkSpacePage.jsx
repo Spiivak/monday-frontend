@@ -3,7 +3,7 @@ import { WorkSpaceHeader } from '../cmps/WorkSpaceCmps/WorkSpaceHeader'
 
 export function WorkSpacePage() {
   return (
-    <section className="page work-space-page">
+    <section className="workspace-index main-layout">
       <WorkSpaceHeader />
       <Outlet />
     </section>

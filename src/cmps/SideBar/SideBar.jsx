@@ -32,7 +32,7 @@ export function SideBar({ onRemoveBoard, onAddBoard }) {
   }
 
   return (
-    <section className={`side-bar relative ${!isSidebarOpen ? 'side-bar-close' : ''}`}>
+    <section className={`side-bar ${isSidebarOpen ? '' : 'side-bar-close'}`}>
 
       <button
         className="btn-icon small-transparent close-btn flex justify-center"
