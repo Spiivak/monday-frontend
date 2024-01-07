@@ -1,0 +1,31 @@
+.member-modal {
+  position: absolute;
+  background: white;
+  overflow: visible;
+  border-radius: 8px;
+  width: 300px;
+  min-height: 90px;
+  margin: 0 auto;
+  translate: -40% -130%;
+  color: $text-color;
+  border-radius: 8px;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: $spacing-medium;
+  
+      .member-modal {
+        display: none;
+      }
+  
+      img {
+        border-radius: 50%;
+        width: 17px;
+        height: 17px;
+        object-fit: cover;
+        transition: opacity 0.3s ease-in-out;
+        &:hover .member-modal {
+          display: flex;
+        }
+      }
+  
+}
