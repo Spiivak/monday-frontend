@@ -7,7 +7,7 @@ import { deactivateTask } from '../../store/actions/board.actions';
 
 
 
-export function TaskDetails({ onClose }) {
+export function TaskDetails() {
   const activeTask = useSelector(storeState => storeState.boardModule.activeTask)
   const modalRef = useRef()
 
@@ -25,14 +25,14 @@ export function TaskDetails({ onClose }) {
     return () => {
       window.removeEventListener('mousedown', handleOutsideClick)
     }
-  }, [onClose])
+  }, [])
 
   if (!activeTask) return
   return (
     <div className="task-details-modal" ref={modalRef}>
 
       {/* CLOSE BUTTON */}
-      <button className='btn-icon small-transparent' onClick={() => onClose()}>
+      <button className='btn-icon small-transparent' onClick={() => deactivateTask()}>
         <CloseSmallIcon />
       </button>
       {/* TASK HEADER */}
