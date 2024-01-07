@@ -67,6 +67,12 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
           case 'FilePicker':
             accessor = 'file' + cmp.id
             break
+          case 'MemberPicker':
+            accessor = 'members' + cmp.id
+            break
+          case 'LinkPicker':
+            accessor = 'link' + cmp.id
+            break
           default:
             break
         }
