@@ -5,6 +5,7 @@ import {
   ADD_COLUMN,
   ADD_GROUP,
   ADD_TASK,
+  COMPLETE_ADD_COLUMN,
   DEACTIVATE_CONTEXT_BTN,
   DEACTIVATE_TASK,
   REMOVE_BOARD,
@@ -15,6 +16,7 @@ import {
   SET_ACTIVE_TASK,
   SET_BOARDS,
   SET_IS_LOADING,
+  START_ADD_COLUMN,
   UPDATE_BOARD,
   UPDATE_COLUMN,
   UPDATE_TASK,
@@ -89,9 +91,7 @@ export async function updateGroup(boardId, groupId, group) {
   console.log(boardId, groupId, group)
   try {
     // const updatedGroup = async
-  } catch (err) {
-
-  }
+  } catch (err) {}
 }
 
 // * TASK CRUD
@@ -208,10 +208,16 @@ export async function addColumn(boardId, type) {
       }
 
       break
-    case 'link':
+    case 'file':
       newColumn = {
-        title: 'Link',
-        type: 'LinkPicker',
+        title: 'File',
+        type: 'FilePicker',
+      }
+      break
+    case 'description':
+      newColumn = {
+        title: 'Description',
+        type: 'DescriptionPicker',
       }
       break
 
@@ -222,6 +228,7 @@ export async function addColumn(boardId, type) {
   try {
     const addedColumn = await boardService.addColumn(boardId, newColumn)
     store.dispatch({ type: ADD_COLUMN, boardId, addedColumn })
+    store.dispatch({ type: START_ADD_COLUMN })
   } catch (err) {}
 }
 
@@ -229,6 +236,7 @@ export async function removeColumn(boardId, columnId) {
   try {
     const deletedColumnId = await boardService.removeColumn(boardId, columnId)
     store.dispatch({ type: REMOVE_COLUMN, boardId, deletedColumnId })
+    store.dispatch({ type: START_ADD_COLUMN })
   } catch (err) {}
 }
 
@@ -240,28 +248,35 @@ export async function updateColumn(boardId, columnId, column) {
       column
     )
     store.dispatch({ type: UPDATE_COLUMN, boardId, columnId, updatedColumn })
+    store.dispatch({ type: START_ADD_COLUMN })
   } catch (err) {}
 }
 
 // * CONTEXT MENU MODALS
 
-export function setActiveContextBtn(contextBtn, contextBtnData){
-  store.dispatch({ type: SET_ACTIVE_CONTEXT_BTN, contextBtn, contextBtnData})
+export function setActiveContextBtn(contextBtn, contextBtnData) {
+  store.dispatch({ type: SET_ACTIVE_CONTEXT_BTN, contextBtn, contextBtnData })
 }
 
-export function deactivateContextBtn(){
-  store.dispatch({ type: DEACTIVATE_CONTEXT_BTN})
+export function deactivateContextBtn() {
+  store.dispatch({ type: DEACTIVATE_CONTEXT_BTN })
 }
 
-export function setActiveTask(activeTask){
-  store.dispatch({ type: SET_ACTIVE_TASK, activeTask})
+// * ACTIVE TASK
+
+export function setActiveTask(activeTask) {
+  store.dispatch({ type: SET_ACTIVE_TASK, activeTask })
 }
 
-export function deactivateTask(){
-  store.dispatch({ type: DEACTIVATE_TASK})
+export function deactivateTask() {
+  store.dispatch({ type: DEACTIVATE_TASK })
 }
 
+// *
 
+export function finishAddingColumn() {
+  store.dispatch({ type: COMPLETE_ADD_COLUMN })
+}
 // export async function addBoardMsg(boardId,msg,user){
 //   const newMsg = {...boardService.getEmptyMsg(), content:msg}
 //   if(user) newMsg.owner = user

@@ -13,7 +13,7 @@ export function TaskTitle({ task, cmpId, handleUpdateTask }) {
     }
   }
   return (
-    <div className="flex space-between" data-task-details="true">
+    <div className="task-title flex space-between" data-task-details="true">
       <div className="wrapper flex">
         <button className="btn-icon small-transparent"><NavigationChevronRightIcon /></button>
         <div className="editable-txt">

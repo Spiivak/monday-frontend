@@ -94,7 +94,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
   ]
 
   return (
-    <div className="member-picker-cell">
+    <div className="cell member-picker-cell">
       <Dropdown
         menu={{
           items,

@@ -32,7 +32,7 @@ export function DatePickerC({ task, cmpId, handleUpdateTask }) {
   }
 
   return (
-    <div className="date-picker-cell">
+    <div className="cell date-picker-cell">
       {task['date' + cmpId] && !dateModal ? (
         <div
           onClick={() => {

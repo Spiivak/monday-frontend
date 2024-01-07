@@ -31,7 +31,7 @@ export function DescriptionPicker({ task, cmpId, handleUpdateTask }) {
   }
 
   return (
-    <div className="description-picker-cell relative">
+    <div className="cell description-picker-cell relative">
       <TextField
         size="small"
         className="cell"

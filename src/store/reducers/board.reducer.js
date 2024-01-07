@@ -23,6 +23,9 @@ export const DEACTIVATE_CONTEXT_BTN = 'DEACTIVATE_CONTEXT_BTN'
 // active task
 export const SET_ACTIVE_TASK = 'SET_ACTIVE_TASK'
 export const DEACTIVATE_TASK = 'DEACTIVATE_TASK'
+//
+export const START_ADD_COLUMN = 'START_ADD_COLUMN'
+export const COMPLETE_ADD_COLUMN = 'COMPLETE_ADD_COLUMN'
 
 const initialState = {
   boards: [],
@@ -30,6 +33,7 @@ const initialState = {
   activeContextBtn: null,
   activeContextBtnData: null,
   activeTask: null,
+  isAddingColumn: false,
 }
 
 export function boardReducer(state = initialState, action = {}) {
@@ -134,7 +138,7 @@ export function boardReducer(state = initialState, action = {}) {
           cmpsOrder: [...board.cmpsOrder, action.addedColumn],
         }
       })
-      return { ...state, boards: newBoards }
+      return { ...state, boards: newBoards}
 
     case REMOVE_COLUMN:
       newBoards = state.boards.map((board) => {
@@ -167,7 +171,11 @@ export function boardReducer(state = initialState, action = {}) {
 
     // * CONTEXT BTN
     case SET_ACTIVE_CONTEXT_BTN:
-      return { ...state, activeContextBtn: action.contextBtn, activeContextBtnData: action.contextBtnData }
+      return {
+        ...state,
+        activeContextBtn: action.contextBtn,
+        activeContextBtnData: action.contextBtnData,
+      }
     case DEACTIVATE_CONTEXT_BTN:
       return { ...state, activeContextBtn: null, activeContextBtnData: null }
 
@@ -177,6 +185,10 @@ export function boardReducer(state = initialState, action = {}) {
     case DEACTIVATE_TASK:
       return { ...state, activeTask: null }
 
+    case START_ADD_COLUMN:
+      return { ...state, isAddingColumn: true }
+    case COMPLETE_ADD_COLUMN:
+      return { ...state, isAddingColumn: false }
     default:
       return state
   }
