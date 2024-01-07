@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { deactivateTask, setActiveTask } from "../../../store/actions/board.actions";
 import { EditableText } from "../../EditableText";
-import { OpenIcon } from "../../Icons";
+import { NavigationChevronRightIcon, OpenIcon } from "../../Icons";
 
 export function TaskTitle({ task, cmpId, handleUpdateTask }) {
   const activeTask = useSelector(storeState => storeState.boardModule.activeTask)
@@ -14,6 +14,7 @@ export function TaskTitle({ task, cmpId, handleUpdateTask }) {
   }
   return (
     <div className="flex space-between" data-task-details="true">
+      <button className="btn-icon small-transparent"><NavigationChevronRightIcon/></button>
       <EditableText
         initialText={task.title}
         onSave={(text) => handleUpdateTask('task', text, task)}
