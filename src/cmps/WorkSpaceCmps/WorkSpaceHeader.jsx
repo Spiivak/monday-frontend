@@ -56,6 +56,7 @@ export function WorkSpaceHeader() {
   }
 
   return (
+    <>
     <header className="work-space-header full flex space-between align-center">
       <section className="header-logo-sect flex align-center">
         <div className="switcher-logo">
@@ -119,12 +120,14 @@ export function WorkSpaceHeader() {
         </button>
 
         {/* Render modals */}
-        {isNotificationModalOpen && <NotificationModal onClose={onClose} />}
+      </section>
+    </header>
         {isInboxModalOpen && <InboxModal onClose={onClose} />}
         {isInviteMembersModalOpen && <InviteMemberModal onClose={onClose} />}
         {isSearchModalOpen && <SearchEverythingModal onClose={onClose} />}
         {isHelpModalOpen && <HelpModal onClose={onClose} />}
-      </section>
-    </header>
+        {isNotificationModalOpen && <NotificationModal onClose={onClose} />}
+        </>
+  
   )
 }
