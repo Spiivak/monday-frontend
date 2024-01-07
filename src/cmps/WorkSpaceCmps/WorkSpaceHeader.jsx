@@ -26,12 +26,6 @@ export function WorkSpaceHeader() {
   const [isInviteMembersModalOpen, setInviteMembersModalOpen] = useState(false)
   const [isSearchModalOpen, setSearchModalOpen] = useState(false)
   const [isHelpModalOpen, setHelpModalOpen] = useState(false)
-  
-  const [testModal, isModalOpen] = useState(false)
-
-  function handleTestModal() {
-    isModalOpen((prev) => !prev)
-  }
 
   function onClickNotifyModal() {
     setNotificationModalOpen((prev) => !prev)
@@ -59,7 +53,6 @@ export function WorkSpaceHeader() {
     setInviteMembersModalOpen(false)
     setSearchModalOpen(false)
     setHelpModalOpen(false)
-    isModalOpen(false)
   }
 
 
@@ -79,7 +72,6 @@ export function WorkSpaceHeader() {
           monday <span className="logo-title-span">work management</span>
         </h1>
         <LogoBtn>See plans</LogoBtn>
-        <button onClick={handleTestModal}>Modal</button>
       </section>
 
       <section className="header-action-btns-sect">
@@ -136,7 +128,6 @@ export function WorkSpaceHeader() {
         {isSearchModalOpen && <SearchEverythingModal onClose={onClose} />}
         {isHelpModalOpen && <HelpModal onClose={onClose} />}
         {isNotificationModalOpen && <NotificationModal onClose={onClose} />}
-        {testModal && <TaskDetails onClose={onClose} />}
         </>
   
   )
