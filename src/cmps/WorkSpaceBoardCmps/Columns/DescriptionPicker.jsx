@@ -31,23 +31,21 @@ export function DescriptionPicker({ task, cmpId, handleUpdateTask }) {
   }
 
   return (
-    <div className="cell description-picker-cell relative">
-      <TextField
-        size="small"
-        className="cell"
-        placeholder="Add description"
-        value={displayValue}
+    <div className="description-picker-cell relative">
+      <div
         onClick={() => setOpenMultiLine(true)}
-        style={{ padding: '7px' }}
-        inputProps={{
-          style: {
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            boxSizing: 'border-box',
-            padding: '0px',
-          },
+        style={{
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          width: '260px',
+          padding: '5px',
         }}
-      />
+      >
+        {displayValue || (
+          <span style={{ color: '#00000044' }}>Add description</span>
+        )}
+      </div>
       {multiLine && (
         <TextField
           value={desc}
@@ -65,7 +63,7 @@ export function DescriptionPicker({ task, cmpId, handleUpdateTask }) {
           id="outlined-multiline-static"
           multiline
           fullWidth
-          rows={8}
+          rows={5}
           autoFocus
         />
       )}

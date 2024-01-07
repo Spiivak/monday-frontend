@@ -12,7 +12,7 @@ export function NumbersPickers({ task, cmpId, handleUpdateTask }) {
 
   async function handleBlur() {
     try {
-      await handleUpdateTask('NumbersPicker', num, task)
+      await handleUpdateTask('NumbersPicker', +num, task)
     } catch (err) {
       console.log(err)
     }
@@ -22,16 +22,19 @@ export function NumbersPickers({ task, cmpId, handleUpdateTask }) {
     <div className="cell number-picker-cell">
       <TextField
         className="cell"
-        placeholder="Type a number..."
+        variant="standard"
+        placeholder="Add a number..."
         id="outlined-number"
         onChange={handleUpdateNumber}
         onBlur={handleBlur}
         value={num}
-        type="number"
+        type="text"
         inputProps={{
+          inputMode: 'numeric',
           style: {
             boxSizing: 'border-box',
             width: '130px',
+            textAlign: 'center',
           },
         }}
       />
