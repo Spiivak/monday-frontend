@@ -25,25 +25,35 @@ export function ColumnModal({
   const modalRef = useRef()
 
   // State for position
-  const [position, setPosition] = useState({ top: 0, left: 0 })
+  const [position, setPosition] = useState()
+  const [boundingRect, setBoundingRect] = useState(
+    menuBtnRef.getBoundingClientRect()
+  )
 
   useEffect(() => {
-    const handleResize = () => {
+    const handleResize = (event) => {
       // Your logic for calculating newLeft and newTop
       const { innerWidth, innerHeight } = window
-      const { top, left, height, width } = menuBtnRef.getBoundingClientRect()
+      const { y, x, height, width } = menuBtnRef.getBoundingClientRect()
       let newLeft, newTop
+      // var scrollLeft = event.window.scrollX || event.window.pageXOffset;
 
-      if (left > innerWidth / 2) {
-        newLeft = left - 280 + width / 2
+      if (x < 0) {
+        newLeft = undefined
+        newTop = undefined
+      } else if (x > innerWidth / 2) {
+        newLeft = x - 280 + width / 2
       } else {
-        newLeft = left + width / 2
+        newLeft = x + width / 2
       }
 
-      if (top > innerHeight / 2) {
-        newTop = top - 400 + height - 6
+      if (x < 0) {
+        newLeft = undefined
+        newTop = undefined
+      } else if (y > innerHeight / 2) {
+        newTop = y - 400 + height - 6
       } else {
-        newTop = top + height + 6
+        newTop = y + height + 6
       }
 
       // Update the state with the new position
@@ -65,9 +75,9 @@ export function ColumnModal({
     handleResize()
 
     // Event listeners
+    window.addEventListener('click', handleOutsideClick)
     window.addEventListener('resize', handleResize)
     window.addEventListener('scroll', handleResize)
-    window.addEventListener('click', handleOutsideClick)
     // Cleanup
     return () => {
       window.removeEventListener('click', handleOutsideClick)
@@ -80,6 +90,8 @@ export function ColumnModal({
     deactivateContextBtn()
     onDeleteColumn()
   }
+
+  if (!position) return
 
   return (
     <div
