@@ -1,21 +1,26 @@
 import { Popover } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
-export function MemberHoverModal() {
+export function MemberHoverModal({ member }) {
+
+  if(!member) return
   return (
-    <div>
-      <Popover
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-      >
-        The content of the Popover.
-      </Popover>
+    <div className='member-modal flex column space-between'>
+      <div className="wrapper flex align-center gap16">
+        <div className="member-avatar">
+          <img src={member.imgUrl} alt="" style={{ width: '50px', height: '50px' }} />
+        </div>
+        <div className="member-details flex column">
+          <h3>{member.fullname}</h3>
+          <span>{member.username}</span>
+          <span className='btn-icon medium-transparent'></span>
+        </div>
+      </div>
+      <div className="member-actions flex">
+        <button className='btn-icon medium-transparent'>Contact Details</button>
+        <button className='btn-icon medium-transparent'>Ask for an update</button>
+      </div>
     </div>
   )
 }
+

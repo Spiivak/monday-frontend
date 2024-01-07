@@ -3,6 +3,7 @@ import Input from '@mui/joy/Input'
 import { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { PersonRoundedIcon } from '../../Icons'
+import { MemberHoverModal } from './modals/MemberHoverModal'
 
 export function MemberPicker({ task, cmpId, handleUpdateTask }) {
   const users = useSelector((storeState) => storeState.userModule.users)
@@ -94,30 +95,34 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
   ]
 
   return (
-    <div className="cell member-picker-cell">
-      <Dropdown
-        menu={{
-          items,
-        }}
-        trigger={['click']}
-        placement="bottom"
-        arrow={{
-          pointAtCenter: true,
-        }}>
-        <div className="cell">
-          {task['members' + cmpId] && task['members' + cmpId].length > 0 ? (
-            <div className="avatars-wrapper">
-              {task['members' + cmpId].map((member) => (
-                <div className="avatar-logo" key={member._id}>
-                  <img src={member.imgUrl} alt="" />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="avatars-wrapper" style={{ opacity: '0.2'}}><PersonRoundedIcon/></div>
-          )}
-        </div>
-      </Dropdown>
-    </div>
+    <>
+      <div className="cell member-picker-cell">
+        <Dropdown
+          menu={{
+            items,
+          }}
+          trigger={['click']}
+          placement="bottom"
+          arrow={{
+            pointAtCenter: true,
+          }}>
+          <div className="cell">
+            {task['members' + cmpId] && task['members' + cmpId].length > 0 ? (
+              <div className="avatars-wrapper">
+                {task['members' + cmpId].map((member) => (
+                  <div className="avatar-logo" key={member._id}>
+                    <img src={member.imgUrl} alt="" style={{width: '32px', height: '32px'}}/>
+                      <MemberHoverModal member={member}
+                      />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="avatars-wrapper" style={{ opacity: '0.2' }}><PersonRoundedIcon /></div>
+            )}
+          </div>
+        </Dropdown>
+      </div>
+    </>
   )
 }
