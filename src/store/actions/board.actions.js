@@ -5,10 +5,12 @@ import {
   ADD_COLUMN,
   ADD_GROUP,
   ADD_TASK,
+  DEACTIVATE_CONTEXT_BTN,
   REMOVE_BOARD,
   REMOVE_COLUMN,
   REMOVE_GROUP,
   REMOVE_TASK,
+  SET_ACTIVE_CONTEXT_BTN,
   SET_BOARDS,
   SET_IS_LOADING,
   UPDATE_BOARD,
@@ -239,6 +241,15 @@ export async function updateColumn(boardId, columnId, column) {
   } catch (err) {}
 }
 
+// * CONTEXT MENU MODALS
+
+export function setActiveContextBtn(contextBtn, contextBtnData){
+  store.dispatch({ type: SET_ACTIVE_CONTEXT_BTN, contextBtn, contextBtnData})
+}
+
+export function deactivateContextBtn(){
+  store.dispatch({ type: DEACTIVATE_CONTEXT_BTN})
+}
 
 
 // export async function addBoardMsg(boardId,msg,user){

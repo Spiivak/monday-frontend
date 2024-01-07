@@ -1,6 +1,13 @@
+// .workspace-index {
+//   height: 100dvh;
+//   grid-template-rows: auto 1fr;
+// }
 .main-layout {
   display: grid;
   grid-template-columns: 0 1fr 0;
+  height: 100dvh;
+  grid-template-rows: auto 1fr;
+
 }
 
 .full {
@@ -12,7 +19,7 @@
 }
 
 main {
-  overflow: auto; /* Apply overflow to the main element */
+  overflow: auto;
   display: grid;
   transition: grid-template-columns 1s;
   gap: 16px;
@@ -48,11 +55,7 @@ main {
 
   .work-space-board {
     grid-column: 2;
-    height: 100%;
-    overflow-y: hidden;
-    .table-section {
-      overflow-x: auto;
-      height: 74.9dvh;
-    }
+    // height: 100%;
+    overflow-y: auto;
   }
 }

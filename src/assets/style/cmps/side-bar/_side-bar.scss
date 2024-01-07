@@ -1,24 +1,28 @@
 .side-bar {
   border-top-right-radius: 8px;
   color: #323338;
-  max-width: 255px;
   position: relative;
   background-color: white;
-  // transition: width 0.3s;
 
 
   .side-bar-container {
     .side-bar-link-container {
       border-bottom: 1px solid #d0d4e4;
       gap: 2px;
-      padding-left: $spacing-small;
-      padding-right: $spacing-xxl;
-      padding-block: $spacing-medium;
-
+      padding-left: calc($spacing-small + 4px);
+      padding-right: calc($spacing-xxl - 8px);
+      padding-block: calc($spacing-small + 4px);
+      .my-work {
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
       a {
+        min-height: 32px;
         font: 400 14px/20px Figtree;
         border-radius: $border-radius-medium;
-        padding: $spacing-xs $spacing-small;
+        padding: $spacing-xs $spacing-small - 2px;
 
         &:hover {
           background-color: #dcdfec;
@@ -26,6 +30,11 @@
 
         &:active {
           background-color: $color-highlight-blue;
+        }
+
+        svg {
+          width: 18px;
+          height: 18px;
         }
       }
     }
@@ -65,30 +74,28 @@
           margin-right: 16px;
           margin-left: 8px;
           margin-bottom: 10px;
-          margin-top: 12px;
+          margin-top: 14px;
           .dropdown-button {
             width: 100%;
-            display: flex;
-            align-items: center;
             border-radius: $border-radius-small;
             padding: 5px;
             margin-left: 8px;
+            max-width: 180px;
             &:hover {
               background-color: #dbdfec;
             }
 
             .workspace-title {
-              font: 550 16px/20px Figtree;
+              font: 600 15px Figtree;
               cursor: pointer;
-            }
-          }
-
-          .dropdown-icon-wrapper {
-            .chvron-down {
-              margin-right: 12px;
-              svg {
-                width: 16px;
-                height: 16px;
+              .workspace-name-wrapper {
+                span {
+                  // background-color: red;
+                  align-items: center;
+                  display: flex;
+                  padding: 0 2px;
+                  border: 1px solid transparent;
+                }
               }
             }
           }
@@ -118,7 +125,7 @@
 
 .workspaces-list {
   padding-left: $spacing-medium - 2px;
-  padding-right: $spacing-medium - 4px;
+  padding-right: $spacing-medium - 2px;
   padding-bottom: $spacing-small;
   margin-top: 4px;
  .context-menu {
@@ -280,7 +287,7 @@
   position: fixed;
   background-color: white;
   border-radius: $spacing-small;
-  z-index: 150;
+  z-index: 300;
 
   .filter-container {
     .filter-heading {
