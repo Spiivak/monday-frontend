@@ -146,6 +146,8 @@
 // Editable Text
 .editable-txt {
   border-radius: $border-radius-small;
+  min-width: 40px;
+  // padding: 0 16px;
   cursor: text;
 
   &:hover {
