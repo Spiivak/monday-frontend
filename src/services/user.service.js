@@ -32,9 +32,8 @@ const demoData = [
   {
     _id: 'u3',
     fullname: 'Emily Kristensen',
-    username: 'dimarevelson@gmail.com',
-    imgUrl:
-      'https://randomuser.me/api/portraits/women/11.jpg',
+    username: 'emilyKristensen@gmail.com',
+    imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
     // mentions: [
     //   {
     //     //optional
@@ -48,8 +47,7 @@ const demoData = [
     _id: 'u4',
     fullname: 'Isabelle Anderson',
     username: 'isabelle.anderson@example.com',
-    imgUrl:
-      'https://randomuser.me/api/portraits/med/women/83.jpg',
+    imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
     // mentions: [
     //   {
     //     //optional
@@ -63,8 +61,7 @@ const demoData = [
     _id: 'u5',
     fullname: 'Mare Alleman',
     username: 'mare.alleman@example.com',
-    imgUrl:
-      'https://randomuser.me/api/portraits/med/women/25.jpg',
+    imgUrl: 'https://randomuser.me/api/portraits/med/women/25.jpg',
     // mentions: [
     //   {
     //     //optional
@@ -78,8 +75,7 @@ const demoData = [
     _id: 'u6',
     fullname: 'Mirogost Gaydenko',
     username: 'mirogost.gaydenko@example.com',
-    imgUrl:
-      'https://randomuser.me/api/portraits/med/men/6.jpg',
+    imgUrl: 'https://randomuser.me/api/portraits/med/men/6.jpg',
     // mentions: [
     //   {
     //     //optional
@@ -93,8 +89,7 @@ const demoData = [
     _id: 'u7',
     fullname: 'Hugo Diederichs',
     username: 'hugo.diederichs@example.com',
-    imgUrl:
-      'https://randomuser.me/api/portraits/med/men/74.jpg',
+    imgUrl: 'https://randomuser.me/api/portraits/med/men/74.jpg',
     // mentions: [
     //   {
     //     //optional
@@ -108,8 +103,7 @@ const demoData = [
     _id: 'u8',
     fullname: 'Nella Lammi',
     username: 'nella.lammi@example.com',
-    imgUrl:
-      'https://randomuser.me/api/portraits/women/32.jpg',
+    imgUrl: 'https://randomuser.me/api/portraits/women/32.jpg',
     // mentions: [
     //   {
     //     //optional

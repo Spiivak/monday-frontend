@@ -32,7 +32,8 @@ const demoData = [
       _id: 'u1',
       fullname: 'Nave David',
       username: 'navedavid@gmail.com',
-      imgUrl: 'https://res.cloudinary.com/donnezwy9/image/upload/v1704455572/rzddgfxj4fzkcn6eqgrv.jpg',
+      imgUrl:
+        'https://res.cloudinary.com/donnezwy9/image/upload/v1704455572/rzddgfxj4fzkcn6eqgrv.jpg',
     },
     labels: [
       {
@@ -96,9 +97,9 @@ const demoData = [
                 msg: 'Mister biton ya gever',
                 createdAt: 1589983468418,
                 likes: 3,
-                seen: ['u1', 'u2']
-              }
-            ]
+                seen: ['u1', 'u2'],
+              },
+            ],
           },
           {
             id: 'c105',
@@ -110,7 +111,7 @@ const demoData = [
               {
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
               },
             ],
@@ -161,7 +162,7 @@ const demoData = [
           {
             id: 'c103',
             title: 'Conduct Project Kick-off Meeting',
-            statusc1: 'Haven\'t Started',
+            statusc1: "Haven't Started",
             archivedAt: 1589983468418,
             membersc2: [],
             timelinec5: [1704528729979, 1735719129979],
@@ -175,7 +176,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -202,7 +203,7 @@ const demoData = [
           {
             id: 'c106',
             title: 'Identify Stakeholders',
-            statusc1: 'Haven\'t Started',
+            statusc1: "Haven't Started",
             archivedAt: 1589983468418,
             membersc2: [],
             timelinec5: [1704528729979, 1735719129979],
@@ -247,7 +248,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -272,7 +273,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -297,7 +298,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -338,7 +339,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -363,7 +364,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -388,7 +389,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -429,7 +430,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -454,7 +455,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -479,7 +480,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -532,7 +533,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -557,7 +558,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -571,7 +572,7 @@ const demoData = [
             descriptionc4: 'description',
             style: {
               backgroundColor: '#26de81',
-            },   
+            },
           },
           {
             id: 'c124',
@@ -582,7 +583,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -596,7 +597,7 @@ const demoData = [
             descriptionc4: 'description',
             style: {
               backgroundColor: '#26de81',
-            },   
+            },
           },
         ],
         style: {},
@@ -623,7 +624,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -648,7 +649,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -673,7 +674,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -714,7 +715,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -739,7 +740,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -780,7 +781,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -805,7 +806,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -846,7 +847,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -871,7 +872,7 @@ const demoData = [
                 _id: 'u3',
                 fullname: 'Emily Kristensen',
                 imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-                username: 'dimarevelson@gmail.com',
+                username: 'emilyKristensen@gmail.com',
               },
               {
                 _id: 'u4',
@@ -890,7 +891,6 @@ const demoData = [
         ],
         style: {},
       },
-
     ],
     activities: [
       {
@@ -917,7 +917,7 @@ const demoData = [
       { type: 'StatusPicker', id: 'c1', title: 'Status' },
       { type: 'MemberPicker', id: 'c2', title: 'Person' },
       { type: 'DatePicker', id: 'c3', title: 'Date' },
-      { type: 'DescriptionPicker', id: 'c4', title: 'Description',},
+      { type: 'DescriptionPicker', id: 'c4', title: 'Description' },
       { type: 'TimeLinePicker', id: 'c5', title: 'Time Line' },
       { type: 'FilePicker', id: 'c6', title: 'Files' },
     ],
