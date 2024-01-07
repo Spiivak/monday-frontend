@@ -9,6 +9,20 @@ const labels = [
   'Battery Powered',
 ]
 
+const gColors = [
+  '#ffcb00',
+  '#007038',
+  '#469e9b',
+  '#579bfc',
+  '#9aadbd',
+  '#bba5e8',
+  '#8050ab',
+  '#4f3a65',
+  '#92334c',
+  '#bb3354',
+  '#ff7575',
+]
+
 const demoData = [
   {
     _id: 'b101',
@@ -213,6 +227,7 @@ export const boardService = {
   updateColumn,
   getEmptyBoard,
   getEmptyGroup,
+  geColors,
 }
 
 function query() {
@@ -378,6 +393,9 @@ function getEmptyBoard() {
 // function getDefaultFilter() {
 //   return { name: '', price: 0, labels: '', Date: '', availability: 'all' }
 // }
+function geColors() {
+  return gColors
+}
 
 function _demoDataLocalStorage() {
   const boards = utilService.loadFromStorage(STORAGE_KEY)
