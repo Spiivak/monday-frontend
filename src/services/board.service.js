@@ -12,7 +12,7 @@ const labels = [
 const demoData = [
   {
     _id: 'b101',
-    title: 'Placeholder',
+    title: 'Best Board!💥',
     archivedAt: Date.now(),
     createdBy: {
       _id: 'u101',
