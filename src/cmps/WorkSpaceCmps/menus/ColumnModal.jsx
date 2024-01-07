@@ -15,29 +15,82 @@ import {
   WorkspaceIcon,
 } from '../../Icons'
 import { Save } from '@mui/icons-material'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { deactivateContextBtn } from '../../../store/actions/board.actions'
 export function ColumnModal({
   onDeleteColumn,
   setIsMoreModalOpen,
-  menuBtnRef
+  menuBtnRef,
 }) {
-  const modalRef = useRef();
+  const modalRef = useRef()
+
+  // State for position
+  const [position, setPosition] = useState({ top: 0, left: 0 })
+
   useEffect(() => {
-    // Add event listener to close modal when clicking outside
-    const handleOutsideClick = event => {
-      if (modalRef.current && !modalRef.current.contains(event.target) && menuBtnRef.current && !menuBtnRef.current.contains(event.target)) {
-        setIsMoreModalOpen(false);
+    const handleResize = () => {
+      // Your logic for calculating newLeft and newTop
+      const { innerWidth, innerHeight } = window
+      const { top, left, height, width } = menuBtnRef.getBoundingClientRect()
+      let newLeft, newTop
+
+      if (left > innerWidth / 2) {
+        newLeft = left - 280 + width / 2
+      } else {
+        newLeft = left + width / 2
       }
-    }; // Add event listener to the document body
 
+      if (top > innerHeight / 2) {
+        newTop = top - 400 + height - 6
+      } else {
+        newTop = top + height + 6
+      }
 
-    document.body.addEventListener('click', handleOutsideClick); // Remove event listener on component unmount
+      // Update the state with the new position
+      setPosition({ top: newTop, left: newLeft })
+    }
 
+    const handleOutsideClick = (event) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target) &&
+        menuBtnRef &&
+        !menuBtnRef.contains(event.target)
+      ) {
+        deactivateContextBtn()
+      }
+    } // Add event listener to the document body
+
+    // Initial setup
+    handleResize()
+
+    // Event listeners
+    window.addEventListener('resize', handleResize)
+    window.addEventListener('scroll', handleResize)
+    window.addEventListener('click', handleOutsideClick)
+    // Cleanup
     return () => {
-      document.body.removeEventListener('click', handleOutsideClick);
-    };
-  }, [setIsMoreModalOpen]);
-  return <div className="more-modal-container flex column" ref={modalRef}>
+      window.removeEventListener('click', handleOutsideClick)
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('scroll', handleResize)
+    }
+  }, [menuBtnRef])
+
+  function clickDeleteColumn() {
+    deactivateContextBtn()
+    onDeleteColumn()
+  }
+
+  return (
+    <div
+      className="more-modal-container flex column"
+      ref={modalRef}
+      style={{
+        position: 'fixed',
+        top: position.top,
+        left: position.left,
+        zIndex: 1000,
+      }}>
       <div className="ds-tabs-section">
         <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
@@ -97,7 +150,9 @@ export function ColumnModal({
       <div className="ds-divider"></div>
       <div className="ds-tabs-section">
         <div className="tab flex column">
-          <button className="btn-icon medium-transparent flex gap16" onClick={onDeleteColumn}>
+          <button
+            className="btn-icon medium-transparent flex gap16"
+            onClick={clickDeleteColumn}>
             <DeleteIcon />
             Delete
           </button>
@@ -109,5 +164,6 @@ export function ColumnModal({
           </button>
         </div>
       </div>
-    </div>;
+    </div>
+  )
 }
