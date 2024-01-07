@@ -81,6 +81,15 @@ export async function removeGroup(boardId, groupId) {
   } catch (err) {}
 }
 
+export async function updateGroup(boardId, groupId, group) {
+  console.log(boardId, groupId, group)
+  try {
+    // const updatedGroup = async
+  } catch (err) {
+
+  }
+}
+
 // * TASK CRUD
 
 export async function updateTask(
