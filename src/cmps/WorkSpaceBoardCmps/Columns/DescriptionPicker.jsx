@@ -63,7 +63,7 @@ export function DescriptionPicker({ task, cmpId, handleUpdateTask }) {
           id="outlined-multiline-static"
           multiline
           fullWidth
-          rows={8}
+          rows={5}
           autoFocus
         />
       )}
