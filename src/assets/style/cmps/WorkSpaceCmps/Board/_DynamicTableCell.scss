@@ -122,18 +122,26 @@
 }
 
 .upload-preview {
-  // flex-direction: column;
   gap: 8px;
   padding: 8px;
+
   img {
     border-radius: 50%;
     width: 17px;
     height: 17px;
     object-fit: cover;
-    // opacity: 0;
     transition: opacity 0.3s ease-in-out;
+
     &:hover {
-      opacity: 1;
+      background-color: red;
     }
+  }
+
+  .image-modal {
+    display: none;
+  }
+
+  &:hover .image-modal {
+    display: block;
   }
 }

@@ -64,8 +64,7 @@ export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
               >
                 <CloseIcon fontSize="small" />
               </IconButton>
-          <ImageModal src={imgData}/>
-
+              
             </>
           ) : (
             <IconButton
