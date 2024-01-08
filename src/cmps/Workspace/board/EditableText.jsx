@@ -9,12 +9,16 @@ export function EditableText({
   textColor,
 }) {
   let width
+  let widthHeader
+  let padding
   switch (type) {
-    case 'boardHeader':
-      width = '60vw'
+    case 'headerTitle':
+      width = 'calc(81vw - 265px)'
+      widthHeader = 'fit-content'
       break
     case 'groupTitle':
       width = '45vw'
+      padding = '0 2.1em'
       break
     case 'columnTitle':
       width = '100px'
@@ -62,13 +66,16 @@ export function EditableText({
     }, 30)
   }
 
-  function onOpenColorModal(){
+  function onOpenColorModal() {
     console.log('test')
   }
   return (
-    <>
+    <div style={{ width: isEditing ? width : widthHeader }}>
       {isEditing ? (
-        <div ref={editableTextRef} className="editable-text-input relative">
+        <div
+          style={{ width: width }}
+          ref={editableTextRef}
+          className="editable-text-input relative">
           {textColor && (
             <button
               className="absolute"
@@ -87,7 +94,7 @@ export function EditableText({
           )}
           <input
             style={{
-              padding: '0 2.1em',
+              padding: padding,
               color: textColor,
               maxHeight: '32px',
               width: width,
@@ -110,7 +117,7 @@ export function EditableText({
             className="flex align-center"
             style={{
               maxHeight: '32px',
-              width: type === 'groupTitle' ? 'fit-content' : width,
+              width: widthHeader,
               overflow: 'hidden',
               textWrap: 'nowrap',
               textOverflow: 'ellipsis',
@@ -121,6 +128,6 @@ export function EditableText({
           </div>
         </Tooltip>
       )}
-    </>
+    </div>
   )
 }

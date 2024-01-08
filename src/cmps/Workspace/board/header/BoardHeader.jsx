@@ -52,7 +52,7 @@ export function BoardHeader({ board, onUpdateBoard }) {
 
           {!!board && (
             <h2 className="flex align-center">
-              <EditableText initialText={`${board.title}`} onSave={handleTitleChange} />
+              <EditableText type={'headerTitle'} initialText={`${board.title}`} onSave={handleTitleChange} />
             </h2>
           )}
           <div className={`header-btns flex align-center space-between`}>
