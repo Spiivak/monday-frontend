@@ -1,6 +1,7 @@
 import { Add, Description, Save, UploadFile } from '@mui/icons-material'
 import { useEffect, useRef, useState } from 'react'
 import {
+  AddIcon,
   AddSmallIcon,
   ArchiveIcon,
   CollapseIcon,
@@ -28,15 +29,15 @@ export default function AddColumnBtn({ onAddColumn }) {
   return (
     <div className="flex align-center relative">
       <button
-        style={{ paddingLeft: '16px' }}
+        style={{ marginLeft: '16px' }}
         ref={menuBtnRef}
-        className="btn-icon small-transparent"
+        className="btn-icon small-transparent flex align-center"
         onClick={(ev) => {
           ev.stopPropagation()
           openMoreModal()
         }}
       >
-        <Add />
+        <AddIcon />
       </button>
       {isMoreModalOpen && (
         <AddModal

@@ -19,10 +19,10 @@ export function TaskTitle({ task, cmpId, handleUpdateTask }) {
   }
   return (
     <div
-      className="task-title flex space-between hoverable"
+      className="task-title flex align-center space-between hoverable"
       data-task-details="true"
     >
-      <div className="wrapper flex">
+      <div className="wrapper flex align-center">
         <button className="btn-icon small-transparent">
           <NavigationChevronRightIcon />
         </button>
