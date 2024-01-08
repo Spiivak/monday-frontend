@@ -129,7 +129,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
 
   function onUpdateGroup(boardId, groupId, group, data) {
     const newGroup = { ...group, title: data }
-    console.log(boardId,groupId,newGroup)
+    console.log(boardId, groupId, newGroup)
     updateGroup(boardId, groupId, newGroup)
   }
 

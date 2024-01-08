@@ -14,14 +14,12 @@ export function TimelinePicker({ task, cmpId, handleUpdateTask, group }) {
       if (!task['timeline' + cmpId] || task['timeline' + cmpId].length === 0 ) return
       const fromDate = task['timeline' + cmpId][0]
       const toDate = task['timeline' + cmpId][1]
-      console.log(today, fromDate, toDate)
       let percentile
       if (today <= fromDate) setColor(group.style.color)
       else if (today > fromDate && today < toDate) {
         percentile = Math.floor(
           100 - ((today - fromDate) / (toDate - fromDate)) * 100
         )
-        console.log(percentile)
         setColor(
           `linear-gradient(to left, #333 ${percentile}%, ${group.style.color} ${percentile}%)`
         )
