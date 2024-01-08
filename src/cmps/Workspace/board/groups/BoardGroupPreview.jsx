@@ -130,7 +130,6 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
 
   function onUpdateGroup(boardId, groupId, group, data) {
     const newGroup = { ...group, title: data }
-    console.log(boardId, groupId, newGroup)
     updateGroup(boardId, groupId, newGroup)
   }
 
@@ -187,7 +186,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
             <NavigationChevronDownIcon />
           </button>
         </div>
-        <h2 style={{color: group.style.color}} className="group-title flex editable-txt">
+        <h2 style={{color: group.style.color}} className="group-title flex">
           <EditableText
             type={'groupTitle'}
             initialText={group.title}

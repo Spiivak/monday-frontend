@@ -1,3 +1,4 @@
+import { NoEncryption } from '@mui/icons-material'
 import { Tooltip } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
 
@@ -9,14 +10,12 @@ export function EditableText({
   textColor,
 }) {
   let width
-  let padding
   switch (type) {
     case 'boardHeader':
       width = '60vw'
       break
     case 'groupTitle':
       width = '45vw'
-      padding = '0 2.1em'
       break
     case 'columnTitle':
       width = '100px'
@@ -40,26 +39,6 @@ export function EditableText({
     setSavedText(initialText)
   }, [initialText])
 
-  useEffect(() => {
-    if (type === 'groupTitle') {
-      const handleWindowClick = (ev) => {
-        if (
-          editableTextRef.current &&
-          editableTextRef.current.contains(ev.target)
-        ) {
-          console.log('true')
-        } else {
-          console.log('false')
-          setIsEditing(false)
-        }
-      }
-      window.addEventListener('click', handleWindowClick)
-      return () => {
-        window.removeEventListener('click', handleWindowClick)
-      }
-    }
-  }, [])
-
   function handleChange(ev) {
     const target = ev.target
     const text = target.value
@@ -67,12 +46,10 @@ export function EditableText({
   }
 
   function handleSave(ev) {
-    if(type !== 'groupTitle'){
-      if (inputText.length > 0) onSave(inputText)
-      if (type === 'addTask') setInputText('')
-      else setInputText(savedText)
-      setIsEditing(false)
-    }
+    if (inputText.length > 0) onSave(inputText)
+    if (type === 'addTask') setInputText('')
+    else setInputText(savedText)
+    setIsEditing(false)
   }
 
   function handleKeyDown(ev) {
@@ -85,26 +62,33 @@ export function EditableText({
       setIsEditing(true)
     }, 30)
   }
+
+  function onOpenColorModal(){
+    console.log('test')
+  }
   return (
     <>
       {isEditing ? (
         <div ref={editableTextRef} className="editable-text-input relative">
           {textColor && (
-            <div
+            <button
               className="absolute"
+              onClick={onOpenColorModal}
               style={{
                 backgroundColor: textColor,
+                border: 'none',
+                outline: 'none',
                 width: '16px',
                 height: '16px',
                 borderRadius: '4px',
                 top: '50%',
                 left: '8px',
                 translate: '0 -50%',
-              }}></div>
+              }}></button>
           )}
           <input
             style={{
-              padding: padding,
+              padding: '0 2.1em',
               color: textColor,
               maxHeight: '32px',
               width: width,
@@ -124,7 +108,7 @@ export function EditableText({
           placement="top"
           arrow>
           <div
-            className='flex align-center editable-txt'
+            className="flex align-center"
             style={{
               maxHeight: '32px',
               width: type === 'groupTitle' ? 'fit-content' : width,
