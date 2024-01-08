@@ -4,7 +4,15 @@ import { CSS } from '@dnd-kit/utilities'
 import { DynamicTableCell } from '../DynamicTableCell'
 import { ContextBtn } from '../../../../ContextBtn'
 
-export function SortableTask({ id, row, onTaskUpdate, onDeleteTask, boardId, groupId, group }) {
+export function SortableTask({
+  id,
+  row,
+  onTaskUpdate,
+  onDeleteTask,
+  boardId,
+  groupId,
+  group,
+}) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id })
 
@@ -17,7 +25,6 @@ export function SortableTask({ id, row, onTaskUpdate, onDeleteTask, boardId, gro
     <tr className="hoverable" ref={setNodeRef} style={style} {...attributes}>
       <td>
         <div className="checkbox-cell flex align-center justify-center relative ">
-
           <div style={{ cursor: 'grab' }} className="row-context absolute">
             <ContextBtn
               type="row"
@@ -29,7 +36,6 @@ export function SortableTask({ id, row, onTaskUpdate, onDeleteTask, boardId, gro
 
           <input type="checkbox" {...listeners} />
         </div>
-
       </td>
       {row.cells.map((cell) => (
         <td {...cell.getCellProps()}>
@@ -42,7 +48,7 @@ export function SortableTask({ id, row, onTaskUpdate, onDeleteTask, boardId, gro
           />
         </td>
       ))}
-      <EmptyStreachableCell     />
+      <EmptyStreachableCell />
     </tr>
   )
 }

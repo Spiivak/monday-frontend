@@ -61,7 +61,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           case 'DescriptionPicker':
             accessor = 'description' + cmp.id
             break
-          case 'TimeLinePicker':
+          case 'TimelinePicker':
             accessor = 'timeline' + cmp.id
             break
           case 'FilePicker':
@@ -190,7 +190,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           <EditableText
             type={'groupTitle'}
             initialText={group.title}
-            onSave={() => { }}
+            onSave={() => {}}
             placeholder={group.title}
           />
         </h2>
@@ -221,7 +221,9 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                         {column.id === 'title' ? (
                           <div className="wrapper grid th-header pad8x">
                             <Tooltip title="This title cannot be edited" arrow>
-                            <span className='gc1'>{column.render('Header')}</span>
+                              <span className="gc1">
+                                {column.render('Header')}
+                              </span>
                             </Tooltip>
                           </div>
                         ) : (
@@ -231,20 +233,27 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                                 type={'columnTitle'}
                                 initialText={column.render('Header')}
                                 onSave={(text) => {
-                                  onUpdateColumn(boardId, column.cmp.id, column.cmp, text)
+                                  onUpdateColumn(
+                                    boardId,
+                                    column.cmp.id,
+                                    column.cmp,
+                                    text
+                                  )
                                 }}
                               />
                             </div>
                             <div className="wrapper3 gc2">
                               <ContextBtn
                                 type="column"
-                                onDeleteColumn={() => onDeleteColumn(boardId, column.cmp.id)}
+                                onDeleteColumn={() =>
+                                  onDeleteColumn(boardId, column.cmp.id)
+                                }
                               />
                             </div>
                           </div>
                         )}
                       </th>
-                    );
+                    )
                   })}
                   <th>
                     <AddColumnBtn
