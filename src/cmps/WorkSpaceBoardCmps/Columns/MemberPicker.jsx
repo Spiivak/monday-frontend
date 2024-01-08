@@ -98,7 +98,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
   ]
 
   function renderAvatars() {
-    const memberAvatars = task['members' + cmpId]?.slice(0, 2) || []
+    const memberAvatars = task['members' + cmpId]?.slice(0, 1) || []
     return memberAvatars.map((member) => (
       <div className="avatar-logo" key={member._id}>
         <img src={member.imgUrl} alt="" />
@@ -117,7 +117,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
   })
 
   function renderOverflowIndicator() {
-    const additionalMembers = task['members' + cmpId]?.slice(2) || []
+    const additionalMembers = task['members' + cmpId]?.slice(1) || []
     const additionalMembersCount = additionalMembers.length
 
     if (additionalMembersCount > 0) {

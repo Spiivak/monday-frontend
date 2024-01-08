@@ -193,7 +193,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
             placeholder={group.title}
           />
         </h2>
-        <span>{group.tasks.length} items / 0 subitems</span>
+        <span>{group.tasks.length} items </span>
       </div>
       <div className="board-table-container">
         <DndContext
@@ -265,7 +265,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                   )
                 })}
               </SortableContext>
-              <tr className='hoverable'>
+              <tr className="hoverable">
                 <td>
                   <div className="checkbox-cell flex align-center justify-center">
                     <input type="checkbox" />
@@ -273,14 +273,13 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                 </td>
                 <td colSpan={columns.length + 2}>
                   <div className="wrapper flex align-center gap4">
-
-                  <AddSmallIcon/>
-                  <EditableText
-                    initialText={initText}
-                    onSave={saveNewTask}
-                    placeholder={'Add Item'}
+                    <AddSmallIcon />
+                    <EditableText
+                      initialText={initText}
+                      onSave={saveNewTask}
+                      placeholder={'Add Item'}
                     />
-                    </div>
+                  </div>
                 </td>
               </tr>
             </tbody>
