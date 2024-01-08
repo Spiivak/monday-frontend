@@ -35,6 +35,7 @@ import { AddSmallIcon, NavigationChevronDownIcon } from '../../../Icons'
 import { ContextBtn } from '../../../ContextBtn'
 import { EditableText } from '../EditableText'
 import AddColumnBtn from './cells/AddColumnBtn'
+import { Widgets } from '@mui/icons-material'
 
 export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
   const [columns, setColumns] = useState([])
@@ -128,7 +129,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
 
   function onUpdateGroup(boardId, groupId, group, data) {
     const newGroup = { ...group, title: data }
-    console.log(boardId, groupId, newGroup)
+    console.log(boardId,groupId,newGroup)
     updateGroup(boardId, groupId, newGroup)
   }
 
@@ -189,7 +190,9 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           <EditableText
             type={'groupTitle'}
             initialText={group.title}
-            onSave={() => {}}
+            onSave={(text) => {
+              onUpdateGroup(boardId, group.id, group, text)
+            }}
             placeholder={group.title}
           />
         </h2>
@@ -202,8 +205,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           onDragStart={handleDragStart}
           onDragCancel={handleDragCancel}
           collisionDetection={closestCenter}
-          modifiers={[restrictToVerticalAxis]}
-        >
+          modifiers={[restrictToVerticalAxis]}>
           <table {...getTableProps()}>
             <thead>
               {headerGroups.map((headerGroup) => (
@@ -248,8 +250,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
             <tbody {...getTableBodyProps()}>
               <SortableContext
                 items={items}
-                strategy={verticalListSortingStrategy}
-              >
+                strategy={verticalListSortingStrategy}>
                 {rows.map((row) => {
                   prepareRow(row)
                   return (

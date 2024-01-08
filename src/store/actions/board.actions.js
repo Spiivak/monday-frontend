@@ -19,6 +19,7 @@ import {
   START_ADD_COLUMN,
   UPDATE_BOARD,
   UPDATE_COLUMN,
+  UPDATE_GROUP,
   UPDATE_TASK,
 } from '../reducers/board.reducer'
 import { GET_BOARD_BY_ID } from '../reducers/board.reducer'
@@ -88,9 +89,9 @@ export async function removeGroup(boardId, groupId) {
 }
 
 export async function updateGroup(boardId, groupId, group) {
-  console.log(boardId, groupId, group)
+  const updatedGroup = await boardService.updateGroup(boardId, groupId, group)
+  store.dispatch({ type: UPDATE_GROUP, boardId, groupId, updatedGroup })
   try {
-    // const updatedGroup = async
   } catch (err) {}
 }
 
