@@ -48,7 +48,7 @@ export async function loadBoards() {
   } catch (err) {
     console.error('board action -> cannot load boards', err)
     throw err
-  } 
+  }
 }
 
 export async function removeBoard(boardId) {
@@ -278,6 +278,10 @@ export function deactivateTask() {
 
 export function finishAddingColumn() {
   store.dispatch({ type: COMPLETE_ADD_COLUMN })
+}
+
+export function setLoading(type){
+  store.dispatch({ type: SET_IS_LOADING, isLoading: type })
 }
 // export async function addBoardMsg(boardId,msg,user){
 //   const newMsg = {...boardService.getEmptyMsg(), content:msg}

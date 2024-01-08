@@ -44,7 +44,7 @@ export function boardReducer(state = initialState, action = {}) {
   switch (action.type) {
     // * BOARDS CRUD
     case SET_BOARDS:
-      return { ...state, boards: action.boards, isLoading: false }
+      return { ...state, boards: action.boards }
 
     case REMOVE_BOARD:
       boards = state.boards.filter((board) => board._id !== action.boardId)
