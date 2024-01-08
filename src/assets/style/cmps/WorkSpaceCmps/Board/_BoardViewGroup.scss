@@ -73,6 +73,11 @@
       width: max-content;
     }
 
+    tr:hover {
+      background-color: #F4F5F8;
+      box-shadow: 4px 3px 6px -3px #c3c6d4;
+    }
+
     td:nth-child(1),
     th:nth-child(1) {
       width: 33px !important;
@@ -122,6 +127,8 @@
   tr:not(:last-of-type) td:last-child {
     box-shadow: 0 0 0 0.2px rgba(0, 0, 122, 0.3);
     max-height: 36px;
+
+    
   }
 
   th:first-child {
@@ -137,6 +144,7 @@
   tr:last-child td:first-child {
     border-bottom-left-radius: 12px;
     box-shadow: 0 0 0 0.2px rgba(0, 0, 122, 0.3);
+    
   }
 
   tr:last-child td:last-child {
