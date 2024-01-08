@@ -35,6 +35,7 @@ import { AddSmallIcon, NavigationChevronDownIcon } from '../../../Icons'
 import { ContextBtn } from '../../../ContextBtn'
 import { EditableText } from '../EditableText'
 import AddColumnBtn from './cells/AddColumnBtn'
+import { Tooltip } from '@mui/material'
 
 export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
   const [columns, setColumns] = useState([])
@@ -44,7 +45,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
   useEffect(() => {
     setColumns([
       {
-        Header: 'task',
+        Header: 'Item',
         accessor: 'title',
         cmp: { id: 0, title: 'task', type: 'title' },
       },
@@ -215,12 +216,13 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                     </div>
                   </th>
                   {headerGroup.headers.map((column) => {
-                    console.log('BoardGroupPreview  column:', column)
                     return (
                       <th {...column.getHeaderProps()}>
                         {column.id === 'title' ? (
                           <div className="wrapper grid th-header pad8x">
+                            <Tooltip title="This title cannot be edited" arrow>
                             <span className='gc1'>{column.render('Header')}</span>
+                            </Tooltip>
                           </div>
                         ) : (
                           <div className="wrapper grid th-header pad8x">
