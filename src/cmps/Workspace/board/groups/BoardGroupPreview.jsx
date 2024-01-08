@@ -277,19 +277,18 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                   )
                 })}
               </SortableContext>
-              <tr className="hoverable">
+              <tr className="">
                 <td>
                   <div className="checkbox-cell flex align-center justify-center">
                     <input type="checkbox" />
                   </div>
                 </td>
                 <td colSpan={columns.length + 2}>
-                  <div className="wrapper flex align-center gap4">
-                    <AddSmallIcon />
+                  <div className="wrapper flex align-center" style={{ marginLeft: '20px'}}>
                     <EditableText
                       initialText={initText}
                       onSave={saveNewTask}
-                      placeholder={'Add Item'}
+                      placeholder={'+ Add Item'}
                     />
                   </div>
                 </td>

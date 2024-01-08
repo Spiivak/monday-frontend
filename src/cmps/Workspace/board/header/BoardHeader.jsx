@@ -1,59 +1,98 @@
-import React, { useState } from 'react'
-
-// ICONS
+import { useState, useEffect } from 'react';
 import {
   ActivityIcon,
+  AddSmallIcon,
   FavoriteIcon,
+  FilterIcon,
+  GroupIcon,
+  HideIcon,
+  HomeIcon,
   InfoIcon,
   InviteMembersIcon,
   MenuIcon,
-} from '../../../Icons'
-import { EditableText } from '../EditableText'
+  NavigationChevronDownIcon,
+  NavigationChevronUpIcon,
+  PersonIcon,
+  SearchIcon,
+  SortIcon,
+} from '../../../Icons';
+import { EditableText } from '../EditableText';
+import { Tooltip } from '@mui/material';
+import { NavLink } from 'react-router-dom';
+import { BoardTabs } from './BoardTabs';
+import { BoardHeaderFilter } from './BoardHeaderFilter';
 
 export function BoardHeader({ board, onUpdateBoard }) {
-  const [inviteModal, setOpenInviteModal] = useState(false)
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsCollapsed(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+
+  const [inviteModal, setOpenInviteModal] = useState(false);
+
   function handleTitleChange(newTitle) {
-    board.title = newTitle
-    onUpdateBoard(board)
+    board.title = newTitle;
+    onUpdateBoard(board);
   }
 
   return (
-    <section className="board-header flex align-center space-between">
-      {/* {!!board && <h2>{board.title}</h2>} */}
-      {!!board && (
-        <h2 className='editable-txt'>
-          <EditableText
-            initialText={`${board.title}`}
-            onSave={handleTitleChange}
-          />
-        </h2>
-      )}
-      <div className="header-btns flex space-between">
-        <div className="left-btns flex align-center">
-          <button className="btn-icon medium-transparent">
-            <InfoIcon />
-          </button>
-          <button className="btn-icon medium-transparent">
-            <FavoriteIcon />
-          </button>
+    <section className={'board-header flex column'}>
+      <div className="wrapper flex column">
+        <div className="flex">
+
+          {!!board && (
+            <h2 className="flex align-center">
+              <EditableText initialText={`${board.title}`} onSave={handleTitleChange} />
+            </h2>
+          )}
+          <div className={`header-btns flex align-center space-between`}>
+            {!isCollapsed ? (
+              <div className="left-btns flex align-center">
+                <button className="btn-icon medium-transparent">
+                  <InfoIcon />
+                </button>
+                <button className="btn-icon medium-transparent">
+                  <FavoriteIcon />
+                </button>
+              </div>
+            ) : <BoardTabs onCollapse={() => setIsCollapsed(!isCollapsed)} isCollapsed={isCollapsed} />}
+
+            <div className="right-btns flex align-center">
+              {!isCollapsed && (
+                <button className="btn-icon medium-transparent">
+                  <ActivityIcon />
+                </button>
+              )}
+              <button
+                onClick={() => setOpenInviteModal(!inviteModal)}
+                className="btn-icon medium-transparent flex gap8"
+              >
+                <InviteMembersIcon />
+                Invite / 4
+              </button>
+              <button className="btn-icon medium-transparent">
+                <MenuIcon />
+              </button>
+              {isCollapsed && <button className="btn-icon medium-transparent" onClick={() => setIsCollapsed(!isCollapsed)}>
+                <NavigationChevronUpIcon />
+              </button>}
+            </div>
+          </div>
         </div>
-        <div className="right-btns flex align-center">
-          {/* <button>activities</button> */}
-          <button className="btn-icon medium-transparent">
-            <ActivityIcon />
-          </button>
-          <button
-            onClick={() => setOpenInviteModal(!inviteModal)}
-            className="btn-icon medium-transparent flex gap8"
-          >
-            <InviteMembersIcon />
-            Invite / 4
-          </button>
-          <button className="btn-icon medium-transparent">
-            <MenuIcon />
-          </button>
-        </div>
+
+        {!isCollapsed && <BoardTabs isCollapsed={isCollapsed} onCollapse={() => setIsCollapsed(!isCollapsed)} />}
+        <BoardHeaderFilter isCollapsed={isCollapsed} />
       </div>
     </section>
-  )
+  );
 }

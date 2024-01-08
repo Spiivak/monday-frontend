@@ -52,6 +52,16 @@
 
 .task-title {
   min-width: 350px;
+
+  button {
+    opacity: 0;
+  }
+
+  &:hover {
+    button {
+      opacity: 1;
+    }
+    }
 }
 
 .status-picker-cell {
