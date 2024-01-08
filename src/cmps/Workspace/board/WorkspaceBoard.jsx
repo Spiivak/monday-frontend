@@ -73,8 +73,8 @@ export function WorkSpaceBoard() {
       <section className="work-space-board">
         <div className="workspace-board-header">
           <BoardHeader board={selectedBoard} {...{ onUpdateBoard }} />
-          <BoardTabs />
-          <BoardHeaderFilter />
+          {/* <BoardTabs /> */}
+          {/* <BoardHeaderFilter /> */}
         </div>
         <div className="table-section">
           {!!boards && (
