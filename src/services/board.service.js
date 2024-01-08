@@ -83,6 +83,12 @@ const demoData = [
                 imgUrl:
                   'https://res.cloudinary.com/donnezwy9/image/upload/v1704459492/mv8vwh55b3wgqdflmemw.png',
               },
+              {
+                _id: 'u3',
+                fullname: 'Emily Kristensen',
+                username: 'emilyKristensen@gmail.com',
+                imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+              },
             ],
             comments: [
               {
