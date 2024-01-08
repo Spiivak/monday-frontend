@@ -233,7 +233,7 @@ const demoData = [
             timelinec5: [1704528729979, 1735719129979],
           },
         ],
-        style: {color: '#007038'},
+        style: { color: '#007038' },
       },
 
       {
@@ -323,7 +323,7 @@ const demoData = [
             },
           },
         ],
-        style: {color: '#8050ab'},
+        style: { color: '#8050ab' },
       },
 
       {
@@ -414,7 +414,7 @@ const demoData = [
             },
           },
         ],
-        style: {color : '#579bfc'},
+        style: { color: '#579bfc' },
       },
 
       {
@@ -505,7 +505,7 @@ const demoData = [
             },
           },
         ],
-        style: {color: '#92334c'},
+        style: { color: '#92334c' },
       },
 
       {
@@ -608,7 +608,7 @@ const demoData = [
             },
           },
         ],
-        style: {color: '#ff7575'},
+        style: { color: '#ff7575' },
       },
 
       {
@@ -765,7 +765,7 @@ const demoData = [
             },
           },
         ],
-        style: {color: '#ffcb00'},
+        style: { color: '#ffcb00' },
       },
 
       {
@@ -831,7 +831,7 @@ const demoData = [
             },
           },
         ],
-        style: {color: '#9aadbd'},
+        style: { color: '#9aadbd' },
       },
 
       {
@@ -897,7 +897,7 @@ const demoData = [
             },
           },
         ],
-        style: {color: '#bba5e8'},
+        style: { color: '#bba5e8' },
       },
     ],
     activities: [
@@ -926,7 +926,7 @@ const demoData = [
       { type: 'MemberPicker', id: 'c2', title: 'Person' },
       { type: 'DatePicker', id: 'c3', title: 'Date' },
       { type: 'DescriptionPicker', id: 'c4', title: 'Description' },
-      { type: 'TimelinePicker', id: 'c5', title: 'Time Line' },
+      { type: 'TimelinePicker', id: 'c5', title: 'Timeline' },
       { type: 'FilePicker', id: 'c6', title: 'Files' },
     ],
   },
@@ -996,7 +996,7 @@ function addGroup(boardId, group) {
   return storageService.postGroup(STORAGE_KEY, boardId, group)
 }
 
-function updateGroup(boardId, groupId, group){
+function updateGroup(boardId, groupId, group) {
   return storageService.putGroup(STORAGE_KEY, boardId, groupId, group)
 }
 
