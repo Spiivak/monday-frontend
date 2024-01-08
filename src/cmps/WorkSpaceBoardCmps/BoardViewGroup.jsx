@@ -187,6 +187,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
         </div>
         <h2 className="group-title flex editable-txt">
           <EditableText
+            type={'groupTitle'}
             initialText={group.title}
             onSave={() => {}}
             placeholder={group.title}
@@ -216,6 +217,7 @@ export function BoardViewGroup({ group, boardId, cmpsOrder }) {
                     <th {...column.getHeaderProps()}>
                       <div className="flex align-center space-between pad8x gap16 hoverable">
                         <EditableText
+                          type={'columnTitle'}
                           initialText={column.render('Header')}
                           onSave={(text) => {
                             onUpdateColumn(

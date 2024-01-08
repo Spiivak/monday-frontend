@@ -17,8 +17,9 @@ export function TaskTitle({ task, cmpId, handleUpdateTask }) {
       <div className="wrapper flex">
         <button className="btn-icon small-transparent"><NavigationChevronRightIcon /></button>
         <div className="editable-txt">
-          
+
           <EditableText
+            type={'taskTitle'}
             initialText={task.title}
             onSave={(text) => handleUpdateTask('task', text, task)}
           />

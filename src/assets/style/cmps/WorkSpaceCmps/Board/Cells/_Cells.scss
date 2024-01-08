@@ -21,32 +21,36 @@
 }
 
 .status-picker-cell {
-  min-width: 260px;
+  min-width: 180px;
 }
 
 .member-picker-cell {
-  min-width: 260px;
+  min-width: 160px;
 }
 
 .date-picker-cell {
-  min-width: 260px;
+  min-width: 170px;
 }
 
 .timeline-picker-cell {
-  min-width: 260px;
+  min-width: 180px;
 }
 
 .description-picker-cell {
-  min-width: 260px;
+  min-width: 180px;
 }
 
 .file-picker-cell {
-  min-width: 260px;
+  min-width: 180px;
 }
 
 .number-picker-cell {
-  min-width: 260px;
+  min-width: 180px;
 }
 
 .empty-add-cell {
+}
+
+.editable-text-input {
+  width: 200px !important;
 }

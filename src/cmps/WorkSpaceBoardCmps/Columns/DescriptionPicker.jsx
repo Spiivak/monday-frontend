@@ -38,7 +38,6 @@ export function DescriptionPicker({ task, cmpId, handleUpdateTask }) {
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap',
-          width: '260px',
           padding: '5px',
         }}
       >
