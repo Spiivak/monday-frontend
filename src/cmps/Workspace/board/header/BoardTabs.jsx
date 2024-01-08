@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom'
 import { AddSmallIcon, HomeIcon, NavigationChevronUpIcon } from '../../../Icons'
 
 export function BoardTabs({ isCollapsed, onCollapse }) {
-  console.log('BoardTabs  isCollapsed:', isCollapsed)
   return (
     <section className={`board-tabs flex space-between`}>
       <div className="tabs flex">

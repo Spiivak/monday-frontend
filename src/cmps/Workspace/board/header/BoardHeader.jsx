@@ -24,7 +24,6 @@ import { BoardHeaderFilter } from './BoardHeaderFilter';
 
 export function BoardHeader({ board, onUpdateBoard }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  console.log('BoardHeader  isCollapsed:', isCollapsed)
 
   useEffect(() => {
     const handleScroll = () => {
