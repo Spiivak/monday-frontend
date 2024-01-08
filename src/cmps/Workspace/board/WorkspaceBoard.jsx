@@ -16,13 +16,14 @@ import {
   showErrorMsg,
   showSuccessMsg,
 } from '../../../services/event-bus.service'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { loadUsers } from '../../../store/actions/user.actions'
 import { boardService } from '../../../services/board.service'
 import { Sidebar } from '../sidebar/Sidebar'
 import { MondayLoader } from '../MondayLoader'
 export function WorkSpaceBoard() {
   const [selectedBoard, setSelectedBoard] = useState(null)
+  const navigate = useNavigate()
   const boards = useSelector((storeState) => storeState.boardModule.boards)
   const users = useSelector((storeState) => storeState.userModule.users)
   const isLoading = useSelector(
@@ -46,13 +47,14 @@ export function WorkSpaceBoard() {
 
   //TODO add user to own the added board
   async function onAddBoard() {
-    const board = boardService.getEmptyBoard()
     try {
-      await saveBoard(board)
+      const board = await saveBoard(boardService.getEmptyBoard())
+      navigate(`/workspace/${board._id}`)
     } catch (err) {
       console.log('Cannot add board', err)
     }
   }
+
   async function onUpdateBoard(boardId) {
     try {
       await saveBoard(boardId)

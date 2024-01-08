@@ -4,20 +4,10 @@ import { FilterModal } from './FilterModal'
 import { saveBoard } from '../../../../store/actions/board.actions'
 import { boardService } from '../../../../services/board.service'
 
-export function FilterSection() {
-
-  async function onAddBoard() {
-    const board = boardService.getEmptyBoard()
-    try {
-      await saveBoard(board)
-    } catch (err) {
-      console.log('Cannot add board', err)
-    }
-  }
-
-  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+export function FilterSection({ onAddBoard }) {
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
   function onClickFilterModal() {
-    setIsFilterModalOpen((prevIsFilterModalOpen) => !prevIsFilterModalOpen);
+    setIsFilterModalOpen((prevIsFilterModalOpen) => !prevIsFilterModalOpen)
   }
 
   function onClose() {
@@ -35,9 +25,8 @@ export function FilterSection() {
           className="btn-icon small-transparent filter"
           onClick={onClickFilterModal}
         >
-          <div data-filter-button="true" className='flex align-center'>
-
-          <FilterIcon />
+          <div data-filter-button="true" className="flex align-center">
+            <FilterIcon />
           </div>
         </button>
       </div>

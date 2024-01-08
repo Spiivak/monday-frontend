@@ -33,6 +33,7 @@ export async function saveBoard(board) {
   try {
     const boardToSave = await boardService.save(board)
     store.dispatch({ type, board: boardToSave })
+    return boardToSave
   } catch (err) {
     console.error(`board action -> cannot ${errType}`, err)
     throw err
@@ -280,7 +281,7 @@ export function finishAddingColumn() {
   store.dispatch({ type: COMPLETE_ADD_COLUMN })
 }
 
-export function setLoading(type){
+export function setLoading(type) {
   store.dispatch({ type: SET_IS_LOADING, isLoading: type })
 }
 // export async function addBoardMsg(boardId,msg,user){

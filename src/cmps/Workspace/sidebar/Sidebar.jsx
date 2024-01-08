@@ -19,8 +19,7 @@ export function Sidebar({ onRemoveBoard, onAddBoard }) {
 
   const openSideBar = () => setIsSidebarOpen(!isSidebarOpen)
 
-  useEffect(() => {
-    }, [])
+  useEffect(() => {}, [])
 
   // async function onLoadBoards() {
   //   try {
@@ -32,7 +31,6 @@ export function Sidebar({ onRemoveBoard, onAddBoard }) {
 
   return (
     <section className={`side-bar ${isSidebarOpen ? '' : 'side-bar-close'}`}>
-
       <button
         className="btn-icon small-transparent close-btn flex justify-center"
         onClick={() => openSideBar()}
@@ -50,7 +48,7 @@ export function Sidebar({ onRemoveBoard, onAddBoard }) {
         <div className="side-bar-footer">
           <div className="title-wrapper">
             <SidebarWorkspace />
-            <FilterSection />
+            <FilterSection {...{ onAddBoard }} />
           </div>
 
           <SidebarBoardList {...{ onRemoveBoard }} />
