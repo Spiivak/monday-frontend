@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom'
-import { WorkSpaceHeader } from '../cmps/WorkSpaceCmps/WorkSpaceHeader'
+import { WorkspaceHeader } from '../cmps/Workspace/header/WorkspaceHeader'
 
 export function WorkSpacePage() {
   return (
     <section className="workspace-index main-layout">
-      <WorkSpaceHeader />
+      <WorkspaceHeader />
       <Outlet />
     </section>
   )
