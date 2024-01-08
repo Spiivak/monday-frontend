@@ -211,33 +211,39 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                   <th>
                     <div className="checkbox-cell flex align-center justify-center">
                       {/* TODO: Create store for selected items */}
-                        <input type="checkbox" />
+                      <input type="checkbox" />
                     </div>
                   </th>
-                  {headerGroup.headers.map((column) => (
-                    <th {...column.getHeaderProps()}>
-                      <div className="flex align-center space-between pad8x gap16 hoverable">
-                        <EditableText
-                          type={'columnTitle'}
-                          initialText={column.render('Header')}
-                          onSave={(text) => {
-                            onUpdateColumn(
-                              boardId,
-                              column.cmp.id,
-                              column.cmp,
-                              text
-                            )
-                          }}
-                        />
-                        <ContextBtn
-                          type="column"
-                          onDeleteColumn={() =>
-                            onDeleteColumn(boardId, column.cmp.id)
-                          }
-                        />
-                      </div>
-                    </th>
-                  ))}
+                  {headerGroup.headers.map((column) => {
+                    console.log('BoardGroupPreview  column:', column)
+                    return (
+                      <th {...column.getHeaderProps()}>
+                        {column.id === 'title' ? (
+                          <div className="wrapper grid th-header pad8x">
+                            <span className='gc1'>{column.render('Header')}</span>
+                          </div>
+                        ) : (
+                          <div className="wrapper grid th-header pad8x">
+                            <div className="wrapper2 gc1">
+                              <EditableText
+                                type={'columnTitle'}
+                                initialText={column.render('Header')}
+                                onSave={(text) => {
+                                  onUpdateColumn(boardId, column.cmp.id, column.cmp, text)
+                                }}
+                              />
+                            </div>
+                            <div className="wrapper3 gc2">
+                              <ContextBtn
+                                type="column"
+                                onDeleteColumn={() => onDeleteColumn(boardId, column.cmp.id)}
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </th>
+                    );
+                  })}
                   <th>
                     <AddColumnBtn
                       onAddColumn={(type) => onAddColumn(boardId, type)}

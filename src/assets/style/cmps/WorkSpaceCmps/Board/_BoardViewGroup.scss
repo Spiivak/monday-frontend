@@ -149,6 +149,14 @@
     box-shadow: 0 0 0 0.2px rgba(0, 0, 122, 0.3);
   }
 
+  tr[role="row"] th {
+    // background: red;
+    justify-content: center;
+    th {
+      display: table-cell;
+    }
+  }
+
   tr:last-child td:first-child {
     border-bottom-left-radius: 12px;
     box-shadow: 0 0 0 0.2px rgba(0, 0, 122, 0.3);
