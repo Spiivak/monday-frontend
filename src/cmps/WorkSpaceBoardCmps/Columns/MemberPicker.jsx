@@ -34,36 +34,34 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
         />
       ),
     },
-    {
-      key: '2',
+    ...currentUsers.map((user, idx) => ({
+      key: 2 + idx,
       label: (
-        <div className="flex gap8 row">
-          {currentUsers.map((user) => (
-            <div key={user._id} className="flex align-center gap8">
-              <img
-                src={user.imgUrl}
-                alt={user.fullname}
-                style={{
-                  width: '15px',
-                  height: '15px',
-                  objectFit: 'cover',
-                  borderRadius: '50%',
-                }}
-              />
-              <h5>{user.fullname}</h5>
-              <button
-                className="btn-icon small-transparent"
-                onClick={() => handleUpdateUser(user)}
-              >
-                <CloseSmallIcon />
-              </button>
-            </div>
-          ))}
+        <div className="flex gap8 column" key={user._id}>
+          <div className="flex align-center gap8">
+            <img
+              src={user.imgUrl}
+              alt={user.fullname}
+              style={{
+                width: '15px',
+                height: '15px',
+                objectFit: 'cover',
+                borderRadius: '50%',
+              }}
+            />
+            <h5>{user.fullname}</h5>
+            <button
+              className="btn-icon small-transparent"
+              onClick={() => handleUpdateUser(user)}
+            >
+              <CloseSmallIcon />
+            </button>
+          </div>
         </div>
       ),
-    },
+    })),
     {
-      key: '3',
+      key: '999',
       label: (
         <div
           onClick={(e) => {
@@ -75,31 +73,28 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
         </div>
       ),
     },
-    ...suggestedUsers.map((user, idx) => {
-      return {
-        key: 4 + idx,
-        label: (
-          <div className="flex gap8 column">
-            <div
-              key={user._id}
-              onClick={() => handleUpdateUser(user)}
-              className="flex align-center gap8"
-            >
-              <img
-                src={user.imgUrl}
-                style={{
-                  width: '30px',
-                  height: '30px',
-                  objectFit: 'cover',
-                  borderRadius: '50%',
-                }}
-              />
-              <h5>{user.fullname}</h5>
-            </div>
+    ...suggestedUsers.map((user, idx) => ({
+      key: 4 + idx,
+      label: (
+        <div className="flex gap8 column" key={user._id}>
+          <div
+            onClick={() => handleUpdateUser(user)}
+            className="flex align-center gap8"
+          >
+            <img
+              src={user.imgUrl}
+              style={{
+                width: '30px',
+                height: '30px',
+                objectFit: 'cover',
+                borderRadius: '50%',
+              }}
+            />
+            <h5>{user.fullname}</h5>
           </div>
-        ),
-      }
-    }),
+        </div>
+      ),
+    })),
   ]
 
   function renderAvatars() {
@@ -146,7 +141,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
 
   return (
     <>
-      <div className="cell member-picker-cell">
+      <div style={{ width: '270px' }} className="cell member-picker-cell">
         <Dropdown
           menu={{
             items,
