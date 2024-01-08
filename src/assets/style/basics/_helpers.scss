@@ -154,7 +154,8 @@
 // Editable Text
 .editable-txt {
   border-radius: $border-radius-small;
-  min-width: 40px;
+  // min-width: 40px;
+  max-width: fit-content;
   // padding: 0 16px;
   cursor: text;
 

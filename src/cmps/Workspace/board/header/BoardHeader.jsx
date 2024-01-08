@@ -51,7 +51,7 @@ export function BoardHeader({ board, onUpdateBoard }) {
         <div className="flex">
 
           {!!board && (
-            <h2 className="editable-txt flex align-center">
+            <h2 className="flex align-center">
               <EditableText initialText={`${board.title}`} onSave={handleTitleChange} />
             </h2>
           )}

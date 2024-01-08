@@ -70,7 +70,7 @@ export function EditableText({ initialText, onSave, placeholder, type }) {
           placement="top"
           arrow>
           <div
-            className='flex align-center'
+            className='flex align-center editable-txt'
             style={{
               maxHeight: '32px',
               width: type === 'groupTitle' ? 'fit-content' : width ,
