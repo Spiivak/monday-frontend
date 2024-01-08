@@ -12,7 +12,7 @@ export function DynamicTableCell({ cmp, cmpId, task, onTaskUpdate, group }) {
     try {
       await onTaskUpdate(cmpType, cmpId, data, task)
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 

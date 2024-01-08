@@ -16,7 +16,6 @@ export function TaskTitle({ task, cmpId, handleUpdateTask }) {
     <div className="task-title flex space-between hoverable" data-task-details="true">
       <div className="wrapper flex">
         <button className="btn-icon small-transparent"><NavigationChevronRightIcon /></button>
-        <div className="editable-txt">
 
           <EditableText
             type={'taskTitle'}
@@ -24,9 +23,8 @@ export function TaskTitle({ task, cmpId, handleUpdateTask }) {
             onSave={(text) => handleUpdateTask('task', text, task)}
           />
 
-        </div>
       </div>
-      <button className="btn-icon small-transparent hidden-hover" onClick={onOpenTask}><OpenIcon /></button>
+      <button className="btn-icon small-transparent" onClick={onOpenTask}><OpenIcon /></button>
     </div>
   )
 }

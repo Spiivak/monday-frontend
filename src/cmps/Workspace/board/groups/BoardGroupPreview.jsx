@@ -27,6 +27,7 @@ import {
   removeColumn,
   removeGroup,
   removeTask,
+  setLoading,
   updateColumn,
   updateGroup,
   updateTask,
@@ -35,12 +36,14 @@ import { AddSmallIcon, NavigationChevronDownIcon } from '../../../Icons'
 import { ContextBtn } from '../../../ContextBtn'
 import { EditableText } from '../EditableText'
 import AddColumnBtn from './cells/AddColumnBtn'
+import { Widgets } from '@mui/icons-material'
 import { Tooltip } from '@mui/material'
 
 export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
   const [columns, setColumns] = useState([])
   const [data, setData] = useState([])
   const [initText, setInitText] = useState('')
+  setLoading
 
   useEffect(() => {
     setColumns([
@@ -129,7 +132,6 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
 
   function onUpdateGroup(boardId, groupId, group, data) {
     const newGroup = { ...group, title: data }
-    console.log(boardId, groupId, newGroup)
     updateGroup(boardId, groupId, newGroup)
   }
 
@@ -174,7 +176,6 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
     prepareRow(row)
     return row
   }, [activeId, rows, prepareRow])
-
   return (
     <section className="board-view-group">
       <div className="board-title flex gap8">
@@ -186,11 +187,14 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
             <NavigationChevronDownIcon />
           </button>
         </div>
-        <h2 className="group-title flex editable-txt">
+        <h2 style={{ color: group.style.color }} className="group-title flex">
           <EditableText
             type={'groupTitle'}
             initialText={group.title}
-            onSave={() => {}}
+            textColor={group.style.color}
+            onSave={(text) => {
+              onUpdateGroup(boardId, group.id, group, text)
+            }}
             placeholder={group.title}
           />
         </h2>
@@ -284,19 +288,21 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                   )
                 })}
               </SortableContext>
-              <tr className="hoverable">
+              <tr className="">
                 <td>
                   <div className="checkbox-cell flex align-center justify-center">
                     <input type="checkbox" />
                   </div>
                 </td>
                 <td colSpan={columns.length + 2}>
-                  <div className="wrapper flex align-center gap4">
-                    <AddSmallIcon />
+                  <div
+                    className="wrapper flex align-center"
+                    style={{ marginLeft: '20px' }}
+                  >
                     <EditableText
                       initialText={initText}
                       onSave={saveNewTask}
-                      placeholder={'Add Item'}
+                      placeholder={'+ Add Item'}
                     />
                   </div>
                 </td>

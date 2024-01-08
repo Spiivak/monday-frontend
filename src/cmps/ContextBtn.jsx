@@ -22,9 +22,6 @@ export function ContextBtn({
   )
   const [isMoreModalOpen, setIsMoreModalOpen] = useState(false)
 
-  function openMoreModal() {
-    setIsMoreModalOpen((isOpen) => !isOpen)
-  }
   function onSetActiveBtn(ev) {
     const contextBtn = ev.target
     const contextBtnData = {

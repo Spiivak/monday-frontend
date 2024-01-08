@@ -12,15 +12,22 @@ import {
   saveBoard,
 } from '../../../store/actions/board.actions'
 import { useSelector } from 'react-redux'
-import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service'
+import {
+  showErrorMsg,
+  showSuccessMsg,
+} from '../../../services/event-bus.service'
 import { useParams } from 'react-router'
 import { loadUsers } from '../../../store/actions/user.actions'
 import { boardService } from '../../../services/board.service'
 import { Sidebar } from '../sidebar/Sidebar'
+import { MondayLoader } from '../MondayLoader'
 export function WorkSpaceBoard() {
   const [selectedBoard, setSelectedBoard] = useState(null)
   const boards = useSelector((storeState) => storeState.boardModule.boards)
   const users = useSelector((storeState) => storeState.userModule.users)
+  const isLoading = useSelector(
+    (storeState) => storeState.boardModule.isLoading
+  )
   const { boardId } = useParams()
 
   useEffect(() => {
@@ -28,6 +35,7 @@ export function WorkSpaceBoard() {
     loadUsers()
   }, [])
 
+  console.log(isLoading)
   useEffect(() => {
     if (boardId) {
       setSelectedBoard(boards.find((board) => board._id === boardId))
@@ -68,13 +76,13 @@ export function WorkSpaceBoard() {
   }
 
   return (
-    <main >
+    <main>
       <Sidebar {...{ onRemoveBoard, onAddBoard }} />
       <section className="work-space-board">
         <div className="workspace-board-header">
           <BoardHeader board={selectedBoard} {...{ onUpdateBoard }} />
-          <BoardTabs />
-          <BoardHeaderFilter />
+          {/* <BoardTabs /> */}
+          {/* <BoardHeaderFilter /> */}
         </div>
         <div className="table-section">
           {!!boards && (
@@ -82,6 +90,7 @@ export function WorkSpaceBoard() {
           )}
         </div>
       </section>
+      {isLoading && <MondayLoader />}
     </main>
   )
 }

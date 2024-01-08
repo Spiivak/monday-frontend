@@ -26,9 +26,7 @@ export function ColumnModal({
 
   // State for position
   const [position, setPosition] = useState()
-  const [boundingRect, setBoundingRect] = useState(
-    menuBtnRef.getBoundingClientRect()
-  )
+  const [modal, setModal] = useState()
 
   useEffect(() => {
     const handleResize = (event) => {
@@ -37,7 +35,6 @@ export function ColumnModal({
       const { y, x, height, width } = menuBtnRef.getBoundingClientRect()
       let newLeft, newTop
       // var scrollLeft = event.window.scrollX || event.window.pageXOffset;
-
       if (x < 0) {
         newLeft = undefined
         newTop = undefined

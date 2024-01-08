@@ -233,7 +233,7 @@ const demoData = [
             timelinec5: [1704528729979, 1735719129979],
           },
         ],
-        style: {},
+        style: {color: '#007038'},
       },
 
       {
@@ -323,7 +323,7 @@ const demoData = [
             },
           },
         ],
-        style: {},
+        style: {color: '#8050ab'},
       },
 
       {
@@ -414,7 +414,7 @@ const demoData = [
             },
           },
         ],
-        style: {},
+        style: {color : '#579bfc'},
       },
 
       {
@@ -505,7 +505,7 @@ const demoData = [
             },
           },
         ],
-        style: {},
+        style: {color: '#92334c'},
       },
 
       {
@@ -608,7 +608,7 @@ const demoData = [
             },
           },
         ],
-        style: {},
+        style: {color: '#ff7575'},
       },
 
       {
@@ -765,7 +765,7 @@ const demoData = [
             },
           },
         ],
-        style: {},
+        style: {color: '#ffcb00'},
       },
 
       {
@@ -831,7 +831,7 @@ const demoData = [
             },
           },
         ],
-        style: {},
+        style: {color: '#9aadbd'},
       },
 
       {
@@ -897,7 +897,7 @@ const demoData = [
             },
           },
         ],
-        style: {},
+        style: {color: '#bba5e8'},
       },
     ],
     activities: [
@@ -954,6 +954,7 @@ export const boardService = {
   remove,
   getById,
   addGroup,
+  updateGroup,
   removeGroup,
   updateTask,
   addTask,
@@ -993,6 +994,10 @@ function save(board) {
 // * Groups
 function addGroup(boardId, group) {
   return storageService.postGroup(STORAGE_KEY, boardId, group)
+}
+
+function updateGroup(boardId, groupId, group){
+  return storageService.putGroup(STORAGE_KEY, boardId, groupId, group)
 }
 
 function removeGroup(boardId, groupId) {

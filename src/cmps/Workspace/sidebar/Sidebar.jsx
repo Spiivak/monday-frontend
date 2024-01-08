@@ -20,16 +20,15 @@ export function Sidebar({ onRemoveBoard, onAddBoard }) {
   const openSideBar = () => setIsSidebarOpen(!isSidebarOpen)
 
   useEffect(() => {
-    onLoadBoards()
-  }, [])
+    }, [])
 
-  async function onLoadBoards() {
-    try {
-      await loadBoards()
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  // async function onLoadBoards() {
+  //   try {
+  //     await loadBoards()
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
   return (
     <section className={`side-bar ${isSidebarOpen ? '' : 'side-bar-close'}`}>

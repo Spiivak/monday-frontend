@@ -21,7 +21,6 @@ export function TimelinePicker({ task, cmpId, handleUpdateTask, group }) {
         percentile = Math.floor(
           100 - ((today - fromDate) / (toDate - fromDate)) * 100
         )
-        console.log(percentile)
         setColor(
           `linear-gradient(to left, #333 ${percentile}%, ${group.style.color} ${percentile}%)`
         )

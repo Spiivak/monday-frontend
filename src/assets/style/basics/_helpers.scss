@@ -99,6 +99,11 @@
   gap: 8px;
 }
 
+.flex.gap6 {
+  gap: 6px;
+}
+
+
 // Text
 .text-center {
   text-align: center;
@@ -154,7 +159,8 @@
 // Editable Text
 .editable-txt {
   border-radius: $border-radius-small;
-  min-width: 40px;
+  // min-width: 40px;
+  max-width: fit-content;
   // padding: 0 16px;
   cursor: text;
 
