@@ -187,10 +187,11 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
             <NavigationChevronDownIcon />
           </button>
         </div>
-        <h2 className="group-title flex editable-txt">
+        <h2 style={{color: group.style.color}} className="group-title flex editable-txt">
           <EditableText
             type={'groupTitle'}
             initialText={group.title}
+            textColor={group.style.color}
             onSave={(text) => {
               onUpdateGroup(boardId, group.id, group, text)
             }}
