@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 import {
   ActivityIcon,
   AddSmallIcon,
@@ -15,44 +15,46 @@ import {
   PersonIcon,
   SearchIcon,
   SortIcon,
-} from '../../../Icons';
-import { EditableText } from '../EditableText';
-import { Tooltip } from '@mui/material';
-import { NavLink } from 'react-router-dom';
-import { BoardTabs } from './BoardTabs';
-import { BoardHeaderFilter } from './BoardHeaderFilter';
+} from '../../../Icons'
+import { EditableText } from '../EditableText'
+import { Tooltip } from '@mui/material'
+import { NavLink } from 'react-router-dom'
+import { BoardTabs } from './BoardTabs'
+import { BoardHeaderFilter } from './BoardHeaderFilter'
 
 export function BoardHeader({ board, onUpdateBoard }) {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsCollapsed(window.scrollY > 50);
-    };
+      setIsCollapsed(window.scrollY > 50)
+    }
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
-
-  const [inviteModal, setOpenInviteModal] = useState(false);
+  const [inviteModal, setOpenInviteModal] = useState(false)
 
   function handleTitleChange(newTitle) {
-    board.title = newTitle;
-    onUpdateBoard(board);
+    board.title = newTitle
+    onUpdateBoard(board)
   }
 
   return (
     <section className={'board-header flex column'}>
       <div className="wrapper flex column">
         <div className="flex">
-
           {!!board && (
             <h2 className="flex align-center">
-              <EditableText type={'headerTitle'} initialText={`${board.title}`} onSave={handleTitleChange} />
+              <EditableText
+                type={'headerTitle'}
+                initialText={`${board.title}`}
+                onSave={handleTitleChange}
+              />
             </h2>
           )}
           <div className={`header-btns flex align-center space-between`}>
@@ -65,7 +67,12 @@ export function BoardHeader({ board, onUpdateBoard }) {
                   <FavoriteIcon />
                 </button>
               </div>
-            ) : <BoardTabs onCollapse={() => setIsCollapsed(!isCollapsed)} isCollapsed={isCollapsed} />}
+            ) : (
+              <BoardTabs
+                onCollapse={() => setIsCollapsed(!isCollapsed)}
+                isCollapsed={isCollapsed}
+              />
+            )}
 
             <div className="right-btns flex align-center">
               {!isCollapsed && (
@@ -83,16 +90,26 @@ export function BoardHeader({ board, onUpdateBoard }) {
               <button className="btn-icon medium-transparent">
                 <MenuIcon />
               </button>
-              {isCollapsed && <button className="btn-icon medium-transparent" onClick={() => setIsCollapsed(!isCollapsed)}>
-                <NavigationChevronUpIcon />
-              </button>}
+              {isCollapsed && (
+                <button
+                  className="btn-icon medium-transparent"
+                  onClick={() => setIsCollapsed(!isCollapsed)}
+                >
+                  <NavigationChevronUpIcon />
+                </button>
+              )}
             </div>
           </div>
         </div>
 
-        {!isCollapsed && <BoardTabs isCollapsed={isCollapsed} onCollapse={() => setIsCollapsed(!isCollapsed)} />}
+        {!isCollapsed && (
+          <BoardTabs
+            isCollapsed={isCollapsed}
+            onCollapse={() => setIsCollapsed(!isCollapsed)}
+          />
+        )}
         <BoardHeaderFilter isCollapsed={isCollapsed} />
       </div>
     </section>
-  );
+  )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import {HomeIcon, MyWeekIcon } from '../../Icons'
+import { HomeIcon, MyWeekIcon } from '../../Icons'
 
 export function SidebarLinks() {
   return (

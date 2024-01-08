@@ -81,15 +81,18 @@ function postGroup(entityType, boardId, newGroup) {
   })
 }
 
-function putGroup(entityType, boardId, groupId, newGroup){
+function putGroup(entityType, boardId, groupId, newGroup) {
   newGroup = JSON.parse(JSON.stringify(newGroup))
   return query(entityType).then((boards) => {
     const newBoards = boards.map((board) => {
       if (board._id !== boardId) return board
-      return { ...board, groups: board.groups.map((group) => {
-        if(group.id !== groupId) return group
-        return newGroup
-      }) }
+      return {
+        ...board,
+        groups: board.groups.map((group) => {
+          if (group.id !== groupId) return group
+          return newGroup
+        }),
+      }
     })
     _save(entityType, newBoards)
     return newGroup

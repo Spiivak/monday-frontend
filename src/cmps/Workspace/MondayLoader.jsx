@@ -14,21 +14,24 @@ export function MondayLoader() {
         right: '0',
         bottom: '0',
         zIndex: '100000',
-      }}>
+      }}
+    >
       <WorkspaceHeader />
       <section
         style={{
           height: 'calc(100% - 48px)',
           gap: '8px',
           display: 'flex',
-        }}>
+        }}
+      >
         <section
           style={{
             backgroundColor: 'white',
             width: '255px',
             height: '100%',
             borderTopRightRadius: '8px',
-          }}></section>
+          }}
+        ></section>
         <section
           style={{
             borderTopLeftRadius: '8px',
@@ -38,7 +41,8 @@ export function MondayLoader() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-          }}>
+          }}
+        >
           <img src={Loader} />
         </section>
       </section>

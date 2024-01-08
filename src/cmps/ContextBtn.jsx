@@ -1,7 +1,4 @@
-
-import {
-  MenuIcon,
-} from './Icons'
+import { MenuIcon } from './Icons'
 
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -46,7 +43,8 @@ export function ContextBtn({
         onClick={(ev) => {
           ev.stopPropagation()
           onSetActiveBtn(ev)
-        }}>
+        }}
+      >
         <MenuIcon />
       </button>
     </div>

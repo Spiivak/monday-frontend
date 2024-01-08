@@ -47,7 +47,8 @@ export function SearchEverythingModal({ onClose }) {
             <button
               onClick={onClose}
               className="relative btn-icon small-transparent"
-              style={{ top: '-16px', right: '-1525px' }}>
+              style={{ top: '-16px', right: '-1525px' }}
+            >
               <CloseIcon />
             </button>
             <input type="text" placeholder="Search Everything" />

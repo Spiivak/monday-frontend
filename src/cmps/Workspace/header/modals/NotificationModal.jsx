@@ -38,7 +38,8 @@ export function NotificationModal({ onClose }) {
       <div className="notification-header flex space-between">
         <button
           className="btn-icon small-transparent"
-          onClick={() => onClose()}>
+          onClick={() => onClose()}
+        >
           <CloseSmallIcon />
         </button>
         <div className="notifications-header-btns flex align-center">

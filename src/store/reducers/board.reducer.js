@@ -68,13 +68,16 @@ export function boardReducer(state = initialState, action = {}) {
       })
       return { ...state, boards: newBoards }
 
-      case UPDATE_GROUP:
+    case UPDATE_GROUP:
       newBoards = state.boards.map((board) => {
         if (board._id !== action.boardId) return board
-        return { ...board, groups: board.groups.map((group) => {
-          if(group.id !== action.groupId) return group
-          return action.updatedGroup
-        }) }
+        return {
+          ...board,
+          groups: board.groups.map((group) => {
+            if (group.id !== action.groupId) return group
+            return action.updatedGroup
+          }),
+        }
       })
       return { ...state, boards: newBoards }
 
@@ -149,7 +152,7 @@ export function boardReducer(state = initialState, action = {}) {
           cmpsOrder: [...board.cmpsOrder, action.addedColumn],
         }
       })
-      return { ...state, boards: newBoards}
+      return { ...state, boards: newBoards }
 
     case REMOVE_COLUMN:
       newBoards = state.boards.map((board) => {

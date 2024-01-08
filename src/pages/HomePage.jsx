@@ -371,19 +371,19 @@ export function HomePage() {
                 </span>
                 <ul className="">
                   <li className="flex gap8">
-                    <CheckIcon/>
+                    <CheckIcon />
                     Project management
                   </li>
                   <li className="flex gap8">
-                  <CheckIcon/>
+                    <CheckIcon />
                     Portfolio management
                   </li>
                   <li className="flex gap8">
-                  <CheckIcon/>
+                    <CheckIcon />
                     Resource management
                   </li>
                   <li className="flex gap8">
-                  <CheckIcon/>
+                    <CheckIcon />
                     Goals & strategy
                   </li>
                 </ul>
@@ -409,19 +409,19 @@ export function HomePage() {
                 </span>
                 <ul>
                   <li className="flex gap8">
-                  <CheckIcon/>
+                    <CheckIcon />
                     Contact management
                   </li>
                   <li className="flex gap8">
-                  <CheckIcon/>
+                    <CheckIcon />
                     Sales pipeline
                   </li>
                   <li className="flex gap8">
-                  <CheckIcon/>
+                    <CheckIcon />
                     Post-sales management
                   </li>
                   <li className="flex gap8">
-                  <CheckIcon/>
+                    <CheckIcon />
                     Lead management
                   </li>
                 </ul>
@@ -447,19 +447,19 @@ export function HomePage() {
                 </span>
                 <ul>
                   <li className="flex gap8">
-                  <CheckIcon/>
+                    <CheckIcon />
                     Roadmap planning
                   </li>
                   <li className="flex gap8">
-                  <CheckIcon/>
+                    <CheckIcon />
                     Scrum & Kanban
                   </li>
                   <li className="flex gap8">
-                  <CheckIcon/>
+                    <CheckIcon />
                     Bug tracking
                   </li>
                   <li className="flex gap8">
-                  <CheckIcon/>
+                    <CheckIcon />
                     Sprint dashboards
                   </li>
                 </ul>

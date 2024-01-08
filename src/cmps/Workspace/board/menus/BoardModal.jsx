@@ -86,7 +86,8 @@ export function BoardModal({ onDeleteBoard, setIsMoreModalOpen, menuBtnRef }) {
         top: position.top,
         left: position.left,
         zIndex: 1000,
-      }}>
+      }}
+    >
       <div className="ds-tabs-section">
         <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
@@ -148,7 +149,8 @@ export function BoardModal({ onDeleteBoard, setIsMoreModalOpen, menuBtnRef }) {
         <div className="tab flex column">
           <button
             className="btn-icon medium-transparent flex gap16"
-            onClick={clickDeleteBoard}>
+            onClick={clickDeleteBoard}
+          >
             <DeleteIcon />
             Delete
           </button>

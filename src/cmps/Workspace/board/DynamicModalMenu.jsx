@@ -21,12 +21,29 @@ export function DynamicModalMenu() {
   if (!type) return
   switch (type) {
     case 'row':
-      return <RowModal menuBtnRef={activeContextBtn} onDeleteRow={onDeleteRow} />
+      return (
+        <RowModal menuBtnRef={activeContextBtn} onDeleteRow={onDeleteRow} />
+      )
     case 'column':
-      return <ColumnModal menuBtnRef={activeContextBtn} onDeleteColumn={onDeleteColumn} />
+      return (
+        <ColumnModal
+          menuBtnRef={activeContextBtn}
+          onDeleteColumn={onDeleteColumn}
+        />
+      )
     case 'group':
-      return <GroupModal menuBtnRef={activeContextBtn} onDeleteGroup={onDeleteGroup} />
+      return (
+        <GroupModal
+          menuBtnRef={activeContextBtn}
+          onDeleteGroup={onDeleteGroup}
+        />
+      )
     case 'board':
-      return <BoardModal menuBtnRef={activeContextBtn} onDeleteBoard={onDeleteBoard} />
+      return (
+        <BoardModal
+          menuBtnRef={activeContextBtn}
+          onDeleteBoard={onDeleteBoard}
+        />
+      )
   }
 }

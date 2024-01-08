@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react'
 import {
   AddSmallIcon,
   ArchiveIcon,
@@ -11,23 +11,26 @@ import {
 } from '../../../Icons'
 import { Save } from '@mui/icons-material'
 export function MoreModal({ onClose }) {
-  const modalRef = useRef();
+  const modalRef = useRef()
 
   const handleClickOutside = (event) => {
-    const isFilterButton = event.target.closest('[data-more-button="true"]');
-    if (!modalRef.current || (!modalRef.current.contains(event.target) && !isFilterButton)) {
-      onClose();
+    const isFilterButton = event.target.closest('[data-more-button="true"]')
+    if (
+      !modalRef.current ||
+      (!modalRef.current.contains(event.target) && !isFilterButton)
+    ) {
+      onClose()
     }
-  };
+  }
 
   useEffect(() => {
-    const handleOutsideClick = (event) => handleClickOutside(event);
-    window.addEventListener('mousedown', handleOutsideClick);
+    const handleOutsideClick = (event) => handleClickOutside(event)
+    window.addEventListener('mousedown', handleOutsideClick)
 
     return () => {
-      window.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, [onClose]);
+      window.removeEventListener('mousedown', handleOutsideClick)
+    }
+  }, [onClose])
 
   return (
     <div className="more-modal-container flex column" ref={modalRef}>

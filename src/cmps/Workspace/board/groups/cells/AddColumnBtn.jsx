@@ -18,7 +18,7 @@ import {
   TimelineCol,
 } from '../../../../Icons'
 
-export default function AddColumnBtn({onAddColumn}) {
+export default function AddColumnBtn({ onAddColumn }) {
   const menuBtnRef = useRef()
   const [isMoreModalOpen, setIsMoreModalOpen] = useState(false)
 
@@ -28,13 +28,14 @@ export default function AddColumnBtn({onAddColumn}) {
   return (
     <div className="flex align-center relative">
       <button
-      style={{ paddingLeft: '16px'}}
+        style={{ paddingLeft: '16px' }}
         ref={menuBtnRef}
         className="btn-icon small-transparent"
         onClick={(ev) => {
           ev.stopPropagation()
           openMoreModal()
-        }}>
+        }}
+      >
         <Add />
       </button>
       {isMoreModalOpen && (
@@ -48,7 +49,7 @@ export default function AddColumnBtn({onAddColumn}) {
   )
 }
 
-function AddModal({ setIsMoreModalOpen, menuBtnRef,onAddColumn }) {
+function AddModal({ setIsMoreModalOpen, menuBtnRef, onAddColumn }) {
   const modalRef = useRef()
 
   useEffect(() => {
@@ -76,20 +77,26 @@ function AddModal({ setIsMoreModalOpen, menuBtnRef,onAddColumn }) {
     <div className="add-modal-container flex column" ref={modalRef}>
       <div className="ds-tabs-section">
         <div className="tab flex column gap8">
-          <form className='flex justify-center' onSubmit={()=>{}}>
-            <input type="text" name="" id="" placeholder='search' />
+          <form className="flex justify-center" onSubmit={() => {}}>
+            <input type="text" name="" id="" placeholder="search" />
           </form>
           <div className="flex">
             <p>Essentials</p>
           </div>
           <div className="btn-group grid c2">
-            <button className="gc1 btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('numbers')}>
+            <button
+              className="gc1 btn-icon medium-transparent flex gap16"
+              onClick={() => onAddColumn('numbers')}
+            >
               <div className="icon-wrapper numbers-col-wrapper flex align-center justify-center">
                 <NumbersCol />
               </div>
               Numbers
             </button>
-            <button className="btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('timeline')}>
+            <button
+              className="btn-icon medium-transparent flex gap16"
+              onClick={() => onAddColumn('timeline')}
+            >
               <div className="icon-wrapper timeline-col-wrapper flex align-center justify-center">
                 <TimelineCol />
               </div>
@@ -97,13 +104,19 @@ function AddModal({ setIsMoreModalOpen, menuBtnRef,onAddColumn }) {
             </button>
           </div>
           <div className="btn-group grid c2">
-            <button className="gc1 btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('people')}>
+            <button
+              className="gc1 btn-icon medium-transparent flex gap16"
+              onClick={() => onAddColumn('people')}
+            >
               <div className="icon-wrapper people-col-wrapper flex align-center justify-center">
                 <PeopleCol />
               </div>
               People
             </button>
-            <button className="btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('date')}>
+            <button
+              className="btn-icon medium-transparent flex gap16"
+              onClick={() => onAddColumn('date')}
+            >
               <div className="icon-wrapper date-col-wrapper flex align-center justify-center">
                 <DateCol />
               </div>
@@ -111,27 +124,40 @@ function AddModal({ setIsMoreModalOpen, menuBtnRef,onAddColumn }) {
             </button>
           </div>
           <div className="btn-group grid c2">
-            <button className="gc1 btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('status')}>
+            <button
+              className="gc1 btn-icon medium-transparent flex gap16"
+              onClick={() => onAddColumn('status')}
+            >
               <div className="icon-wrapper color-col-wrapper flex align-center justify-center">
                 <ColorCol />
               </div>
               Status
             </button>
-            <button className="btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('file')}>
+            <button
+              className="btn-icon medium-transparent flex gap16"
+              onClick={() => onAddColumn('file')}
+            >
               <div className="icon-wrapper link-col-wrapper flex align-center justify-center">
-                <UploadFile style={{color:'#eee'}} />
+                <UploadFile style={{ color: '#eee' }} />
               </div>
               File
             </button>
           </div>
           <div className="btn-group grid c2">
-            <button className="gc1 btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('description')}>
+            <button
+              className="gc1 btn-icon medium-transparent flex gap16"
+              onClick={() => onAddColumn('description')}
+            >
               <div className="icon-wrapper color-col-wrapper flex align-center justify-center">
-                <Description style={{color: '#eee'}} />
+                <Description style={{ color: '#eee' }} />
               </div>
               Status
             </button>
-            <button disabled className="btn-icon medium-transparent flex gap16" onClick={()=>onAddColumn('file')}>
+            <button
+              disabled
+              className="btn-icon medium-transparent flex gap16"
+              onClick={() => onAddColumn('file')}
+            >
               <div className="icon-wrapper link-col-wrapper flex align-center justify-center">
                 <LinkIcon />
               </div>

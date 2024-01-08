@@ -55,80 +55,82 @@ export function WorkspaceHeader() {
     setHelpModalOpen(false)
   }
 
-
   return (
     <>
-    <header className="work-space-header full flex space-between align-center">
-      <section className="header-logo-sect flex align-center">
-        <div className="switcher-logo">
-          <button className="btn-icon medium-transparent">
-            <SwitcherIcon />
-          </button>
-        </div>
-        <div className="work-management-logo flex align-center">
+      <header className="work-space-header full flex space-between align-center">
+        <section className="header-logo-sect flex align-center">
+          <div className="switcher-logo">
+            <button className="btn-icon medium-transparent">
+              <SwitcherIcon />
+            </button>
+          </div>
+          <div className="work-management-logo flex align-center">
             <MwmIcon />
-        </div>
-        <h1 className="logo-title">
-          monday <span className="logo-title-span">work management</span>
-        </h1>
-        {/* <LogoBtn>See plans</LogoBtn> */}
-      </section>
+          </div>
+          <h1 className="logo-title">
+            monday <span className="logo-title-span">work management</span>
+          </h1>
+          {/* <LogoBtn>See plans</LogoBtn> */}
+        </section>
 
-      <section className="header-action-btns-sect">
-        <button
-          className="btn-icon large-transparent"
-          onClick={onClickNotifyModal}
-        >
-          <div className="flex align-center" data-notification-button="true">
-          <NotificationsIcon />
-          </div>
-        </button>
-        <button
-          className="btn-icon large-transparent"
-          onClick={onClickInboxModal}
-        >
-        <div className="flex align-center" data-inbox-button="true">
-          <InboxIcon />
-        </div>
-        </button>
-        <button
-          className="btn-icon large-transparent"
-          onClick={onClickInviteModal}
-        >
-          <div className="flex align-center" data-invite-button="true">
-          <InviteMembersIcon />
-          </div>
-        </button>
-        <button
-          className="btn-icon large-transparent"
-          onClick={onClickSearchModal}
-        >
-          <div className="flex align-center" data-search-button="true">
-          <SearchIcon />
-          </div>
-        </button>
-        <button
-          className="btn-icon large-transparent"
-          onClick={onClickHelpModal}
-        >
-          <div className="flex align-center" data-help-button="true">
-          <HelpIcon />
-          </div>
-        </button>
-        <button className='btn-icon small-transparent flex gap8'>
-          <MondayIcon />
-          <img src={UserProfile} alt="" style={{ maxWidth: "32px", borderRadius:'50px'}}/>
-        </button>
+        <section className="header-action-btns-sect">
+          <button
+            className="btn-icon large-transparent"
+            onClick={onClickNotifyModal}
+          >
+            <div className="flex align-center" data-notification-button="true">
+              <NotificationsIcon />
+            </div>
+          </button>
+          <button
+            className="btn-icon large-transparent"
+            onClick={onClickInboxModal}
+          >
+            <div className="flex align-center" data-inbox-button="true">
+              <InboxIcon />
+            </div>
+          </button>
+          <button
+            className="btn-icon large-transparent"
+            onClick={onClickInviteModal}
+          >
+            <div className="flex align-center" data-invite-button="true">
+              <InviteMembersIcon />
+            </div>
+          </button>
+          <button
+            className="btn-icon large-transparent"
+            onClick={onClickSearchModal}
+          >
+            <div className="flex align-center" data-search-button="true">
+              <SearchIcon />
+            </div>
+          </button>
+          <button
+            className="btn-icon large-transparent"
+            onClick={onClickHelpModal}
+          >
+            <div className="flex align-center" data-help-button="true">
+              <HelpIcon />
+            </div>
+          </button>
+          <button className="btn-icon small-transparent flex gap8">
+            <MondayIcon />
+            <img
+              src={UserProfile}
+              alt=""
+              style={{ maxWidth: '32px', borderRadius: '50px' }}
+            />
+          </button>
 
-        {/* Render modals */}
-      </section>
-    </header>
-        {isInboxModalOpen && <InboxModal onClose={onClose} />}
-        {isInviteMembersModalOpen && <InviteMemberModal onClose={onClose} />}
-        {isSearchModalOpen && <SearchEverythingModal onClose={onClose} />}
-        {isHelpModalOpen && <HelpModal onClose={onClose} />}
-        {isNotificationModalOpen && <NotificationModal onClose={onClose} />}
-        </>
-
+          {/* Render modals */}
+        </section>
+      </header>
+      {isInboxModalOpen && <InboxModal onClose={onClose} />}
+      {isInviteMembersModalOpen && <InviteMemberModal onClose={onClose} />}
+      {isSearchModalOpen && <SearchEverythingModal onClose={onClose} />}
+      {isHelpModalOpen && <HelpModal onClose={onClose} />}
+      {isNotificationModalOpen && <NotificationModal onClose={onClose} />}
+    </>
   )
 }

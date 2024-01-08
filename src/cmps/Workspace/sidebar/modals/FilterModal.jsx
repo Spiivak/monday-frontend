@@ -1,23 +1,26 @@
 import { useEffect, useRef } from 'react'
 
 export function FilterModal({ onClose }) {
-  const modalRef = useRef();
+  const modalRef = useRef()
 
   const handleClickOutside = (event) => {
-    const isFilterButton = event.target.closest('[data-filter-button="true"]');
-    if (!modalRef.current || (!modalRef.current.contains(event.target) && !isFilterButton)) {
-      onClose();
+    const isFilterButton = event.target.closest('[data-filter-button="true"]')
+    if (
+      !modalRef.current ||
+      (!modalRef.current.contains(event.target) && !isFilterButton)
+    ) {
+      onClose()
     }
-  };
+  }
 
   useEffect(() => {
-    const handleOutsideClick = (event) => handleClickOutside(event);
-    window.addEventListener('mousedown', handleOutsideClick);
+    const handleOutsideClick = (event) => handleClickOutside(event)
+    window.addEventListener('mousedown', handleOutsideClick)
 
     return () => {
-      window.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, [onClose]);
+      window.removeEventListener('mousedown', handleOutsideClick)
+    }
+  }, [onClose])
 
   return (
     <section className="filter-modal" ref={modalRef}>

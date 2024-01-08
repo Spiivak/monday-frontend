@@ -15,7 +15,13 @@ export function BoardGroupList({ board, onAddGroup }) {
               cmpsOrder={board.cmpsOrder}
             />
           ))}
-          <button className='btn-outline medium-primary add-new-group' onClick={()=>onAddGroup(board._id)}><AddIcon/>Add new group</button>
+          <button
+            className="btn-outline medium-primary add-new-group"
+            onClick={() => onAddGroup(board._id)}
+          >
+            <AddIcon />
+            Add new group
+          </button>
         </>
       )}
     </section>

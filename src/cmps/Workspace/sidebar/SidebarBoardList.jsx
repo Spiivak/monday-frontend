@@ -14,7 +14,6 @@ export function SidebarBoardList({ onRemoveBoard }) {
       {boards.map((board) => (
         <div key={board._id}>
           <div className="workspace-item flex align-center space-between">
-
             <NavLink
               to={`/workspace/${board._id}`}
               className="flex gap8 align-center hoverable space-between"
@@ -27,11 +26,11 @@ export function SidebarBoardList({ onRemoveBoard }) {
                 </div>
               </div>
             </NavLink>
-                <ContextBtn
-                  type="board"
-                  onDeleteBoard={() => onRemoveBoard(board._id)}
-                  onClick={stopPropagation}
-                />
+            <ContextBtn
+              type="board"
+              onDeleteBoard={() => onRemoveBoard(board._id)}
+              onClick={stopPropagation}
+            />
           </div>
         </div>
       ))}

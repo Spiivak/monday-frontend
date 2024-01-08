@@ -1,13 +1,15 @@
 // Example NotificationModal.jsx
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react'
 
 export function HelpModal({ onClose }) {
-
   const modalRef = useRef()
 
   const handleClickOutside = (event) => {
-    const isHelpButton = event.target.closest('[data-search-button="true"]');
-    if (!modalRef.current || (!modalRef.current.contains(event.target) && !isHelpButton)) {
+    const isHelpButton = event.target.closest('[data-search-button="true"]')
+    if (
+      !modalRef.current ||
+      (!modalRef.current.contains(event.target) && !isHelpButton)
+    ) {
       onClose()
     }
   }
@@ -21,7 +23,6 @@ export function HelpModal({ onClose }) {
     }
   }, [onClose])
 
-
   return (
     <div className="notification-modal" ref={modalRef}>
       {/* Add content for the Notification modal */}
@@ -29,5 +30,5 @@ export function HelpModal({ onClose }) {
       {/* ... */}
       <button onClick={onClose}>Close</button>
     </div>
-  );
+  )
 }

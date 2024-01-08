@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { finishAddingColumn, setLoading } from '../../../../../store/actions/board.actions'
+import {
+  finishAddingColumn,
+  setLoading,
+} from '../../../../../store/actions/board.actions'
 export function EmptyStreachableCell({}) {
   const isAddingColumn = useSelector(
     (storeState) => storeState.boardModule.isAddingColumn
@@ -10,7 +13,6 @@ export function EmptyStreachableCell({}) {
   const [width, setWidth] = useState(0)
   let newWidth
   useEffect(() => {
-
     setTimeout(() => {
       const { left } = emptyCell.current.getBoundingClientRect()
       newWidth = window.innerWidth - Math.floor(left)
@@ -20,7 +22,7 @@ export function EmptyStreachableCell({}) {
         setWidth(newWidth - 3 + 'px')
       }
       finishAddingColumn()
-    }, 200);
+    }, 200)
   }, [isAddingColumn])
 
   useEffect(() => {
@@ -44,7 +46,8 @@ export function EmptyStreachableCell({}) {
       <div
         ref={emptyCell}
         style={{ width: width ? width : '40px' }}
-        className="empty-add-cell"></div>
+        className="empty-add-cell"
+      ></div>
     </td>
   )
 }

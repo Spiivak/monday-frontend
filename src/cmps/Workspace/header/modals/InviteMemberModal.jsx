@@ -1,15 +1,18 @@
-import { useEffect, useRef, useState } from 'react';
-import { CloseIcon } from '../../../Icons';
+import { useEffect, useRef, useState } from 'react'
+import { CloseIcon } from '../../../Icons'
 
 export function InviteMemberModal({ onClose }) {
-  const [email, setEmail] = useState('');
-  const [role, setRole] = useState('member');
+  const [email, setEmail] = useState('')
+  const [role, setRole] = useState('member')
 
   const modalRef = useRef()
 
   const handleClickOutside = (event) => {
-    const isInviteButton = event.target.closest('[data-invite-button="true"]');
-    if (!modalRef.current || (!modalRef.current.contains(event.target) && !isInviteButton)) {
+    const isInviteButton = event.target.closest('[data-invite-button="true"]')
+    if (
+      !modalRef.current ||
+      (!modalRef.current.contains(event.target) && !isInviteButton)
+    ) {
       onClose()
     }
   }
@@ -23,26 +26,31 @@ export function InviteMemberModal({ onClose }) {
     }
   }, [onClose])
 
-
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
+    setEmail(e.target.value)
+  }
 
   const handleRoleChange = (e) => {
-    setRole(e.target.value);
-  };
+    setRole(e.target.value)
+  }
 
   const handleInvite = () => {
     // Add logic to handle the invite here
-    console.log(`Inviting ${email} as a ${role}`);
+    console.log(`Inviting ${email} as a ${role}`)
     // Close the modal or perform other actions as needed
-  };
+  }
 
   return (
     <>
       <div className="overlay"></div>
       <div className="invite-member-modal">
-        <button onClick={onClose} className='absolute btn-icon small-transparent' style={{ top: '-25px', left: '525px' }}><CloseIcon /></button>
+        <button
+          onClick={onClose}
+          className="absolute btn-icon small-transparent"
+          style={{ top: '-25px', left: '525px' }}
+        >
+          <CloseIcon />
+        </button>
         <div className="header">
           <h2>Invite to Monday</h2>
         </div>
@@ -82,10 +90,12 @@ export function InviteMemberModal({ onClose }) {
           </div>
 
           <div className="buttons flex">
-            <button onClick={handleInvite} className='btn-ctn medium-primary'>Invite</button>
+            <button onClick={handleInvite} className="btn-ctn medium-primary">
+              Invite
+            </button>
           </div>
         </div>
       </div>
     </>
-  );
+  )
 }

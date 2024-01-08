@@ -15,11 +15,13 @@ export function BoardTabs({ isCollapsed, onCollapse }) {
           <AddSmallIcon />
         </button>
       </div>
-      {!isCollapsed && <div className="expend-collapse flex align-center">
-        <button className="btn-icon medium-transparent" onClick={onCollapse}>
-          <NavigationChevronUpIcon />
-        </button>
-      </div>}
+      {!isCollapsed && (
+        <div className="expend-collapse flex align-center">
+          <button className="btn-icon medium-transparent" onClick={onCollapse}>
+            <NavigationChevronUpIcon />
+          </button>
+        </div>
+      )}
     </section>
   )
 }

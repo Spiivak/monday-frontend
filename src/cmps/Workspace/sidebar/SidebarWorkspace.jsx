@@ -24,13 +24,13 @@ export function SidebarWorkspace() {
           data-workspace-button="true"
         >
           <div className="workspace-title flex align-center space-between">
-              <div className="workspace-name-wrapper flex align-center">
-                {/* <HomeIcon /> */}
-                <picture className="flex">
-                  <img src={Frame} alt="" />
-                </picture>
-                <span>Sprint 4</span>
-              </div>
+            <div className="workspace-name-wrapper flex align-center">
+              {/* <HomeIcon /> */}
+              <picture className="flex">
+                <img src={Frame} alt="" />
+              </picture>
+              <span>Sprint 4</span>
+            </div>
           </div>
           <div className="dropdown-icon-wrapper flex align-center gap8">
             <div className="chvron-down flex">
@@ -43,12 +43,12 @@ export function SidebarWorkspace() {
             className="btn-icon medium-transparent"
             onClick={() => openMenuModal()}
           >
-          <div className='flex' data-more-button="true">
-            <MenuIcon />
-          </div>
+            <div className="flex" data-more-button="true">
+              <MenuIcon />
+            </div>
           </button>
           {isMenuModalOpen && <MoreModal onClose={onClose} />}
-          {isWpModalOpen && <WorkSpaceContext onClose={onClose}/>}
+          {isWpModalOpen && <WorkSpaceContext onClose={onClose} />}
         </div>
       </div>
     </div>
