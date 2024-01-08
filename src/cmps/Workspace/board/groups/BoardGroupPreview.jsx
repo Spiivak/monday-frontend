@@ -260,6 +260,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                       onTaskUpdate={onTaskUpdate}
                       onDeleteTask={onDeleteTask}
                       boardId={boardId}
+                      group={group}
                       groupId={group.id}
                     />
                   )
