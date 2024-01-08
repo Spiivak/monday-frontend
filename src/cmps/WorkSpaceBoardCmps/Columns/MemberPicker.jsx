@@ -34,8 +34,8 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
         />
       ),
     },
-    ...currentUsers.map((user, idx) => ({
-      key: 2 + idx,
+    ...currentUsers.map((user) => ({
+      key: `current-${user._id}`,
       label: (
         <div className="flex gap8 column" key={user._id}>
           <div className="flex align-center gap8">
@@ -61,7 +61,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
       ),
     })),
     {
-      key: '999',
+      key: '3',
       label: (
         <div
           onClick={(e) => {
@@ -73,8 +73,8 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
         </div>
       ),
     },
-    ...suggestedUsers.map((user, idx) => ({
-      key: 4 + idx,
+    ...suggestedUsers.map((user) => ({
+      key: `suggested-${user._id}`,
       label: (
         <div className="flex gap8 column" key={user._id}>
           <div
