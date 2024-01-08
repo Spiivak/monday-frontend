@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { PersonRoundedIcon } from '../../Icons'
 import { MemberHoverModal } from './modals/MemberHoverModal'
+import { Tooltip, styled, tooltipClasses } from '@mui/material'
 
 export function MemberPicker({ task, cmpId, handleUpdateTask }) {
   const users = useSelector((storeState) => storeState.userModule.users)
@@ -94,30 +95,41 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
     }),
   ]
 
-  const renderAvatars = () => {
-    const memberAvatars = task['members' + cmpId]?.slice(0, 2) || [];
+  function renderAvatars() {
+    const memberAvatars = task['members' + cmpId]?.slice(0, 2) || []
     return memberAvatars.map((member) => (
       <div className="avatar-logo" key={member._id}>
         <img src={member.imgUrl} alt="" />
         <MemberHoverModal member={member} />
       </div>
-    ));
-  };
+    ))
+  }
 
-  const renderOverflowIndicator = () => {
-    const additionalMembersCount = (task['members' + cmpId]?.length || 0) - 2;
+  const MultiLineTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))({
+    [`& .${tooltipClasses.tooltip}`]: {
+      maxWidth: 'none',
+      whiteSpace: 'pre-line',
+    },
+  })
+
+  function renderOverflowIndicator() {
+    const additionalMembers = task['members' + cmpId]?.slice(2) || []
+    const additionalMembersCount = additionalMembers.length
+
     if (additionalMembersCount > 0) {
       return (
-        <div
-          className="overflow-indicator flex align-center justify-center"
-        >
-          
-          +{additionalMembersCount}
+        <div className="overflow-indicator flex align-center justify-center">
+          <MultiLineTooltip title={additionalMembers.map(member => member.fullname).join('\n')} arrow>
+            <div className="overflow-tooltip-indicator">+{additionalMembersCount}</div>
+          </MultiLineTooltip>
         </div>
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
+
   return (
     <>
       <div className="cell member-picker-cell">
@@ -146,5 +158,5 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
         </Dropdown>
       </div>
     </>
-  );
+  )
 }
