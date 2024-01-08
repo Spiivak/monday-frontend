@@ -1,6 +1,5 @@
 import { Dropdown } from 'antd'
 import Input from '@mui/joy/Input'
-import { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { CloseSmallIcon, PersonRoundedIcon } from '../../../../Icons'
 import { MemberHoverModal } from './modals/MemberHoverModal'
@@ -37,8 +36,8 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
     ...currentUsers.map((user) => ({
       key: `current-${user._id}`,
       label: (
-        <div className="flex gap8 column" key={user._id}>
-          <div className="flex align-center gap8">
+        <div key={user._id}>
+          <div className="flex align-center  gap8">
             <img
               src={user.imgUrl}
               alt={user.fullname}
@@ -151,6 +150,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
           arrow={{
             pointAtCenter: true,
           }}
+          overlayStyle={{ width: '372px', padding: '6px' }}
         >
           <div className="cell">
             {currentUsers.length > 0 ? (
