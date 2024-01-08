@@ -153,12 +153,12 @@
 .upload-preview {
   gap: 8px;
   padding: 8px;
-  
+
   .image-preview {
     .image-modal {
       display: none;
     }
-    
+
     img {
       border-radius: 50%;
       width: 17px;
@@ -166,7 +166,7 @@
       object-fit: cover;
       transition: opacity 0.3s ease-in-out;
     }
-    
+
     &:hover .image-modal {
       display: flex;
     }
