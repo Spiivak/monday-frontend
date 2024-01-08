@@ -40,6 +40,7 @@ export async function saveBoard(board) {
 }
 
 export async function loadBoards() {
+  store.dispatch({ type: SET_IS_LOADING, isLoading: true })
   try {
     const boards = await boardService.query()
     store.dispatch({ type: SET_BOARDS, boards })
@@ -47,7 +48,7 @@ export async function loadBoards() {
   } catch (err) {
     console.error('board action -> cannot load boards', err)
     throw err
-  }
+  } 
 }
 
 export async function removeBoard(boardId) {

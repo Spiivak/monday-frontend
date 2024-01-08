@@ -1,6 +1,4 @@
 import { BoardGroupList } from './groups/BoardGroupList'
-import { BoardHeaderFilter } from './header/BoardHeaderFilter'
-import { BoardTabs } from './header/BoardTabs'
 
 import { BoardHeader } from './header/BoardHeader'
 import { useEffect, useState } from 'react'
@@ -17,12 +15,14 @@ import { useParams } from 'react-router'
 import { loadUsers } from '../../../store/actions/user.actions'
 import { boardService } from '../../../services/board.service'
 import { Sidebar } from '../sidebar/Sidebar'
+import { MondayLoader } from '../MondayLoader'
 export function WorkSpaceBoard() {
   const [selectedBoard, setSelectedBoard] = useState(null)
   const boards = useSelector((storeState) => storeState.boardModule.boards)
   const users = useSelector((storeState) => storeState.userModule.users)
   const { boardId } = useParams()
-
+  const isLoading = useSelector((storeState) => storeState.boardModule.isLoading)
+  
   useEffect(() => {
     loadBoards()
     loadUsers()
@@ -69,19 +69,21 @@ export function WorkSpaceBoard() {
 
   return (
     <main >
+      {isLoading ? <MondayLoader /> : 
+      <>
       <Sidebar {...{ onRemoveBoard, onAddBoard }} />
       <section className="work-space-board">
         <div className="workspace-board-header">
           <BoardHeader board={selectedBoard} {...{ onUpdateBoard }} />
-          {/* <BoardTabs /> */}
-          {/* <BoardHeaderFilter /> */}
         </div>
         <div className="table-section">
           {!!boards && (
             <BoardGroupList board={selectedBoard} onAddGroup={onAddGroup} />
-          )}
+            )}
         </div>
       </section>
+      </>
+          }
     </main>
   )
 }
