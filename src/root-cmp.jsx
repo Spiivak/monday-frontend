@@ -2,12 +2,13 @@ import './assets/style/main.scss'
 import { WorkSpacePage } from './pages/WorkSpacePage'
 import { HomePage } from './pages/HomePage'
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
-import { WorkSpaceBoard } from './cmps/Workspace/board/WorkSpaceBoard'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
 import { UserMsg } from './cmps/UserMsg'
 import { DynamicModalMenu } from './cmps/Workspace/board/DynamicModalMenu'
 import { TaskDetails } from './cmps/Workspace/board/groups/TaskDetails'
+import { WorkSpaceBoard } from './cmps/Workspace/board/WorkspaceBoard'
+
 
 export function App() {
   return (

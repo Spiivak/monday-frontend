@@ -40,6 +40,7 @@ export async function saveBoard(board) {
 }
 
 export async function loadBoards() {
+  store.dispatch({ type: SET_IS_LOADING, isLoading: true })
   try {
     const boards = await boardService.query()
     store.dispatch({ type: SET_BOARDS, boards })
@@ -277,6 +278,10 @@ export function deactivateTask() {
 
 export function finishAddingColumn() {
   store.dispatch({ type: COMPLETE_ADD_COLUMN })
+}
+
+export function setLoading(type){
+  store.dispatch({ type: SET_IS_LOADING, isLoading: type })
 }
 // export async function addBoardMsg(boardId,msg,user){
 //   const newMsg = {...boardService.getEmptyMsg(), content:msg}

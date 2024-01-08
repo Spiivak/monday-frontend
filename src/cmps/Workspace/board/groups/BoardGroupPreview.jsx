@@ -27,6 +27,7 @@ import {
   removeColumn,
   removeGroup,
   removeTask,
+  setLoading,
   updateColumn,
   updateGroup,
   updateTask,
@@ -42,6 +43,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
   const [columns, setColumns] = useState([])
   const [data, setData] = useState([])
   const [initText, setInitText] = useState('')
+  setLoading
 
   useEffect(() => {
     setColumns([
@@ -174,7 +176,6 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
     prepareRow(row)
     return row
   }, [activeId, rows, prepareRow])
-
   return (
     <section className="board-view-group">
       <div className="board-title flex gap8">
