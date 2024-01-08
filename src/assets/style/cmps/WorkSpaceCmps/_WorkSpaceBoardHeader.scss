@@ -10,7 +10,8 @@
     background-color: #fff;
     z-index: 1000;
     .board-header {
-      max-height: 40px;
+      background-color: white;
+      // max-height: 40px;
       padding: $spacing-xs 0;
 
       h2 {
