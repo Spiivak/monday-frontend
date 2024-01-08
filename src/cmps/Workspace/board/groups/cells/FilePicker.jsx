@@ -9,6 +9,7 @@ export function FilePicker({ task, cmpId, handleUpdateTask }) {
       <ImgUploader
         imgData={task['file' + cmpId]}
         handleUpdateTaskFile={handelUpdateFile}
+        id={task.id}
       />
     </div>
   )
