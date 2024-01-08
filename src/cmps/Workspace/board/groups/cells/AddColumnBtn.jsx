@@ -1,6 +1,7 @@
 import { Add, Description, Save, UploadFile } from '@mui/icons-material'
 import { useEffect, useRef, useState } from 'react'
 import {
+  AddIcon,
   AddSmallIcon,
   ArchiveIcon,
   CollapseIcon,
@@ -35,7 +36,7 @@ export default function AddColumnBtn({onAddColumn}) {
           ev.stopPropagation()
           openMoreModal()
         }}>
-        <Add />
+        <AddIcon />
       </button>
       {isMoreModalOpen && (
         <AddModal
