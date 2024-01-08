@@ -134,18 +134,16 @@
       .member-modal {
         display: none;
       }
-
-      &:last-child:has(img) {
-        margin-left: -12px;
-      }
     }
     .overflow-indicator {
-      background-color: #33333376;
+      background-color: #333333;
       border-radius: 50px;
-      width: 25px;
-      height: 25px;
+      width: 30px;
+      height: 30px;
       color: #fff;
       font-size: 12px;
+      margin-left: -12px;
+      border: 0.5px solid white;
     }
   }
 }
