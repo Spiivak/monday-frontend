@@ -123,8 +123,8 @@
   .avatars-wrapper {
     display: flex;
     .avatar-logo {
-      max-height: 32px;
-      max-width: 32px;
+      height: 30px;
+      width: 30px;
       border-radius: 100%;
       overflow: hidden;
       &:hover .member-modal {
@@ -134,6 +134,18 @@
       .member-modal {
         display: none;
       }
+
+      &:last-child:has(img){
+        margin-left: -12px;
+      }
+    }
+    .overflow-indicator {
+      background-color: #33333376;
+      border-radius: 50px;
+      width: 25px;
+      height: 25px;
+      color: #fff;
+      font-size: 12px;
     }
   }
 }

@@ -94,6 +94,30 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
     }),
   ]
 
+  const renderAvatars = () => {
+    const memberAvatars = task['members' + cmpId]?.slice(0, 2) || [];
+    return memberAvatars.map((member) => (
+      <div className="avatar-logo" key={member._id}>
+        <img src={member.imgUrl} alt="" />
+        <MemberHoverModal member={member} />
+      </div>
+    ));
+  };
+
+  const renderOverflowIndicator = () => {
+    const additionalMembersCount = (task['members' + cmpId]?.length || 0) - 2;
+    if (additionalMembersCount > 0) {
+      return (
+        <div
+          className="overflow-indicator flex align-center justify-center"
+        >
+          
+          +{additionalMembersCount}
+        </div>
+      );
+    }
+    return null;
+  };
   return (
     <>
       <div className="cell member-picker-cell">
@@ -105,24 +129,22 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
           placement="bottom"
           arrow={{
             pointAtCenter: true,
-          }}>
+          }}
+        >
           <div className="cell">
-            {task['members' + cmpId] && task['members' + cmpId].length > 0 ? (
-              <div className="avatars-wrapper">
-                {task['members' + cmpId].map((member) => (
-                  <div className="avatar-logo" key={member._id}>
-                    <img src={member.imgUrl} alt="" style={{width: '32px', height: '32px'}}/>
-                      <MemberHoverModal member={member}
-                      />
-                  </div>
-                ))}
+            {currentUsers.length > 0 ? (
+              <div className="avatars-wrapper flex align-center">
+                {renderAvatars()}
+                {renderOverflowIndicator()}
               </div>
             ) : (
-              <div className="avatars-wrapper" style={{ opacity: '0.2' }}><PersonRoundedIcon /></div>
+              <div className="avatars-wrapper" style={{ opacity: '0.2' }}>
+                <PersonRoundedIcon />
+              </div>
             )}
           </div>
         </Dropdown>
       </div>
     </>
-  )
+  );
 }
