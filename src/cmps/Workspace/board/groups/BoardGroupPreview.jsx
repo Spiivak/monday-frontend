@@ -189,7 +189,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           <EditableText
             type={'groupTitle'}
             initialText={group.title}
-            onSave={() => {}}
+            onSave={() => { }}
             placeholder={group.title}
           />
         </h2>
@@ -210,7 +210,8 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                 <tr {...headerGroup.getHeaderGroupProps()}>
                   <th>
                     <div className="checkbox-cell flex align-center justify-center">
-                      <input type="checkbox" />
+                      {/* TODO: Create store for selected items */}
+                        <input type="checkbox" />
                     </div>
                   </th>
                   {headerGroup.headers.map((column) => (
