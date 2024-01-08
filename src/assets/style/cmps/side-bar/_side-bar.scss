@@ -3,7 +3,7 @@
   color: #323338;
   position: relative;
   background-color: white;
-
+  
   .side-bar-container {
     .side-bar-link-container {
       border-bottom: 1px solid #d0d4e4;
@@ -41,22 +41,37 @@
     .side-bar-footer {
       .title-wrapper {
         .filter-container {
-          padding-left: $spacing-medium;
+          padding-left: calc($spacing-small + 4px);
           padding-right: $spacing-medium;
           padding-bottom: $spacing-small;
-
+          
           .filter-search {
-            // margin-top: 0;
             max-width: 180px;
             border: 1px solid #d0d4e4;
             border-radius: $border-radius-small;
-
+            button {
+              &.filter {
+                display: none;
+              }
+            }
             input {
+              margin-bottom: 1px;
               font-size: 14px;
               width: 100%;
               height: 32px;
               border: none;
               padding: 0;
+
+            }
+            &:hover{
+              button {
+                &:active {
+                  background-color: red;
+                }
+                &.filter {
+                  display: flex;
+                }
+              }
             }
           }
 
@@ -64,21 +79,19 @@
             svg {
               color: white;
             }
-            margin-left: 10px;
           }
         }
 
         .workspace-dropdown-button {
-          align-items: center;
-          margin-right: 16px;
-          margin-left: 8px;
-          margin-bottom: 10px;
+          // align-items: center;
+      padding-left: calc($spacing-small + 4px);
+          margin-right: 14px;
+          margin-bottom: 8px;
           margin-top: 14px;
           .dropdown-button {
             width: 100%;
             border-radius: $border-radius-small;
             padding: 5px;
-            margin-left: 8px;
             max-width: 180px;
             &:hover {
               background-color: #dbdfec;
@@ -89,10 +102,7 @@
               cursor: pointer;
               .workspace-name-wrapper {
                 span {
-                  // background-color: red;
-                  align-items: center;
-                  display: flex;
-                  padding: 0 2px;
+                  padding: 0 3px;
                   border: 1px solid transparent;
                 }
               }
@@ -115,24 +125,20 @@
 }
 
 .side-bar-close {
-  // background-color: red;
-  // width: 35px;
   .side-bar-container {
     display: none;
   }
 }
 
 .workspaces-list {
-  padding-left: $spacing-medium - 2px;
-  padding-right: $spacing-medium - 2px;
-  padding-bottom: $spacing-small;
   margin-top: 4px;
  .context-menu {
   position: absolute;
-  right: 16px;
+  right: 20px;
  }
   .workspace-item {
     width: 100%;
+    padding: 0 12px;
     a {
       width: 100%;
       font: 400 14px/20px Figtree;
@@ -151,8 +157,7 @@
       width: 100%;
       padding: $spacing-small - 2px $spacing-small;
       .nav-link-content {
-        // background-color: blue;
-        // width: 100%;
+        // padding-left: calc($spacing-small);
         display: flex;
         justify-content: flex-start;
       }

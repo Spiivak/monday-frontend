@@ -12,7 +12,7 @@ import {
 
 export function BoardHeaderFilter({ isCollapsed }) {
   return (
-    <section className={`board-filter flex gap8 ${isCollapsed ? 'collapsed' : ''}`}>
+    <section className={`board-filter flex gap6`}>
       <Tooltip title="New Item" placement='top' arrow>
         <div className="new-item flex">
           <button className="btn-ctn medium-primary new-item-btn">
