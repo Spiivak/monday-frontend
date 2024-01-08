@@ -5,7 +5,7 @@ export function FilePicker({ task, cmpId, handleUpdateTask }) {
     handleUpdateTask('FilePicker', fileData, task)
   }
   return (
-    <div className="cell file-picker-cell">
+    <div className="cell file-picker-cell hoverable">
       <ImgUploader
         imgData={task['file' + cmpId]}
         handleUpdateTaskFile={handelUpdateFile}

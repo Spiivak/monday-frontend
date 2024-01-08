@@ -8,6 +8,7 @@ export function LogoBtn({ children }) {
           viewBox="0 0 20 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          style={{ rotate: '270deg'}}
         >
           <path
             fillRule="evenodd"

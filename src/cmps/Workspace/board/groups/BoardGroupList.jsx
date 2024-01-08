@@ -1,6 +1,7 @@
 import { Add } from '@mui/icons-material'
 import { BoardGroupPreview } from './BoardGroupPreview'
 import React from 'react'
+import { AddIcon } from '../../../Icons'
 export function BoardGroupList({ board, onAddGroup }) {
   return (
     <section className="board-view-list">
@@ -14,7 +15,7 @@ export function BoardGroupList({ board, onAddGroup }) {
               cmpsOrder={board.cmpsOrder}
             />
           ))}
-          <button className='btn-outline medium-primary' onClick={()=>onAddGroup(board._id)}><Add/>Add new group</button>
+          <button className='btn-outline medium-primary add-new-group' onClick={()=>onAddGroup(board._id)}><AddIcon/>Add new group</button>
         </>
       )}
     </section>
