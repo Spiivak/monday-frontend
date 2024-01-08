@@ -123,6 +123,9 @@
 
 // Hover
 .hoverable {
+  .hidden-hover {
+    transition: opacity 0.3s;
+  }
   & .hidden-hover {
     opacity: 0;
   }
