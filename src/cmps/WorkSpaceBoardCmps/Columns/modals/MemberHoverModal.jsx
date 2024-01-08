@@ -16,8 +16,8 @@ export function MemberHoverModal({ member }) {
         </div>
       </div>
       <div className="member-actions flex">
-        <button className='btn-icon medium-transparent'>Contact Details</button>
-        <button className='btn-icon medium-transparent'>Ask for an update</button>
+        <span className=''>Contact Details</span>
+        <span className=''>Ask for an update</span>
       </div>
     </div>
   )
