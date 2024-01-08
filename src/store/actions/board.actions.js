@@ -119,7 +119,7 @@ export async function updateTask(
     case 'DescriptionPicker':
       newTask = { ...task, ['description' + cmpId]: data }
       break
-    case 'TimeLinePicker':
+    case 'TimelinePicker':
       newTask = { ...task, ['timeline' + cmpId]: data }
       break
     case 'FilePicker':
@@ -184,7 +184,7 @@ export async function addColumn(boardId, type) {
     case 'timeline':
       newColumn = {
         title: 'Time line',
-        type: 'TimeLinePicker',
+        type: 'TimelinePicker',
       }
       break
     case 'people':

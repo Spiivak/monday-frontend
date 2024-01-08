@@ -159,7 +159,7 @@ const demoData = [
           },
         ],
         style: {
-          color: '#ffcb00'
+          color: '#ffcb00',
         },
       },
 
@@ -926,7 +926,7 @@ const demoData = [
       { type: 'MemberPicker', id: 'c2', title: 'Person' },
       { type: 'DatePicker', id: 'c3', title: 'Date' },
       { type: 'DescriptionPicker', id: 'c4', title: 'Description' },
-      { type: 'TimeLinePicker', id: 'c5', title: 'Time Line' },
+      { type: 'TimelinePicker', id: 'c5', title: 'Time Line' },
       { type: 'FilePicker', id: 'c6', title: 'Files' },
     ],
   },
@@ -1037,20 +1037,7 @@ function getEmptyGroup() {
     id: utilService.makeId(),
     title: 'New Group',
     archivedAt: Date.now(),
-    tasks: [
-      {
-        id: utilService.makeId(),
-        title: 'item 1',
-      },
-      {
-        id: utilService.makeId(),
-        title: 'item 2',
-      },
-      {
-        id: utilService.makeId(),
-        title: 'item 2',
-      },
-    ],
+    tasks: [],
     style: {},
   }
 }
