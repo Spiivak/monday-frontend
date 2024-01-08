@@ -28,9 +28,9 @@ export default function AddColumnBtn({onAddColumn}) {
   return (
     <div className="flex align-center relative">
       <button
-      style={{ paddingLeft: '16px'}}
+      style={{ marginLeft: '16px'}}
         ref={menuBtnRef}
-        className="btn-icon small-transparent"
+        className="btn-icon small-transparent flex align-center"
         onClick={(ev) => {
           ev.stopPropagation()
           openMoreModal()

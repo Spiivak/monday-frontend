@@ -262,7 +262,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                   <th>
                     <AddColumnBtn
                       onAddColumn={(type) => onAddColumn(boardId, type)}
-                    />
+                      />
                   </th>
                 </tr>
               ))}
