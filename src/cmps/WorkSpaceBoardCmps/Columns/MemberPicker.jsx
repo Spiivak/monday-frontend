@@ -2,7 +2,7 @@ import { Dropdown } from 'antd'
 import Input from '@mui/joy/Input'
 import { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { PersonRoundedIcon } from '../../Icons'
+import { CloseSmallIcon, PersonRoundedIcon } from '../../Icons'
 import { MemberHoverModal } from './modals/MemberHoverModal'
 import { Tooltip, styled, tooltipClasses } from '@mui/material'
 
@@ -44,14 +44,19 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
                 src={user.imgUrl}
                 alt={user.fullname}
                 style={{
-                  width: '30px',
-                  height: '30px',
+                  width: '15px',
+                  height: '15px',
                   objectFit: 'cover',
                   borderRadius: '50%',
                 }}
               />
               <h5>{user.fullname}</h5>
-              <button onClick={() => handleUpdateUser(user)}>X</button>
+              <button
+                className="btn-icon small-transparent"
+                onClick={() => handleUpdateUser(user)}
+              >
+                <CloseSmallIcon />
+              </button>
             </div>
           ))}
         </div>
@@ -64,7 +69,8 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
           onClick={(e) => {
             e.stopPropagation()
             e.preventDefault()
-          }}>
+          }}
+        >
           <h5>Suggested people</h5>
         </div>
       ),
@@ -77,7 +83,8 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
             <div
               key={user._id}
               onClick={() => handleUpdateUser(user)}
-              className="flex align-center gap8">
+              className="flex align-center gap8"
+            >
               <img
                 src={user.imgUrl}
                 style={{
@@ -121,8 +128,15 @@ export function MemberPicker({ task, cmpId, handleUpdateTask }) {
     if (additionalMembersCount > 0) {
       return (
         <div className="overflow-indicator flex align-center justify-center">
-          <MultiLineTooltip title={additionalMembers.map(member => member.fullname).join('\n')} arrow>
-            <div className="overflow-tooltip-indicator">+{additionalMembersCount}</div>
+          <MultiLineTooltip
+            title={additionalMembers
+              .map((member) => member.fullname)
+              .join('\n')}
+            arrow
+          >
+            <div className="overflow-tooltip-indicator">
+              +{additionalMembersCount}
+            </div>
           </MultiLineTooltip>
         </div>
       )
