@@ -1,7 +1,7 @@
 import { StatusPicker } from './cells/StatusPicker'
 import { MemberPicker } from './cells/MemberPicker'
 import { DescriptionPicker } from './cells/DescriptionPicker'
-import { TimelinePicker } from './cells/TimeLinePicker'
+import { TimelinePicker } from './cells/TimelinePicker'
 import { FilePicker } from './cells/FilePicker'
 import { DatePickerC } from './cells/DatePickerC'
 import { NumbersPickers } from './cells/NumbersPicker'
@@ -27,7 +27,7 @@ export function DynamicTableCell({ cmp, cmpId, task, onTaskUpdate, group }) {
       return <DatePickerC {...{ task, cmpId, handleUpdateTask }} />
     case 'DescriptionPicker':
       return <DescriptionPicker {...{ task, cmpId, handleUpdateTask }} />
-    case 'TimeLinePicker':
+    case 'TimelinePicker':
       return <TimelinePicker {...{ task, cmpId, handleUpdateTask, group }} />
     case 'FilePicker':
       return <FilePicker {...{ task, cmpId, handleUpdateTask }} />

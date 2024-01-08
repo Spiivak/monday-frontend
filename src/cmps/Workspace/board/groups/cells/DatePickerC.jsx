@@ -20,6 +20,15 @@ export function DatePickerC({ task, cmpId, handleUpdateTask }) {
     }
   }
 
+  async function removeDate(ev) {
+    try {
+      ev.stopPropagation()
+      await handleUpdateTask('DatePicker', null, task)
+    } catch (err) {
+      console.error('Cannot clear dates', err)
+    }
+  }
+
   function formatDate(timestamp) {
     const dateObj = new Date(timestamp)
 
@@ -35,11 +44,35 @@ export function DatePickerC({ task, cmpId, handleUpdateTask }) {
     <div className="cell date-picker-cell">
       {task['date' + cmpId] && !dateModal ? (
         <div
+          // className="hoverable"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            textWrap: 'nowrap',
+            justifyContent: 'center',
+            position: 'relative',
+          }}
           onClick={() => {
             setDateModal(true)
           }}
         >
           {formatDate(task['date' + cmpId])}
+          <button
+            onClick={removeDate}
+            className=" btn-ctn medium-sec  "
+            style={{
+              color: 'black',
+              padding: '0px',
+              position: 'absolute',
+              borderRadius: '50%',
+              width: '30px',
+              height: '30px',
+              left: '100%',
+              scale: '0.6',
+            }}
+          >
+            X
+          </button>
         </div>
       ) : (
         <DatePicker

@@ -18,9 +18,8 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 })
 
-export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
+export function ImgUploader({ id, imgData, handleUpdateTaskFile = null }) {
   const [isLoading, setIsLoading] = useState(false)
-  const [isModalOpen, setIsModalOpen] = useState(false)
 
   async function uploadImg(ev) {
     try {
@@ -41,7 +40,7 @@ export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
     try {
       setIsLoading(true)
       await uploadService.destroyImg(imgData.publicId)
-      await handleUpdateTaskFile(undefined)
+      await handleUpdateTaskFile?.(undefined)
       setIsLoading(false)
     } catch (err) {
       console.error(err)
@@ -61,7 +60,7 @@ export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
             <>
               <IconButton
                 sx={{ '&:hover': { backgroundColor: 'transparent' } }}
-                className="hidden-hover"
+                className="test1"
                 component="label"
                 size="small"
                 style={{
@@ -76,10 +75,10 @@ export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
                 />
                 <div
                   style={{ padding: '0px', margin: 'auto' }}
-                  className="hidden-hover flex align-center"
+                  className=" flex align-center"
                 >
                   <button
-                    className="hidden-hover btn-ctn small-primary flex "
+                    className="btn-ctn small-primary flex "
                     style={{
                       padding: '0px',
                       borderRadius: '50%',
@@ -92,10 +91,7 @@ export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
                 </div>
               </IconButton>
               <div className="image-preview flex align-center">
-                <img
-                  src={imgData.imgUrl}
-                  onMouseEnter={() => setIsModalOpen(true)}
-                />
+                <img src={imgData.imgUrl} />
                 <div className="modal">
                   <ImageModal src={imgData} />
                 </div>
@@ -103,7 +99,7 @@ export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
               <button
                 onClick={removeImg}
                 style={{ padding: '0px', borderRadius: '50%' }}
-                className="hidden-hover btn-ctn small-sec flex"
+                className="test4 btn-ctn small-sec flex"
               >
                 <span className="flex align-center">
                   <CloseSmallIcon />
@@ -113,14 +109,14 @@ export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
           ) : (
             <label
               style={{ width: '100%' }}
-              className="flex justify-center relative hidden-hover"
-              htmlFor="imgUpload"
+              className="flex justify-center relative test5"
+              htmlFor={id}
             >
               <div style={{ position: 'absolute', top: '-37%' }}>
                 <FileIcon className="relative flex justify-center " />
               </div>
               <button
-                className="hidden-hover btn-ctn small-primary flex absolute"
+                className="btn-ctn small-primary flex absolute"
                 style={{
                   padding: '0px',
                   borderRadius: '50%',
@@ -136,7 +132,7 @@ export function ImgUploader({ imgData, handleUpdateTaskFile = null }) {
                   type="file"
                   onChange={uploadImg}
                   accept="img/*"
-                  id="imgUpload"
+                  id={id}
                 />
               </button>
             </label>

@@ -64,7 +64,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           case 'DescriptionPicker':
             accessor = 'description' + cmp.id
             break
-          case 'TimeLinePicker':
+          case 'TimelinePicker':
             accessor = 'timeline' + cmp.id
             break
           case 'FilePicker':
@@ -132,7 +132,6 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
 
   function onUpdateGroup(boardId, groupId, group, data) {
     const newGroup = { ...group, title: data }
-    console.log(boardId, groupId, newGroup)
     updateGroup(boardId, groupId, newGroup)
   }
 
@@ -188,10 +187,11 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
             <NavigationChevronDownIcon />
           </button>
         </div>
-        <h2 className="group-title flex editable-txt">
+        <h2 style={{ color: group.style.color }} className="group-title flex">
           <EditableText
             type={'groupTitle'}
             initialText={group.title}
+            textColor={group.style.color}
             onSave={(text) => {
               onUpdateGroup(boardId, group.id, group, text)
             }}
@@ -207,7 +207,8 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           onDragStart={handleDragStart}
           onDragCancel={handleDragCancel}
           collisionDetection={closestCenter}
-          modifiers={[restrictToVerticalAxis]}>
+          modifiers={[restrictToVerticalAxis]}
+        >
           <table {...getTableProps()}>
             <thead>
               {headerGroups.map((headerGroup) => (
@@ -224,7 +225,9 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                         {column.id === 'title' ? (
                           <div className="wrapper grid th-header pad8x">
                             <Tooltip title="This title cannot be edited" arrow>
-                            <span className='gc1'>{column.render('Header')}</span>
+                              <span className="gc1">
+                                {column.render('Header')}
+                              </span>
                             </Tooltip>
                           </div>
                         ) : (
@@ -234,20 +237,27 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                                 type={'columnTitle'}
                                 initialText={column.render('Header')}
                                 onSave={(text) => {
-                                  onUpdateColumn(boardId, column.cmp.id, column.cmp, text)
+                                  onUpdateColumn(
+                                    boardId,
+                                    column.cmp.id,
+                                    column.cmp,
+                                    text
+                                  )
                                 }}
                               />
                             </div>
                             <div className="wrapper3 gc2">
                               <ContextBtn
                                 type="column"
-                                onDeleteColumn={() => onDeleteColumn(boardId, column.cmp.id)}
+                                onDeleteColumn={() =>
+                                  onDeleteColumn(boardId, column.cmp.id)
+                                }
                               />
                             </div>
                           </div>
                         )}
                       </th>
-                    );
+                    )
                   })}
                   <th>
                     <AddColumnBtn
@@ -260,7 +270,8 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
             <tbody {...getTableBodyProps()}>
               <SortableContext
                 items={items}
-                strategy={verticalListSortingStrategy}>
+                strategy={verticalListSortingStrategy}
+              >
                 {rows.map((row) => {
                   prepareRow(row)
                   return (
@@ -284,7 +295,10 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                   </div>
                 </td>
                 <td colSpan={columns.length + 2}>
-                  <div className="wrapper flex align-center" style={{ marginLeft: '20px'}}>
+                  <div
+                    className="wrapper flex align-center"
+                    style={{ marginLeft: '20px' }}
+                  >
                     <EditableText
                       initialText={initText}
                       onSave={saveNewTask}
