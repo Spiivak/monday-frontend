@@ -158,7 +158,9 @@ const demoData = [
             membersc2: [],
           },
         ],
-        style: {},
+        style: {
+          color: '#ffcb00'
+        },
       },
 
       {

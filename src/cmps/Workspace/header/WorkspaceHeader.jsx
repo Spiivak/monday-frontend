@@ -1,4 +1,4 @@
-import { LogoBtn } from './LogoBtn'
+// import { LogoBtn } from './LogoBtn'
 import { useState } from 'react'
 
 // MODALS
@@ -71,7 +71,7 @@ export function WorkspaceHeader() {
         <h1 className="logo-title">
           monday <span className="logo-title-span">work management</span>
         </h1>
-        <LogoBtn>See plans</LogoBtn>
+        {/* <LogoBtn>See plans</LogoBtn> */}
       </section>
 
       <section className="header-action-btns-sect">

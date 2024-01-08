@@ -1,12 +1,33 @@
 import { DatePicker } from 'antd'
 import dayjs from 'dayjs'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-export function TimelinePicker({ task, cmpId, handleUpdateTask }) {
+export function TimelinePicker({ task, cmpId, handleUpdateTask, group }) {
   const [dateModal, setDateModal] = useState(false)
-
+  const [color, setColor] = useState('#333')
   const { RangePicker } = DatePicker
   const dateFormat = 'YYYY/MM/DD'
+
+  useEffect(() => {
+    if (group?.style?.color) {
+      const today = Date.now()
+      if (!task['timeline' + cmpId] || task['timeline' + cmpId].length === 0 ) return
+      const fromDate = task['timeline' + cmpId][0]
+      const toDate = task['timeline' + cmpId][1]
+      console.log(today, fromDate, toDate)
+      let percentile
+      if (today <= fromDate) setColor(group.style.color)
+      else if (today > fromDate && today < toDate) {
+        percentile = Math.floor(
+          100 - ((today - fromDate) / (toDate - fromDate)) * 100
+        )
+        console.log(percentile)
+        setColor(
+          `linear-gradient(to left, #333 ${percentile}%, ${group.style.color} ${percentile}%)`
+        )
+      } else setColor('#333')
+    }
+  }, [task['timeline' + cmpId]])
 
   async function handleDateChange(dates) {
     if (dates) {
@@ -52,17 +73,19 @@ export function TimelinePicker({ task, cmpId, handleUpdateTask }) {
     <div className="cell timeline-picker-cell">
       {!dateModal ? (
         <div
-          className="bill"
+          className="pill"
+          style={{
+            background: group.style.color ? color : '#333',
+          }}
           onClick={() => {
             setDateModal(true)
-          }}
-        >
+          }}>
           {task['timeline' + cmpId]
             ? formatDateRange(task['timeline' + cmpId])
             : '-'}
         </div>
       ) : (
-        <div className="bill">
+        <div className="pill">
           <RangePicker
             style={{ opacity: '0', padding: '0' }}
             onClick={() => setDateModal(true)}

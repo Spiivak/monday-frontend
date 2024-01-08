@@ -35,6 +35,7 @@ import { AddSmallIcon, NavigationChevronDownIcon } from '../../../Icons'
 import { ContextBtn } from '../../../ContextBtn'
 import { EditableText } from '../EditableText'
 import AddColumnBtn from './cells/AddColumnBtn'
+import { Tooltip } from '@mui/material'
 
 export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
   const [columns, setColumns] = useState([])
@@ -44,7 +45,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
   useEffect(() => {
     setColumns([
       {
-        Header: 'task',
+        Header: 'Item',
         accessor: 'title',
         cmp: { id: 0, title: 'task', type: 'title' },
       },
@@ -189,7 +190,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           <EditableText
             type={'groupTitle'}
             initialText={group.title}
-            onSave={() => {}}
+            onSave={() => { }}
             placeholder={group.title}
           />
         </h2>
@@ -210,33 +211,41 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                 <tr {...headerGroup.getHeaderGroupProps()}>
                   <th>
                     <div className="checkbox-cell flex align-center justify-center">
+                      {/* TODO: Create store for selected items */}
                       <input type="checkbox" />
                     </div>
                   </th>
-                  {headerGroup.headers.map((column) => (
-                    <th {...column.getHeaderProps()}>
-                      <div className="flex align-center space-between pad8x gap16 hoverable">
-                        <EditableText
-                          type={'columnTitle'}
-                          initialText={column.render('Header')}
-                          onSave={(text) => {
-                            onUpdateColumn(
-                              boardId,
-                              column.cmp.id,
-                              column.cmp,
-                              text
-                            )
-                          }}
-                        />
-                        <ContextBtn
-                          type="column"
-                          onDeleteColumn={() =>
-                            onDeleteColumn(boardId, column.cmp.id)
-                          }
-                        />
-                      </div>
-                    </th>
-                  ))}
+                  {headerGroup.headers.map((column) => {
+                    return (
+                      <th {...column.getHeaderProps()}>
+                        {column.id === 'title' ? (
+                          <div className="wrapper grid th-header pad8x">
+                            <Tooltip title="This title cannot be edited" arrow>
+                            <span className='gc1'>{column.render('Header')}</span>
+                            </Tooltip>
+                          </div>
+                        ) : (
+                          <div className="wrapper grid th-header pad8x">
+                            <div className="wrapper2 gc1">
+                              <EditableText
+                                type={'columnTitle'}
+                                initialText={column.render('Header')}
+                                onSave={(text) => {
+                                  onUpdateColumn(boardId, column.cmp.id, column.cmp, text)
+                                }}
+                              />
+                            </div>
+                            <div className="wrapper3 gc2">
+                              <ContextBtn
+                                type="column"
+                                onDeleteColumn={() => onDeleteColumn(boardId, column.cmp.id)}
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </th>
+                    );
+                  })}
                   <th>
                     <AddColumnBtn
                       onAddColumn={(type) => onAddColumn(boardId, type)}
@@ -260,6 +269,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                       onTaskUpdate={onTaskUpdate}
                       onDeleteTask={onDeleteTask}
                       boardId={boardId}
+                      group={group}
                       groupId={group.id}
                     />
                   )
