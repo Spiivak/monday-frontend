@@ -1,19 +1,15 @@
 import { Tooltip } from '@mui/material'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export function EditableText({ initialText, onSave, placeholder, type }) {
-  const constText = 'Add Item'
-  const [isEditing, setEditing] = useState(false)
-  const [text, setText] = useState(initialText)
-  const [originalText, setOriginalText] = useState(initialText)
-
   let width
   switch (type) {
     case 'boardHeader':
-      width = '360px'
+      width = '60vw'
       break
     case 'groupTitle':
-      width = '360px'
+      width = '45vw'
+      break
     case 'columnTitle':
       width = '100px'
       break
@@ -21,58 +17,71 @@ export function EditableText({ initialText, onSave, placeholder, type }) {
       width = '300px'
       break
     case 'addTask':
-      width = '360px'
+      width = '45vw'
       break
     default:
       width = '360px'
   }
-
+  const [inputText, setInputText] = useState('')
+  const [savedText, setSavedText] = useState('')
+  const [isEditing, setIsEditing] = useState(false)
   useEffect(() => {
-    return () => {
-      setText('')
-      setOriginalText('')
-    }
-  }, [])
-  const handleToggleEditing = () => {
-    setEditing(!isEditing)
+    setInputText(initialText)
+    setSavedText(initialText)
+  }, [initialText])
+
+  function handleChange(ev) {
+    const target = ev.target
+    const text = target.value
+    setInputText(text)
   }
 
-  const onKeyDown = (event) => {
-    if (event.key === 'Enter' || event.key === 'Escape') {
-      event.target.blur()
-    }
+  function handleSave() {
+    if (inputText.length > 0) onSave(inputText)
+    if (type === 'addTask') setInputText('')
+    else setInputText(savedText)
+    setIsEditing(false)
   }
 
-  const handleSave = () => {
-    if (text.trim() !== '') {
-      onSave(text)
-    } else {
-      setText(initialText)
-    }
-
-    setEditing(false)
+  function handleKeyDown(ev) {
+    const key = ev.key
+    if (key === 'Enter') handleSave()
   }
 
-  const showTooltip = text.length < 50
+  function handleToggleEditing() {
+    setIsEditing((a) => !a)
+  }
   return (
     <>
       {isEditing ? (
         <input
           style={{ maxHeight: '32px', width: width }}
           type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
+          value={inputText}
+          onChange={handleChange}
           onBlur={handleSave}
           placeholder={placeholder || ''}
-          onKeyDown={onKeyDown}
+          onKeyDown={handleKeyDown}
           autoFocus
         />
       ) : (
         <Tooltip
-          title={showTooltip ? `Click to edit` : `${text}`}
+          title={inputText.length < 30 ? `Click to edit` : `${inputText}`}
           placement="top"
           arrow>
-          <div onClick={handleToggleEditing}>{text || placeholder}</div>
+          <div
+            className='flex align-center'
+            style={{
+              maxHeight: '32px',
+              width: type === 'groupTitle' ? 'fit-content' : width ,
+              overflow: 'hidden',
+              textWrap: 'nowrap',
+              textOverflow: 'ellipsis',
+              padding: '5px'
+            }}
+            onClick={handleToggleEditing}>
+            {inputText || placeholder}
+          </div>
         </Tooltip>
       )}
     </>
