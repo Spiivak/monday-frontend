@@ -19,6 +19,7 @@ export function TaskTitle({ task, cmpId, handleUpdateTask }) {
         <div className="editable-txt">
 
           <EditableText
+            type={'taskTitle'}
             initialText={task.title}
             onSave={(text) => handleUpdateTask('task', text, task)}
           />
