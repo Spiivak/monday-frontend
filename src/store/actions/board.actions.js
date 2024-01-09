@@ -125,6 +125,12 @@ export async function updateTask(
     case 'task':
       newTask = { ...task, title: data }
       break
+    case 'Activity':
+      newTask = {
+        ...task,
+        ['activity']: task.activity ? [...task.activity, data] : [data],
+      }
+      break
     case 'StatusPicker':
       newTask = { ...task, ['status' + cmpId]: data }
       break
@@ -144,16 +150,7 @@ export async function updateTask(
       newTask = { ...task, ['number' + cmpId]: data }
       break
     case 'MemberPicker':
-      const existingMembers = task['members' + cmpId]
-      const updatedMembers = Array.isArray(existingMembers)
-        ? existingMembers.some((member) => member._id === data._id)
-          ? existingMembers.filter((member) => member._id !== data._id)
-          : [...existingMembers, data]
-        : [data]
-      newTask = {
-        ...task,
-        ['members' + cmpId]: updatedMembers,
-      }
+      newTask = { ...task, ['members' + cmpId]: data }
       break
   }
   try {
@@ -164,7 +161,9 @@ export async function updateTask(
       newTask
     )
     store.dispatch({ type: UPDATE_TASK, boardId, groupId, taskId, task })
-  } catch (err) {}
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 export async function addTask(boardId, groupId, newTaskTxt) {

@@ -5,16 +5,55 @@ import { CloseSmallIcon, PersonRoundedIcon } from '../../../../Icons'
 import { MemberHoverModal } from './modals/MemberHoverModal'
 import { Tooltip, styled, tooltipClasses } from '@mui/material'
 
-export function MemberPicker({ task, cmpId, handleUpdateTask }) {
+export function MemberPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
   const users = useSelector((storeState) => storeState.userModule.users)
+  const colName = cmpsOrder.find((cmp) => cmp.type === 'MemberPicker')?.title
 
-  function handleUpdateUser(selectedUser) {
-    handleUpdateTask('MemberPicker', selectedUser, task)
+  async function handleUpdateUser(selectedUser) {
+    const members = updateMembers(task['members' + cmpId], selectedUser)
+    const updatedTask = { ...task, ['members' + cmpId]: members.updatedMembers }
+
+    try {
+      await handleUpdateTask(
+        'MemberPicker',
+        members.updatedMembers,
+        updatedTask
+      )
+      await handleUpdateTask(
+        'Activity',
+        {
+          createdAt: Date.now(),
+          title: updatedTask.title,
+          colName,
+          oldValue: members.action,
+          newValue: selectedUser.fullname,
+        },
+        updatedTask
+      )
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  function updateMembers(existingMembers, data) {
+    const userExists = existingMembers.some((member) => member._id === data._id)
+
+    if (userExists) {
+      return {
+        updatedMembers: existingMembers.filter(
+          (member) => member._id !== data._id
+        ),
+        action: 'Removed',
+      }
+    } else {
+      return { updatedMembers: [...existingMembers, data], action: 'Added' }
+    }
   }
 
   const suggestedUsers = users.filter(
     (user) =>
-      !task['members' + cmpId]?.some((member) => member._id === user._id)
+      !task['members' + cmpId] ||
+      !task['members' + cmpId].some((member) => member._id === user._id)
   )
 
   const currentUsers = users.filter((user) =>
