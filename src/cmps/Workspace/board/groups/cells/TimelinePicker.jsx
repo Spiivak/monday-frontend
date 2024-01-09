@@ -1,6 +1,7 @@
 import { DatePicker } from 'antd'
 import dayjs from 'dayjs'
 import { useEffect, useState } from 'react'
+import { TimelinePreview } from './cellsPreview/TimelinePreview'
 
 export function TimelinePicker({ task, cmpId, handleUpdateTask, group }) {
   const [dateModal, setDateModal] = useState(false)
@@ -81,46 +82,17 @@ export function TimelinePicker({ task, cmpId, handleUpdateTask, group }) {
   return (
     <div className="cell timeline-picker-cell">
       {!dateModal ? (
-        <div
-          className="pill "
-          style={{
-            background: group.style.color ? color : '#333',
-            display: 'flex',
-            alignItems: 'center',
-            textWrap: 'nowrap',
-            justifyContent: 'center',
-            position: 'relative',
+        <TimelinePreview
+          {...{
+            setDateModal,
+            formatDateRange,
+            removeDates,
+            task,
+            cmpId,
+            group,
+            color,
           }}
-          onClick={() => {
-            setDateModal(true)
-          }}
-        >
-          {task['timeline' + cmpId] ? (
-            <>
-              {formatDateRange(task['timeline' + cmpId])}
-              {
-                <button
-                  onClick={removeDates}
-                  className=" btn-ctn medium-sec "
-                  style={{
-                    color: 'black',
-                    padding: '0px',
-                    position: 'absolute',
-                    borderRadius: '50%',
-                    width: '30px',
-                    height: '30px',
-                    left: '100%',
-                    scale: '0.6',
-                  }}
-                >
-                  X
-                </button>
-              }
-            </>
-          ) : (
-            '-'
-          )}
-        </div>
+        />
       ) : (
         <div className="pill">
           <RangePicker

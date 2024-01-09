@@ -1,0 +1,141 @@
+.workspace-index {
+  border-top-left-radius: 8px;
+  padding-bottom: 52px;
+
+
+  background-color: #F6F7FB;
+  display: grid;
+  grid-template-columns: 80px 1fr 80px;
+  grid-auto-rows: auto 1fr;
+
+  .full {
+    grid-column: 1 / -1;
+    padding: 0 80px;
+    max-height: 75px;
+  }
+
+  .workspace-index-header {
+
+    border-top-left-radius: 8px;
+    background-color: white;
+    box-shadow: 0px 3px 12px #e6e9ef;
+    overflow: hidden;
+
+    .greeting-section {
+      gap: 16px;
+
+      .greeting {
+        font: 400 14px Figtree;
+      }
+
+      p {
+        font: 500 16px Figtree;
+        line-height: 22[x];
+      }
+    }
+
+    .greeting-actions {
+      svg {
+        color: white;
+      }
+    }
+  }
+
+  .main-content {
+    svg {
+      color: $icon-color;
+    }
+
+    display: grid;
+    grid-column: 2;
+    grid-template-columns: 1fr 300px;
+    margin-top: 16px;
+    gap: 16px;
+
+    .workspace-content {
+
+      background: white;
+      padding: 16px;
+      border-radius: 8px;
+
+      .workspace-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        // grid-auto-rows: 225px;
+        gap: 20px;
+        padding: 16px 16px 24px 16px;
+        grid-column: 1;
+
+
+        .workspace-card {
+          // background-color: red;
+          border: 1px solid #d0d4e4;
+          cursor: pointer;
+          font-size: 16px;
+          border-radius: 4px;
+          padding: 8px;
+          display: grid;
+
+          .board-title {
+            font: 700 16px Figtree;
+            color: #323338;
+            margin-bottom: 8px;
+          }
+
+          .img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            background-color: #6c6cff;
+            margin-bottom: 8px;
+
+            img {
+              border-radius: 8px;
+              overflow: hidden;
+            }
+          }
+
+          .breadcrumbs {
+            color: #676879;
+            white-space: nowrap;
+            margin-top: 4px;
+            font: 400 14px Figtree;
+            span {
+              svg{
+                rotate: -90deg;
+              }
+            }
+            svg {
+              width: 18px;
+              height: 18px;
+            }
+          }
+        }
+      }
+    }
+
+    .workspace-side {
+      grid-column: 2;
+
+      .boost {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 12px;
+        box-shadow: 0px 3px 12px #e6e9ef;
+
+        p {
+          font: 400 16px Figtree;
+          margin-top: $spacing-medium;
+          margin-bottom: 12px;
+        }
+
+        button {
+          font: 400 16px Figtree;
+          line-height: 22px;
+        }
+      }
+    }
+  }
+
+}

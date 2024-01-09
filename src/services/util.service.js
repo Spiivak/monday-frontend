@@ -7,6 +7,7 @@ export const utilService = {
   saveToStorage,
   loadFromStorage,
   getFormattedDate,
+  getGreeting,
 }
 
 function makeId(length = 6) {
@@ -106,4 +107,17 @@ function saveToStorage(key, value) {
 function loadFromStorage(key) {
   const data = localStorage.getItem(key)
   return data ? JSON.parse(data) : undefined
+}
+
+function getGreeting() {
+  const now = new Date()
+  const hours = now.getHours()
+
+  if (hours >= 0 && hours < 12) {
+    return "Good morning"
+  } else if (hours >= 12 && hours < 18) {
+    return "Good afternoon"
+  } else {
+    return "Good evening"
+  }
 }
