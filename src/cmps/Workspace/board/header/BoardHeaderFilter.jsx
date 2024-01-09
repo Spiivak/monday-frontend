@@ -9,8 +9,25 @@ import {
   SearchIcon,
   SortIcon,
 } from '../../../Icons'
+import { useState } from 'react'
+import { setStoreFilterBy } from '../../../../store/actions/board.actions'
 
 export function BoardHeaderFilter({ isCollapsed }) {
+  const [filterBy, setFilterBy] = useState('')
+
+  function handleChange(ev) {
+    const target = ev.target
+    const value = target.value
+    const name = target.name
+
+    setFilterBy((pervFilter) => ({ ...pervFilter, [name]: value }))
+  }
+
+  function handleSubmit(ev){
+    console.log(filterBy.txt)
+    setStoreFilterBy(filterBy)
+  }
+
   return (
     <section className={`board-filter flex gap6`}>
       <Tooltip title="New Item" placement="top" arrow>
@@ -24,7 +41,8 @@ export function BoardHeaderFilter({ isCollapsed }) {
         </div>
       </Tooltip>
       <button className="btn-icon medium-transparent flex align-center">
-        <SearchIcon /> Search
+        <input type="text" value={filterBy.txt} name="txt" onChange={handleChange} onBlur={handleSubmit}/>
+        {/* <SearchIcon /> Search */}
       </button>
       <Tooltip title="Filter by person" placement="top" arrow>
         <button className="btn-icon medium-transparent flex align-center gap8">
