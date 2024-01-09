@@ -144,7 +144,6 @@ export function BoardGroupPreview2({ group, boardId, cmpsOrder }) {
         <span>{group.tasks.length} items </span>
       </div>
 
-
       <div className="board-group-table-container">
         <GroupTableHeaders
           columns={columns}
@@ -162,6 +161,7 @@ export function BoardGroupPreview2({ group, boardId, cmpsOrder }) {
           onTaskUpdate={onTaskUpdate}
           initText={initText}
           saveNewTask={saveNewTask}
+          cmpsOrder={cmpsOrder}
         />
 
         {/* <div className="group-table-footer-section flex">

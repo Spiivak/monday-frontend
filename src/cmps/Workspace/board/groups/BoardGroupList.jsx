@@ -1,5 +1,4 @@
 import { Add } from '@mui/icons-material'
-import { BoardGroupPreview } from './BoardGroupPreview'
 import React from 'react'
 import { AddIcon } from '../../../Icons'
 import { BoardGroupPreview2 } from './BoardGroupPreview2'

@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { FilterSection } from './modals/FilterSection'
 import {
   NavigationChevronLeftIcon,
   NavigationChevronRightIcon,
 } from '../../Icons'
-import { loadBoards } from '../../../store/actions/board.actions'
 import { useSelector } from 'react-redux'
 import { SidebarLinks } from './SidebarLinks'
 import { SidebarWorkspace } from './SidebarWorkspace'
@@ -13,7 +12,6 @@ import { SidebarBoardList } from './SidebarBoardList'
 
 export function Sidebar({ onRemoveBoard, onAddBoard }) {
   const boards = useSelector((storeState) => storeState.boardModule.boards)
-  console.log('Sidebar  boards:', boards)
   const filterBy = useSelector((storeState) => storeState.boardModule.filterBy)
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
