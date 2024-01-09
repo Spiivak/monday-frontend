@@ -3,7 +3,30 @@ import { Button, ConfigProvider, Divider, Dropdown, Space } from 'antd'
 import useToken from 'antd/es/theme/useToken'
 import React from 'react'
 
-export function StatusPicker({ task, cmpId, handleUpdateTask }) {
+export function StatusPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
+  const colName = cmpsOrder.find((cmp) => cmp.type === 'StatusPicker')?.title
+  const oldValue = task['status' + cmpId]
+
+  async function handleUpdateStatus(status) {
+    try {
+      const updatedTask = { ...task, ['status' + cmpId]: status }
+      await handleUpdateTask('StatusPicker', status, updatedTask)
+      await handleUpdateTask(
+        'Activity',
+        {
+          createdAt: Date.now(),
+          title: updatedTask.title,
+          colName,
+          oldValue: oldValue,
+          newValue: status,
+        },
+        updatedTask
+      )
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   const items = [
     {
       key: '1',
@@ -18,7 +41,7 @@ export function StatusPicker({ task, cmpId, handleUpdateTask }) {
             height: '32px',
             margin: '10px 10px 0 10px',
           }}
-          onClick={() => handleUpdateTask('StatusPicker', 'Done', task)}
+          onClick={() => handleUpdateStatus('Done')}
         >
           Done
         </button>
@@ -37,9 +60,7 @@ export function StatusPicker({ task, cmpId, handleUpdateTask }) {
             height: '32px',
             margin: '0 10px',
           }}
-          onClick={() =>
-            handleUpdateTask('StatusPicker', 'Working on it', task)
-          }
+          onClick={() => handleUpdateStatus('Working on it')}
         >
           Working on it
         </button>
@@ -58,7 +79,7 @@ export function StatusPicker({ task, cmpId, handleUpdateTask }) {
             height: '32px',
             margin: '0 10px 10px 10px',
           }}
-          onClick={() => handleUpdateTask('StatusPicker', 'Stuck', task)}
+          onClick={() => handleUpdateStatus('Stuck')}
         >
           Stuck
         </button>
