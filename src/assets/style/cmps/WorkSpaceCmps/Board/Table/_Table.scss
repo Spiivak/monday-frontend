@@ -1,0 +1,12 @@
+.board-group-table-container {
+  // background-color: pink;
+  display: grid;
+  grid-template-columns: max-content;
+  grid-auto-flow: column;
+
+  .group-table-header-cell{
+    grid-row: 1;
+  }
+
+
+}

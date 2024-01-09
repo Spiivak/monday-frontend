@@ -11,12 +11,10 @@ export function GroupTableHeaders({
   onAddColumn,
 }) {
   return (
-    <div className="group-table-header-section flex">
-      <div className="group-table-header-cell flex">
-        <div className="checkbox-cell flex align-center justify-center">
-          {/* TODO: Create store for selected items */}
-          <input type="checkbox" />
-        </div>
+    <>
+      <div className="group-table-header-cell checkbox-cell flex align-center justify-center">
+        {/* TODO: Create store for selected items */}
+        <input type="checkbox" />
       </div>
       {/* <div className="group-table-header-cell flex">
         <div className="wrapper grid th-header pad8x">
@@ -26,31 +24,29 @@ export function GroupTableHeaders({
         </div>
       </div> */}
       {columns.map((column) => (
-        <div key={column.id} className="group-table-header-cell flex">
-          <div className="wrapper grid th-header pad8x">
-            <div className="wrapper2 gc1">
-              <EditableText
-                type={'columnTitle'}
-                initialText={column.Header}
-                onSave={(text) => {
-                  onUpdateColumn(boardId, column.cmp.id, column.cmp, text)
-                }}
-              />
-            </div>
-            <div className="wrapper3 gc2">
-              <ContextBtn
-                type="column"
-                onDeleteColumn={() => onDeleteColumn(boardId, column.cmp.id)}
-              />
-            </div>
+        <div
+          key={column.id}
+          className="group-table-header-cell wrapper grid th-header pad8x">
+          <div className="wrapper2 gc1 flex justify-center">
+            <EditableText
+              type={'columnTitle'}
+              initialText={column.Header}
+              onSave={(text) => {
+                onUpdateColumn(boardId, column.cmp.id, column.cmp, text)
+              }}
+            />
+          </div>
+          <div className="wrapper3 gc2">
+            <ContextBtn
+              type="column"
+              onDeleteColumn={() => onDeleteColumn(boardId, column.cmp.id)}
+            />
           </div>
         </div>
       ))}
-      <div className="group-table-header-cell flex">
-        <div className="wrapper grid th-header pad8x">
-          <AddColumnBtn onAddColumn={(type) => onAddColumn(boardId, type)} />
-        </div>
+      <div className="group-table-header-cell wrapper grid th-header pad8x">
+        <AddColumnBtn onAddColumn={(type) => onAddColumn(boardId, type)} />
       </div>
-    </div>
+    </>
   )
 }

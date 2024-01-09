@@ -10,18 +10,20 @@ export function GroupTableBody({
   saveNewTask,
 }) {
   return (
-    <div className="group-table-body-section flex column">
-      {rows.map((row) => (
-        <div key={row.id} className="group-table-row flex">
-          <div className="group-table-cell">
-            <div className="checkbox-cell flex align-center justify-center">
-              <input type="checkbox" />
-            </div>
+    <>
+      {rows.map((row, rowIdx) => (
+        <React.Fragment key={row.id}>
+          <div
+            style={{ gridRow: rowIdx + 2, gridColumn: 1 }}
+            className="group-table-cell checkbox-cell flex align-center justify-center">
+            <input type="checkbox" />
           </div>
           {columns.map(
-            (column) => (
+            (column, colIdx) => (
               <React.Fragment key={column.id}>
-                <div className="group-table-cell">
+                <div
+                  style={{ gridRow: rowIdx + 2, gridColumn: colIdx + 2 }}
+                  className="group-table-cell">
                   <DynamicTableCell
                     cmp={column.cmp.type}
                     cmpId={column.id}
@@ -30,13 +32,29 @@ export function GroupTableBody({
                     task={row}
                   />
                 </div>
-                            <div className="group-table-cell"></div>
+                <div
+                  style={{
+                    gridRow: rowIdx + 2,
+                    gridColumn: columns.length + 2,
+                  }}
+                  className="group-table-cell"></div>
               </React.Fragment>
             ) // <h1>{JSON.stringify(row[column.accessor])}</h1>
           )}
-        </div>
+        </React.Fragment>
       ))}
-      <div className="group-table-row flex">
+      <div style={{
+          gridRow: rows.length + 2,
+          gridColumn: 1,
+        }} className="group-table-cell checkbox-cell flex align-center justify-center">
+        <input disabled type="checkbox" />
+      </div>
+      <div
+        style={{
+          gridRow: rows.length + 2,
+          gridColumn: `2 /${columns.length + 3}`,
+        }}
+        className="group-table-cell">
         <div
           className="wrapper flex align-center"
           style={{
@@ -49,6 +67,6 @@ export function GroupTableBody({
           />
         </div>
       </div>
-    </div>
+    </>
   )
 }

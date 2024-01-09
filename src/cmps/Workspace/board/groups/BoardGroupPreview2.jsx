@@ -143,6 +143,8 @@ export function BoardGroupPreview2({ group, boardId, cmpsOrder }) {
         </h2>
         <span>{group.tasks.length} items </span>
       </div>
+
+
       <div className="board-group-table-container">
         <GroupTableHeaders
           columns={columns}
@@ -161,9 +163,9 @@ export function BoardGroupPreview2({ group, boardId, cmpsOrder }) {
           saveNewTask={saveNewTask}
         />
 
-        <div className="group-table-footer-section flex">
+        {/* <div className="group-table-footer-section flex">
           <div className="group-table-footer-cell flex"></div>
-        </div>
+        </div> */}
       </div>
     </section>
   )
