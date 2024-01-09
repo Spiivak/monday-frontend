@@ -6,8 +6,6 @@ import QuickBoard from '../../../assets/img/icons/quick_search_recent_board.svg'
 import templates from '../../../assets/img/icons/templates-banner.png'
 import Confeti from '../../../assets/img/icons/header-background-v2.svg'
 import { useNavigate } from 'react-router'
-import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
-import { Typography, styled } from '@mui/material'
 import { ToolTip } from '../../ToolTip'
 
 export function WorkspaceIndex() {
