@@ -7,7 +7,14 @@ import { DatePickerC } from './cells/DatePickerC'
 import { NumbersPickers } from './cells/NumbersPicker'
 import { TaskTitle } from './cells/TaskTitle'
 
-export function DynamicTableCell({ cmp, cmpId, task, onTaskUpdate, group }) {
+export function DynamicTableCell({
+  cmp,
+  cmpId,
+  task,
+  onTaskUpdate,
+  group,
+  cmpsOrder,
+}) {
   async function handleUpdateTask(cmpType, data, task) {
     try {
       await onTaskUpdate(cmpType, cmpId, data, task)
@@ -18,20 +25,28 @@ export function DynamicTableCell({ cmp, cmpId, task, onTaskUpdate, group }) {
 
   switch (cmp) {
     case 'title':
-      return <TaskTitle {...{ task, cmpId, handleUpdateTask }} />
+      return <TaskTitle {...{ task, cmpId, handleUpdateTask, cmpsOrder }} />
     case 'StatusPicker':
-      return <StatusPicker {...{ task, cmpId, handleUpdateTask }} />
+      return <StatusPicker {...{ task, cmpId, handleUpdateTask, cmpsOrder }} />
     case 'MemberPicker':
-      return <MemberPicker {...{ task, cmpId, handleUpdateTask }} />
+      return <MemberPicker {...{ task, cmpId, handleUpdateTask, cmpsOrder }} />
     case 'DatePicker':
-      return <DatePickerC {...{ task, cmpId, handleUpdateTask }} />
+      return <DatePickerC {...{ task, cmpId, handleUpdateTask, cmpsOrder }} />
     case 'DescriptionPicker':
-      return <DescriptionPicker {...{ task, cmpId, handleUpdateTask }} />
+      return (
+        <DescriptionPicker {...{ task, cmpId, handleUpdateTask, cmpsOrder }} />
+      )
     case 'TimelinePicker':
-      return <TimelinePicker {...{ task, cmpId, handleUpdateTask, group }} />
+      return (
+        <TimelinePicker
+          {...{ task, cmpId, handleUpdateTask, group, cmpsOrder }}
+        />
+      )
     case 'FilePicker':
-      return <FilePicker {...{ task, cmpId, handleUpdateTask }} />
+      return <FilePicker {...{ task, cmpId, handleUpdateTask, cmpsOrder }} />
     case 'NumbersPicker':
-      return <NumbersPickers {...{ task, cmpId, handleUpdateTask }} />
+      return (
+        <NumbersPickers {...{ task, cmpId, handleUpdateTask, cmpsOrder }} />
+      )
   }
 }
