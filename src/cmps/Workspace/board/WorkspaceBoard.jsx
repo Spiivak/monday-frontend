@@ -31,12 +31,11 @@ export function WorkSpaceBoard() {
   )
   const { boardId } = useParams()
 
-  useEffect(() => {
-    loadBoards()
-    loadUsers()
-  }, [])
+  // useEffect(() => {
+    // loadBoards()
+    // loadUsers()
+  // }, [])
 
-  console.log(boardLoading)
   useEffect(() => {
     if (boardId) {
       setSelectedBoard(boards.find((board) => board._id === boardId))
@@ -78,13 +77,10 @@ export function WorkSpaceBoard() {
   }
 
   return (
-    <main>
-      <Sidebar {...{ onRemoveBoard, onAddBoard }} />
+    <>
       <section className="work-space-board">
         <div className="workspace-board-header">
           <BoardHeader board={selectedBoard} {...{ onUpdateBoard }} />
-          {/* <BoardTabs /> */}
-          {/* <BoardHeaderFilter /> */}
         </div>
         <div className="table-section">
           {!!boards && (
@@ -93,6 +89,6 @@ export function WorkSpaceBoard() {
         </div>
       </section>
       {boardLoading && <MondayLoader />}
-    </main>
+    </>
   )
 }
