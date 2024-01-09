@@ -2871,20 +2871,7 @@ export function MyWeekIcon() {
 
 export function NavigationChevronDownIcon() {
   return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M10.5303 14.5303L10 14L9.46967 14.5303C9.76256 14.8232 10.2374 14.8232 10.5303 14.5303ZM10 12.9393L3.53033 6.46967C3.23744 6.17678 2.76256 6.17678 2.46967 6.46967C2.17678 6.76256 2.17678 7.23744 2.46967 7.53033L9.46967 14.5303L10 14L10.5303 14.5303L17.5303 7.53033C17.8232 7.23744 17.8232 6.76256 17.5303 6.46967C17.2374 6.17678 16.7626 6.17678 16.4697 6.46967L10 12.9393Z"
-        fill="currentColor"
-      />
-    </svg>
+    <svg viewBox="0 0 20 20" fill="currentColor" width="24" height="24" aria-hidden="true" class="icon_c85ee8f381 collapsible-icon" data-testid="icon"><path d="M10.5303 12.5303L10 12L9.46967 12.5303C9.76256 12.8232 10.2374 12.8232 10.5303 12.5303ZM10 10.9393L6.53033 7.46967C6.23744 7.17678 5.76256 7.17678 5.46967 7.46967C5.17678 7.76256 5.17678 8.23744 5.46967 8.53033L9.46967 12.5303L10 12L10.5303 12.5303L14.5303 8.53033C14.8232 8.23744 14.8232 7.76256 14.5303 7.46967C14.2374 7.17678 13.7626 7.17678 13.4697 7.46967L10 10.9393Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
   )
 }
 

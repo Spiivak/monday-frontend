@@ -23,7 +23,7 @@ export function WorkSpacePage() {
       console.log('Cannot add board', err)
     }
   }
-    async function onRemoveBoard(boardId) {
+  async function onRemoveBoard(boardId) {
     try {
       await removeBoard(boardId)
       showSuccessMsg('Board removed successfully')
@@ -35,8 +35,8 @@ export function WorkSpacePage() {
     <section className="workspace-boards main-layout">
       <WorkspaceHeader />
       <main>
-      <Sidebar {...{ onRemoveBoard, onAddBoard }} />
-      <Outlet />
+        <Sidebar {...{ onRemoveBoard, onAddBoard }} />
+        <Outlet />
       </main>
     </section>
   )

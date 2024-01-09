@@ -3,22 +3,20 @@
   grid-template-columns: 0 1fr 0;
   height: 100dvh;
   grid-template-rows: auto 1fr;
-
+  & > .full {
+    grid-column: 1 / -1;
+  }
+  & > :not(.full) {
+    grid-column: 2;
+  }
 }
 
-.full {
-  grid-column: 1 / -1;
-}
-
-:not(.full) {
-  grid-column: 2;
-}
 
 main {
   overflow: auto;
   display: grid;
   transition: grid-template-columns 1s;
-  // gap: 16px;
+  gap: 12px;
 
   .side-bar {
     grid-column: 1;
@@ -55,4 +53,3 @@ main {
     overflow-y: auto;
   }
 }
-
