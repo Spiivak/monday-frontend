@@ -4,9 +4,43 @@
   grid-template-columns: max-content;
   grid-auto-flow: column;
 
-  .group-table-header-cell{
+  .group-table-header-cell {
     grid-row: 1;
   }
 
+  & > * {
+    height: 37px;
+    border: 1px solid #eee;
+    background-color: #fff;
+    z-index: 10;
+  }
 
+  .first-row-cell {
+    border-top-left-radius: 8px;
+  }
+  .last-row-cell {
+    border-bottom-left-radius: 8px;
+  }
+  .last-row {
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  .first-column {
+    position: relative;
+    --before-color: blue;
+  }
+  .first-column::before {
+    position: absolute;
+    content: '';
+    height: 105%;
+    left: 0;
+    width: 8px;
+    background-color: var(--before-color)
+  }
+  .first-row-cell.first-column::before {
+    border-top-left-radius: 8px;
+  }
+  .last-row-cell.first-column::before {
+    border-bottom-left-radius: 8px;
+  }
 }
