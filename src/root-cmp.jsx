@@ -7,7 +7,7 @@ import { store } from './store/store'
 import { UserMsg } from './cmps/UserMsg'
 import { DynamicModalMenu } from './cmps/Workspace/board/DynamicModalMenu'
 import { TaskDetails } from './cmps/Workspace/board/groups/TaskDetails'
-import { WorkSpaceBoard } from './cmps/Workspace/board/WorkspaceBoard'
+import { WorkSpaceBoard } from './cmps/Workspace/board/WorkSpaceBoard'
 
 export function App() {
   return (
