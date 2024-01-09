@@ -1,6 +1,6 @@
 import React from 'react'
-import { EditableText } from '../../EditableText'
 import { DynamicTableCell } from '../DynamicTableCell'
+import { EditableText } from '../../editableText/EditableText'
 export function GroupTableBody({
   rows,
   columns,
@@ -76,6 +76,7 @@ export function GroupTableBody({
           }}
         >
           <EditableText
+            type={'addTask'}
             initialText={initText}
             onSave={saveNewTask}
             placeholder={'+ Add task'}

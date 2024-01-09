@@ -47,4 +47,18 @@
 // HOME PAGE COMPONENTS
 @import "cmps/HomePage/HomeHeader";
 @import "pages/HomePage/HomeIndex";
+
+
+
+
+// EDITABLE TEXT CMPS
+@import "cmps/WorkSpaceCmps/Board/editableText/EditableText";
+@import "cmps/WorkSpaceCmps/Board/editableText/GroupTitle";
+@import "cmps/WorkSpaceCmps/Board/editableText/HeaderTitle";
+@import "cmps/WorkSpaceCmps/Board/editableText/AddTask";
+
+
+
+// SIDE BAR CMPS
 @import "cmps/side-bar/side-bar";
+@import "cmps/side-bar/modals/AddBoardModal";

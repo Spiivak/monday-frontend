@@ -1,17 +1,22 @@
 import { useState } from 'react'
-import { AddIcon, AddSmallIcon, FilterIcon, SearchIcon } from '../../../Icons'
-import { FilterModal } from './FilterModal'
-import { saveBoard } from '../../../../store/actions/board.actions'
-import { boardService } from '../../../../services/board.service'
+import { AddIcon, AddSmallIcon, FilterIcon, SearchIcon } from '../../Icons'
+import { FilterModal } from './modals/FilterModal'
+import { saveBoard } from '../../../store/actions/board.actions'
+import { boardService } from '../../../services/board.service'
+import { AddBoardModal } from './modals/AddBoardModal'
 
-export function FilterSection({ onAddBoard }) {
+export function SidebarFilter({ onAddBoard }) {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
+  const [isAddModalOpen, SetAddModalOpen] = useState(false)
   function onClickFilterModal() {
     setIsFilterModalOpen((prevIsFilterModalOpen) => !prevIsFilterModalOpen)
   }
 
+  const openAddModal = () => SetAddModalOpen(!isAddModalOpen)
+
   function onClose() {
     setIsFilterModalOpen(false)
+    SetAddModalOpen(false)
   }
 
   return (
@@ -30,12 +35,13 @@ export function FilterSection({ onAddBoard }) {
           </div>
         </button>
       </div>
-      <div className="add-btn flex align-center justify-center">
-        <button className="btn-ctn medium-primary" onClick={onAddBoard}>
+      <div className="add-btn flex align-center justify-center" data-addboard-button="true">
+        <button className="btn-ctn medium-primary" onClick={() => openAddModal()}>
           <AddSmallIcon />
         </button>
       </div>
       {isFilterModalOpen && <FilterModal onClose={onClose} />}
+      {isAddModalOpen && <AddBoardModal onClose={onClose} SetAddModalOpen={SetAddModalOpen}/>}
     </div>
   )
 }

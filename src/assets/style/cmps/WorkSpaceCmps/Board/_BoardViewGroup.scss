@@ -1,7 +1,8 @@
 .board-view-group {
-  margin-bottom: 1em;
+  margin-bottom: rem(26px);
 
   .board-title {
+    font: 500 18px/24px Poppins;
     margin-left: $spacing-small;
     margin-bottom: $spacing-small;
     cursor: grab;
@@ -28,11 +29,11 @@
     }
 
     span {
-      display: none;
+      // display: none;
       font: 400 14px Figtree;
       color: #676879;
       align-items: center;
-      margin-left: $spacing-small;
+      // margin-left: $spacing-small;
     }
 
     h2 {

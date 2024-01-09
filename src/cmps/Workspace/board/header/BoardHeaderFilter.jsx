@@ -1,3 +1,5 @@
+import { PersonFilter } from './filterBtns/PersonFilter'
+import { TextSearch } from './filterBtns/TextSearch'
 import { Tooltip } from '@mui/material'
 import {
   FilterIcon,
@@ -5,12 +7,39 @@ import {
   HideIcon,
   MenuIcon,
   NavigationChevronDownIcon,
-  PersonIcon,
-  SearchIcon,
   SortIcon,
 } from '../../../Icons'
+import { useState } from 'react'
+import { setStoreFilterBy } from '../../../../store/actions/board.actions'
+import { utilService } from '../../../../services/util.service'
+import { Dropdown } from 'antd'
 
-export function BoardHeaderFilter({ isCollapsed }) {
+export function BoardHeaderFilter({ board, isCollapsed }) {
+  const [filterBy, setFilterBy] = useState('')
+  const debounceSetStoreFilter = utilService.debounce(setStoreFilterBy, 500)
+
+  function handleChange(ev) {
+    const target = ev.target
+    const value = target.value
+    const name = target.name
+
+    setFilterBy((pervFilter) => {
+      const newFilter = { ...pervFilter, [name]: value }
+      debounceSetStoreFilter(newFilter)
+      return newFilter
+    })
+  }
+
+  function handleSubmit(incomingFilter) {
+
+    setFilterBy((pervFilter) => {
+      const newFilter = { ...pervFilter, ...incomingFilter }
+
+      setStoreFilterBy(newFilter)
+      return newFilter
+    })
+  }
+
   return (
     <section className={`board-filter flex gap6`}>
       <Tooltip title="New Item" placement="top" arrow>
@@ -23,17 +52,19 @@ export function BoardHeaderFilter({ isCollapsed }) {
           </button>
         </div>
       </Tooltip>
-      <button className="btn-icon medium-transparent flex align-center">
-        <SearchIcon /> Search
-      </button>
-      <Tooltip title="Filter by person" placement="top" arrow>
-        <button className="btn-icon medium-transparent flex align-center gap8">
-          <PersonIcon />
-          Person
-        </button>
-      </Tooltip>
+      <TextSearch
+        filterBy={filterBy}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
+      <PersonFilter
+        board={board}
+        filterBy={filterBy}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
       <Tooltip title="Filter by anything" placement="top" arrow>
-        <div className="filter-item flex">
+        <div className="filter-item flex align-center">
           <button className="btn-icon medium-transparent filter-item-btn flex gap8">
             <FilterIcon />
             Filter

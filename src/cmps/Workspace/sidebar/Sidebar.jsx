@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { FilterSection } from './modals/FilterSection'
+import { SidebarFilter } from './SidebarFilter'
 import {
   NavigationChevronLeftIcon,
   NavigationChevronRightIcon,
@@ -37,7 +37,7 @@ export function Sidebar({ onRemoveBoard, onAddBoard }) {
         <div className="side-bar-footer">
           <div className="title-wrapper">
             <SidebarWorkspace />
-            <FilterSection {...{ onAddBoard }} />
+            <SidebarFilter {...{ onAddBoard }} />
           </div>
 
           <SidebarBoardList {...{ onRemoveBoard }} />

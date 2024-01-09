@@ -4,6 +4,8 @@ export const REMOVE_BOARD = 'REMOVE_BOARD'
 export const ADD_BOARD = 'ADD_BOARD'
 export const UPDATE_BOARD = 'UPDATE_BOARD'
 export const GET_BOARD_BY_ID = 'GET_BOARD_BY_ID'
+//filter by
+export const SET_FILTER_BY = 'SET_FILTER_BY'
 //groups
 export const ADD_GROUP = 'ADD_GROUP'
 export const REMOVE_GROUP = 'REMOVE_GROUP'
@@ -31,6 +33,7 @@ export const COMPLETE_ADD_COLUMN = 'COMPLETE_ADD_COLUMN'
 
 const initialState = {
   boards: [],
+  filterBy: {},
   boardLoading: false,
   isLoading: false,
   activeContextBtn: null,
@@ -180,6 +183,11 @@ export function boardReducer(state = initialState, action = {}) {
         }
       })
       return { ...state, boards: newBoards }
+
+    //* FILTER BY
+
+    case SET_FILTER_BY:
+      return { ...state, filterBy: action.filterBy }
 
     // * LOADING
     case SET_IS_LOADING:

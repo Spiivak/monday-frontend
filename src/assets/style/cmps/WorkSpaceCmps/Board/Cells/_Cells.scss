@@ -50,7 +50,7 @@
 }
 
 .task-title {
-  min-width: 350px;
+  width: 350px;
   padding: 0 4px;
   button {
     opacity: 0;
@@ -64,15 +64,15 @@
 }
 
 .status-picker-cell {
-  min-width: 180px;
+  width: 180px;
 }
 
 .member-picker-cell {
-  min-width: 160px;
+  width: 160px;
 }
 
 .date-picker-cell {
-  min-width: 170px;
+  width: 170px;
   div {
     button {
       opacity: 0;
@@ -88,7 +88,7 @@
 }
 
 .timeline-picker-cell {
-  min-width: 180px;
+  width: 180px;
   div {
     button {
       opacity: 0;
@@ -114,11 +114,11 @@
 }
 
 .description-picker-cell {
-  min-width: 180px;
+  width: 180px;
 }
 
 .file-picker-cell {
-  min-width: 180px;
+  width: 180px;
   div {
     .test1 {
       opacity: 0;
@@ -146,14 +146,15 @@
 }
 
 .number-picker-cell {
-  min-width: 180px;
+  width: 180px;
 }
 
 .empty-add-cell {
 }
 
 .editable-text-input {
-  width: 200px !important;
+  // width: 200px !important;
+  background-color: red;
 }
 
 .multiLine-text {
