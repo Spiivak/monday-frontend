@@ -6,6 +6,9 @@ import QuickBoard from '../../../assets/img/icons/quick_search_recent_board.svg'
 import templates from '../../../assets/img/icons/templates-banner.png'
 import Confeti from '../../../assets/img/icons/header-background-v2.svg'
 import { useNavigate } from 'react-router'
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import { Typography, styled } from '@mui/material'
+import { ToolTip } from '../../ToolTip'
 
 export function WorkspaceIndex() {
   const navigate = useNavigate()
@@ -17,8 +20,8 @@ export function WorkspaceIndex() {
 
         <div className="greeting-section flex align-center">
           <div className="greetings">
-          <span className='greeting'>{utilService.getGreeting()}, Spiivak</span>
-          <p>Quickly access your recent boards, inboxs and workspaces</p>
+            <span className='greeting'>{utilService.getGreeting()}, Spiivak</span>
+            <p>Quickly access your recent boards, inboxs and workspaces</p>
           </div>
           <img src={Confeti} alt="" />
         </div>
@@ -34,27 +37,34 @@ export function WorkspaceIndex() {
 
       <div className="main-content">
         <div className="workspace-content">
-          <h1 className='flex align-center gap8'><NavigationChevronDownIcon/> Recently Visited</h1>
+          <h1 className='flex align-center gap8'><NavigationChevronDownIcon /> Recently Visited</h1>
           <div className="workspace-list">
 
-          {boards.map(board => (
-            <div key={board._id} className='workspace-card' onClick={() => navigate(`${board._id}`)}>
-              <div className="img">
-                <img src={QuickBoard} alt="" />
-              </div>
-              <div className="board-title flex align-center space-between">
-                <div className="title flex align-center gap8">
-                  <BoardIcon />
-                  <span>{board.title}</span>
+            {boards.map(board => (
+              <div key={board._id} className='workspace-card' onClick={() => navigate(`${board._id}`)}>
+                <div className="img">
+                  <img src={QuickBoard} alt="" />
                 </div>
-                <FavoriteIcon />
+                <div className="board-title flex align-center space-between">
+                  <div className="title flex align-center gap8">
+                    <BoardIcon />
+                    <span>{board.title}</span>
+                  </div>
+                  <ToolTip
+                    title="Add to favorites"
+                  >
+
+                    <button className='btn-icon medium-transparent'>
+                      <FavoriteIcon />
+                    </button>
+                  </ToolTip>
+                </div>
+                <div className="breadcrumbs flex gap8">
+                  <MwmIcon />
+                  <span className='flex gap4'>work management <NavigationChevronDownIcon /> Sprint 4</span>
+                </div>
               </div>
-              <div className="breadcrumbs flex gap8">
-                <MwmIcon />
-                <span>work management {`>`} Sprint 4</span>
-              </div>
-            </div>
-          ))}
+            ))}
           </div>
         </div>
         <div className="workspace-side">

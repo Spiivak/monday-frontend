@@ -101,7 +101,11 @@
             white-space: nowrap;
             margin-top: 4px;
             font: 400 14px Figtree;
-
+            span {
+              svg{
+                rotate: -90deg;
+              }
+            }
             svg {
               width: 18px;
               height: 18px;
