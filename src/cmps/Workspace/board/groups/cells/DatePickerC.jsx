@@ -3,28 +3,66 @@ import dayjs from 'dayjs'
 import { useState } from 'react'
 import { DatePreview } from './cellsPreview/DatePreview'
 
-export function DatePickerC({ task, cmpId, handleUpdateTask }) {
+export function DatePickerC({ task, cmpId, handleUpdateTask, cmpsOrder }) {
   const [dateModal, setDateModal] = useState(false)
-
+  const colName = cmpsOrder.find((cmp) => cmp.type === 'DatePicker')?.title
   const dateFormat = 'YYYY/MM/DD'
+
+  const oldValue = task['date' + cmpId]
 
   async function handleUpdateDate(date) {
     if (date) {
       try {
         const timestampDate = date.valueOf()
-        await handleUpdateTask('DatePicker', timestampDate, task)
+        const updatedTask = { ...task, ['date' + cmpId]: timestampDate }
+
+        await handleUpdateTask('DatePicker', timestampDate, updatedTask)
+        await handleUpdateTask(
+          'Activity',
+          {
+            createdAt: Date.now(),
+            title: updatedTask.title,
+            colName,
+            oldValue: formatDate(oldValue),
+            newValue: formatDate(timestampDate),
+          },
+          updatedTask
+        )
       } catch (err) {
-        console.log('cannot change date', err)
+        console.log('Cannot change date', err)
       } finally {
         setDateModal(false)
       }
     }
   }
+  function formatDate(timestamp) {
+    const dateObj = new Date(timestamp)
+
+    const dayNumber = dateObj.getDate()
+    const monthAbbreviation = dateObj.toLocaleString('default', {
+      month: 'short',
+    })
+
+    return `${dayNumber} ${monthAbbreviation}`
+  }
 
   async function removeDate(ev) {
     try {
       ev.stopPropagation()
-      await handleUpdateTask('DatePicker', null, task)
+      const updatedTask = { ...task, ['date' + cmpId]: null }
+
+      await handleUpdateTask('DatePicker', null, updatedTask)
+      await handleUpdateTask(
+        'Activity',
+        {
+          createdAt: Date.now(),
+          title: updatedTask.title,
+          colName,
+          oldValue: formatDate(oldValue),
+          newValue: '-',
+        },
+        updatedTask
+      )
     } catch (err) {
       console.error('Cannot clear dates', err)
     }
@@ -33,7 +71,9 @@ export function DatePickerC({ task, cmpId, handleUpdateTask }) {
   return (
     <div className="cell date-picker-cell">
       {task['date' + cmpId] && !dateModal ? (
-        <DatePreview {...{ setDateModal, removeDate, task, cmpId }} />
+        <DatePreview
+          {...{ formatDate, setDateModal, removeDate, task, cmpId }}
+        />
       ) : (
         <DatePicker
           style={{ opacity: '0', padding: '0', width: '115px' }}

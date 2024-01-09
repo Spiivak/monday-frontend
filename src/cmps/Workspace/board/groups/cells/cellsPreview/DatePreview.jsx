@@ -1,14 +1,10 @@
-export function DatePreview({ setDateModal, removeDate, task, cmpId }) {
-  function formatDate(timestamp) {
-    const dateObj = new Date(timestamp)
-
-    const dayNumber = dateObj.getDate()
-    const monthAbbreviation = dateObj.toLocaleString('default', {
-      month: 'short',
-    })
-
-    return `${dayNumber} ${monthAbbreviation}`
-  }
+export function DatePreview({
+  formatDate,
+  setDateModal,
+  removeDate,
+  task,
+  cmpId,
+}) {
   return (
     <div
       style={{
