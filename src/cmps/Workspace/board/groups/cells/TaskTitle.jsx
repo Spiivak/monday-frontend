@@ -3,8 +3,9 @@ import {
   deactivateTask,
   setActiveTask,
 } from '../../../../../store/actions/board.actions'
-import { EditableText } from '../../EditableText'
+// import { EditableText } from '../../EditableText'
 import { NavigationChevronRightIcon, OpenIcon } from '../../../../Icons'
+import { EditableText } from '../../editableText/EditableText'
 
 export function TaskTitle({ task, cmpId, handleUpdateTask }) {
   const activeTask = useSelector(

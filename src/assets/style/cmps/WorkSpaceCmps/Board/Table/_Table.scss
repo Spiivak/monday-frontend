@@ -5,7 +5,24 @@
   grid-auto-flow: column;
 
   .group-table-header-cell {
-    grid-row: 1;
+    // grid-row: 1;
+    position: relative;
+
+    .context-menu {
+      display: none;
+      position: absolute;
+      right: 4px;
+      top: 4px;
+    }
+
+    &:hover {
+      .context-menu {
+        display: flex;
+        position: absolute;
+        right: 4px;
+        top: 6px;
+      }
+    }
   }
 
   & > * {

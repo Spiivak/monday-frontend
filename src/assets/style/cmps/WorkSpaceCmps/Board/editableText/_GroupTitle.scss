@@ -1,0 +1,22 @@
+.group-title {
+  .group-title-input {
+    display: flex;
+    align-items: center;
+    input {
+      padding: 0 7px;
+      font: 500 18px/24px Poppins;
+      max-height: 28px;
+      width: 60vw;
+    }
+  }
+  
+  .group-title {
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+
+    span {
+      font: 500 18px/24px Poppins;
+    }
+  }
+}

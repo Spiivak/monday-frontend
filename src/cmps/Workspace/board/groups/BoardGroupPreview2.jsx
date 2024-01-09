@@ -1,7 +1,7 @@
 import { GroupTableBody } from './table/GroupTableBody'
 import { GroupTableHeaders } from './table/GroupTableHeaders'
 import React, { useEffect, useState } from 'react'
-import { EditableText } from '../EditableText'
+// import { EditableText } from '../EditableText'
 import { ContextBtn } from '../../../ContextBtn'
 import { NavigationChevronDownIcon } from '../../../Icons'
 import {
@@ -18,6 +18,7 @@ import {
 import { Tooltip } from 'antd'
 import AddColumnBtn from './cells/AddColumnBtn'
 import { DynamicTableCell } from './DynamicTableCell'
+import { EditableText } from '../editableText/EditableText'
 
 export function BoardGroupPreview2({ group, boardId, cmpsOrder }) {
   const [columns, setColumns] = useState([])
@@ -120,17 +121,15 @@ export function BoardGroupPreview2({ group, boardId, cmpsOrder }) {
   setBoardLoading(false)
 
   return (
-    <section className="board-view-group">
-      <div className="board-title flex gap8">
-        <div className="menu-btn flex gap8">
+    <section className="board-view-group ">
+      <div className="board-title flex align-center gap8">
+        <div className="menu-btn flex align-center">
           <ContextBtn type="group" onDeleteGroup={onDeleteGroup} />
         </div>
-        <div className="arrow-btn">
-          <button className="btn-icon small-transparent">
-            <NavigationChevronDownIcon />
+        <button className="btn-icon small-transparent" style={{ color: group.style.color }}>
+            <NavigationChevronDownIcon color={group.style.color} />
           </button>
-        </div>
-        <h2 style={{ color: group.style.color }} className="group-title flex">
+        <h2 style={{ color: group.style.color }} className="group-title">
           <EditableText
             type={'groupTitle'}
             initialText={group.title}

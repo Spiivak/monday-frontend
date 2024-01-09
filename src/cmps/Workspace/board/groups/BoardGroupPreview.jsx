@@ -32,12 +32,11 @@ import {
   updateGroup,
   updateTask,
 } from '../../../../store/actions/board.actions'
-import { AddSmallIcon, NavigationChevronDownIcon } from '../../../Icons'
+import { NavigationChevronDownIcon } from '../../../Icons'
 import { ContextBtn } from '../../../ContextBtn'
-import { EditableText } from '../EditableText'
 import AddColumnBtn from './cells/AddColumnBtn'
-import { Widgets } from '@mui/icons-material'
 import { Tooltip } from '@mui/material'
+import { EditableText } from '../editableText/EditableText'
 
 export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
   const [columns, setColumns] = useState([])
@@ -183,8 +182,8 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           <ContextBtn type="group" onDeleteGroup={onDeleteGroup} />
         </div>
         <div className="arrow-btn">
-          <button className="btn-icon small-transparent">
-            <NavigationChevronDownIcon />
+          <button className="btn-icon small-transparent" style={{ color: group.style.color }}>
+            <NavigationChevronDownIcon color={group.style.color} />
           </button>
         </div>
         <h2 style={{ color: group.style.color }} className="group-title flex">
@@ -233,7 +232,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                         ) : (
                           <div className="wrapper grid th-header pad8x">
                             <div className="wrapper2 gc1">
-                              <EditableText
+                              {column.id !== "title" && <EditableText
                                 type={'columnTitle'}
                                 initialText={column.render('Header')}
                                 onSave={(text) => {
@@ -244,7 +243,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                                     text
                                   )
                                 }}
-                              />
+                              />}
                             </div>
                             <div className="wrapper3 gc2">
                               <ContextBtn
@@ -300,6 +299,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                     style={{ marginLeft: '20px' }}
                   >
                     <EditableText
+                      type="addTask"
                       initialText={initText}
                       onSave={saveNewTask}
                       placeholder={'+ Add Item'}

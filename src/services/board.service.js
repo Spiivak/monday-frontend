@@ -1062,6 +1062,7 @@ export const boardService = {
   save,
   remove,
   getById,
+  updateBoards,
   addGroup,
   updateGroup,
   removeGroup,
@@ -1100,6 +1101,11 @@ function save(board) {
     // return httpService.post(BASE_URL, board)
   }
 }
+
+function updateBoards(boards) {
+  return storageService.postBoards(STORAGE_KEY, boards)
+}
+
 // * Groups
 function addGroup(boardId, group) {
   return storageService.postGroup(STORAGE_KEY, boardId, group)

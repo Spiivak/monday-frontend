@@ -4,6 +4,7 @@ export const storageService = {
   post,
   put,
   remove,
+  postBoards,
   postGroup,
   putGroup,
   removeGroup,
@@ -67,8 +68,16 @@ function remove(entityType, entityId) {
   })
 }
 
-// group CRUD
 
+function postBoards(entityType, boardsToUpdate){
+  boardsToUpdate = JSON.parse(JSON.stringify(boardsToUpdate))
+  _save(entityType, boardsToUpdate)
+  console.log('postBoards  boardsToUpdate:', boardsToUpdate)
+    return boardsToUpdate
+}
+
+
+// group CRUD
 function postGroup(entityType, boardId, newGroup) {
   newGroup = JSON.parse(JSON.stringify(newGroup))
   return query(entityType).then((boards) => {
@@ -80,6 +89,7 @@ function postGroup(entityType, boardId, newGroup) {
     return newGroup
   })
 }
+
 
 function putGroup(entityType, boardId, groupId, newGroup) {
   newGroup = JSON.parse(JSON.stringify(newGroup))
