@@ -10,10 +10,8 @@ import { MondayLoader } from '../MondayLoader'
 export function WorkSpaceBoard() {
   const [selectedBoard, setSelectedBoard] = useState(null)
   const [filteredBoard, setFilteredBoard] = useState(null)
-  const navigate = useNavigate()
   const boards = useSelector((storeState) => storeState.boardModule.boards)
   const filterBy = useSelector((storeState) => storeState.boardModule.filterBy)
-  const users = useSelector((storeState) => storeState.userModule.users)
   const boardLoading = useSelector(
     (storeState) => storeState.boardModule.boardLoading
   )
@@ -37,17 +35,43 @@ export function WorkSpaceBoard() {
   useEffect(() => {
     if (filteredBoard) {
       let newFilteredBoard = { ...selectedBoard }
-      const regExp = new RegExp(filterBy.txt, 'i')
-      newFilteredBoard = {
-        ...newFilteredBoard,
-        groups: newFilteredBoard.groups.map((group) => {
-          return {
-            ...group,
-            tasks: group.tasks.filter((task) => {
-              return regExp.test(task.title)
-            }),
-          }
-        }),
+      if (filterBy.txt) {
+        const regExp = new RegExp(filterBy.txt, 'i')
+        newFilteredBoard = {
+          ...newFilteredBoard,
+          groups: newFilteredBoard.groups.map((group) => {
+            return {
+              ...group,
+              tasks: group.tasks.filter((task) => {
+                return regExp.test(task.title)
+              }),
+            }
+          }),
+        }
+      }
+      if (filterBy.person) {
+        const memberKeys = newFilteredBoard.cmpsOrder.reduce((acc, cmp) => {
+          if (cmp.type === 'MemberPicker') return [...acc, 'members' + cmp.id]
+          return acc
+        }, [])
+
+        newFilteredBoard = {
+          ...newFilteredBoard,
+          groups: newFilteredBoard.groups.map((group) => {
+            return {
+              ...group,
+              tasks: group.tasks.filter((task) => {
+                return memberKeys.some((memberKey) => {
+                  if (task[memberKey])
+                    return task[memberKey].some((member) => {
+                      return member._id === filterBy.person._id
+                    })
+                  return false
+                })
+              }),
+            }
+          }),
+        }
       }
       setFilteredBoard(newFilteredBoard)
     }
