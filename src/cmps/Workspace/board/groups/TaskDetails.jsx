@@ -4,6 +4,7 @@ import { AddIcon, CloseSmallIcon, HomeIcon, MenuIcon } from '../../../Icons'
 import Frame from '../../../../assets/img/Frame.png'
 import { useSelector } from 'react-redux'
 import { deactivateTask } from '../../../../store/actions/board.actions'
+import { ActivityLogPreview } from './cells/cellsPreview/ActivityLogPreview'
 
 export function TaskDetails() {
   const activeTask = useSelector(
@@ -94,6 +95,7 @@ export function TaskDetails() {
           </button>
         </div>
       </div>
+      <ActivityLogPreview />
     </div>
   )
 }
