@@ -1,5 +1,5 @@
-import { ImgUploaderWithoutImg } from './ImgUploaderWithoutImg'
-import { ImgUploaderWithImg } from './ImgUploaderWithImg'
+import { FileEmptyPreview } from './Workspace/board/groups/cells/cellsPreview/FileEmptyPreview'
+import { FilePreview } from './Workspace/board/groups/cells/cellsPreview/FilePreview'
 import { useState } from 'react'
 import { uploadService } from '../services/upload.service'
 import { CircularProgress } from '@mui/material'
@@ -36,19 +36,20 @@ export function ImgUploader({ id, imgData, handleUpdateTaskFile = null }) {
   return (
     <div
       className="upload-preview cell flex space-between"
-      style={{ padding: '7px' }}>
+      style={{ padding: '7px' }}
+    >
       {isLoading ? (
         <CircularProgress size="16px" style={{ margin: 'auto' }} />
       ) : (
         <>
           {imgData?.imgUrl ? (
-            <ImgUploaderWithImg
+            <FilePreview
               uploadImg={uploadImg}
               imgData={imgData}
               removeImg={removeImg}
             />
           ) : (
-            <ImgUploaderWithoutImg id={id} uploadImg={uploadImg} />
+            <FileEmptyPreview id={id} uploadImg={uploadImg} />
           )}
         </>
       )}

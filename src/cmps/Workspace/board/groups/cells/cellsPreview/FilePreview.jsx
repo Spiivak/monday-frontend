@@ -1,9 +1,9 @@
 import React from 'react'
 import { styled } from '@mui/material/styles'
 import { IconButton } from '@mui/material'
-import { ImageModal } from './Workspace/board/groups/cells/modals/ImageModal'
-import { CloseSmallIcon } from './Icons'
-export function ImgUploaderWithImg({ uploadImg, imgData, removeImg }) {
+import { ImageModal } from '../modals/ImageModal'
+import { CloseSmallIcon } from '../../../../../Icons'
+export function FilePreview({ uploadImg, imgData, removeImg }) {
   const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
@@ -28,7 +28,8 @@ export function ImgUploaderWithImg({ uploadImg, imgData, removeImg }) {
         size="small"
         style={{
           padding: '0px',
-        }}>
+        }}
+      >
         <VisuallyHiddenInput
           type="file"
           onChange={uploadImg}
@@ -40,7 +41,8 @@ export function ImgUploaderWithImg({ uploadImg, imgData, removeImg }) {
             padding: '0px',
             margin: 'auto',
           }}
-          className=" flex align-center">
+          className=" flex align-center"
+        >
           <button
             className="btn-ctn small-primary flex "
             style={{
@@ -48,7 +50,8 @@ export function ImgUploaderWithImg({ uploadImg, imgData, removeImg }) {
               borderRadius: '50%',
               width: '14px',
               height: '14px',
-            }}>
+            }}
+          >
             +
           </button>
         </div>
@@ -65,7 +68,8 @@ export function ImgUploaderWithImg({ uploadImg, imgData, removeImg }) {
           padding: '0px',
           borderRadius: '50%',
         }}
-        className="test4 btn-ctn small-sec flex">
+        className="test4 btn-ctn small-sec flex"
+      >
         <span className="flex align-center">
           <CloseSmallIcon />
         </span>

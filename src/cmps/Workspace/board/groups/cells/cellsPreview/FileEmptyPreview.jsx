@@ -1,7 +1,7 @@
 import React from 'react'
-import { FileIcon } from './Icons'
+import { FileIcon } from '../../../../../Icons'
 import { styled } from '@mui/material/styles'
-export function ImgUploaderWithoutImg({ id, uploadImg }) {
+export function FileEmptyPreview({ id, uploadImg }) {
   const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
@@ -19,12 +19,14 @@ export function ImgUploaderWithoutImg({ id, uploadImg }) {
         width: '100%',
       }}
       className="flex justify-center relative test5"
-      htmlFor={id}>
+      htmlFor={id}
+    >
       <div
         style={{
           position: 'absolute',
           top: '-37%',
-        }}>
+        }}
+      >
         <FileIcon className="relative flex justify-center " />
       </div>
       <button
@@ -37,7 +39,8 @@ export function ImgUploaderWithoutImg({ id, uploadImg }) {
           right: '5%',
           top: '15%',
           translate: '0 40%',
-        }}>
+        }}
+      >
         +
         <VisuallyHiddenInput
           type="file"
