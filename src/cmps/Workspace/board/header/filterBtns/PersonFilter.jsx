@@ -1,4 +1,5 @@
-import { Button, Dropdown, Input, Tooltip } from 'antd'
+import { Button, Dropdown, Input } from 'antd'
+import { ToolTip } from '../../../../ToolTip'
 import React, { useState, useEffect } from 'react'
 import { CloseSmallIcon, PersonIcon } from '../../../../Icons'
 import { useSelector } from 'react-redux'
@@ -40,20 +41,20 @@ export function PersonFilter({ filterBy, handleChange, handleSubmit, board }) {
 
   if (!items) return
   return (
-    <Tooltip title="Filter by person" placement="top" arrow>
-      <Dropdown
-        menu={{
-          items,
-        }}
-        trigger={['click']}
-        placement="bottom"
-        arrow={{
-          pointAtCenter: true,
-        }}
-        overlayStyle={{ width: '372px', padding: '6px' }}>
-        {selectedMember ? (
+    <Dropdown
+      menu={{
+        items,
+      }}
+      trigger={['click']}
+      placement="bottom"
+      arrow={{
+        pointAtCenter: true,
+      }}
+      overlayStyle={{ width: '372px', padding: '6px' }}>
+      {selectedMember ? (
+        <ToolTip title="Filter by person">
           <button
-            style={{ height: '28px', backgroundColor: '#cce5ff' }}
+            style={{ height: '32px', backgroundColor: '#cce5ff' }}
             className="btn-icon medium-transparent flex align-center gap8">
             <div
               className="avatar-logo flex align-center justify-center gap8"
@@ -62,8 +63,8 @@ export function PersonFilter({ filterBy, handleChange, handleSubmit, board }) {
                 src={selectedMember.imgUrl}
                 alt=""
                 style={{
-                  height: '20px',
-                  width: '20px',
+                  height: '16px',
+                  width: '16px',
                   objectFit: 'cover',
                   borderRadius: '50%',
                 }}
@@ -85,15 +86,15 @@ export function PersonFilter({ filterBy, handleChange, handleSubmit, board }) {
               </button>
             </div>
           </button>
-        ) : (
-          <button
-            style={{ height: '28px' }}
-            className="btn-icon medium-transparent flex align-center gap8">
+        </ToolTip>
+      ) : (
+        <ToolTip title="Filter by person">
+          <button className="btn-icon medium-transparent flex align-center gap8">
             <PersonIcon />
             Person
           </button>
-        )}
-      </Dropdown>
-    </Tooltip>
+        </ToolTip>
+      )}
+    </Dropdown>
   )
 }
