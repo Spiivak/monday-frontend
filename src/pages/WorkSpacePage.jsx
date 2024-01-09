@@ -12,11 +12,11 @@ import { loadUsers } from '../store/actions/user.actions'
 import { boardService } from '../services/board.service'
 
 export function WorkSpacePage() {
+  const navigate = useNavigate()
   useEffect(() => {
     loadBoards()
     loadUsers()
   }, [])
-  const navigate = useNavigate()
 
   //TODO add user to own the added board
   async function onAddBoard() {
