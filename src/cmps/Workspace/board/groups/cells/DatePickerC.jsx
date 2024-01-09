@@ -1,6 +1,7 @@
 import { DatePicker } from 'antd'
 import dayjs from 'dayjs'
 import { useState } from 'react'
+import { DatePreview } from './cellsPreview/DatePreview'
 
 export function DatePickerC({ task, cmpId, handleUpdateTask }) {
   const [dateModal, setDateModal] = useState(false)
@@ -29,51 +30,10 @@ export function DatePickerC({ task, cmpId, handleUpdateTask }) {
     }
   }
 
-  function formatDate(timestamp) {
-    const dateObj = new Date(timestamp)
-
-    const dayNumber = dateObj.getDate()
-    const monthAbbreviation = dateObj.toLocaleString('default', {
-      month: 'short',
-    })
-
-    return `${dayNumber} ${monthAbbreviation}`
-  }
-
   return (
     <div className="cell date-picker-cell">
       {task['date' + cmpId] && !dateModal ? (
-        <div
-          // className="hoverable"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            textWrap: 'nowrap',
-            justifyContent: 'center',
-            position: 'relative',
-          }}
-          onClick={() => {
-            setDateModal(true)
-          }}
-        >
-          {formatDate(task['date' + cmpId])}
-          <button
-            onClick={removeDate}
-            className=" btn-ctn medium-sec  "
-            style={{
-              color: 'black',
-              padding: '0px',
-              position: 'absolute',
-              borderRadius: '50%',
-              width: '30px',
-              height: '30px',
-              left: '100%',
-              scale: '0.6',
-            }}
-          >
-            X
-          </button>
-        </div>
+        <DatePreview {...{ setDateModal, removeDate, task, cmpId }} />
       ) : (
         <DatePicker
           style={{ opacity: '0', padding: '0', width: '115px' }}
