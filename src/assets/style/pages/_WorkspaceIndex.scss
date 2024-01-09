@@ -1,0 +1,17 @@
+.test {
+  background-color: #F6F7FB;
+
+  .main-content {
+    padding-left: 80px;
+    padding-right: 80px;
+
+    .workspace-list {
+      background-color: white;
+      border-radius: 8px;
+    margin-top: 16px;
+      .test {
+        margin: 24px;
+      }
+    }
+  }
+}

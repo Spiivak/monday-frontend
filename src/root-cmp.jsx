@@ -8,6 +8,7 @@ import { UserMsg } from './cmps/UserMsg'
 import { DynamicModalMenu } from './cmps/Workspace/board/DynamicModalMenu'
 import { TaskDetails } from './cmps/Workspace/board/groups/TaskDetails'
 import { WorkSpaceBoard } from './cmps/Workspace/board/WorkspaceBoard'
+import { WorkspaceIndex } from './cmps/Workspace/index/WorkspaceIndex'
 
 export function App() {
   return (
@@ -17,7 +18,7 @@ export function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/workspace" element={<WorkSpacePage />}>
-              <Route index element={<WorkSpaceBoard />} />
+              <Route index element={<WorkspaceIndex />} />
               <Route path="/workspace/:boardId" element={<WorkSpaceBoard />} />
             </Route>
           </Routes>
