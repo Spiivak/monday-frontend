@@ -15,6 +15,7 @@ import {
   SET_ACTIVE_CONTEXT_BTN,
   SET_ACTIVE_TASK,
   SET_BOARDS,
+  SET_FILTER_BY,
   SET_IS_BOARD_LOADING,
   SET_IS_LOADING,
   START_ADD_COLUMN,
@@ -75,6 +76,10 @@ export async function updateBoards(boards) {
     console.error('board action -> cannot load boards', err)
     throw err
   }
+}
+
+export function setStoreFilterBy(filterBy) {
+  store.dispatch({ type: SET_FILTER_BY, filterBy })
 }
 
 // export async function addBoard(user) {

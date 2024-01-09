@@ -20,7 +20,7 @@ export function DynamicModalMenu() {
   const onDeleteRow = activeContextBtnData?.onDeleteRow || null
   const onAddColumn = activeContextBtnData?.onAddColumn || null
 
-  console.log(activeContextBtnData, activeContextBtn)
+
   if (!type) return
   switch (type) {
     case 'row':

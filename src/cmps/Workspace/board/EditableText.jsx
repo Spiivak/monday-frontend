@@ -68,7 +68,7 @@ export function EditableText({
   }
 
   function onOpenColorModal() {
-    console.log('test')
+
     textInputRef.current.focus()
   }
 

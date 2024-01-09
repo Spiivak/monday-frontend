@@ -109,7 +109,7 @@ export function BoardHeader({ board, onUpdateBoard }) {
             onCollapse={() => setIsCollapsed(!isCollapsed)}
           />
         )}
-        <BoardHeaderFilter isCollapsed={isCollapsed} />
+        <BoardHeaderFilter board={board} isCollapsed={isCollapsed} />
       </div>
     </section>
   )
