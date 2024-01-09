@@ -33,6 +33,7 @@ export function EditableText({
       width = '360px'
   }
   const editableTextRef = useRef()
+  const textInputRef = useRef()
   const [inputText, setInputText] = useState('')
   const [savedText, setSavedText] = useState('')
   const [isEditing, setIsEditing] = useState(false)
@@ -68,15 +69,16 @@ export function EditableText({
 
   function onOpenColorModal() {
     console.log('test')
+    textInputRef.current.focus()
   }
+
   return (
     <div style={{ width: isEditing ? width : widthHeader }}>
       {isEditing ? (
         <div
           style={{ width: width }}
           ref={editableTextRef}
-          className="editable-text-input relative"
-        >
+          className="editable-text-input relative">
           {textColor && (
             <button
               className="absolute"
@@ -91,8 +93,7 @@ export function EditableText({
                 top: '50%',
                 left: '8px',
                 translate: '0 -50%',
-              }}
-            ></button>
+              }}></button>
           )}
           <input
             style={{
@@ -101,6 +102,7 @@ export function EditableText({
               maxHeight: '32px',
               width: width,
             }}
+            ref={textInputRef}
             type="text"
             value={inputText}
             onChange={handleChange}
@@ -114,8 +116,7 @@ export function EditableText({
         <Tooltip
           title={inputText.length < 30 ? `Click to edit` : `${inputText}`}
           placement="top"
-          arrow
-        >
+          arrow>
           <div
             className="flex align-center"
             style={{
@@ -126,8 +127,7 @@ export function EditableText({
               textOverflow: 'ellipsis',
               padding: '5px',
             }}
-            onClick={handleToggleEditing}
-          >
+            onClick={handleToggleEditing}>
             {inputText || placeholder}
           </div>
         </Tooltip>

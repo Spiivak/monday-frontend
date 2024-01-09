@@ -4,6 +4,7 @@ import { GroupModal } from './menus/GroupModal'
 import { ColumnModal } from './menus/ColumnModal'
 import { BoardModal } from './menus/BoardModal'
 import { useSelector } from 'react-redux'
+import { AddModal } from './menus/AddModal'
 
 export function DynamicModalMenu() {
   const activeContextBtn = useSelector(
@@ -17,7 +18,9 @@ export function DynamicModalMenu() {
   const onDeleteBoard = activeContextBtnData?.onDeleteBoard || null
   const onDeleteColumn = activeContextBtnData?.onDeleteColumn || null
   const onDeleteRow = activeContextBtnData?.onDeleteRow || null
+  const onAddColumn = activeContextBtnData?.onAddColumn || null
 
+  console.log(activeContextBtnData, activeContextBtn)
   if (!type) return
   switch (type) {
     case 'row':
@@ -44,6 +47,10 @@ export function DynamicModalMenu() {
           menuBtnRef={activeContextBtn}
           onDeleteBoard={onDeleteBoard}
         />
+      )
+    case 'add':
+      return (
+        <AddModal menuBtnRef={activeContextBtn} onAddColumn={onAddColumn} />
       )
   }
 }

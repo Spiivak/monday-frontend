@@ -17,7 +17,6 @@ export function ContextBtn({
   const activeContextBtn = useSelector(
     (storeState) => storeState.boardModule.activeContextBtn
   )
-  const [isMoreModalOpen, setIsMoreModalOpen] = useState(false)
 
   function onSetActiveBtn(ev) {
     const contextBtn = ev.target
