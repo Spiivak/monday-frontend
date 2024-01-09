@@ -1,6 +1,6 @@
 import React from 'react'
 import { utilService } from '../../../services/util.service'
-import { BoardIcon, BoltIcon, FavoriteIcon, MwmIcon, NavigationChevronDownIcon, TestIcon } from '../../Icons'
+import { BoardIcon, BoltIcon, FavoriteIcon, MwmIcon, NavigationChevronDownIcon } from '../../Icons'
 import { useSelector } from 'react-redux'
 import QuickBoard from '../../../assets/img/icons/quick_search_recent_board.svg'
 import templates from '../../../assets/img/icons/templates-banner.png'
