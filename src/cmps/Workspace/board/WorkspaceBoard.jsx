@@ -37,16 +37,21 @@ export function WorkSpaceBoard() {
       let newFilteredBoard = { ...selectedBoard }
       if (filterBy.txt) {
         const regExp = new RegExp(filterBy.txt, 'i')
+
         newFilteredBoard = {
           ...newFilteredBoard,
-          groups: newFilteredBoard.groups.map((group) => {
-            return {
-              ...group,
-              tasks: group.tasks.filter((task) => {
+          groups: newFilteredBoard.groups
+            .map((group) => {
+              const filteredTasks = group.tasks.filter((task) => {
                 return regExp.test(task.title)
-              }),
-            }
-          }),
+              })
+
+
+              return filteredTasks.length > 0
+                ? { ...group, tasks: filteredTasks }
+                : null
+            })
+            .filter(Boolean),
         }
       }
       if (filterBy.person) {
@@ -57,20 +62,23 @@ export function WorkSpaceBoard() {
 
         newFilteredBoard = {
           ...newFilteredBoard,
-          groups: newFilteredBoard.groups.map((group) => {
-            return {
-              ...group,
-              tasks: group.tasks.filter((task) => {
+          groups: newFilteredBoard.groups
+            .map((group) => {
+              const filteredTasks = group.tasks.filter((task) => {
                 return memberKeys.some((memberKey) => {
-                  if (task[memberKey])
+                  if (task[memberKey]) {
                     return task[memberKey].some((member) => {
                       return member._id === filterBy.person._id
                     })
+                  }
                   return false
                 })
-              }),
-            }
-          }),
+              })
+              return filteredTasks.length > 0
+                ? { ...group, tasks: filteredTasks }
+                : null
+            })
+            .filter(Boolean),
         }
       }
       setFilteredBoard(newFilteredBoard)
