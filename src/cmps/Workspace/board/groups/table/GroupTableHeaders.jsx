@@ -7,12 +7,13 @@ export function GroupTableHeaders({
   columns,
   onUpdateColumn,
   boardId,
+  group,
   onDeleteColumn,
   onAddColumn,
 }) {
   return (
     <>
-      <div className="group-table-header-cell checkbox-cell flex align-center justify-center">
+      <div style={{'--before-color':group.style.color}} className="first-column group-table-header-cell checkbox-cell flex align-center justify-center first-row-cell">
         {/* TODO: Create store for selected items */}
         <input type="checkbox" />
       </div>

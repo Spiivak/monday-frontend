@@ -14,8 +14,8 @@ export function GroupTableBody({
       {rows.map((row, rowIdx) => (
         <React.Fragment key={row.id}>
           <div
-            style={{ gridRow: rowIdx + 2, gridColumn: 1 }}
-            className="group-table-cell checkbox-cell flex align-center justify-center">
+            style={{'--before-color':group.style.color, gridRow: rowIdx + 2, gridColumn: 1 }}
+            className="first-column group-table-cell checkbox-cell flex align-center justify-center">
             <input type="checkbox" />
           </div>
           {columns.map(
@@ -43,10 +43,13 @@ export function GroupTableBody({
           )}
         </React.Fragment>
       ))}
-      <div style={{
+      <div
+        style={{
+          '--before-color':group.style.color,
           gridRow: rows.length + 2,
           gridColumn: 1,
-        }} className="group-table-cell checkbox-cell flex align-center justify-center">
+        }}
+        className="first-column last-row-cell last-row group-table-cell checkbox-cell flex align-center justify-center">
         <input disabled type="checkbox" />
       </div>
       <div
@@ -54,7 +57,7 @@ export function GroupTableBody({
           gridRow: rows.length + 2,
           gridColumn: `2 /${columns.length + 3}`,
         }}
-        className="group-table-cell">
+        className="group-table-cell last-row">
         <div
           className="wrapper flex align-center"
           style={{
