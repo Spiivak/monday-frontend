@@ -148,6 +148,7 @@ export function BoardGroupPreview2({ group, boardId, cmpsOrder }) {
       <div className="board-group-table-container">
         <GroupTableHeaders
           columns={columns}
+          group={group}
           onUpdateColumn={onUpdateColumn}
           boardId={boardId}
           onDeleteColumn={onDeleteColumn}
