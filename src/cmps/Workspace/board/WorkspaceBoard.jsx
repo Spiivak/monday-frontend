@@ -36,7 +36,6 @@ export function WorkSpaceBoard() {
     loadUsers()
   }, [])
 
-  console.log(boardLoading)
   useEffect(() => {
     if (boardId) {
       setSelectedBoard(boards.find((board) => board._id === boardId))

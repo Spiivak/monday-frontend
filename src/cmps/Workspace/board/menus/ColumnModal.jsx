@@ -68,18 +68,24 @@ export function ColumnModal({
       }
     } // Add event listener to the document body
 
+    const handleWheel = (event) => {
+      if (modalRef.current && position) {
+        event.preventDefault() // Prevent default wheel behavior when the modal is open
+      }
+    }
+
     // Initial setup
     handleResize()
 
     // Event listeners
     window.addEventListener('click', handleOutsideClick)
     window.addEventListener('resize', handleResize)
-    window.addEventListener('scroll', handleResize)
+    window.addEventListener('wheel', handleWheel)
     // Cleanup
     return () => {
       window.removeEventListener('click', handleOutsideClick)
       window.removeEventListener('resize', handleResize)
-      window.removeEventListener('scroll', handleResize)
+      window.removeEventListener('wheel', handleWheel)
     }
   }, [menuBtnRef])
 
@@ -99,8 +105,7 @@ export function ColumnModal({
         top: position.top,
         left: position.left,
         zIndex: 1000,
-      }}
-    >
+      }}>
       <div className="ds-tabs-section">
         <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
@@ -162,8 +167,7 @@ export function ColumnModal({
         <div className="tab flex column">
           <button
             className="btn-icon medium-transparent flex gap16"
-            onClick={clickDeleteColumn}
-          >
+            onClick={clickDeleteColumn}>
             <DeleteIcon />
             Delete
           </button>
