@@ -1,7 +1,7 @@
 import React from 'react'
 import { FileIcon } from '../../../../../Icons'
 import { styled } from '@mui/material/styles'
-export function FileEmptyPreview({ id, uploadImg }) {
+export function EmptyFilePreview({ id, uploadImg }) {
   const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',

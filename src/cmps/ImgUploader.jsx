@@ -1,4 +1,4 @@
-import { FileEmptyPreview } from './Workspace/board/groups/cells/cellsPreview/FileEmptyPreview'
+import { EmptyFilePreview } from './Workspace/board/groups/cells/cellsPreview/EmptyFilePreview'
 import { FilePreview } from './Workspace/board/groups/cells/cellsPreview/FilePreview'
 import { useState } from 'react'
 import { uploadService } from '../services/upload.service'
@@ -49,7 +49,7 @@ export function ImgUploader({ id, imgData, handleUpdateTaskFile = null }) {
               removeImg={removeImg}
             />
           ) : (
-            <FileEmptyPreview id={id} uploadImg={uploadImg} />
+            <EmptyFilePreview id={id} uploadImg={uploadImg} />
           )}
         </>
       )}
