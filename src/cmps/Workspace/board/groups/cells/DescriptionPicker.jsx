@@ -2,10 +2,18 @@ import { useEffect, useRef, useState } from 'react'
 import TextField from '@mui/material/TextField'
 import { DescriptionPreview } from './cellsPreview/DescriptionPreview'
 
-export function DescriptionPicker({ task, cmpId, handleUpdateTask }) {
+export function DescriptionPicker({
+  task,
+  cmpId,
+  handleUpdateTask,
+  cmpsOrder,
+}) {
   const [desc, setDesc] = useState(task['description' + cmpId] || '')
   const [multiLine, setOpenMultiLine] = useState(false)
   const inputRef = useRef(null)
+  const colName = cmpsOrder.find(
+    (cmp) => cmp.type === 'DescriptionPicker'
+  )?.title
 
   const displayValue = multiLine ? desc : desc.replace(/\n/g, ' ')
 
@@ -19,7 +27,19 @@ export function DescriptionPicker({ task, cmpId, handleUpdateTask }) {
   async function handleBlur() {
     try {
       setOpenMultiLine(false)
-      await handleUpdateTask('DescriptionPicker', desc, task)
+      const updatedTask = { ...task, ['description' + cmpId]: desc }
+      await handleUpdateTask('DescriptionPicker', desc, updatedTask)
+      await handleUpdateTask(
+        'Activity',
+        {
+          createdAt: Date.now(),
+          title: updatedTask.title,
+          colName,
+          oldValue: task['description' + cmpId],
+          newValue: desc,
+        },
+        updatedTask
+      )
     } catch (err) {
       console.log(err)
     }
@@ -37,18 +57,11 @@ export function DescriptionPicker({ task, cmpId, handleUpdateTask }) {
         <DescriptionPreview {...{ setOpenMultiLine, displayValue }} />
       ) : (
         <TextField
+          className="multiLine-text"
           value={desc}
           onBlur={handleBlur}
           onChange={handleChange}
           inputRef={inputRef}
-          style={{
-            position: 'absolute',
-            backgroundColor: 'white',
-            zIndex: '999',
-            right: '50%',
-            top: '0',
-            transform: 'translate(50%, -5%)',
-          }}
           id="outlined-multiline-static"
           multiline
           fullWidth
