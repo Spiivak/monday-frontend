@@ -52,7 +52,9 @@ export function PersonFilter({ filterBy, handleChange, handleSubmit, board }) {
         }}
         overlayStyle={{ width: '372px', padding: '6px' }}>
         {selectedMember ? (
-          <button className="btn-icon medium-transparent flex align-center gap8">
+          <button
+            style={{ height: '28px', backgroundColor: 'blue' }}
+            className="btn-icon medium-transparent flex align-center gap8">
             <div
               className="avatar-logo flex align-center justify-center gap8"
               key={selectedMember._id}>
@@ -84,7 +86,9 @@ export function PersonFilter({ filterBy, handleChange, handleSubmit, board }) {
             </div>
           </button>
         ) : (
-          <button className="btn-icon medium-transparent flex align-center gap8">
+          <button
+            style={{ height: '28px' }}
+            className="btn-icon medium-transparent flex align-center gap8">
             <PersonIcon />
             Person
           </button>

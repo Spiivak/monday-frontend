@@ -7,8 +7,6 @@ import {
   HideIcon,
   MenuIcon,
   NavigationChevronDownIcon,
-  PersonIcon,
-  SearchIcon,
   SortIcon,
 } from '../../../Icons'
 import { useState } from 'react'
@@ -66,7 +64,7 @@ export function BoardHeaderFilter({ board, isCollapsed }) {
         handleSubmit={handleSubmit}
       />
       <Tooltip title="Filter by anything" placement="top" arrow>
-        <div className="filter-item flex">
+        <div className="filter-item flex align-center">
           <button className="btn-icon medium-transparent filter-item-btn flex gap8">
             <FilterIcon />
             Filter
