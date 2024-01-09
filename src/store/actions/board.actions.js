@@ -66,6 +66,17 @@ export async function removeBoard(boardId) {
   }
 }
 
+export async function updateBoards(boards) {
+  console.log('saveBoards  boards:', boards)
+  try {
+    const updatedBoards = await boardService.updateBoards(boards)
+    store.dispatch({ type: SET_BOARDS, boards: updatedBoards })
+  } catch (err) {
+    console.error('board action -> cannot load boards', err)
+    throw err
+  }
+}
+
 // export async function addBoard(user) {
 //   const board = boardService.getEmptyBoard()
 //   try {
