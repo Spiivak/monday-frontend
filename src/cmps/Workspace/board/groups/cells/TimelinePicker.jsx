@@ -3,11 +3,20 @@ import dayjs from 'dayjs'
 import { useEffect, useState } from 'react'
 import { TimelinePreview } from './cellsPreview/TimelinePreview'
 
-export function TimelinePicker({ task, cmpId, handleUpdateTask, group }) {
+export function TimelinePicker({
+  task,
+  cmpId,
+  handleUpdateTask,
+  group,
+  cmpsOrder,
+}) {
   const [dateModal, setDateModal] = useState(false)
   const [color, setColor] = useState('#333')
   const { RangePicker } = DatePicker
   const dateFormat = 'YYYY/MM/DD'
+  const colName = cmpsOrder.find((cmp) => cmp.type === 'TimelinePicker')?.title
+
+  const oldValue = task['timeline' + cmpId]
 
   useEffect(() => {
     if (group?.style?.color) {
@@ -35,10 +44,25 @@ export function TimelinePicker({ task, cmpId, handleUpdateTask, group }) {
         const [startDate, endDate] = dates
         const timestampStartDate = startDate.valueOf()
         const timestampEndDate = endDate.valueOf()
+        const updatedTask = {
+          ...task,
+          ['timeline' + cmpId]: [timestampStartDate, timestampEndDate],
+        }
         await handleUpdateTask(
           'TimelinePicker',
           [timestampStartDate, timestampEndDate],
-          task
+          updatedTask
+        )
+        await handleUpdateTask(
+          'Activity',
+          {
+            createdAt: Date.now(),
+            title: updatedTask.title,
+            colName,
+            oldValue: formatDateRange(oldValue),
+            newValue: formatDateRange([timestampStartDate, timestampEndDate]),
+          },
+          updatedTask
         )
       } catch (err) {
         console.error('Cannot set dates', err)
@@ -51,7 +75,20 @@ export function TimelinePicker({ task, cmpId, handleUpdateTask, group }) {
   async function removeDates(ev) {
     try {
       ev.stopPropagation()
-      await handleUpdateTask('TimelinePicker', null, task)
+      const updatedTask = { ...task, ['timeline' + cmpId]: null }
+
+      await handleUpdateTask('TimelinePicker', null, updatedTask)
+      await handleUpdateTask(
+        'Activity',
+        {
+          createdAt: Date.now(),
+          title: updatedTask.title,
+          colName,
+          oldValue: formatDateRange(oldValue),
+          newValue: '-',
+        },
+        updatedTask
+      )
       setColor('#333')
     } catch (err) {
       console.error('Cannot clear dates', err)
