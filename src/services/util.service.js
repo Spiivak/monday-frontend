@@ -8,6 +8,7 @@ export const utilService = {
   loadFromStorage,
   getFormattedDate,
   getGreeting,
+  timeDiff,
 }
 
 function makeId(length = 6) {
@@ -80,6 +81,26 @@ function randomPastTime() {
   return Date.now() - pastTime
 }
 
+function timeDiff(ts) {
+  const now = Date.now()
+  let tsDiff = now - ts
+
+  tsDiff = Math.floor(tsDiff / 1000) //sec
+  if (tsDiff < 60) return tsDiff + 's'
+  tsDiff = Math.floor(tsDiff / 60) //min
+  if (tsDiff < 60) return tsDiff + 'm'
+  tsDiff = Math.floor(tsDiff / 60) //hour
+  if (tsDiff < 24) return tsDiff + 'h'
+  tsDiff = Math.floor(tsDiff / 24) //day
+  if (tsDiff < 7) return tsDiff + 'd'
+  tsDiff = Math.floor(tsDiff / 7) //week
+  if (tsDiff < 4) return tsDiff + 'w'
+  tsDiff = Math.floor(tsDiff / 4) //month
+  if (tsDiff < 12) return tsDiff + 'months'
+  tsDiff = Math.floor(tsDiff / 12) //year
+  return tsDiff + ' years ago'
+}
+
 function getFormattedDate(timestamp) {
   const dateObject = new Date(timestamp)
 
@@ -114,10 +135,10 @@ function getGreeting() {
   const hours = now.getHours()
 
   if (hours >= 0 && hours < 12) {
-    return "Good morning"
+    return 'Good morning'
   } else if (hours >= 12 && hours < 18) {
-    return "Good afternoon"
+    return 'Good afternoon'
   } else {
-    return "Good evening"
+    return 'Good evening'
   }
 }
