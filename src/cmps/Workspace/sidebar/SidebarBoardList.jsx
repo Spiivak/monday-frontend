@@ -20,14 +20,6 @@ export function SidebarBoardList({ onRemoveBoard }) {
     updateBoards(newBoards)
   }
 
-  // async function updateBoards(boards) {
-  //   try {
-  //     await saveBoardsList(boards)
-  //   } catch (err) {
-  //     console.error('Error saving Boards order:', err)
-  //   }
-  // }
-
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <Droppable droppableId="boards" direction="vertical">

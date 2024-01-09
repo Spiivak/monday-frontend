@@ -7,7 +7,6 @@ import { TaskTitle } from './groups/TaskTitle'
 import { AddTask } from './groups/AddTask'
 
 export function EditableText({ initialText, onSave, placeholder, type, textColor }) {
-  console.log('EditableText  type:', type)
   switch (type) {
     case 'addTask':
       return <AddTask {...{ initialText, onSave, placeholder, type }} />
