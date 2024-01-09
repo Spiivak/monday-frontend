@@ -5,9 +5,9 @@ export function TextSearch({ handleChange, handleSubmit, filterBy }) {
 
 
   return (
-    <button className="btn-icon medium-transparent flex align-center">
+    <div style={{translate: '0 -10%'}} className="btn-icon medium-transparent flex align-center relative">
       <input
-        style={{height: '28px' ,backgroundColor: filterBy.txt ? 'blue' : ''}}
+        style={{height: '28px' ,backgroundColor: filterBy.txt ? '#cce5ff' : ''}}
         type="text"
         value={filterBy.txt}
         name="txt"
@@ -15,6 +15,6 @@ export function TextSearch({ handleChange, handleSubmit, filterBy }) {
         onBlur={handleSubmit}
       />
       {/* <SearchIcon /> Search */}
-    </button>
+    </div>
   )
 }

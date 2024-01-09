@@ -53,7 +53,7 @@ export function PersonFilter({ filterBy, handleChange, handleSubmit, board }) {
         overlayStyle={{ width: '372px', padding: '6px' }}>
         {selectedMember ? (
           <button
-            style={{ height: '28px', backgroundColor: 'blue' }}
+            style={{ height: '28px', backgroundColor: '#cce5ff' }}
             className="btn-icon medium-transparent flex align-center gap8">
             <div
               className="avatar-logo flex align-center justify-center gap8"

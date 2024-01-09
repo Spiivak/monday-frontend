@@ -47,7 +47,9 @@
 // Grid
 .grid {
   display: grid;
-
+  &.c1 {
+    grid-template-columns: 1fr;
+  }
   &.c2 {
     grid-template-columns: repeat(2, 1fr);
   }
