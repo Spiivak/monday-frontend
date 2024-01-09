@@ -15,6 +15,7 @@ import {
   SET_ACTIVE_CONTEXT_BTN,
   SET_ACTIVE_TASK,
   SET_BOARDS,
+  SET_IS_BOARD_LOADING,
   SET_IS_LOADING,
   START_ADD_COLUMN,
   UPDATE_BOARD,
@@ -41,7 +42,7 @@ export async function saveBoard(board) {
 }
 
 export async function loadBoards() {
-  store.dispatch({ type: SET_IS_LOADING, isLoading: true })
+  store.dispatch({ type: SET_IS_BOARD_LOADING, boardLoading: true })
   try {
     const boards = await boardService.query()
     store.dispatch({ type: SET_BOARDS, boards })
@@ -281,8 +282,8 @@ export function finishAddingColumn() {
   store.dispatch({ type: COMPLETE_ADD_COLUMN })
 }
 
-export function setLoading(type) {
-  store.dispatch({ type: SET_IS_LOADING, isLoading: type })
+export function setBoardLoading(type) {
+  store.dispatch({ type: SET_IS_BOARD_LOADING, boardLoading: type })
 }
 // export async function addBoardMsg(boardId,msg,user){
 //   const newMsg = {...boardService.getEmptyMsg(), content:msg}

@@ -27,7 +27,7 @@ import {
   removeColumn,
   removeGroup,
   removeTask,
-  setLoading,
+  // setLoading,
   updateColumn,
   updateGroup,
   updateTask,
@@ -43,7 +43,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
   const [columns, setColumns] = useState([])
   const [data, setData] = useState([])
   const [initText, setInitText] = useState('')
-  setLoading
+  // setLoading
 
   useEffect(() => {
     setColumns([

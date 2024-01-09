@@ -26,8 +26,8 @@ export function WorkSpaceBoard() {
   const navigate = useNavigate()
   const boards = useSelector((storeState) => storeState.boardModule.boards)
   const users = useSelector((storeState) => storeState.userModule.users)
-  const isLoading = useSelector(
-    (storeState) => storeState.boardModule.isLoading
+  const boardLoading = useSelector(
+    (storeState) => storeState.boardModule.boardLoading
   )
   const { boardId } = useParams()
 
@@ -36,7 +36,7 @@ export function WorkSpaceBoard() {
     loadUsers()
   }, [])
 
-  console.log(isLoading)
+  console.log(boardLoading)
   useEffect(() => {
     if (boardId) {
       setSelectedBoard(boards.find((board) => board._id === boardId))
@@ -92,7 +92,7 @@ export function WorkSpaceBoard() {
           )}
         </div>
       </section>
-      {isLoading && <MondayLoader />}
+      {boardLoading && <MondayLoader />}
     </main>
   )
 }

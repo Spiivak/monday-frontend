@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import {
   finishAddingColumn,
-  setLoading,
+  setBoardLoading,
 } from '../../../../../store/actions/board.actions'
 export function EmptyStreachableCell({}) {
   const isAddingColumn = useSelector(
@@ -35,7 +35,7 @@ export function EmptyStreachableCell({}) {
         setWidth(newWidth - 3 + 'px')
       }
     }
-    setLoading(false)
+    setBoardLoading(false)
     window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('resize', handleResize)
