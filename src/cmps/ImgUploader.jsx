@@ -1,22 +1,8 @@
+import { ImgUploaderWithoutImg } from './ImgUploaderWithoutImg'
+import { ImgUploaderWithImg } from './ImgUploaderWithImg'
 import { useState } from 'react'
 import { uploadService } from '../services/upload.service'
-import { styled } from '@mui/material/styles'
-import { CloseSmallIcon } from './Icons'
-import { IconButton } from '@mui/material'
 import { CircularProgress } from '@mui/material'
-import { ImageModal } from './Workspace/board/groups/cells/modals/ImageModal'
-import { FileIcon } from './Icons'
-const VisuallyHiddenInput = styled('input')({
-  clip: 'rect(0 0 0 0)',
-  clipPath: 'inset(50%)',
-  height: 1,
-  overflow: 'hidden',
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  whiteSpace: 'nowrap',
-  width: 1,
-})
 
 export function ImgUploader({ id, imgData, handleUpdateTaskFile = null }) {
   const [isLoading, setIsLoading] = useState(false)
@@ -50,92 +36,19 @@ export function ImgUploader({ id, imgData, handleUpdateTaskFile = null }) {
   return (
     <div
       className="upload-preview cell flex space-between"
-      style={{ padding: '7px' }}
-    >
+      style={{ padding: '7px' }}>
       {isLoading ? (
         <CircularProgress size="16px" style={{ margin: 'auto' }} />
       ) : (
         <>
           {imgData?.imgUrl ? (
-            <>
-              <IconButton
-                sx={{ '&:hover': { backgroundColor: 'transparent' } }}
-                className="test1"
-                component="label"
-                size="small"
-                style={{
-                  padding: '0px',
-                }}
-              >
-                <VisuallyHiddenInput
-                  type="file"
-                  onChange={uploadImg}
-                  accept="img/*"
-                  id="imgUpload"
-                />
-                <div
-                  style={{ padding: '0px', margin: 'auto' }}
-                  className=" flex align-center"
-                >
-                  <button
-                    className="btn-ctn small-primary flex "
-                    style={{
-                      padding: '0px',
-                      borderRadius: '50%',
-                      width: '14px',
-                      height: '14px',
-                    }}
-                  >
-                    +
-                  </button>
-                </div>
-              </IconButton>
-              <div className="image-preview flex align-center">
-                <img src={imgData.imgUrl} />
-                <div className="modal">
-                  <ImageModal src={imgData} />
-                </div>
-              </div>
-              <button
-                onClick={removeImg}
-                style={{ padding: '0px', borderRadius: '50%' }}
-                className="test4 btn-ctn small-sec flex"
-              >
-                <span className="flex align-center">
-                  <CloseSmallIcon />
-                </span>
-              </button>
-            </>
+            <ImgUploaderWithImg
+              uploadImg={uploadImg}
+              imgData={imgData}
+              removeImg={removeImg}
+            />
           ) : (
-            <label
-              style={{ width: '100%' }}
-              className="flex justify-center relative test5"
-              htmlFor={id}
-            >
-              <div style={{ position: 'absolute', top: '-37%' }}>
-                <FileIcon className="relative flex justify-center " />
-              </div>
-              <button
-                className="btn-ctn small-primary flex absolute"
-                style={{
-                  padding: '0px',
-                  borderRadius: '50%',
-                  width: '12px',
-                  height: '12px',
-                  right: '5%',
-                  top: '15%',
-                  translate: '0 40%',
-                }}
-              >
-                +
-                <VisuallyHiddenInput
-                  type="file"
-                  onChange={uploadImg}
-                  accept="img/*"
-                  id={id}
-                />
-              </button>
-            </label>
+            <ImgUploaderWithoutImg id={id} uploadImg={uploadImg} />
           )}
         </>
       )}
