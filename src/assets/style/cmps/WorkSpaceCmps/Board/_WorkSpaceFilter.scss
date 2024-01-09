@@ -52,5 +52,19 @@
         }
       }
     }
+    .search-input{
+      padding-left: 2rem;
+    }
+    .search-icon{
+      position: absolute;
+      top: 63%;
+      left: 2.6%;
+      translate: 0 -50%
+    }
+    .search-input::placeholder{
+      font: 400 14px/24px Figtree;
+      translate: 1% -10%;
+    }
+
   }
 }
