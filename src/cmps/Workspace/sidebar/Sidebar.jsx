@@ -13,21 +13,12 @@ import { SidebarBoardList } from './SidebarBoardList'
 
 export function Sidebar({ onRemoveBoard, onAddBoard }) {
   const boards = useSelector((storeState) => storeState.boardModule.boards)
+  console.log('Sidebar  boards:', boards)
   const filterBy = useSelector((storeState) => storeState.boardModule.filterBy)
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
 
   const openSideBar = () => setIsSidebarOpen(!isSidebarOpen)
-
-  useEffect(() => {}, [])
-
-  // async function onLoadBoards() {
-  //   try {
-  //     await loadBoards()
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
 
   return (
     <section className={`side-bar ${isSidebarOpen ? '' : 'side-bar-close'}`}>
