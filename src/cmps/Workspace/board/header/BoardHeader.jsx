@@ -16,11 +16,12 @@ import {
   SearchIcon,
   SortIcon,
 } from '../../../Icons'
-import { EditableText } from '../EditableText'
+// import { EditableText } from '../EditableText'
 import { Tooltip } from '@mui/material'
 import { NavLink } from 'react-router-dom'
 import { BoardTabs } from './BoardTabs'
 import { BoardHeaderFilter } from './BoardHeaderFilter'
+import { EditableText } from '../editableText/EditableText'
 
 export function BoardHeader({ board, onUpdateBoard }) {
   const [isCollapsed, setIsCollapsed] = useState(false)

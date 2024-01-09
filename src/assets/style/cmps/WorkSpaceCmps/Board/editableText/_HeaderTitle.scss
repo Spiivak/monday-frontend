@@ -1,0 +1,19 @@
+.header-title-input {
+    display: flex;
+    align-items: center;
+    input {
+      padding: 0 !important;
+      margin: 0;
+      font: 500 24px Poppins;
+      height: 32px;
+      width: rem(500px);
+    }
+  
+  }
+  .header-text {
+    // overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    font: 500 24px Poppins;
+    width: 100%;
+  }

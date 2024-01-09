@@ -1,0 +1,55 @@
+.editable-txt {
+  border-radius: $border-radius-small;
+  cursor: text;
+  max-height: 28px;
+  display: flex;
+
+  &:hover {
+    outline: 1px solid #33333336;
+    &.editable-task {
+      width: max-content;
+    }
+  
+    &.editable-column {
+      // width: 32.8rem;
+    }
+  
+    &.editable-title {
+      // width: max-content;
+    }
+
+    &.editable-header {
+      height: 32px;
+    }
+  }
+
+}
+
+.task-title {
+  height: 36px;
+  display: flex;
+  align-items: center;
+
+  // padding: 0;
+  margin: 0;
+  input {
+    padding: 0 4px;
+    margin: -1px;
+    // height: 28px;
+    font: 400 14px/24px Figtree;
+    color: #676879;
+  }
+}
+
+.column-title {
+  margin: 0;
+  padding: 0;
+
+  input {
+    max-width: 143px;
+    padding: 0 4px;
+    margin: 0;
+    font: 400 14px/24px Figtree;
+    color: #676879;
+  }
+}
