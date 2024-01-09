@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import TextField from '@mui/material/TextField'
+import { DescriptionPreview } from './cellsPreview/DescriptionPreview'
 
 export function DescriptionPicker({ task, cmpId, handleUpdateTask }) {
   const [desc, setDesc] = useState(task['description' + cmpId] || '')
@@ -32,20 +33,9 @@ export function DescriptionPicker({ task, cmpId, handleUpdateTask }) {
 
   return (
     <div className="description-picker-cell relative">
-      <div
-        onClick={() => setOpenMultiLine(true)}
-        style={{
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
-          padding: '5px',
-        }}
-      >
-        {displayValue || (
-          <span style={{ color: '#00000044' }}>Add description</span>
-        )}
-      </div>
-      {multiLine && (
+      {!multiLine ? (
+        <DescriptionPreview {...{ setOpenMultiLine, displayValue }} />
+      ) : (
         <TextField
           value={desc}
           onBlur={handleBlur}
