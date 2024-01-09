@@ -11,13 +11,13 @@
 
 .checkbox-cell {
   $checkmark-color: rgba(36, 222, 36, 0.688);
-  width: 50px;
+  min-width: 50px;
   height: 100%;
 
   input[type='checkbox'] {
     padding: 0;
     margin: 0;
-    width: 16px;
+    min-width: 16px;
     height: 16px;
     -webkit-appearance: none;
     appearance: none;
@@ -29,7 +29,7 @@
     justify-content: center;
     &::before {
       content: '';
-      width: 0.65em;
+      min-width: 0.65em;
       height: 0.65em;
       transform: scale(0);
       transition: transform 120ms ease-in-out;
@@ -50,7 +50,7 @@
 }
 
 .task-title {
-  width: 350px;
+  min-width: 350px;
   padding: 0 4px;
   button {
     opacity: 0;
@@ -64,15 +64,15 @@
 }
 
 .status-picker-cell {
-  width: 180px;
+  min-width: 180px;
 }
 
 .member-picker-cell {
-  width: 160px;
+  min-width: 160px;
 }
 
 .date-picker-cell {
-  width: 170px;
+  min-width: 170px;
   div {
     button {
       opacity: 0;
@@ -88,7 +88,7 @@
 }
 
 .timeline-picker-cell {
-  width: 180px;
+  min-width: 180px;
   div {
     button {
       opacity: 0;
@@ -109,7 +109,7 @@
 
     height: 22px;
     text-align: center;
-    width: 115px;
+    min-width: 115px;
   }
 }
 
@@ -118,7 +118,7 @@
 }
 
 .file-picker-cell {
-  width: 180px;
+  min-width: 180px;
   div {
     .test1 {
       opacity: 0;
@@ -146,13 +146,13 @@
 }
 
 .number-picker-cell {
-  width: 180px;
+  min-width: 180px;
 }
 
 .empty-add-cell {
 }
 
 .editable-text-input {
-  // width: 200px !important;
+  // min-width: 200px !important;
   background-color: red;
 }

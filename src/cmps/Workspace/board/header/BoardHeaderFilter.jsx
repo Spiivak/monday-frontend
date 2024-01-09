@@ -31,7 +31,6 @@ export function BoardHeaderFilter({ board, isCollapsed }) {
   }
 
   function handleSubmit(incomingFilter) {
-
     setFilterBy((pervFilter) => {
       const newFilter = { ...pervFilter, ...incomingFilter }
 
@@ -64,7 +63,9 @@ export function BoardHeaderFilter({ board, isCollapsed }) {
         handleSubmit={handleSubmit}
       />
       <Tooltip title="Filter by anything" placement="top" arrow>
-        <div className="filter-item flex align-center">
+        <div
+          style={{ height: '28px' }}
+          className="filter-item flex align-center">
           <button className="btn-icon medium-transparent filter-item-btn flex gap8">
             <FilterIcon />
             Filter
@@ -75,26 +76,40 @@ export function BoardHeaderFilter({ board, isCollapsed }) {
         </div>
       </Tooltip>
       <Tooltip title="Sort by any column" placement="top" arrow>
-        <button className="btn-icon medium-transparent flex gap8">
-          <SortIcon />
-          Sort
-        </button>
+        <div
+          style={{ height: '28px' }}
+          className="filter-item flex align-center">
+          <button className="btn-icon medium-transparent flex gap8">
+            <SortIcon />
+            Sort
+          </button>
+        </div>
       </Tooltip>
       <Tooltip title="Hidden Columns" placement="top" arrow>
-        <button className="btn-icon medium-transparent flex gap8">
-          <HideIcon />
-          Hide
-        </button>
+        <div
+          style={{ height: '28px' }}
+          className="filter-item flex align-center">
+          <button className="btn-icon medium-transparent flex gap8">
+            <HideIcon />
+            Hide
+          </button>
+        </div>
       </Tooltip>
       <Tooltip title="Group By Column" placement="top" arrow>
-        <button className="btn-icon medium-transparent flex gap8">
-          <GroupIcon />
-          Group by
-        </button>
+        <div
+          style={{ height: '28px' }}
+          className="filter-item flex align-center">
+          <button className="btn-icon medium-transparent flex gap8">
+            <GroupIcon />
+            Group by
+          </button>
+        </div>
       </Tooltip>
-      <button className="btn-icon medium-transparent">
-        <MenuIcon />
-      </button>
+      <div style={{ height: '28px' }} className="filter-item flex align-center">
+        <button className="btn-icon medium-transparent">
+          <MenuIcon />
+        </button>
+      </div>
     </section>
   )
 }
