@@ -1,11 +1,13 @@
 import React from 'react'
 import { DynamicTableCell } from '../DynamicTableCell'
 import { EditableText } from '../../editableText/EditableText'
+import { ContextBtn } from '../../../../ContextBtn'
 export function GroupTableBody({
   rows,
   columns,
   group,
   onTaskUpdate,
+  onDeleteTask,
   initText,
   saveNewTask,
   cmpsOrder,
@@ -20,8 +22,13 @@ export function GroupTableBody({
               gridRow: rowIdx + 2,
               gridColumn: 1,
             }}
-            className="first-column group-table-cell checkbox-cell flex align-center justify-center"
-          >
+            className="first-column group-table-cell checkbox-cell flex align-center justify-center hoverable relative">
+            <div className="hidden-hover absolute" style={{ right: '105%' }}>
+              <ContextBtn
+                onDeleteRow={() => onDeleteTask(group.id, row.id)}
+                type={'row'}
+              />
+            </div>
             <input type="checkbox" />
           </div>
           {columns.map(
@@ -29,8 +36,7 @@ export function GroupTableBody({
               <React.Fragment key={column.id}>
                 <div
                   style={{ gridRow: rowIdx + 2, gridColumn: colIdx + 2 }}
-                  className={`group-table-cell ${column.cmp.type}`}
-                >
+                  className={`group-table-cell ${column.cmp.type}`}>
                   <DynamicTableCell
                     cmpsOrder={cmpsOrder}
                     cmp={column.cmp.type}
@@ -45,8 +51,7 @@ export function GroupTableBody({
                     gridRow: rowIdx + 2,
                     gridColumn: columns.length + 2,
                   }}
-                  className="group-table-cell"
-                ></div>
+                  className="group-table-cell"></div>
               </React.Fragment>
             ) // <h1>{JSON.stringify(row[column.accessor])}</h1>
           )}
@@ -58,8 +63,7 @@ export function GroupTableBody({
           gridRow: rows.length + 2,
           gridColumn: 1,
         }}
-        className="first-column last-row-cell last-row group-table-cell checkbox-cell flex align-center justify-center"
-      >
+        className="first-column last-row-cell last-row group-table-cell checkbox-cell flex align-center justify-center">
         <input disabled type="checkbox" />
       </div>
       <div
@@ -67,14 +71,12 @@ export function GroupTableBody({
           gridRow: rows.length + 2,
           gridColumn: `2 /${columns.length + 3}`,
         }}
-        className="group-table-cell last-row"
-      >
+        className="group-table-cell last-row">
         <div
           className="wrapper flex align-center add-task-lr "
           style={{
             marginLeft: '20px',
-          }}
-        >
+          }}>
           <EditableText
             type={'addTask'}
             initialText={initText}

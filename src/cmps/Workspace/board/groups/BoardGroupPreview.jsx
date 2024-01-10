@@ -83,7 +83,8 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
     }
   }
 
-  function onDeleteTask(boardId, groupId, taskId) {
+  function onDeleteTask(groupId, taskId) {
+    console.log(boardId, groupId, taskId)
     removeTask(boardId, groupId, taskId)
   }
 
@@ -128,8 +129,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
         </div>
         <button
           className="btn-icon small-transparent"
-          style={{ color: group.style.color }}
-        >
+          style={{ color: group.style.color }}>
           <NavigationChevronDownIcon color={group.style.color} />
         </button>
         <h2 style={{ color: group.style.color }} className="group-title">
@@ -164,6 +164,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           initText={initText}
           saveNewTask={saveNewTask}
           cmpsOrder={cmpsOrder}
+          onDeleteTask={onDeleteTask}
         />
 
         {/* <div className="group-table-footer-section flex">
