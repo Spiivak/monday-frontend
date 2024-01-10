@@ -29,7 +29,7 @@ export function GroupTableBody({
               <React.Fragment key={column.id}>
                 <div
                   style={{ gridRow: rowIdx + 2, gridColumn: colIdx + 2 }}
-                  className="group-table-cell"
+                  className={`group-table-cell ${column.cmp.type}`}
                 >
                   <DynamicTableCell
                     cmpsOrder={cmpsOrder}
@@ -70,7 +70,7 @@ export function GroupTableBody({
         className="group-table-cell last-row"
       >
         <div
-          className="wrapper flex align-center"
+          className="wrapper flex align-center add-task-lr "
           style={{
             marginLeft: '20px',
           }}
