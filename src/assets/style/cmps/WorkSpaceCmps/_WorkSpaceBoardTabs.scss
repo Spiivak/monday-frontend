@@ -1,6 +1,17 @@
 .work-space-board {
   font: 400 14px/24px Figtree;
 
+
+  .divider::before {
+    content: "";
+    height: 16px;
+    border-right: 1px solid;
+    border-color: #d0d4e4;
+    position: relative;
+    top: -2px;
+    left: 0px;
+  }
+
   .board-tabs {
     min-height: 36px;
     margin-block-start: $spacing-small;

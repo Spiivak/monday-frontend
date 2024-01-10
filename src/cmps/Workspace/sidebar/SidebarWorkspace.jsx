@@ -43,9 +43,7 @@ export function SidebarWorkspace() {
             className="btn-icon medium-transparent"
             onClick={() => openMenuModal()}
           >
-            <div className="flex" data-more-button="true">
               <MenuIcon />
-            </div>
           </button>
           {isMenuModalOpen && <MoreModal onClose={onClose} />}
           {isWpModalOpen && <WorkSpaceContext onClose={onClose} />}

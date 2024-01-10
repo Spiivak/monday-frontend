@@ -123,22 +123,50 @@
       calc($spacing-small + 4px) $spacing-small;
     right: 0;
     top: 0;
+    opacity: 0;
+  }
+
+  &:hover {
+    .close-btn {
+      opacity: 1;
+    }
   }
 }
 
 .side-bar-close {
+  .close-btn {
+    opacity: 1;
+  }
   .side-bar-container {
     display: none;
+  }
+
+  &:hover {
+    min-width: 255px;
+    animation: none;
+    box-shadow: 0 6px 20px rgba(0,0,0,.2);
+    z-index: 100000000;
+    .side-bar-container {
+      // width: 255px;
+    animation: none;
+      display: flex;
+    }
   }
 }
 
 .workspaces-list {
   margin-top: 4px;
- .context-menu {
-  position: absolute;
-  right: 20px;
- }
   .workspace-item {
+    .context-menu {
+     position: absolute;
+     display: none;
+     right: 20px;
+    }
+  &:hover {
+    .context-menu {
+      display: flex;
+    }
+  }
     width: 100%;
     padding: 0 12px;
     a {
