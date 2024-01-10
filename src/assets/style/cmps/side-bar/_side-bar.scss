@@ -61,7 +61,9 @@
               height: 32px;
               border: none;
               padding: 0;
-
+              &:focus {
+                border: 1px solid red;
+              }
             }
             &:hover{
               button {

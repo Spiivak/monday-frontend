@@ -133,7 +133,7 @@ export async function updateTask(
     case 'Activity':
       newTask = {
         ...task,
-        ['activity']: task.activity ? [...task.activity, data] : [data],
+        ['activity']: task.activity ? [data, ...task.activity] : [data],
       }
       break
     case 'StatusPicker':

@@ -36,6 +36,7 @@ export function TaskTitle({ task, cmpId, handleUpdateTask }) {
       </div>
       <button className="btn-icon small-transparent" onClick={onOpenTask}>
         <OpenIcon />
+        Open
       </button>
     </div>
   )
