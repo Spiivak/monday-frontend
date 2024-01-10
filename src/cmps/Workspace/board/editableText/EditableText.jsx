@@ -1,12 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Tooltip } from '@mui/material' // Import Tooltip
 import { HeaderTitle } from './groups/HeaderTitle'
 import { GroupTitle } from './groups/GroupTitle'
 import { ColumnTitle } from './groups/ColumnTitle'
 import { TaskTitle } from './groups/TaskTitle'
 import { AddTask } from './groups/AddTask'
 
-export function EditableText({ initialText, onSave, placeholder, type, textColor }) {
+export function EditableText({
+  initialText,
+  onSave,
+  placeholder,
+  type,
+  textColor,
+}) {
   switch (type) {
     case 'addTask':
       return <AddTask {...{ initialText, onSave, placeholder, type }} />
@@ -15,7 +19,11 @@ export function EditableText({ initialText, onSave, placeholder, type, textColor
     case 'taskTitle':
       return <TaskTitle {...{ initialText, onSave, placeholder, type }} />
     case 'groupTitle':
-      return <GroupTitle {...{ initialText, onSave, placeholder, type, textColor }} />
+      return (
+        <GroupTitle
+          {...{ initialText, onSave, placeholder, type, textColor }}
+        />
+      )
     case 'headerTitle':
       return <HeaderTitle {...{ initialText, onSave, placeholder, type }} />
     default:
