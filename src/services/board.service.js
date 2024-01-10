@@ -49,119 +49,119 @@ const demoData = [
     ],
     members: [
       {
-    _id: 'u1',
-    fullname: 'Nave David',
-    username: 'navedavid@gmail.com',
-    imgUrl:
-      'https://res.cloudinary.com/donnezwy9/image/upload/v1704455572/rzddgfxj4fzkcn6eqgrv.jpg',
-    // mentions: [
-    //   {
-    //     //optional
-    //     id: 'm101',
-    //     boardId: 'm101',
-    //     taskId: 't101',
-    //   },
-    // ],
-  },
-  {
-    _id: 'u2',
-    fullname: 'Dima Revelson',
-    username: 'dimarevelson@gmail.com',
-    imgUrl:
-      'https://res.cloudinary.com/donnezwy9/image/upload/v1704459492/mv8vwh55b3wgqdflmemw.png',
-    // mentions: [
-    //   {
-    //     //optional
-    //     id: 'm101',
-    //     boardId: 'm101',
-    //     taskId: 't101',
-    //   },
-    // ],
-  },
-  {
-    _id: 'u3',
-    fullname: 'Emily Kristensen',
-    username: 'emilyKristensen@gmail.com',
-    imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-    // mentions: [
-    //   {
-    //     //optional
-    //     id: 'm101',
-    //     boardId: 'm101',
-    //     taskId: 't101',
-    //   },
-    // ],
-  },
-  {
-    _id: 'u4',
-    fullname: 'Isabelle Anderson',
-    username: 'isabelle.anderson@example.com',
-    imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
-    // mentions: [
-    //   {
-    //     //optional
-    //     id: 'm101',
-    //     boardId: 'm101',
-    //     taskId: 't101',
-    //   },
-    // ],
-  },
-  {
-    _id: 'u5',
-    fullname: 'Mare Alleman',
-    username: 'mare.alleman@example.com',
-    imgUrl: 'https://randomuser.me/api/portraits/med/women/25.jpg',
-    // mentions: [
-    //   {
-    //     //optional
-    //     id: 'm101',
-    //     boardId: 'm101',
-    //     taskId: 't101',
-    //   },
-    // ],
-  },
-  {
-    _id: 'u6',
-    fullname: 'Mirogost Gaydenko',
-    username: 'mirogost.gaydenko@example.com',
-    imgUrl: 'https://randomuser.me/api/portraits/med/men/6.jpg',
-    // mentions: [
-    //   {
-    //     //optional
-    //     id: 'm101',
-    //     boardId: 'm101',
-    //     taskId: 't101',
-    //   },
-    // ],
-  },
-  {
-    _id: 'u7',
-    fullname: 'Hugo Diederichs',
-    username: 'hugo.diederichs@example.com',
-    imgUrl: 'https://randomuser.me/api/portraits/med/men/74.jpg',
-    // mentions: [
-    //   {
-    //     //optional
-    //     id: 'm101',
-    //     boardId: 'm101',
-    //     taskId: 't101',
-    //   },
-    // ],
-  },
-  {
-    _id: 'u8',
-    fullname: 'Nella Lammi',
-    username: 'nella.lammi@example.com',
-    imgUrl: 'https://randomuser.me/api/portraits/women/32.jpg',
-    // mentions: [
-    //   {
-    //     //optional
-    //     id: 'm101',
-    //     boardId: 'm101',
-    //     taskId: 't101',
-    //   },
-    // ],
-  },
+        _id: 'u1',
+        fullname: 'Nave David',
+        username: 'navedavid@gmail.com',
+        imgUrl:
+          'https://res.cloudinary.com/donnezwy9/image/upload/v1704455572/rzddgfxj4fzkcn6eqgrv.jpg',
+        // mentions: [
+        //   {
+        //     //optional
+        //     id: 'm101',
+        //     boardId: 'm101',
+        //     taskId: 't101',
+        //   },
+        // ],
+      },
+      {
+        _id: 'u2',
+        fullname: 'Dima Revelson',
+        username: 'dimarevelson@gmail.com',
+        imgUrl:
+          'https://res.cloudinary.com/donnezwy9/image/upload/v1704459492/mv8vwh55b3wgqdflmemw.png',
+        // mentions: [
+        //   {
+        //     //optional
+        //     id: 'm101',
+        //     boardId: 'm101',
+        //     taskId: 't101',
+        //   },
+        // ],
+      },
+      {
+        _id: 'u3',
+        fullname: 'Emily Kristensen',
+        username: 'emilyKristensen@gmail.com',
+        imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+        // mentions: [
+        //   {
+        //     //optional
+        //     id: 'm101',
+        //     boardId: 'm101',
+        //     taskId: 't101',
+        //   },
+        // ],
+      },
+      {
+        _id: 'u4',
+        fullname: 'Isabelle Anderson',
+        username: 'isabelle.anderson@example.com',
+        imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+        // mentions: [
+        //   {
+        //     //optional
+        //     id: 'm101',
+        //     boardId: 'm101',
+        //     taskId: 't101',
+        //   },
+        // ],
+      },
+      {
+        _id: 'u5',
+        fullname: 'Mare Alleman',
+        username: 'mare.alleman@example.com',
+        imgUrl: 'https://randomuser.me/api/portraits/med/women/25.jpg',
+        // mentions: [
+        //   {
+        //     //optional
+        //     id: 'm101',
+        //     boardId: 'm101',
+        //     taskId: 't101',
+        //   },
+        // ],
+      },
+      {
+        _id: 'u6',
+        fullname: 'Mirogost Gaydenko',
+        username: 'mirogost.gaydenko@example.com',
+        imgUrl: 'https://randomuser.me/api/portraits/med/men/6.jpg',
+        // mentions: [
+        //   {
+        //     //optional
+        //     id: 'm101',
+        //     boardId: 'm101',
+        //     taskId: 't101',
+        //   },
+        // ],
+      },
+      {
+        _id: 'u7',
+        fullname: 'Hugo Diederichs',
+        username: 'hugo.diederichs@example.com',
+        imgUrl: 'https://randomuser.me/api/portraits/med/men/74.jpg',
+        // mentions: [
+        //   {
+        //     //optional
+        //     id: 'm101',
+        //     boardId: 'm101',
+        //     taskId: 't101',
+        //   },
+        // ],
+      },
+      {
+        _id: 'u8',
+        fullname: 'Nella Lammi',
+        username: 'nella.lammi@example.com',
+        imgUrl: 'https://randomuser.me/api/portraits/women/32.jpg',
+        // mentions: [
+        //   {
+        //     //optional
+        //     id: 'm101',
+        //     boardId: 'm101',
+        //     taskId: 't101',
+        //   },
+        // ],
+      },
     ],
     groups: [
       {
@@ -1158,7 +1158,7 @@ function getEmptyGroup() {
     title: 'New Group',
     archivedAt: Date.now(),
     tasks: [],
-    style: {},
+    style: {color: gColors[utilService.getRandomIntInclusive(0, gColors.length)],},
   }
 }
 
@@ -1215,7 +1215,7 @@ function getEmptyBoard() {
             members: [],
           },
         ],
-        style: {},
+        style: {color: gColors[utilService.getRandomIntInclusive(0, gColors.length)],},
       },
     ],
     activities: [],
@@ -1234,7 +1234,7 @@ createBoard('test')
 function createBoard(title) {
   console.log('createBoard  title:', title)
   const newBoard = getEmptyBoard()
-  const editedBoard = newBoard.title = title
+  const editedBoard = (newBoard.title = title)
   return editedBoard
 }
 
