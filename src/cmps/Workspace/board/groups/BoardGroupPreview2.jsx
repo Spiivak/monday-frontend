@@ -113,7 +113,7 @@ export function BoardGroupPreview2({ group, boardId, cmpsOrder }) {
   }
 
   function onUpdateGroup(boardId, groupId, group, data) {
-    const newGroup = { ...group, title: data }
+    const newGroup = { ...group, [data.prop]: data.value }
     updateGroup(boardId, groupId, newGroup)
   }
 
@@ -126,9 +126,12 @@ export function BoardGroupPreview2({ group, boardId, cmpsOrder }) {
         <div className="menu-btn flex align-center">
           <ContextBtn type="group" onDeleteGroup={onDeleteGroup} />
         </div>
-        <button className="btn-icon small-transparent" style={{ color: group.style.color }}>
-            <NavigationChevronDownIcon color={group.style.color} />
-          </button>
+        <button
+          className="btn-icon small-transparent"
+          style={{ color: group.style.color }}
+        >
+          <NavigationChevronDownIcon color={group.style.color} />
+        </button>
         <h2 style={{ color: group.style.color }} className="group-title">
           <EditableText
             type={'groupTitle'}
