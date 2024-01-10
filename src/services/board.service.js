@@ -1113,12 +1113,12 @@ function updateBoards(boards) {
 // * Groups
 function addGroup(boardId, group) {
   // return storageService.postGroup(STORAGE_KEY, boardId, group)
-  return httpService.post(GROUP_URL, {boardId, group})
+  return httpService.post(GROUP_URL, { boardId, group })
 }
 
 function updateGroup(boardId, groupId, group) {
   // return storageService.putGroup(STORAGE_KEY, boardId, groupId, group)
-  return httpService.put(GROUP_URL, {boardId, groupId, group})
+  return httpService.put(GROUP_URL, { boardId, groupId, group })
 }
 
 function removeGroup(boardId, groupId) {
@@ -1130,11 +1130,11 @@ function removeGroup(boardId, groupId) {
 
 function updateTask(boardId, groupId, taskId, task) {
   // return storageService.putTask(STORAGE_KEY, boardId, groupId, taskId, task)
-  return httpService.put(TASK_URL, {boardId, groupId, taskId, task})
+  return httpService.put(TASK_URL, { boardId, groupId, taskId, task })
 }
 
 function addTask(boardId, groupId, task) {
-  return httpService.post(TASK_URL, {boardId, groupId, task})
+  return httpService.post(TASK_URL, { boardId, groupId, task })
 }
 
 function removeTask(boardId, groupId, taskId) {
@@ -1146,7 +1146,7 @@ function removeTask(boardId, groupId, taskId) {
 
 function addColumn(boardId, column) {
   // return storageService.addColumn(STORAGE_KEY, boardId, column)
-  return httpService.post(COLUMN_URL, {boardId, column})
+  return httpService.post(COLUMN_URL, { boardId, column })
 }
 
 function removeColumn(boardId, columnId) {
@@ -1156,7 +1156,7 @@ function removeColumn(boardId, columnId) {
 
 function updateColumn(boardId, columnId, column) {
   // return storageService.updateColumn(STORAGE_KEY, boardId, columnId, column)
-  return httpService.put(COLUMN_URL, {boardId, columnId, column})
+  return httpService.put(COLUMN_URL, { boardId, columnId, column })
 }
 
 // function addMsg(boardId, msg){
@@ -1201,9 +1201,54 @@ function getEmptyBoard() {
     ],
     members: [
       {
-        _id: 'u101',
-        fullname: 'test teston',
-        imgUrl: 'http://some-img',
+        _id: '659e7638ad01306fc6e4d03e',
+        fullname: 'Nave David',
+        username: 'navedavid@gmail.com',
+        imgUrl:
+          'https://res.cloudinary.com/donnezwy9/image/upload/v1704455572/rzddgfxj4fzkcn6eqgrv.jpg',
+      },
+      {
+        _id: '659e77c5ad01306fc6e4d03f',
+        fullname: 'Dima Revelson',
+        username: 'dimarevelson@gmail.com',
+        imgUrl:
+          'https://res.cloudinary.com/donnezwy9/image/upload/v1704459492/mv8vwh55b3wgqdflmemw.png',
+      },
+      {
+        _id: '659e781bad01306fc6e4d041',
+        fullname: 'Emily Kristensen',
+        username: 'emilyKristensen@gmail.com',
+        imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
+      },
+      {
+        _id: '659e78bbad01306fc6e4d043',
+        fullname: 'Isabelle Anderson',
+        username: 'isabelle.anderson@example.com',
+        imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
+      },
+      {
+        _id: '659e7946ad01306fc6e4d044',
+        fullname: 'Mare Alleman',
+        username: 'mare.alleman@example.com',
+        imgUrl: 'https://randomuser.me/api/portraits/med/women/25.jpg',
+      },
+      {
+        _id: '659e795cad01306fc6e4d045',
+        fullname: 'Mirogost Gaydenko',
+        username: 'mirogost.gaydenko@example.com',
+        imgUrl: 'https://randomuser.me/api/portraits/med/men/6.jpg',
+      },
+      {
+        _id: '659e7976ad01306fc6e4d046',
+        fullname: 'Hugo Diederichs',
+        username: 'hugo.diederichs@example.com',
+        imgUrl: 'https://randomuser.me/api/portraits/med/men/74.jpg',
+      },
+      {
+        _id: '659e798ead01306fc6e4d048',
+        fullname: 'Nella Lammi',
+        username: 'nella.lammi@example.com',
+        imgUrl: 'https://randomuser.me/api/portraits/women/32.jpg',
       },
     ],
     groups: [
@@ -1215,17 +1260,17 @@ function getEmptyBoard() {
           {
             id: utilService.makeId(),
             title: 'item 1',
-            members: [],
+            membersdef2: [],
           },
           {
             id: utilService.makeId(),
             title: 'item 2',
-            members: [],
+            membersdef2: [],
           },
           {
             id: utilService.makeId(),
             title: 'item 3',
-            members: [],
+            membersdef2: [],
           },
         ],
         style: {
@@ -1236,10 +1281,10 @@ function getEmptyBoard() {
     activities: [],
 
     cmpsOrder: [
-      { type: 'StatusPicker', id: utilService.makeId(), title: 'Status' },
-      { type: 'MemberPicker', id: utilService.makeId(), title: 'Members' },
-      { type: 'DatePicker', id: utilService.makeId(), title: 'Date' },
-      { type: 'NumbersPicker', id: utilService.makeId(), title: 'Number' },
+      { type: 'StatusPicker', id: 'def1', title: 'Status' },
+      { type: 'MemberPicker', id: 'def2', title: 'Members' },
+      { type: 'DatePicker', id: 'def3', title: 'Date' },
+      { type: 'NumbersPicker', id: 'def4', title: 'Number' },
     ],
   }
 }
