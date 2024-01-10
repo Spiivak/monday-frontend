@@ -5,11 +5,12 @@
     input {
       padding: 0 7px;
       font: 500 18px/24px Poppins;
-      max-height: 28px;
+      height: 28px;
+      // max-height: 28px;
       width: 60vw;
     }
   }
-  
+
   .group-title {
     overflow: hidden;
     text-wrap: nowrap;
