@@ -15,10 +15,8 @@ import {
   updateGroup,
   updateTask,
 } from '../../../../store/actions/board.actions'
-import { Tooltip } from 'antd'
-import AddColumnBtn from './cells/AddColumnBtn'
-import { DynamicTableCell } from './DynamicTableCell'
 import { EditableText } from '../editableText/EditableText'
+import { GroupTableFooter } from './table/GroupTableFooter'
 
 export function BoardGroupPreview2({ group, boardId, cmpsOrder }) {
   const [columns, setColumns] = useState([])
@@ -148,27 +146,41 @@ export function BoardGroupPreview2({ group, boardId, cmpsOrder }) {
 
       <div className="board-group-table-container">
         <GroupTableHeaders
-          columns={columns}
-          group={group}
-          onUpdateColumn={onUpdateColumn}
-          boardId={boardId}
-          onDeleteColumn={onDeleteColumn}
-          onAddColumn={onAddColumn}
+          {...{
+            columns,
+            group,
+            onUpdateColumn,
+            boardId,
+            onDeleteColumn,
+            onAddColumn,
+          }}
         />
 
         <GroupTableBody
-          rows={rows}
-          columns={columns}
-          group={group}
-          onTaskUpdate={onTaskUpdate}
-          initText={initText}
-          saveNewTask={saveNewTask}
-          cmpsOrder={cmpsOrder}
+          {...{
+            rows,
+            columns,
+            group,
+            onTaskUpdate,
+            initText,
+            saveNewTask,
+            cmpsOrder,
+          }}
         />
-
+        <GroupTableFooter
+          {...{
+            rows,
+            columns,
+            group,
+            onTaskUpdate,
+            initText,
+            saveNewTask,
+            cmpsOrder,
+          }}
+        />
         {/* <div className="group-table-footer-section flex">
           <div className="group-table-footer-cell flex"></div>
-        </div> */}
+        </div>  */}
       </div>
     </section>
   )
