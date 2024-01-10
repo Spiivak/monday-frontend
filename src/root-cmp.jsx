@@ -9,6 +9,7 @@ import { DynamicModalMenu } from './cmps/Workspace/board/DynamicModalMenu'
 import { TaskDetails } from './cmps/Workspace/board/groups/TaskDetails'
 import { WorkSpaceBoard } from './cmps/Workspace/board/WorkspaceBoard'
 import { WorkspaceIndex } from './cmps/Workspace/index/WorkspaceIndex'
+import KanbanPreview from './cmps/Workspace/kanban/KanbanPreview'
 
 export function App() {
   return (
@@ -20,6 +21,7 @@ export function App() {
             <Route path="/workspace" element={<WorkSpacePage />}>
               <Route index element={<WorkspaceIndex />} />
               <Route path="/workspace/:boardId" element={<WorkSpaceBoard />} />
+              <Route path="/workspace/:boardId/views" element={<KanbanPreview />} />
             </Route>
           </Routes>
           <UserMsg />
