@@ -4,9 +4,11 @@ export function DatePreview({
   removeDate,
   task,
   cmpId,
+  divRef,
 }) {
   return (
     <div
+      ref={divRef}
       style={{
         display: 'flex',
         alignItems: 'center',
