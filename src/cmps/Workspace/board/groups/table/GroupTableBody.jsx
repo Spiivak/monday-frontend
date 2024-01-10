@@ -2,13 +2,11 @@ import React from 'react'
 import { DynamicTableCell } from '../DynamicTableCell'
 import { EditableText } from '../../editableText/EditableText'
 import { ContextBtn } from '../../../../ContextBtn'
-import { ContextBtn } from '../../../../ContextBtn'
 export function GroupTableBody({
   rows,
   columns,
   group,
   onTaskUpdate,
-  onDeleteTask,
   onDeleteTask,
   initText,
   saveNewTask,
