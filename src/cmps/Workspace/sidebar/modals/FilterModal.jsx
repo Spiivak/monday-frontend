@@ -45,7 +45,7 @@ export function FilterModal({ onClose }) {
           <div className="option flex align-center">
             <div className="test flex gap8">
               <input type="checkbox" />
-              <label htmlFor="shareabel">Shareable</label>
+              <label htmlFor="shareable">Shareable</label>
             </div>
           </div>
         </div>
