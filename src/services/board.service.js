@@ -1229,22 +1229,6 @@ function getEmptyBoard() {
   }
 }
 
-createBoard('test')
-
-function createBoard(title) {
-  console.log('createBoard  title:', title)
-  const newBoard = getEmptyBoard()
-  const editedBoard = (newBoard.title = title)
-  return editedBoard
-}
-
-// function getEmptyMsg() {
-//   return { content: '', owner: {username:'Anonymous'}, createdAt: Date.now(), id: utilService.makeId()}
-// }
-
-// function getDefaultFilter() {
-//   return { name: '', price: 0, labels: '', Date: '', availability: 'all' }
-// }
 function geColors() {
   return gColors
 }
