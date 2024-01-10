@@ -10,7 +10,13 @@ export function MemberPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
   const colName = cmpsOrder.find((cmp) => cmp.type === 'MemberPicker')?.title
 
   async function handleUpdateUser(selectedUser) {
-    const members = updateMembers(task['members' + cmpId], selectedUser)
+    let members
+    if (!task['members' + cmpId]) {
+      task['members' + cmpId] = [selectedUser]
+      members = { updatedMembers: [selectedUser], action: 'Added' }
+    } else {
+      members = updateMembers(task['members' + cmpId], selectedUser)
+    }
     const updatedTask = { ...task, ['members' + cmpId]: members.updatedMembers }
 
     try {
@@ -90,8 +96,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
             <h5>{user.fullname}</h5>
             <button
               className="btn-icon small-transparent"
-              onClick={() => handleUpdateUser(user)}
-            >
+              onClick={() => handleUpdateUser(user)}>
               <CloseSmallIcon />
             </button>
           </div>
@@ -105,8 +110,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
           onClick={(e) => {
             e.stopPropagation()
             e.preventDefault()
-          }}
-        >
+          }}>
           <h5>Suggested people</h5>
         </div>
       ),
@@ -117,8 +121,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
         <div className="flex gap8 column" key={user._id}>
           <div
             onClick={() => handleUpdateUser(user)}
-            className="flex align-center gap8"
-          >
+            className="flex align-center gap8">
             <img
               src={user.imgUrl}
               style={{
@@ -165,8 +168,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
             title={additionalMembers
               .map((member) => member.fullname)
               .join('\n')}
-            arrow
-          >
+            arrow>
             <div className="overflow-tooltip-indicator">
               +{additionalMembersCount}
             </div>
@@ -189,8 +191,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
           arrow={{
             pointAtCenter: true,
           }}
-          overlayStyle={{ width: '372px', padding: '6px' }}
-        >
+          overlayStyle={{ width: '372px', padding: '6px' }}>
           <div className="cell">
             {currentUsers.length > 0 ? (
               <div className="avatars-wrapper flex align-center">
