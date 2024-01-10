@@ -237,7 +237,7 @@ const demoData = [
             },
           },
           {
-            id: 'c107',
+            id: 'c106',
             title: 'Assamble project team',
             statusc1: 'Done',
             datec3: 1704528363730,
@@ -247,7 +247,7 @@ const demoData = [
             membersc2: [],
           },
           {
-            id: 'c108',
+            id: 'c107',
             title: 'Set up communication channels',
             statusc1: 'Stuck',
             datec3: 1704528363730,
@@ -277,7 +277,7 @@ const demoData = [
         title: 'Planning Phase',
         tasks: [
           {
-            id: 'c103',
+            id: 'c600',
             title: 'Conduct Project Kick-off Meeting',
             statusc1: "Haven't Started",
             archivedAt: 1589983468418,
@@ -285,7 +285,7 @@ const demoData = [
             timelinec5: [1704528729979, 1735719129979],
           },
           {
-            id: 'c104',
+            id: 'c700',
             title: 'Define Project Scope',
             statusc1: 'Done', // monday
             membersc2: [
@@ -310,7 +310,7 @@ const demoData = [
             },
           },
           {
-            id: 'c105',
+            id: 'c800',
             title: 'Develop Project Schedule',
             statusc1: 'Stuck',
             archivedAt: 1589983468418,
@@ -318,7 +318,7 @@ const demoData = [
             timelinec5: [1704528729979, 1735719129979],
           },
           {
-            id: 'c106',
+            id: 'c900',
             title: 'Identify Stakeholders',
             statusc1: "Haven't Started",
             archivedAt: 1589983468418,
@@ -326,7 +326,7 @@ const demoData = [
             timelinec5: [1704528729979, 1735719129979],
           },
           {
-            id: 'c107',
+            id: 'c1000',
             title: 'Establish Budget',
             statusc1: 'Done',
             archivedAt: 1589983468418,
@@ -334,7 +334,7 @@ const demoData = [
             timelinec5: [1704528729979, 1735719129979],
           },
           {
-            id: 'c108',
+            id: 'c1001',
             title: 'Risk Assessment and Mitigation Planning',
             statusc1: 'Done',
             archivedAt: 1589983468418,
@@ -816,7 +816,7 @@ const demoData = [
         title: 'Documentation::',
         tasks: [
           {
-            id: 'c128',
+            id: 'c328',
             title: 'Technical Documentation',
             statusc1: 'Stuck',
             archivedAt: 1589983468418,
@@ -1172,7 +1172,7 @@ function getEmptyBoard() {
       imgUrl: 'http://some-img',
     },
     style: {
-      backgroundImage: '',
+      color: gColors[utilService.getRandomIntInclusive(0, gColors.length)],
     },
     labels: [
       {
