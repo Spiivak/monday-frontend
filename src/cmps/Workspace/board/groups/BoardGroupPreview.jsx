@@ -117,7 +117,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
   }
 
   //!!! TURN OFF BOARD LOADER !!!//
-  setBoardLoading(false)
+
 
   return (
     <section className="board-view-group ">
@@ -145,7 +145,13 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
         <span>{group.tasks.length} items </span>
       </div>
 
-      <div className="board-group-table-container">
+      <div
+        style={{
+          '--gtc': `80px 350px repeat(${
+            columns.length - 1
+          },200px) minmax(80px,1fr)`,
+        }}
+        className="board-group-table-container">
         <GroupTableHeaders
           columns={columns}
           group={group}

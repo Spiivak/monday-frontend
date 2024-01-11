@@ -1,8 +1,16 @@
 .board-group-table-container {
   // background-color: pink;
+  // width: 100%;
   display: grid;
-  grid-template-columns: max-content;
-  grid-auto-flow: column;
+  border-radius: 8px;
+  // grid-template-columns: max-content;
+  // grid-auto-flow: column;
+
+  .table-body-row{
+    display: grid;
+    grid-template-columns: var(--gtc);
+    grid-auto-flow: column;
+  }
 
   .group-table-header-cell {
     // grid-row: 1;
@@ -68,16 +76,25 @@
   }
 
   .checkbox-cell {
+    background-color: #fff;
     position: sticky;
     left: 0;
     z-index: 10;
   }
 
   .title {
+    background-color: #fff;
     position: sticky;
     left: 48px;
     top: 0;
     z-index: 15;
   }
 
+  .add-task-lr{
+    background-color: #fff;
+    position: sticky;
+    left: 68px;
+    top: 0;
+    z-index: 15;
+  }
 }

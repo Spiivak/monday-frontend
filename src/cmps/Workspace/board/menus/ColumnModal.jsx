@@ -69,23 +69,25 @@ export function ColumnModal({
     } // Add event listener to the document body
 
     const handleWheel = (event) => {
-      if (modalRef.current && position) {
-        event.preventDefault() // Prevent default wheel behavior when the modal is open
-      }
+      event.preventDefault() // Prevent default wheel behavior when the modal is open
     }
 
     // Initial setup
     handleResize()
 
+    document
+      .querySelector('.work-space-board')
+      .addEventListener('wheel', handleWheel)
     // Event listeners
     window.addEventListener('click', handleOutsideClick)
     window.addEventListener('resize', handleResize)
-    window.addEventListener('wheel', handleWheel)
     // Cleanup
     return () => {
       window.removeEventListener('click', handleOutsideClick)
       window.removeEventListener('resize', handleResize)
-      window.removeEventListener('wheel', handleWheel)
+      document
+        .querySelector('.work-space-board')
+        .removeEventListener('wheel', handleWheel)
     }
   }, [menuBtnRef])
 
