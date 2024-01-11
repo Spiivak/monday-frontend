@@ -5,6 +5,7 @@ import {
   loadBoards,
   removeBoard,
   saveBoard,
+  setBoardLoading,
 } from '../store/actions/board.actions'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { useEffect } from 'react'
@@ -14,10 +15,13 @@ import { boardService } from '../services/board.service'
 export function WorkSpacePage() {
   const navigate = useNavigate()
   useEffect(() => {
-    loadBoards()
+    loadAsync()
     loadUsers()
   }, [])
 
+  async function loadAsync(){
+    await loadBoards()
+  }
   //TODO add user to own the added board
   async function onAddBoard() {
     try {

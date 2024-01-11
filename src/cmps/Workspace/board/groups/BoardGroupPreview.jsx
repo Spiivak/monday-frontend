@@ -119,7 +119,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
   }
 
   //!!! TURN OFF BOARD LOADER !!!//
-  setBoardLoading(false)
+
 
   return (
     <section className="board-view-group ">

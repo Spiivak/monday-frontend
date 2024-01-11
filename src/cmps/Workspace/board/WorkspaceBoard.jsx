@@ -2,7 +2,11 @@ import { BoardGroupList } from './groups/BoardGroupList'
 
 import { BoardHeader } from './header/BoardHeader'
 import { useEffect, useState } from 'react'
-import { addGroup, saveBoard } from '../../../store/actions/board.actions'
+import {
+  addGroup,
+  saveBoard,
+  setBoardLoading,
+} from '../../../store/actions/board.actions'
 import { useSelector } from 'react-redux'
 
 import { useNavigate, useParams } from 'react-router'
@@ -17,6 +21,11 @@ export function WorkSpaceBoard() {
   )
   const { boardId } = useParams()
 
+  useEffect(() => {
+    if (boardLoading && filteredBoard) {
+      setBoardLoading(false)
+    }
+  }, [filteredBoard])
   // useEffect(() => {
   // loadBoards()
   // loadUsers()
@@ -45,7 +54,6 @@ export function WorkSpaceBoard() {
               const filteredTasks = group.tasks.filter((task) => {
                 return regExp.test(task.title)
               })
-
 
               return filteredTasks.length > 0
                 ? { ...group, tasks: filteredTasks }
@@ -105,7 +113,7 @@ export function WorkSpaceBoard() {
           <BoardHeader board={selectedBoard} {...{ onUpdateBoard }} />
         </div>
         <div className="table-section">
-          {!!boards && (
+          {!boardLoading && (
             <BoardGroupList board={filteredBoard} onAddGroup={onAddGroup} />
           )}
         </div>
