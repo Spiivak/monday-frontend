@@ -7,6 +7,7 @@
   .group-table-header-cell {
     // grid-row: 1;
     position: relative;
+    z-index: 9;
 
     .context-menu {
       display: none;
@@ -25,7 +26,7 @@
     }
   }
 
-  & > * {
+  &>* {
     height: 37px;
     border: 1px solid #eee;
     background-color: #fff;
@@ -35,9 +36,11 @@
   .first-row-cell {
     border-top-left-radius: 8px;
   }
+
   .last-row-cell {
     border-bottom-left-radius: 8px;
   }
+
   .last-row {
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   }
@@ -46,6 +49,7 @@
     position: relative;
     --before-color: blue;
   }
+
   .first-column::before {
     position: absolute;
     content: '';
@@ -54,10 +58,26 @@
     width: 8px;
     background-color: var(--before-color)
   }
+
   .first-row-cell.first-column::before {
     border-top-left-radius: 8px;
   }
+
   .last-row-cell.first-column::before {
     border-bottom-left-radius: 8px;
   }
+
+  .checkbox-cell {
+    position: sticky;
+    left: 0;
+    z-index: 10;
+  }
+
+  .title {
+    position: sticky;
+    left: 48px;
+    top: 0;
+    z-index: 15;
+  }
+
 }

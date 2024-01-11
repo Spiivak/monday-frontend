@@ -3,7 +3,7 @@
   color: #323338;
   position: relative;
   background-color: white;
-  
+
   .side-bar-container {
     .side-bar-link-container {
       border-bottom: 1px solid #d0d4e4;
@@ -44,7 +44,7 @@
           padding-left: calc($spacing-small + 4px);
           padding-right: $spacing-medium;
           padding-bottom: $spacing-small;
-          
+
           .filter-search {
             max-width: 180px;
             border: 1px solid #d0d4e4;
@@ -78,6 +78,7 @@
           }
 
           .add-btn {
+
             svg {
               color: white;
             }
@@ -123,33 +124,61 @@
       calc($spacing-small + 4px) $spacing-small;
     right: 0;
     top: 0;
+    opacity: 0;
+  }
+
+  &:hover {
+    .close-btn {
+      opacity: 1;
+    }
   }
 }
 
 .side-bar-close {
+  .close-btn {
+    opacity: 1;
+  }
   .side-bar-container {
     display: none;
+  }
+
+  &:hover {
+    min-width: 255px;
+    animation: none;
+    box-shadow: 0 6px 20px rgba(0,0,0,.2);
+    z-index: 100000000;
+    .side-bar-container {
+      // width: 255px;
+    animation: none;
+      display: flex;
+    }
   }
 }
 
 .workspaces-list {
   margin-top: 4px;
- .context-menu {
-  position: absolute;
-  right: 20px;
- }
   .workspace-item {
+    .context-menu {
+     position: absolute;
+     display: none;
+     right: 20px;
+    }
+  &:hover {
+    .context-menu {
+      display: flex;
+    }
+  }
     width: 100%;
     padding: 0 12px;
     a {
       width: 100%;
       font: 400 14px/20px Figtree;
-      
+
       .svg {
         margin-right: $spacing-small;
       }
     }
-    
+
     & a.active {
       background-color: #cce5ff;
       border-radius: $border-radius-small;

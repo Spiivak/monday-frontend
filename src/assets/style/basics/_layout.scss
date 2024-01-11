@@ -31,8 +31,9 @@ main {
       width: 255px;
 
       .side-bar-container {
-        animation: sideBarOpen 1s;
-      }
+        transition: width 150ms cubic-bezier(0,0,.35,1);     
+      
+            }
     }
   }
 
@@ -43,8 +44,8 @@ main {
       width: 35px;
 
       .side-bar-container {
-        animation: sideBarClose 1s;
-      }
+        transition: width 150ms cubic-bezier(0,0,.35,1);     
+       }
     }
   }
 

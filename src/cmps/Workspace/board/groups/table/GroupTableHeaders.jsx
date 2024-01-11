@@ -28,7 +28,7 @@ export function GroupTableHeaders({
       {columns.map((column, idx) => (
         <div
           key={column.id}
-          className="group-table-header-cell wrapper th-header flex align-center justify-center pad8x">
+          className={`group-table-header-cell wrapper th-header flex align-center justify-center pad8 ${column.cmp.type}`}>
           {/* <div className="wrapper2 gc1 flex align-center justify-center"> */}
             {idx !== 0 ? <EditableText
               type={'columnTitle'}

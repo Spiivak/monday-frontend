@@ -13,7 +13,6 @@
   $checkmark-color: rgba(36, 222, 36, 0.688);
   min-width: 50px;
   height: 100%;
-
   input[type='checkbox'] {
     padding: 0;
     margin: 0;
@@ -48,23 +47,26 @@
     }
   }
 }
-
-.task-title {
-  min-width: 350px;
-  padding: 0 4px;
-  button {
-    opacity: 0;
-  }
-
-  &:hover {
+.board-view-group {
+  .title {
+    min-width: 350px !important;
+    padding: 0 4px;
     button {
-      opacity: 1;
+      opacity: 0;
+    }
+
+    &:hover {
+      button {
+        opacity: 1;
+      }
     }
   }
 }
 
 .status-picker-cell {
   min-width: 180px;
+
+  // TODO: Add corner fold effect
 }
 
 .member-picker-cell {
@@ -115,6 +117,7 @@
 
 .description-picker-cell {
   width: 180px;
+  overflow: none;
 }
 
 .file-picker-cell {

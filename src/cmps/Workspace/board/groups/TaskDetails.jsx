@@ -43,14 +43,17 @@ export function TaskDetails() {
   return (
     <div className="task-details-modal" ref={modalRef}>
       {/* CLOSE BUTTON */}
+      {/* TASK HEADER */}
+      <div className="header">
       <button
         className="btn-icon small-transparent btn-close"
         onClick={() => deactivateTask()}
       >
         <CloseSmallIcon />
       </button>
-      {/* TASK HEADER */}
+
       <div className="task-header flex align-center space-between">
+
         <div className="task-title">
           <span>{activeTask.title}</span>
         </div>
@@ -102,6 +105,7 @@ export function TaskDetails() {
             <AddIcon />
           </button>
         </div>
+      </div>
       </div>
 
       {activeTab === 'updates' && (

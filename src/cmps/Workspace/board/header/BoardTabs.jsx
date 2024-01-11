@@ -11,9 +11,11 @@ export function BoardTabs({ isCollapsed, onCollapse }) {
             Main Table
           </button>
         </NavLink>
+        <div className='divider'>
         <button className="btn-icon medium-transparent flex align-center add-view-btn">
           <AddSmallIcon />
         </button>
+        </div>
       </div>
       {!isCollapsed && (
         <div className="expend-collapse flex align-center">

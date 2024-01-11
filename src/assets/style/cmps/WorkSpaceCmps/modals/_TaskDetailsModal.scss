@@ -1,4 +1,15 @@
 .task-details-modal {
+
+  overflow: auto;
+
+.header {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 11111;
+  box-shadow: -4px -8px 20px 20px #3a3a3a0a;
+}
+
   position: absolute;
   width: 605px;
   height: calc(100% - 48px);
@@ -151,6 +162,7 @@
 
   .activity-log {
     padding: 0px 25px;
+    padding-bottom: 25px;
     font: 400 14px Figtree;
 
     &>div {
@@ -210,3 +222,4 @@
     }
   }
 }
+

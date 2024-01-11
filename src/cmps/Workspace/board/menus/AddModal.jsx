@@ -90,7 +90,7 @@ export function AddModal({ onAddColumn, setIsMoreModalOpen, menuBtnRef }) {
 
   return (
     <div
-      className="more-modal-container flex column"
+      className="add-modal-container flex column"
       ref={modalRef}
       style={{
         position: 'fixed',
@@ -171,7 +171,7 @@ export function AddModal({ onAddColumn, setIsMoreModalOpen, menuBtnRef }) {
             <div className="icon-wrapper color-col-wrapper flex align-center justify-center">
               <Description style={{ color: '#eee' }} />
             </div>
-            Status
+            Description
           </button>
           <button
             disabled
