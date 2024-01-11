@@ -13,7 +13,7 @@ export function GroupTableHeaders({
   onAddColumn,
 }) {
   return (
-    <>
+    <div className='table-body-row'>
       <div style={{'--before-color':group.style.color}} className="first-column group-table-header-cell checkbox-cell flex align-center justify-center first-row-cell">
         {/* TODO: Create store for selected items */}
         <input type="checkbox" />
@@ -47,6 +47,6 @@ export function GroupTableHeaders({
       <div className="group-table-header-cell wrapper grid th-header pad8x">
         <AddColumnBtn onAddColumn={(type) => onAddColumn(boardId, type)} />
       </div>
-    </>
+    </div>
   )
 }
