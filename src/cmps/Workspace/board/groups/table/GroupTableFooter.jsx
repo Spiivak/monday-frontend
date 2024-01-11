@@ -5,7 +5,7 @@ import { Tooltip, styled, tooltipClasses } from '@mui/material'
 
 export function GroupTableFooter({ rows, columns, group }) {
   return (
-    <div className="table-body-row">
+    <div className="table-body-row footer-row">
       <div
         className="empty-column"
         style={{ gridRow: rows.length + 3, gridColumn: 1 }}

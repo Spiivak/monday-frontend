@@ -11,6 +11,9 @@
     grid-template-columns: var(--gtc);
     grid-auto-flow: column;
   }
+  .footer-row {
+    border: none;
+  }
 
   .group-table-header-cell {
     // grid-row: 1;
