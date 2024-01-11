@@ -9,6 +9,7 @@ export const utilService = {
   getFormattedDate,
   getGreeting,
   timeDiff,
+  formatDateRange,
 }
 
 function makeId(length = 6) {
@@ -141,4 +142,25 @@ function getGreeting() {
   } else {
     return 'Good evening'
   }
+}
+
+function formatDateRange(timestamps) {
+  if (timestamps.length !== 2) {
+    throw new Error('Expected an array of two timestamps')
+  }
+
+  const [startTimestamp, endTimestamp] = timestamps
+  const startDate = new Date(startTimestamp)
+  const endDate = new Date(endTimestamp)
+
+  const startDayNumber = startDate.getDate()
+  const endDayNumber = endDate.getDate()
+  const startMonthAbbreviation = startDate.toLocaleString('default', {
+    month: 'short',
+  })
+  const endMonthAbbreviation = endDate.toLocaleString('default', {
+    month: 'short',
+  })
+
+  return `${startDayNumber} ${startMonthAbbreviation} - ${endDayNumber} ${endMonthAbbreviation}`
 }

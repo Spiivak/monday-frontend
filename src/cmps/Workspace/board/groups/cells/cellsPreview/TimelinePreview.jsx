@@ -1,6 +1,7 @@
+import { utilService } from '../../../../../../services/util.service'
+
 export function TimelinePreview({
   setDateModal,
-  formatDateRange,
   removeDates,
   task,
   cmpId,
@@ -24,7 +25,7 @@ export function TimelinePreview({
     >
       {task['timeline' + cmpId] ? (
         <>
-          {formatDateRange(task['timeline' + cmpId])}
+          {utilService.formatDateRange(task['timeline' + cmpId])}
           {
             <button
               onClick={removeDates}

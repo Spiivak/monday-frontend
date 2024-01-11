@@ -2,6 +2,7 @@ import { DatePicker } from 'antd'
 import dayjs from 'dayjs'
 import { useEffect, useState } from 'react'
 import { TimelinePreview } from './cellsPreview/TimelinePreview'
+import { utilService } from '../../../../../services/util.service'
 
 export function TimelinePicker({
   task,
@@ -59,8 +60,11 @@ export function TimelinePicker({
             createdAt: Date.now(),
             title: updatedTask.title,
             colName,
-            oldValue: formatDateRange(oldValue),
-            newValue: formatDateRange([timestampStartDate, timestampEndDate]),
+            oldValue: utilService.formatDateRange(oldValue),
+            newValue: utilService.formatDateRange([
+              timestampStartDate,
+              timestampEndDate,
+            ]),
           },
           updatedTask
         )
@@ -84,7 +88,7 @@ export function TimelinePicker({
           createdAt: Date.now(),
           title: updatedTask.title,
           colName,
-          oldValue: formatDateRange(oldValue),
+          oldValue: utilService.formatDateRange(oldValue),
           newValue: '-',
         },
         updatedTask
@@ -95,34 +99,12 @@ export function TimelinePicker({
     }
   }
 
-  function formatDateRange(timestamps) {
-    if (timestamps.length !== 2) {
-      throw new Error('Expected an array of two timestamps')
-    }
-
-    const [startTimestamp, endTimestamp] = timestamps
-    const startDate = new Date(startTimestamp)
-    const endDate = new Date(endTimestamp)
-
-    const startDayNumber = startDate.getDate()
-    const endDayNumber = endDate.getDate()
-    const startMonthAbbreviation = startDate.toLocaleString('default', {
-      month: 'short',
-    })
-    const endMonthAbbreviation = endDate.toLocaleString('default', {
-      month: 'short',
-    })
-
-    return `${startDayNumber} ${startMonthAbbreviation} - ${endDayNumber} ${endMonthAbbreviation}`
-  }
-
   return (
     <div className="cell timeline-picker-cell">
       {!dateModal ? (
         <TimelinePreview
           {...{
             setDateModal,
-            formatDateRange,
             removeDates,
             task,
             cmpId,
