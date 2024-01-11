@@ -15,6 +15,7 @@ import {
   SET_ACTIVE_CONTEXT_BTN,
   SET_ACTIVE_TASK,
   SET_BOARDS,
+  SET_CHECKED_TASKS,
   SET_FILTER_BY,
   SET_IS_BOARD_LOADING,
   SET_IS_LOADING,
@@ -187,6 +188,15 @@ export async function removeTask(boardId, groupId, taskId) {
     store.dispatch({ type: REMOVE_TASK, boardId, groupId, deletedTaskId })
   } catch (err) {}
 }
+
+export async function saveSelectedTasks(taskIds) {
+    console.log('saveSelectedTasks  selectedTaskIds:', taskIds)
+    try {
+      store.dispatch({ type: SET_CHECKED_TASKS, taskIds });
+    } catch (error) {
+      console.error('Error saving selected tasks:', error);
+    }
+  }
 
 // * COLUMN CRUD
 
