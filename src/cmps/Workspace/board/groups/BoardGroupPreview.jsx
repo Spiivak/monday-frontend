@@ -15,9 +15,6 @@ import {
   updateGroup,
   updateTask,
 } from '../../../../store/actions/board.actions'
-import { Tooltip } from 'antd'
-import AddColumnBtn from './cells/AddColumnBtn'
-import { DynamicTableCell } from './DynamicTableCell'
 import { EditableText } from '../editableText/EditableText'
 import { GroupTableFooter } from './table/GroupTableFooter'
 
@@ -76,9 +73,9 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
   }, [cmpsOrder, group])
 
   // * TASK
-  async function onTaskUpdate(cmpType, cmpId, data, task) {
+  function onTaskUpdate(cmpType, cmpId, data, task) {
     try {
-      await updateTask(boardId, group.id, task.id, cmpType, cmpId, task, data)
+      updateTask(boardId, group.id, task.id, cmpType, cmpId, task, data)
     } catch (err) {
       console.log(err)
     }
@@ -174,16 +171,8 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
             rows,
             columns,
             group,
-            onTaskUpdate,
-            initText,
-            saveNewTask,
-            cmpsOrder,
           }}
         />
-
-        {/* <div className="group-table-footer-section flex">
-          <div className="group-table-footer-cell flex"></div>
-        </div> */}
       </div>
     </section>
   )
