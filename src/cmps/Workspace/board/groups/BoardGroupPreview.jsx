@@ -1,5 +1,6 @@
 import { GroupTableBody } from './table/GroupTableBody'
 import { GroupTableHeaders } from './table/GroupTableHeaders'
+
 import React, { useEffect, useState } from 'react'
 // import { EditableText } from '../EditableText'
 import { ContextBtn } from '../../../ContextBtn'
@@ -160,6 +161,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           onDeleteColumn={onDeleteColumn}
           onAddColumn={onAddColumn}
         />
+        <div style={{marginBottom: '265px'}}>
 
         <GroupTableBody
           rows={rows}
@@ -170,7 +172,8 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           saveNewTask={saveNewTask}
           cmpsOrder={cmpsOrder}
           onDeleteTask={onDeleteTask}
-        />
+          />
+          </div>
 
         <GroupTableFooter
           {...{
