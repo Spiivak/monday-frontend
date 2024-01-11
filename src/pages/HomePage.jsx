@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { HomeHeader } from '../cmps/Home/HomeHeader'
 import QuerterlyRoadmap from '../assets/img/quarterly-roadmap.avif'
 import { Tabs } from '../cmps/Home/Tabs'
@@ -36,6 +36,7 @@ import MSales from '../assets/img/msc.png'
 import MDev from '../assets/img/mdev.png'
 
 import { CheckIcon } from '../cmps/Icons'
+import { Hidden } from '@mui/material'
 
 export function HomePage() {
   const [activeTab, setActiveTab] = useState('work-management-tab')
@@ -61,6 +62,30 @@ export function HomePage() {
         return null
     }
   }
+
+  useEffect(() => {
+    const video = document.querySelector('.paralex-video video');
+
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+    
+      if (scrollPosition >= 2500 && scrollPosition <= 4150) {
+        const parallaxSpeed = 8.9;
+        const translateY = (scrollPosition - 2400) * parallaxSpeed / 9;
+    
+        // Apply the parallax effect to your video element
+        video.style.transform = `translateY(${translateY}px)`;
+        video.style.overflow = 'hidden';
+      } 
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   return (
     <section className="home-page page">
       <HomeHeader />
