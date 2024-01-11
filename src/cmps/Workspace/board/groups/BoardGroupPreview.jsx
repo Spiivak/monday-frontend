@@ -161,7 +161,6 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           onDeleteColumn={onDeleteColumn}
           onAddColumn={onAddColumn}
         />
-        <div style={{marginBottom: '265px'}}>
 
         <GroupTableBody
           rows={rows}
@@ -173,7 +172,6 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           cmpsOrder={cmpsOrder}
           onDeleteTask={onDeleteTask}
           />
-          </div>
 
         <GroupTableFooter
           {...{

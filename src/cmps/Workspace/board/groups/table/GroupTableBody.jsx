@@ -4,7 +4,6 @@ import { EditableText } from '../../editableText/EditableText';
 import { ContextBtn } from '../../../../ContextBtn';
 import { useSelector } from 'react-redux';
 import { saveSelectedTasks } from '../../../../../store/actions/board.actions';
-import { Draggable, Droppable } from 'react-beautiful-dnd';
 
 export function GroupTableBody({
   rows,
@@ -38,19 +37,8 @@ export function GroupTableBody({
 
   return (
     <>
-    <Droppable droppableId={`droppable-group-${group.id}`} type="GROUP_TABLE">
-      {(provided) => (
-        <div ref={provided.innerRef} {...provided.droppableProps}>
           {rows.map((row, rowIdx) => (
-            <Draggable key={row.id} draggableId={row.id} index={rowIdx}>
-              {(provided) => (
-                <div
-                  ref={provided.innerRef}
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}
-                  className="table-body-row"
-                  key={row.id}
-                >
+                <div className="table-body-row">
                   <div
                     style={{
                       '--before-color': group.style.color,
@@ -89,13 +77,7 @@ export function GroupTableBody({
                     </React.Fragment>
                   ))}
                 </div>
-              )}
-            </Draggable>
           ))}
-          {provided.placeholder}
-        </div>
-      )}
-    </Droppable>
     <div className="table-body-row last-row-cell last-row">
       <div
         style={{
