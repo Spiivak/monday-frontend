@@ -27,7 +27,7 @@ export function GroupTableFooter({ rows, columns, group }) {
               style={{
                 gridRow: rows.length + 3,
                 gridColumn: colIdx + 3,
-                borderBottom: '1px solid #eee',
+                borderBottom: '1px solid #d0d4e4',
                 width: '100%',
                 height: '100%',
                 translate: '0 -15%',
