@@ -35,7 +35,7 @@ export function ImgUploader({ id, imgData, handleUpdateTaskFile = null }) {
 
   return (
     <div
-      className="upload-preview cell flex space-between"
+      className="upload-preview  flex space-between"
       style={{ padding: '7px' }}
     >
       {isLoading ? (

@@ -7,7 +7,7 @@
   // grid-auto-flow: column;
 
   .table-body-row {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #d0d4e4;
     display: grid;
     grid-template-columns: var(--gtc);
     grid-auto-flow: column;
@@ -17,6 +17,8 @@
   }
 
   .group-table-header-cell {
+    border-right: 1px solid #d0d4e4;
+    border-top: 1px solid #d0d4e4;
     // grid-row: 1;
     position: relative;
     z-index: 9;
@@ -57,6 +59,7 @@
   }
 
   .first-column {
+    border-right: 1px solid #d0d4e4;
     position: relative;
     --before-color: blue;
   }

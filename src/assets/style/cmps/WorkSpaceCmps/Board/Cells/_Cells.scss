@@ -116,7 +116,7 @@
 }
 
 .description-picker-cell {
-  width: 180px;
+  width: 200px;
   overflow: none;
 }
 
@@ -162,8 +162,6 @@
 
 .multiLine-text {
   position: absolute;
-  background-color: white;
-  z-index: 999;
   right: 50%;
   top: 0;
   transform: translate(50%, -5%);

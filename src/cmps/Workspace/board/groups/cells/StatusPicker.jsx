@@ -134,7 +134,7 @@ export function StatusPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
             pointAtCenter: true,
           }}
         >
-          <div className="cell">
+          <div style={{ width: '100%', height: '100%' }}>
             <button
               className="label-btn"
               style={{
