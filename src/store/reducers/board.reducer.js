@@ -53,18 +53,18 @@ export function boardReducer(state = initialState, action = {}) {
       return { ...state, boards: action.boards }
 
     case REMOVE_BOARD:
-      boards = state.boards.filter((board) => board._id !== action.boardId)
-      return { ...state, boards }
+      newBoards = state.boards.filter((board) => board._id !== action.boardId)
+      return { ...state, boards: [...newBoards] }
 
     case ADD_BOARD:
-      boards = [...state.boards, action.board]
-      return { ...state, boards }
+      newBoards = [...state.boards, action.board]
+      return { ...state, boards: [...newBoards] }
 
     case UPDATE_BOARD:
-      boards = state.boards.map((board) =>
+      newBoards = state.boards.map((board) =>
         board._id === action.board._id ? action.board : board
       )
-      return { ...state, boards }
+      return { ...state, boards: [...newBoards] }
 
     // * GROUP CRUD
     case ADD_GROUP:
@@ -72,7 +72,7 @@ export function boardReducer(state = initialState, action = {}) {
         if (board._id !== action.boardId) return board
         return { ...board, groups: [...board.groups, action.savedGroup] }
       })
-      return { ...state, boards: newBoards }
+      return { ...state, boards: [...newBoards] }
 
     case UPDATE_GROUP:
       newBoards = state.boards.map((board) => {
@@ -85,7 +85,7 @@ export function boardReducer(state = initialState, action = {}) {
           }),
         }
       })
-      return { ...state, boards: newBoards }
+      return { ...state, boards: [...newBoards] }
 
     case REMOVE_GROUP:
       newBoards = state.boards.map((board) => {
@@ -97,7 +97,7 @@ export function boardReducer(state = initialState, action = {}) {
           ),
         }
       })
-      return { ...state, boards: newBoards }
+      return { ...state, boards: [...newBoards] }
 
     // * TASK CRUD
     case UPDATE_TASK:
@@ -117,7 +117,7 @@ export function boardReducer(state = initialState, action = {}) {
           }),
         }
       })
-      return { ...state, boards: newBoards }
+      return { ...state, boards: [...newBoards] }
 
     case ADD_TASK:
       newBoards = state.boards.map((board) => {
@@ -130,7 +130,7 @@ export function boardReducer(state = initialState, action = {}) {
           }),
         }
       })
-      return { ...state, boards: newBoards }
+      return { ...state, boards: [...newBoards] }
 
     case REMOVE_TASK:
       newBoards = state.boards.map((board) => {
@@ -148,7 +148,7 @@ export function boardReducer(state = initialState, action = {}) {
           }),
         }
       })
-      return { ...state, boards: newBoards }
+      return { ...state, boards: [...newBoards] }
 
     case ADD_COLUMN:
       newBoards = state.boards.map((board) => {
@@ -158,7 +158,7 @@ export function boardReducer(state = initialState, action = {}) {
           cmpsOrder: [...board.cmpsOrder, action.addedColumn],
         }
       })
-      return { ...state, boards: newBoards }
+      return { ...state, boards: [...newBoards] }
 
     case REMOVE_COLUMN:
       newBoards = state.boards.map((board) => {
@@ -170,7 +170,7 @@ export function boardReducer(state = initialState, action = {}) {
           ),
         }
       })
-      return { ...state, boards: newBoards }
+      return { ...state, boards: [...newBoards] }
 
     case UPDATE_COLUMN:
       newBoards = state.boards.map((board) => {
@@ -183,7 +183,7 @@ export function boardReducer(state = initialState, action = {}) {
           }),
         }
       })
-      return { ...state, boards: newBoards }
+      return { ...state, boards: [...newBoards] }
 
     //* FILTER BY
 

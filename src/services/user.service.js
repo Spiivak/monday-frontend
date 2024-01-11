@@ -1,117 +1,53 @@
 const demoData = [
   {
-    _id: 'u1',
+    _id: '659e7638ad01306fc6e4d03e',
     fullname: 'Nave David',
     username: 'navedavid@gmail.com',
     imgUrl:
       'https://res.cloudinary.com/donnezwy9/image/upload/v1704455572/rzddgfxj4fzkcn6eqgrv.jpg',
-    // mentions: [
-    //   {
-    //     //optional
-    //     id: 'm101',
-    //     boardId: 'm101',
-    //     taskId: 't101',
-    //   },
-    // ],
   },
   {
-    _id: 'u2',
+    _id: '659e77c5ad01306fc6e4d03f',
     fullname: 'Dima Revelson',
     username: 'dimarevelson@gmail.com',
     imgUrl:
       'https://res.cloudinary.com/donnezwy9/image/upload/v1704459492/mv8vwh55b3wgqdflmemw.png',
-    // mentions: [
-    //   {
-    //     //optional
-    //     id: 'm101',
-    //     boardId: 'm101',
-    //     taskId: 't101',
-    //   },
-    // ],
   },
   {
-    _id: 'u3',
+    _id: '659e781bad01306fc6e4d041',
     fullname: 'Emily Kristensen',
     username: 'emilyKristensen@gmail.com',
     imgUrl: 'https://randomuser.me/api/portraits/women/11.jpg',
-    // mentions: [
-    //   {
-    //     //optional
-    //     id: 'm101',
-    //     boardId: 'm101',
-    //     taskId: 't101',
-    //   },
-    // ],
   },
   {
-    _id: 'u4',
+    _id: '659e78bbad01306fc6e4d043',
     fullname: 'Isabelle Anderson',
     username: 'isabelle.anderson@example.com',
     imgUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
-    // mentions: [
-    //   {
-    //     //optional
-    //     id: 'm101',
-    //     boardId: 'm101',
-    //     taskId: 't101',
-    //   },
-    // ],
   },
   {
-    _id: 'u5',
+    _id: '659e7946ad01306fc6e4d044',
     fullname: 'Mare Alleman',
     username: 'mare.alleman@example.com',
     imgUrl: 'https://randomuser.me/api/portraits/med/women/25.jpg',
-    // mentions: [
-    //   {
-    //     //optional
-    //     id: 'm101',
-    //     boardId: 'm101',
-    //     taskId: 't101',
-    //   },
-    // ],
   },
   {
-    _id: 'u6',
+    _id: '659e795cad01306fc6e4d045',
     fullname: 'Mirogost Gaydenko',
     username: 'mirogost.gaydenko@example.com',
     imgUrl: 'https://randomuser.me/api/portraits/med/men/6.jpg',
-    // mentions: [
-    //   {
-    //     //optional
-    //     id: 'm101',
-    //     boardId: 'm101',
-    //     taskId: 't101',
-    //   },
-    // ],
   },
   {
-    _id: 'u7',
+    _id: '659e7976ad01306fc6e4d046',
     fullname: 'Hugo Diederichs',
     username: 'hugo.diederichs@example.com',
     imgUrl: 'https://randomuser.me/api/portraits/med/men/74.jpg',
-    // mentions: [
-    //   {
-    //     //optional
-    //     id: 'm101',
-    //     boardId: 'm101',
-    //     taskId: 't101',
-    //   },
-    // ],
   },
   {
-    _id: 'u8',
+    _id: '659e798ead01306fc6e4d048',
     fullname: 'Nella Lammi',
     username: 'nella.lammi@example.com',
     imgUrl: 'https://randomuser.me/api/portraits/women/32.jpg',
-    // mentions: [
-    //   {
-    //     //optional
-    //     id: 'm101',
-    //     boardId: 'm101',
-    //     taskId: 't101',
-    //   },
-    // ],
   },
 ]
 import { storageService } from './async-storage.service'

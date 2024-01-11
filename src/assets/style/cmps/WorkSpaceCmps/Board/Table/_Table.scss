@@ -7,6 +7,7 @@
   .group-table-header-cell {
     // grid-row: 1;
     position: relative;
+    z-index: 9;
 
     .context-menu {
       display: none;
@@ -69,15 +70,14 @@
   .checkbox-cell {
     position: sticky;
     left: 0;
-    z-index: 100;
+    z-index: 10;
   }
 
   .title {
     position: sticky;
     left: 48px;
     top: 0;
-    z-index: 100;
+    z-index: 15;
   }
-
 
 }
