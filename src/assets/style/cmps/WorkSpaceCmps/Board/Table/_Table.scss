@@ -12,12 +12,6 @@
     grid-template-columns: var(--gtc);
     grid-auto-flow: column;
   }
-  .last-row-cell {
-    border-bottom: 1px solid #d0d4e4;
-    .checkbox-cell {
-      border-bottom: 0;
-    }
-  }
   .footer-row {
     border: none;
   }
@@ -45,8 +39,7 @@
   }
 
   & > * {
-    height: 37px;
-    border: 1px solid #eee;
+    height: 35px;
     background-color: #fff;
     z-index: 10;
   }
@@ -65,7 +58,6 @@
 
   .first-column {
     position: relative;
-    border-right: 1px solid #d0d4e4;
     --before-color: blue;
   }
 
