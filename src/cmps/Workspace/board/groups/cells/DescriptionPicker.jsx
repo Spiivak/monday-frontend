@@ -52,11 +52,12 @@ export function DescriptionPicker({
   }
 
   return (
-    <div className="description-picker-cell relative">
+    <div className="description-picker-cell relative cell">
       {!multiLine ? (
         <DescriptionPreview {...{ setOpenMultiLine, displayValue }} />
       ) : (
         <TextField
+          style={{ position: 'absolute' }}
           className="multiLine-text"
           value={desc}
           onBlur={handleBlur}
