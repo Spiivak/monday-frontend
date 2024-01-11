@@ -171,7 +171,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           saveNewTask={saveNewTask}
           cmpsOrder={cmpsOrder}
           onDeleteTask={onDeleteTask}
-          />
+        />
 
         <GroupTableFooter
           {...{
