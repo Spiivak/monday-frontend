@@ -37,6 +37,9 @@ export function NumbersPickers({ task, cmpId, handleUpdateTask }) {
             textAlign: 'center',
           },
         }}
+        InputProps={{
+          disableUnderline: true, // This will remove the underline
+        }}
       />
     </div>
   )
