@@ -4,11 +4,8 @@ import { useState } from "react";
 
 export function BatchMenu() {
   const selectedTask = useSelector((storeState) => storeState.boardModule.checkedTaskIds)
-  console.log('BatchMenu  selectedTask:', selectedTask)
 
 
-  const [ tasks, setTasks ] = useState(selectedTask);
-  console.log('BatchMenu  tasks:', tasks)
 
   if (selectedTask.length === 0) return
   return (
