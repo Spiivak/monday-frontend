@@ -17,7 +17,7 @@ export function WorkSpacePage() {
   const navigate = useNavigate()
   useEffect(() => {
     loadAsync()
-    loadUsers()
+    // loadUsers()
   }, [])
 
   async function loadAsync(){

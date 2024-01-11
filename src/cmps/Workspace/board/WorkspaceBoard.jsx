@@ -36,11 +36,16 @@ export function WorkSpaceBoard() {
     if (boardId) {
       setSelectedBoard(boards.find((board) => board._id === boardId))
       setFilteredBoard(boards.find((board) => board._id === boardId))
+      socketService.off('board-watch')
+      socketService.on('board-watch',boardId)
     } else {
       setSelectedBoard(boards[0])
       setFilteredBoard(boards[0])
+      socketService.off('board-watch')
+      socketService.on('board-watch',boards[0])
     }
   }, [boardId, boards])
+
 
   useEffect(() => {
     if (filteredBoard) {

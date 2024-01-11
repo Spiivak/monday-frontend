@@ -5,17 +5,25 @@ import { login, logout, signup } from '../../store/actions/user.actions'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 import { useSelector } from 'react-redux'
 import { LoginSignup } from './LoginSignup'
+import { useNavigate } from 'react-router-dom'
 export function HomeHeader() {
+  const navigate = useNavigate()
   const user = useSelector((storeState) => storeState.userModule.user)
 
   async function onLogin(credentials) {
+    const newCredentials = {
+      username: 'dimarevelson@gmail.com',
+      password: '123123',
+    }
     try {
-      const user = await login(credentials)
+      const user = await login(newCredentials)
       showSuccessMsg(`Welcome: ${user.fullname}`)
+      navigate('/workspace')
     } catch (err) {
       showErrorMsg('Cannot login')
     }
   }
+
   async function onSignup(credentials) {
     try {
       const user = await signup(credentials)
@@ -32,6 +40,7 @@ export function HomeHeader() {
       showErrorMsg('Cannot logout')
     }
   }
+
   return (
     <header className="home-header full flex space-between">
       <div className="right flex">
@@ -64,7 +73,11 @@ export function HomeHeader() {
               <LoginSignup onLogin={onLogin} onSignup={onSignup} />
             </section>
           )} */}
-          <NavLink to="/workspace" className={'get-started-btn flex align-center justify-center'}>Get Started </NavLink>
+          <button
+            onClick={onLogin}
+            className={'get-started-btn flex align-center justify-center'}>
+            Get Started
+          </button>
         </div>
       </div>
     </header>
