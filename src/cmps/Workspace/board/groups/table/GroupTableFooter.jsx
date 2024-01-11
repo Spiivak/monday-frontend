@@ -5,12 +5,14 @@ import { Tooltip, styled, tooltipClasses } from '@mui/material'
 
 export function GroupTableFooter({ rows, columns, group }) {
   return (
-    <>
+    <div className="table-body-row">
       <div
-        style={{ gridRow: rows.length + 3, gridColumn: 1, opacity: '0' }}
+        className="empty-column"
+        style={{ gridRow: rows.length + 3, gridColumn: 1 }}
       ></div>
       <div
-        style={{ gridRow: rows.length + 3, gridColumn: 2, opacity: '0' }}
+        className="empty-column"
+        style={{ gridRow: rows.length + 3, gridColumn: 2 }}
       ></div>
       {columns.map((column, colIdx) => {
         let colSummary
@@ -22,7 +24,14 @@ export function GroupTableFooter({ rows, columns, group }) {
         return (
           <React.Fragment key={column.id}>
             <div
-              style={{ gridRow: rows.length + 3, gridColumn: colIdx + 3 }}
+              style={{
+                gridRow: rows.length + 3,
+                gridColumn: colIdx + 3,
+                borderBottom: '1px solid #eee',
+                width: '100%',
+                height: '100%',
+                translate: '0 -15%',
+              }}
               className="group-table-cell cell"
             >
               {colSummary}
@@ -30,7 +39,7 @@ export function GroupTableFooter({ rows, columns, group }) {
           </React.Fragment>
         )
       })}
-    </>
+    </div>
   )
 }
 

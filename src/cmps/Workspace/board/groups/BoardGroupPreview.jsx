@@ -118,7 +118,6 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
 
   //!!! TURN OFF BOARD LOADER !!!//
 
-
   return (
     <section className="board-view-group ">
       <div className="board-title flex align-center gap8">
@@ -151,7 +150,8 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
             columns.length - 1
           },200px) minmax(80px,1fr)`,
         }}
-        className="board-group-table-container">
+        className="board-group-table-container"
+      >
         <GroupTableHeaders
           columns={columns}
           group={group}

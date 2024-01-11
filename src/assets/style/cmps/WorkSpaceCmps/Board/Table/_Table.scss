@@ -6,7 +6,7 @@
   // grid-template-columns: max-content;
   // grid-auto-flow: column;
 
-  .table-body-row{
+  .table-body-row {
     display: grid;
     grid-template-columns: var(--gtc);
     grid-auto-flow: column;
@@ -34,7 +34,7 @@
     }
   }
 
-  &>* {
+  & > * {
     height: 37px;
     border: 1px solid #eee;
     background-color: #fff;
@@ -64,7 +64,7 @@
     height: 105%;
     left: 0;
     width: 8px;
-    background-color: var(--before-color)
+    background-color: var(--before-color);
   }
 
   .first-row-cell.first-column::before {
@@ -90,11 +90,23 @@
     z-index: 15;
   }
 
-  .add-task-lr{
+  .add-task-lr {
     background-color: #fff;
     position: sticky;
     left: 68px;
     top: 0;
     z-index: 15;
+  }
+  &:has(.empty-column) {
+    border: none;
+  }
+  .empty-column {
+    position: sticky;
+    width: 100%;
+    height: 100%;
+    left: 48px;
+    top: 0px;
+    z-index: 15;
+    background-color: #fff;
   }
 }
