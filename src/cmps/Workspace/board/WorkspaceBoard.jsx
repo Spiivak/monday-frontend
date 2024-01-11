@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 
 import { useNavigate, useParams } from 'react-router'
 import { MondayLoader } from '../MondayLoader'
+import { BatchMenu } from './groups/table/BatchMenu'
 export function WorkSpaceBoard() {
   const [selectedBoard, setSelectedBoard] = useState(null)
   const [filteredBoard, setFilteredBoard] = useState(null)
@@ -106,7 +107,10 @@ export function WorkSpaceBoard() {
         </div>
         <div className="table-section">
           {!!boards && (
-            <BoardGroupList board={filteredBoard} onAddGroup={onAddGroup} />
+            <>
+              <BoardGroupList board={filteredBoard} onAddGroup={onAddGroup} />
+              <BatchMenu />
+            </>
           )}
         </div>
       </section>

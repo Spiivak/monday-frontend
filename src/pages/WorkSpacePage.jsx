@@ -10,6 +10,7 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { useEffect } from 'react'
 import { loadUsers } from '../store/actions/user.actions'
 import { boardService } from '../services/board.service'
+import { BatchMenu } from '../cmps/Workspace/board/groups/table/BatchMenu'
 
 export function WorkSpacePage() {
   const navigate = useNavigate()
@@ -39,8 +40,8 @@ export function WorkSpacePage() {
     <section className="workspace-boards main-layout">
       <WorkspaceHeader />
       <main>
-          <Sidebar {...{ onRemoveBoard, onAddBoard }} />
-          <Outlet />
+        <Sidebar {...{ onRemoveBoard, onAddBoard }} />
+        <Outlet />
       </main>
     </section>
   )
