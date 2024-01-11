@@ -188,6 +188,7 @@ function renderFilesStatus(files) {
 function renderFile(file) {
   return (
     <img
+      key={file.publicId}
       style={{ width: '20px', height: '20px', objectFit: 'cover' }}
       src={file.imgUrl}
     />
