@@ -31,6 +31,7 @@ export const DEACTIVATE_TASK = 'DEACTIVATE_TASK'
 export const START_ADD_COLUMN = 'START_ADD_COLUMN'
 export const COMPLETE_ADD_COLUMN = 'COMPLETE_ADD_COLUMN'
 
+
 const initialState = {
   boards: [],
   filterBy: {},
@@ -216,6 +217,7 @@ export function boardReducer(state = initialState, action = {}) {
       return { ...state, isAddingColumn: true }
     case COMPLETE_ADD_COLUMN:
       return { ...state, isAddingColumn: false }
+
     default:
       return state
   }
