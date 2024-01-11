@@ -52,7 +52,7 @@ export function DescriptionPicker({
   }
 
   return (
-    <div className="description-picker-cell relative">
+    <div className="description-picker-cell cell relative">
       {!multiLine ? (
         <DescriptionPreview {...{ setOpenMultiLine, displayValue }} />
       ) : (

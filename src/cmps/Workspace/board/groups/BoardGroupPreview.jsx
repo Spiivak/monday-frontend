@@ -147,7 +147,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
 
       <div
         style={{
-          '--gtc': `80px 350px repeat(${
+          '--gtc': `50px 350px repeat(${
             columns.length - 1
           },200px) minmax(80px,1fr)`,
         }}
