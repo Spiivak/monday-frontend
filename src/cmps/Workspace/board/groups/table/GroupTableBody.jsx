@@ -16,7 +16,7 @@ export function GroupTableBody({
   cmpsOrder,
 }) {
   const selectedTask = useSelector((storeState) => storeState.boardModule.selectedTask)
-  
+
   const [checkedTasks, setCheckedTasks] = useState([]);
   console.log('checkedTasks:', checkedTasks)
 
@@ -28,13 +28,13 @@ export function GroupTableBody({
       const updatedTasks = checked
         ? [...prevCheckedTasks, taskId]
         : prevCheckedTasks.filter((id) => id !== taskId);
-  
+
       saveSelectedTasks(updatedTasks);
 
       return updatedTasks;
     })
-  
-  }
+
+  } // test
 
 
   return (
