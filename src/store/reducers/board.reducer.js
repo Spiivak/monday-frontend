@@ -14,6 +14,7 @@ export const UPDATE_GROUP = 'UPDATE_GROUP'
 export const UPDATE_TASK = 'UPDATE_TASK'
 export const ADD_TASK = 'ADD_TASK'
 export const REMOVE_TASK = 'REMOVE_TASK'
+export const SET_CHECKED_TASKS = 'SET_CHECKED_TASKS'
 //column
 export const ADD_COLUMN = 'ADD_COLUMN'
 export const REMOVE_COLUMN = 'REMOVE_COLUMN'
@@ -41,11 +42,13 @@ const initialState = {
   activeContextBtnData: null,
   activeTask: null,
   isAddingColumn: false,
+  checkedTaskIds: [],
 }
 
 export function boardReducer(state = initialState, action = {}) {
   let boards
   let newBoards
+	let newCheckedTaskIds
 
   switch (action.type) {
     // * BOARDS CRUD
@@ -118,6 +121,10 @@ export function boardReducer(state = initialState, action = {}) {
         }
       })
       return { ...state, boards: [...newBoards] }
+
+
+    case SET_CHECKED_TASKS:
+      return { ...state, checkedTaskIds: action.taskIds }
 
     case ADD_TASK:
       newBoards = state.boards.map((board) => {

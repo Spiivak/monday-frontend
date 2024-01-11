@@ -22,3 +22,13 @@ export async function removeTask(boardId, taskId, action = {}) {
 		throw err
 	}
 }
+
+
+export async function setSelectedTask(taskId, action = {}) {
+	try {
+	const selectedTask = await boardService.selectedTask(taskId, action)		
+	} catch (error) {
+		
+	}
+
+}
