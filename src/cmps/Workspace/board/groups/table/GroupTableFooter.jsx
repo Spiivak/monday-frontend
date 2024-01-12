@@ -63,8 +63,19 @@ function groupSummaryByColumn(column, group) {
       if (!dates.length) return
       const minDate = Math.min(...dates)
       const maxDate = Math.max(...dates)
-      return utilService.formatDateRange([minDate, maxDate])
-
+      return (
+        <div
+          style={{
+            minWidth: '115px',
+            borderRadius: '15px',
+            backgroundColor: '#333',
+            textAlign: 'center',
+            color: 'white',
+          }}
+        >
+          {utilService.formatDateRange([minDate, maxDate])}
+        </div>
+      )
     case 'NumbersPicker':
       const numbersSum = group.tasks.reduce((acc, task) => {
         const taskValue = task[currAccessor] || 0
@@ -84,7 +95,19 @@ function groupSummaryByColumn(column, group) {
       const maxTimestamp = Math.max(
         ...timelines.map((timestamps) => Math.max(...timestamps))
       )
-      return utilService.formatDateRange([minTimestamp, maxTimestamp])
+      return (
+        <div
+          style={{
+            minWidth: '115px',
+            borderRadius: '15px',
+            backgroundColor: '#333',
+            textAlign: 'center',
+            color: 'white',
+          }}
+        >
+          {utilService.formatDateRange([minTimestamp, maxTimestamp])}
+        </div>
+      )
 
     case 'MemberPicker':
       const membersOfTask = group.tasks
