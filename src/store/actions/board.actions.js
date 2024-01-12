@@ -205,12 +205,39 @@ export async function removeTask(boardId, groupId, taskId) {
   } catch (err) {}
 }
 
+export async function removeAllTasks(props) {
+  console.log('removeAllTasks props:', props);
+
+  try {
+    // Assuming each object in the array has properties boardId, groupId, and taskId
+    const removedTaskIds = await Promise.all(
+      props.map(async ({ boardId, groupId, taskId }) => {
+        store.dispatch({ type: SET_CHECKED_TASKS, taskIds: []})
+        return await removeTask(boardId, groupId, taskId);
+      })
+    );
+
+    console.log('removedTaskIds:', removedTaskIds);
+  } catch (err) {
+    console.error('Error removing all tasks:', err);
+  }
+}
+
 export async function saveSelectedTasks(taskIds) {
   console.error('saveSelectedTasks  selectedTaskIds:', taskIds)
   try {
     store.dispatch({ type: SET_CHECKED_TASKS, taskIds })
   } catch (error) {
     console.error('Error saving selected tasks:', error)
+  }
+}
+
+export async function resetSelectedTasks() {
+  try {
+    // Dispatch the action to reset the selected tasks
+    store.dispatch({ type: SET_CHECKED_TASKS, taskIds: [] });
+  } catch (error) {
+    console.error('Error resetting selected tasks:', error);
   }
 }
 
