@@ -11,7 +11,7 @@ export function AddBoardModal({ onClose, SetAddModalOpen }) {
     setModalOpen(!isModalOpen)
   }
 
-  
+
 
   const handleClickOutside = (event) => {
     if (!modalRef.current.contains(event.target)) {
@@ -64,7 +64,6 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
   function handleChange({ target }) {
     const field = target.name
     let value = target.value
-    console.log('field', field)
 
     switch (target.type) {
       case 'number':
@@ -87,7 +86,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
       await saveBoard(newBoard)
       navigate(`/workspace/${newBoard._id}`)
     } catch (err) {
-      console.log('Cannot add board', err)
+      console.error('Cannot add board', err)
     }
   }
   const handleCancel = () => {

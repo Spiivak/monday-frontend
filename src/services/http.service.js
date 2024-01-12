@@ -32,7 +32,7 @@ async function ajax(endpoint, method = 'GET', data = null) {
     })
     return res.data
   } catch (err) {
-    console.log(
+    console.error(
       `Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data: `,
       data
     )

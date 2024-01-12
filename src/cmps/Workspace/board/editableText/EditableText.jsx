@@ -27,6 +27,6 @@ export function EditableText({
     case 'headerTitle':
       return <HeaderTitle {...{ initialText, onSave, placeholder, type }} />
     default:
-      return console.log('couldnt find any type')
+      return console.error('couldnt find any type to edit')
   }
 }

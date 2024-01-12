@@ -18,7 +18,6 @@ export function GroupTableBody({
 }) {
   const selectedTask = useSelector((storeState) => storeState.boardModule.selectedTask);
   const [checkedTasks, setCheckedTasks] = useState([]);
-  console.log('checkedTasks:', checkedTasks);
 
   function handleChange(row, event) {
     console.log('handleChange  row:', row);
@@ -34,7 +33,7 @@ export function GroupTableBody({
       return updatedTasks;
     });
   }
-  
+
 
   return (
     <>

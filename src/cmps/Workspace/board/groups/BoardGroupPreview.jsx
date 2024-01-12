@@ -78,12 +78,11 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
     try {
       updateTask(boardId, group.id, task.id, cmpType, cmpId, task, data)
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 
   function onDeleteTask(groupId, taskId) {
-    console.log(boardId, groupId, taskId)
     removeTask(boardId, groupId, taskId)
   }
 

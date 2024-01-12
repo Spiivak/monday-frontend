@@ -15,7 +15,6 @@ export function SidebarBoardList({ onRemoveBoard }) {
     const newBoards = [...boards]
     const [removed] = newBoards.splice(result.source.index, 1)
     newBoards.splice(result.destination.index, 0, removed)
-    console.log('handleDragEnd  newBoards:', newBoards)
 
     updateBoards(newBoards)
   }

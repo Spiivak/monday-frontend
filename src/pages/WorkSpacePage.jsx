@@ -29,7 +29,7 @@ export function WorkSpacePage() {
       const board = await saveBoard(boardService.getEmptyBoard())
       navigate(`/workspace/${board._id}`)
     } catch (err) {
-      console.log('Cannot add board', err)
+      console.error('Cannot add board', err)
     }
   }
   async function onRemoveBoard(boardId) {

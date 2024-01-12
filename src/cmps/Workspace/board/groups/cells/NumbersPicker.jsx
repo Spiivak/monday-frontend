@@ -14,7 +14,7 @@ export function NumbersPickers({ task, cmpId, handleUpdateTask }) {
     try {
       await handleUpdateTask('NumbersPicker', +num, task)
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 

@@ -43,7 +43,7 @@ export function DatePickerC({ task, cmpId, handleUpdateTask, cmpsOrder }) {
           updatedTask
         )
       } catch (err) {
-        console.log('Cannot change date', err)
+        console.error('Cannot change date', err)
       } finally {
         setDateModal(false)
       }
