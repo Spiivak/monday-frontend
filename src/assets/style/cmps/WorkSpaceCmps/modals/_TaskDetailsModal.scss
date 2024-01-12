@@ -1,14 +1,13 @@
 .task-details-modal {
-
   overflow: auto;
 
-.header {
-  position: sticky;
-  top: 0;
-  background: white;
-  z-index: 11111;
-  box-shadow: -4px -8px 20px 20px #3a3a3a0a;
-}
+  .header {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 11111;
+    box-shadow: -4px -8px 20px 20px #3a3a3a0a;
+  }
 
   position: absolute;
   width: 605px;
@@ -30,7 +29,8 @@
     text-align: left;
     margin: 20px 20px 6px 24px;
     align-items: center;
-    padding: $spacing-medium $spacing-medium $spacing-small calc($spacing-medium - $spacing-xs);
+    padding: $spacing-medium $spacing-medium $spacing-small
+      calc($spacing-medium - $spacing-xs);
 
     .task-title {
       color: #323338;
@@ -39,7 +39,8 @@
       margin-bottom: 0.75em;
     }
 
-    .header-actions {}
+    .header-actions {
+    }
   }
 
   .task-header-tabs {
@@ -50,7 +51,6 @@
     .task-tabs {
       .tabs {
         display: flex;
-
 
         .tab-container {
           display: flex;
@@ -72,7 +72,6 @@
             span {
               color: #323338;
               font-family: Figtree;
-
             }
 
             .underline-active {
@@ -87,7 +86,6 @@
         }
       }
     }
-
   }
 
   .task-search {
@@ -133,7 +131,8 @@
             font: 400 14px/20px Figtree;
             border-radius: $border-radius-small;
             transition: border-color 100ms ease-in;
-            padding: $spacing-small $spacing-large $spacing-small $spacing-medium
+            padding: $spacing-small $spacing-large $spacing-small
+              $spacing-medium;
           }
         }
       }
@@ -163,33 +162,33 @@
   .activity-log {
     padding: 0px 25px;
     padding-bottom: 25px;
+    display: grid;
+    grid-template-columns: repeat(7, auto);
     font: 400 14px Figtree;
 
-    &>div {
+    & > div {
+      grid-column: 1 / -1;
       display: grid;
       overflow: hidden;
-      grid-template-columns: repeat(7, 50px);
-      width: 555px;
-      gap: 32px;
+      grid-template-columns: subgrid;
+      width: 100%;
+      gap: 19px;
       padding: 8px 0px;
       border-top: 1px solid #c3c6d4;
-      text-wrap: nowrap;
       text-overflow: ellipsis;
       text-wrap: nowrap;
 
       span {
-        width: 50px;
+        flex: 1;
         text-overflow: ellipsis;
         text-wrap: nowrap;
         overflow: hidden;
-        place-self: center;
-
-        // height: 50px;
       }
 
       &:first-child {
         margin-top: 16px;
         border-top: none;
+        justify-content: start;
       }
 
       & .chevron {
@@ -197,7 +196,6 @@
           rotate: -90deg;
         }
       }
-
 
       & .time-format {
         display: flex;
@@ -208,12 +206,10 @@
           color: #323338;
         }
 
-
         & .active-title {
           span {
             text-overflow: ellipsis;
             text-wrap: nowrap;
-
           }
 
           // Styles for .active-title
@@ -222,4 +218,3 @@
     }
   }
 }
-
