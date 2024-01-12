@@ -33,6 +33,8 @@ export const DEACTIVATE_TASK = 'DEACTIVATE_TASK'
 export const START_ADD_COLUMN = 'START_ADD_COLUMN'
 export const COMPLETE_ADD_COLUMN = 'COMPLETE_ADD_COLUMN'
 
+export const SET_IMG_TARGET = 'SET_IMG_TARGET'
+
 const initialState = {
   boards: [],
   board: null,
@@ -44,6 +46,8 @@ const initialState = {
   activeTask: null,
   isAddingColumn: false,
   checkedTaskIds: [],
+  imgTarget: null,
+  imgTargetData: null,
 }
 
 export function boardReducer(state = initialState, action = {}) {
@@ -229,6 +233,13 @@ export function boardReducer(state = initialState, action = {}) {
       return { ...state, isAddingColumn: true }
     case COMPLETE_ADD_COLUMN:
       return { ...state, isAddingColumn: false }
+
+    case SET_IMG_TARGET:
+      return {
+        ...state,
+        imgTarget: action.imgTarget,
+        imgTargetData: action.imgTargetData,
+      }
 
     default:
       return state

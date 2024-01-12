@@ -19,6 +19,7 @@ import {
   SET_BOARDS,
   SET_CHECKED_TASKS,
   SET_FILTER_BY,
+  SET_IMG_TARGET,
   SET_IS_BOARD_LOADING,
   SET_IS_LOADING,
   START_ADD_COLUMN,
@@ -324,6 +325,13 @@ export function finishAddingColumn() {
 export function setBoardLoading(type) {
   store.dispatch({ type: SET_IS_BOARD_LOADING, boardLoading: type })
 }
+
+
+export function setImg(imgTarget, imgTargetData){
+  console.log(imgTarget, imgTargetData)
+  store.dispatch({type: SET_IMG_TARGET, imgTarget, imgTargetData})
+}
+
 // export async function addBoardMsg(boardId,msg,user){
 //   const newMsg = {...boardService.getEmptyMsg(), content:msg}
 //   if(user) newMsg.owner = user
