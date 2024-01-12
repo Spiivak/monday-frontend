@@ -2,7 +2,7 @@ import TextField from '@mui/material/TextField'
 import { useState } from 'react'
 
 export function NumbersPickers({ task, cmpId, handleUpdateTask, cmpsOrder }) {
-  const [num, setNum] = useState(task['number' + cmpId] || '')
+  const [num, setNum] = useState(+task['number' + cmpId] || 0)
   const colName = cmpsOrder.find((cmp) => cmp.type === 'NumbersPicker')?.title
   function handleUpdateNumber(ev) {
     const input = ev.target.value
