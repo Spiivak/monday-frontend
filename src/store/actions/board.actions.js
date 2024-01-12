@@ -1,4 +1,5 @@
 import { boardService } from '../../services/board.service'
+import { socketService } from '../../services/socket.service'
 
 import {
   ADD_BOARD,
@@ -30,6 +31,19 @@ import { GET_BOARD_BY_ID } from '../reducers/board.reducer'
 import { store } from '../store'
 
 // * BOARD CRUD
+
+export async function loadBoards() {
+  store.dispatch({ type: SET_IS_BOARD_LOADING, boardLoading: true })
+  try {
+    const boards = await boardService.query()
+    store.dispatch({ type: SET_BOARDS, boards })
+    return boards
+  } catch (err) {
+    console.error('board action -> cannot load boards', err)
+    throw err
+  }
+}
+
 export async function saveBoard(board) {
   const type = board._id ? UPDATE_BOARD : ADD_BOARD
   const errType = board._id ? 'update' : 'add'
@@ -43,17 +57,6 @@ export async function saveBoard(board) {
   }
 }
 
-export async function loadBoards() {
-  store.dispatch({ type: SET_IS_BOARD_LOADING, boardLoading: true })
-  try {
-    const boards = await boardService.query()
-    store.dispatch({ type: SET_BOARDS, boards })
-    return boards
-  } catch (err) {
-    console.error('board action -> cannot load boards', err)
-    throw err
-  }
-}
 
 export async function removeBoard(boardId) {
   store.dispatch({ type: SET_IS_LOADING, isLoading: true })
@@ -190,13 +193,13 @@ export async function removeTask(boardId, groupId, taskId) {
 }
 
 export async function saveSelectedTasks(taskIds) {
-    console.log('saveSelectedTasks  selectedTaskIds:', taskIds)
-    try {
-      store.dispatch({ type: SET_CHECKED_TASKS, taskIds });
-    } catch (error) {
-      console.error('Error saving selected tasks:', error);
-    }
+  console.error('saveSelectedTasks  selectedTaskIds:', taskIds)
+  try {
+    store.dispatch({ type: SET_CHECKED_TASKS, taskIds })
+  } catch (error) {
+    console.error('Error saving selected tasks:', error)
   }
+}
 
 // * COLUMN CRUD
 
