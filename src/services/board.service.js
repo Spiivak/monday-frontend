@@ -1086,7 +1086,7 @@ function query() {
 }
 
 function getById(boardId) {
-  return httpService.get(BOARD_URL, boardId)
+  return httpService.get(BOARD_URL + boardId)
   // return httpService.get(BASE_URL + boardId)
 }
 

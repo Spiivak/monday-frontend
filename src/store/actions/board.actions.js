@@ -15,6 +15,7 @@ import {
   REMOVE_TASK,
   SET_ACTIVE_CONTEXT_BTN,
   SET_ACTIVE_TASK,
+  SET_BOARD,
   SET_BOARDS,
   SET_CHECKED_TASKS,
   SET_FILTER_BY,
@@ -41,6 +42,16 @@ export async function loadBoards() {
   } catch (err) {
     console.error('board action -> cannot load boards', err)
     throw err
+  }
+}
+
+export async function loadBoard(boardId){
+  try {
+    const board = await boardService.getById(boardId)
+    console.log(board)
+    store.dispatch({ type: SET_BOARD, board})
+  } catch (err) {
+    console.error('board action -> cannot load board', err)
   }
 }
 
@@ -189,6 +200,7 @@ export async function removeTask(boardId, groupId, taskId) {
       taskId
     )
     store.dispatch({ type: REMOVE_TASK, boardId, groupId, deletedTaskId })
+    return taskId
   } catch (err) {}
 }
 

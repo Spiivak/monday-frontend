@@ -9,10 +9,7 @@ import {
 } from '../store/actions/board.actions'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { useEffect } from 'react'
-import { loadUsers } from '../store/actions/user.actions'
 import { boardService } from '../services/board.service'
-import { BatchMenu } from '../cmps/Workspace/board/groups/table/BatchMenu'
-import { userService } from '../services/user.service'
 import { socketService } from '../services/socket.service'
 import { useSelector } from 'react-redux'
 
@@ -22,12 +19,14 @@ export function WorkSpacePage() {
   useEffect(() => {
     loadAsync()
     socketService.login(user._id)
+    return () => {
+      socketService.logout()
+    }
   }, [user])
 
   async function loadAsync() {
     await loadBoards()
   }
-  //TODO add user to own the added board
   async function onAddBoard() {
     try {
       const board = await saveBoard(boardService.getEmptyBoard())

@@ -4,6 +4,7 @@ import { BoardHeader } from './header/BoardHeader'
 import { useEffect, useState } from 'react'
 import {
   addGroup,
+  loadBoard,
   loadBoards,
   saveBoard,
   setBoardLoading,
@@ -17,19 +18,26 @@ export function WorkSpaceBoard() {
   const [selectedBoard, setSelectedBoard] = useState(null)
   const [filteredBoard, setFilteredBoard] = useState(null)
   const boards = useSelector((storeState) => storeState.boardModule.boards)
+  const board = useSelector((storeState) => storeState.boardModule.boards)
   const filterBy = useSelector((storeState) => storeState.boardModule.filterBy)
   const boardLoading = useSelector(
     (storeState) => storeState.boardModule.boardLoading
   )
   const { boardId } = useParams()
 
+  useEffect(()=>{
+    if(boardId){
+      loadBoard(boardId)
+    } else {
+      loadBoard(boards[0]._id)
+    }
+  },[boardId])
+
   useEffect(() => {
     if (boardLoading && filteredBoard) {
       setBoardLoading(false)
     }
   }, [filteredBoard])
-
-
 
   useEffect(() => {
     if (boardId) {
