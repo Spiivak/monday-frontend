@@ -1,30 +1,40 @@
 export function ColorPickerModal({ handleColor }) {
   const optinalcolors = [
-    '#ffcb00',
-    '#007038',
-    '#469e9b',
-    '#579bfc',
-    '#9aadbd',
-    '#bba5e8',
-    '#8050ab',
-    '#4f3a65',
-    '#92334c',
-    '#bb3354',
-    '#ff7575',
+
+    '#037F4C',
+    '#00C875',
+    '#9CD326',
+    '#CAB641',
+    '#FFCB00',
+    '#784BD1',
+    '#A25DDC',
+    '#0086C0',
+    '#66CCFF',
+    '#BB3354',
+    '#E2445C',
+    '#FF158A',
+    '#FF5AC4',
+    '#FF642E',
+    '#FDAB3D',
+    '#7F5347',
+    '#C4C4C4',
+    '#808080',
   ]
   return (
     <div
-      className="flex wrap gap8"
+      className="flex wrap"
       style={{
         cursor: 'default',
-        width: '150px',
-        height: '150px',
+        width: '142px',
+        height: '140px',
         backgroundColor: 'white',
         position: 'absolute',
-        border: '1px solid black',
-        top: '40px',
-        left: '0px',
-        padding: '8px',
+        border: '1px solid #c3c6d4',
+        top: '32px',
+        gap: '2px',
+        left: '64px',
+        padding: '5px',
+        display: '',
         zIndex: 10000,
       }}
     >
@@ -34,9 +44,9 @@ export function ColorPickerModal({ handleColor }) {
           key={index}
           style={{
             cursor: 'pointer',
-            width: '25px',
-            height: '25px',
-            borderRadius: '7px',
+            width: '24px',
+            height: '24px',
+            borderRadius: '4px',
             backgroundColor: color,
           }}
         ></div>

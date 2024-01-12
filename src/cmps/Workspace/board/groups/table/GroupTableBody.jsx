@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DynamicTableCell } from '../DynamicTableCell'
 import { EditableText } from '../../editableText/EditableText'
 import { ContextBtn } from '../../../../ContextBtn'
@@ -9,32 +9,33 @@ export function GroupTableBody({
   rows,
   columns,
   group,
+  boardId,
   onTaskUpdate,
   onDeleteTask,
   initText,
   saveNewTask,
   cmpsOrder,
 }) {
-  const selectedTask = useSelector(
-    (storeState) => storeState.boardModule.selectedTask
+  const checkedTaskIds = useSelector(
+    (storeState) => storeState.boardModule.checkedTaskIds
   )
-  const [checkedTasks, setCheckedTasks] = useState([])
-
-  function handleChange(row, event) {
-    console.log('handleChange  row:', row)
-    const { checked } = event.target
-    const taskId = row.id
-    setCheckedTasks((prevCheckedTasks) => {
-      const updatedTasks = checked
-        ? [...prevCheckedTasks, taskId]
-        : prevCheckedTasks.filter((id) => id !== taskId)
-
-      saveSelectedTasks(updatedTasks)
-
-      return updatedTasks
-    })
+  function handleChange(row, event, groupId, boardId) {
+    const { checked } = event.target;
+    const taskId = row.id; // Use row.id directly
+    
+    const selectedTask = { taskId, groupId, boardId };
+  
+    const updatedTasks = checked
+      ? [...checkedTaskIds, selectedTask]
+      : checkedTaskIds.filter(
+          (checkedTask) =>
+            checkedTask.taskId !== taskId || checkedTask.groupId !== groupId
+        );
+  
+    saveSelectedTasks(updatedTasks);
+  
+    return updatedTasks;
   }
-
   return (
     <>
       {rows.map((row, rowIdx) => (
@@ -55,8 +56,9 @@ export function GroupTableBody({
             </div>
             <input
               type="checkbox"
-              onChange={(event) => handleChange(row, event)}
-            />
+              onChange={(event) => handleChange(row, event, group.id, boardId)}
+              checked={checkedTaskIds.some((checkedTask) => checkedTask.taskId === row.id)}
+              />
           </div>
           {columns.map((column, colIdx) => (
             <React.Fragment key={column.id}>

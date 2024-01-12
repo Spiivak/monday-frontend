@@ -166,6 +166,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           rows={rows}
           columns={columns}
           group={group}
+          boardId={boardId}
           onTaskUpdate={onTaskUpdate}
           initText={initText}
           saveNewTask={saveNewTask}

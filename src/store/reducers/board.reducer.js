@@ -48,7 +48,7 @@ const initialState = {
 export function boardReducer(state = initialState, action = {}) {
   let boards
   let newBoards
-	let newCheckedTaskIds
+  let newCheckedTaskIds
 
   switch (action.type) {
     // * BOARDS CRUD
@@ -124,7 +124,7 @@ export function boardReducer(state = initialState, action = {}) {
 
 
     case SET_CHECKED_TASKS:
-      return { ...state, checkedTaskIds: action.taskIds }
+      return { ...state, checkedTaskIds: [...action.taskIds] }
 
     case ADD_TASK:
       newBoards = state.boards.map((board) => {
