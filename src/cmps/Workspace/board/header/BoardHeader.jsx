@@ -1,20 +1,11 @@
 import { useState, useEffect } from 'react'
 import {
   ActivityIcon,
-  AddSmallIcon,
   FavoriteIcon,
-  FilterIcon,
-  GroupIcon,
-  HideIcon,
-  HomeIcon,
   InfoIcon,
   InviteMembersIcon,
   MenuIcon,
-  NavigationChevronDownIcon,
   NavigationChevronUpIcon,
-  PersonIcon,
-  SearchIcon,
-  SortIcon,
 } from '../../../Icons'
 // import { EditableText } from '../EditableText'
 import { Tooltip } from '@mui/material'

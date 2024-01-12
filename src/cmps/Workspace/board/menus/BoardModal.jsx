@@ -4,15 +4,8 @@ import {
   CollapseIcon,
   DeleteIcon,
   EditIcon,
-  FavoriteIcon,
-  GalleryIcon,
-  HomeIcon,
-  MenuIcon,
-  MwmIcon,
-  SearchIcon,
   SettingsIcon,
   SwitchIcon,
-  WorkspaceIcon,
 } from '../../../Icons'
 import { Save } from '@mui/icons-material'
 import { useEffect, useRef, useState } from 'react'

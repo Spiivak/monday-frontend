@@ -40,7 +40,8 @@ export function TextSearch({ handleChange, handleSubmit, filterBy }) {
       <button
         onClick={handleClick}
         style={{ display: isEditing ? 'none' : 'flex' }}
-        className="btn-icon medium-transparent flex align-center gap8">
+        className="btn-icon medium-transparent flex align-center gap8"
+      >
         <SearchIcon />
         <span>Search</span>
       </button>

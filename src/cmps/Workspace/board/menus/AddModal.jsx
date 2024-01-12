@@ -1,10 +1,6 @@
 import {
-  AddSmallIcon,
-  ArchiveIcon,
-  CollapseIcon,
   ColorCol,
   DateCol,
-  DeleteIcon,
   LinkIcon,
   NumbersCol,
   PeopleCol,
@@ -97,7 +93,8 @@ export function AddModal({ onAddColumn, setIsMoreModalOpen, menuBtnRef }) {
         top: position.top,
         left: position.left,
         zIndex: 1000,
-      }}>
+      }}
+    >
       <div className="ds-tabs-section">
         <div className="tab flex column gap8">
           <form className="flex justify-center" onSubmit={() => {}}>
@@ -109,7 +106,8 @@ export function AddModal({ onAddColumn, setIsMoreModalOpen, menuBtnRef }) {
           <div className="btn-group grid c2">
             <button
               className="gc1 btn-icon medium-transparent flex gap16"
-              onClick={() => clickAddColumn('numbers')}>
+              onClick={() => clickAddColumn('numbers')}
+            >
               <div className="icon-wrapper numbers-col-wrapper flex align-center justify-center">
                 <NumbersCol />
               </div>
@@ -117,7 +115,8 @@ export function AddModal({ onAddColumn, setIsMoreModalOpen, menuBtnRef }) {
             </button>
             <button
               className="btn-icon medium-transparent flex gap16"
-              onClick={() => clickAddColumn('timeline')}>
+              onClick={() => clickAddColumn('timeline')}
+            >
               <div className="icon-wrapper timeline-col-wrapper flex align-center justify-center">
                 <TimelineCol />
               </div>
@@ -127,7 +126,8 @@ export function AddModal({ onAddColumn, setIsMoreModalOpen, menuBtnRef }) {
           <div className="btn-group grid c2">
             <button
               className="gc1 btn-icon medium-transparent flex gap16"
-              onClick={() => clickAddColumn('people')}>
+              onClick={() => clickAddColumn('people')}
+            >
               <div className="icon-wrapper people-col-wrapper flex align-center justify-center">
                 <PeopleCol />
               </div>
@@ -135,7 +135,8 @@ export function AddModal({ onAddColumn, setIsMoreModalOpen, menuBtnRef }) {
             </button>
             <button
               className="btn-icon medium-transparent flex gap16"
-              onClick={() => clickAddColumn('date')}>
+              onClick={() => clickAddColumn('date')}
+            >
               <div className="icon-wrapper date-col-wrapper flex align-center justify-center">
                 <DateCol />
               </div>
@@ -145,7 +146,8 @@ export function AddModal({ onAddColumn, setIsMoreModalOpen, menuBtnRef }) {
           <div className="btn-group grid c2">
             <button
               className="gc1 btn-icon medium-transparent flex gap16"
-              onClick={() => clickAddColumn('status')}>
+              onClick={() => clickAddColumn('status')}
+            >
               <div className="icon-wrapper color-col-wrapper flex align-center justify-center">
                 <ColorCol />
               </div>
@@ -153,7 +155,8 @@ export function AddModal({ onAddColumn, setIsMoreModalOpen, menuBtnRef }) {
             </button>
             <button
               className="btn-icon medium-transparent flex gap16"
-              onClick={() => clickAddColumn('file')}>
+              onClick={() => clickAddColumn('file')}
+            >
               <div className="icon-wrapper link-col-wrapper flex align-center justify-center">
                 <UploadFile style={{ color: '#eee' }} />
               </div>
@@ -167,7 +170,8 @@ export function AddModal({ onAddColumn, setIsMoreModalOpen, menuBtnRef }) {
         <div className="btn-group grid c2">
           <button
             className="gc1 btn-icon medium-transparent flex gap16"
-            onClick={() => clickAddColumn('description')}>
+            onClick={() => clickAddColumn('description')}
+          >
             <div className="icon-wrapper color-col-wrapper flex align-center justify-center">
               <Description style={{ color: '#eee' }} />
             </div>
@@ -176,7 +180,8 @@ export function AddModal({ onAddColumn, setIsMoreModalOpen, menuBtnRef }) {
           <button
             disabled
             className="btn-icon medium-transparent flex gap16"
-            onClick={() => clickAddColumn('file')}>
+            onClick={() => clickAddColumn('file')}
+          >
             <div className="icon-wrapper link-col-wrapper flex align-center justify-center">
               <div className="icon-wrapper link-col-wrapper">
                 <LinkIcon />

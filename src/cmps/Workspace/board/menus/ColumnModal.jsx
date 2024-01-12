@@ -4,15 +4,8 @@ import {
   CollapseIcon,
   DeleteIcon,
   EditIcon,
-  FavoriteIcon,
-  GalleryIcon,
-  HomeIcon,
-  MenuIcon,
-  MwmIcon,
-  SearchIcon,
   SettingsIcon,
   SwitchIcon,
-  WorkspaceIcon,
 } from '../../../Icons'
 import { Save } from '@mui/icons-material'
 import { useEffect, useRef, useState } from 'react'
@@ -107,7 +100,8 @@ export function ColumnModal({
         top: position.top,
         left: position.left,
         zIndex: 1000,
-      }}>
+      }}
+    >
       <div className="ds-tabs-section">
         <div className="tab flex column">
           <button className="btn-icon medium-transparent flex gap16" disabled>
@@ -169,7 +163,8 @@ export function ColumnModal({
         <div className="tab flex column">
           <button
             className="btn-icon medium-transparent flex gap16"
-            onClick={clickDeleteColumn}>
+            onClick={clickDeleteColumn}
+          >
             <DeleteIcon />
             Delete
           </button>

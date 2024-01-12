@@ -1,8 +1,7 @@
-import { Button, Dropdown, Input } from 'antd'
+import { Dropdown } from 'antd'
 import { ToolTip } from '../../../../ToolTip'
-import React, { useState, useEffect } from 'react'
-import { CloseSmallIcon, PersonIcon } from '../../../../Icons'
-import { useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { PersonIcon } from '../../../../Icons'
 export function PersonFilter({ filterBy, handleChange, handleSubmit, board }) {
   const members = board?.members
   const [selectedMember, setSelectedMember] = useState(null)
@@ -50,15 +49,18 @@ export function PersonFilter({ filterBy, handleChange, handleSubmit, board }) {
       arrow={{
         pointAtCenter: true,
       }}
-      overlayStyle={{ width: '372px', padding: '6px' }}>
+      overlayStyle={{ width: '372px', padding: '6px' }}
+    >
       {selectedMember ? (
         <ToolTip title="Filter by person">
           <button
             style={{ height: '32px', backgroundColor: '#cce5ff' }}
-            className="btn-icon medium-transparent flex align-center gap8">
+            className="btn-icon medium-transparent flex align-center gap8"
+          >
             <div
               className="avatar-logo flex align-center justify-center gap8"
-              key={selectedMember._id}>
+              key={selectedMember._id}
+            >
               <img
                 src={selectedMember.imgUrl}
                 alt=""
@@ -81,7 +83,8 @@ export function PersonFilter({ filterBy, handleChange, handleSubmit, board }) {
                   borderRadius: '50%',
                   color: 'white',
                 }}
-                onClick={() => handleMemberSelect(null)}>
+                onClick={() => handleMemberSelect(null)}
+              >
                 x
               </button>
             </div>
