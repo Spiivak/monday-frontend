@@ -10,9 +10,22 @@ export function HomeHeader() {
   const navigate = useNavigate()
   const user = useSelector((storeState) => storeState.userModule.user)
 
-  async function onLogin(credentials) {
+  async function onLogin1(credentials) {
     const newCredentials = {
       username: 'dimarevelson@gmail.com',
+      password: '123123',
+    }
+    try {
+      const user = await login(newCredentials)
+      showSuccessMsg(`Welcome: ${user.fullname}`)
+      navigate('/workspace')
+    } catch (err) {
+      showErrorMsg('Cannot login')
+    }
+  }
+  async function onLogin2(credentials) {
+    const newCredentials = {
+      username: 'navedavid@gmail.com',
       password: '123123',
     }
     try {
@@ -74,7 +87,12 @@ export function HomeHeader() {
             </section>
           )} */}
           <button
-            onClick={onLogin}
+            onClick={onLogin1}
+            className={'get-started-btn flex align-center justify-center'}>
+            Get Started
+          </button>
+          <button
+            onClick={onLogin2}
             className={'get-started-btn flex align-center justify-center'}>
             Get Started
           </button>
