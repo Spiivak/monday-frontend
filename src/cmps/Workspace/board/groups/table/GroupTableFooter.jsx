@@ -80,7 +80,7 @@ function groupSummaryByColumn(column, group) {
     case 'NumbersPicker':
       const numbersSum = group.tasks.reduce((acc, task) => {
         const taskValue = task[currAccessor] || 0
-        acc += taskValue
+        acc += +taskValue
         return acc
       }, 0)
       return numbersSum
