@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles'
 import { IconButton } from '@mui/material'
 import { ImageModal } from '../modals/ImageModal'
 import { CloseSmallIcon } from '../../../../../Icons'
+import { setImg } from '../../../../../../store/actions/board.actions'
 export function FilePreview({ uploadImg, imgData, removeImg }) {
   const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -28,8 +29,7 @@ export function FilePreview({ uploadImg, imgData, removeImg }) {
         size="small"
         style={{
           padding: '0px',
-        }}
-      >
+        }}>
         <VisuallyHiddenInput
           type="file"
           onChange={uploadImg}
@@ -41,8 +41,7 @@ export function FilePreview({ uploadImg, imgData, removeImg }) {
             padding: '0px',
             margin: 'auto',
           }}
-          className=" flex align-center"
-        >
+          className=" flex align-center">
           <button
             className="btn-ctn small-primary flex "
             style={{
@@ -50,16 +49,17 @@ export function FilePreview({ uploadImg, imgData, removeImg }) {
               borderRadius: '50%',
               width: '14px',
               height: '14px',
-            }}
-          >
+            }}>
             +
           </button>
         </div>
       </IconButton>
-      <div className="image-preview flex align-center">
+      <div
+        onMouseEnter={(event) => setImg(event, imgData)}
+        className="image-preview flex align-center">
         <img src={imgData.imgUrl} />
         <div className="modal">
-          <ImageModal src={imgData} />
+          {/* <ImageModal src={imgData} /> */}
         </div>
       </div>
       <button
@@ -68,8 +68,7 @@ export function FilePreview({ uploadImg, imgData, removeImg }) {
           padding: '0px',
           borderRadius: '50%',
         }}
-        className="test4 btn-ctn small-sec flex"
-      >
+        className="test4 btn-ctn small-sec flex">
         <span className="flex align-center">
           <CloseSmallIcon />
         </span>
