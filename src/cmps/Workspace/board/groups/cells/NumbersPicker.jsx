@@ -23,7 +23,7 @@ export function NumbersPickers({ task, cmpId, handleUpdateTask }) {
       <TextField
         className="cell"
         variant="standard"
-        placeholder="Add a number..."
+        placeholder="Add a number"
         id="outlined-number"
         onChange={handleUpdateNumber}
         onBlur={handleBlur}
@@ -32,6 +32,7 @@ export function NumbersPickers({ task, cmpId, handleUpdateTask }) {
         inputProps={{
           inputMode: 'numeric',
           style: {
+            fontSize: '15px',
             boxSizing: 'border-box',
             width: '130px',
             textAlign: 'center',
