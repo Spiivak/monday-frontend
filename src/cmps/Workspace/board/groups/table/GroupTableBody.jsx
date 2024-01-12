@@ -38,7 +38,7 @@ export function GroupTableBody({
   return (
     <>
       {rows.map((row, rowIdx) => (
-        <div className="table-body-row">
+        <div key={rowIdx} className="table-body-row">
           <div
             style={{
               '--before-color': group.style.color,
