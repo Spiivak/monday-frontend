@@ -4,6 +4,7 @@ import { BoardHeader } from './header/BoardHeader'
 import { useEffect, useState } from 'react'
 import {
   addGroup,
+  loadBoards,
   saveBoard,
   setBoardLoading,
 } from '../../../store/actions/board.actions'
@@ -27,22 +28,18 @@ export function WorkSpaceBoard() {
       setBoardLoading(false)
     }
   }, [filteredBoard])
-  // useEffect(() => {
-  // loadBoards()
-  // loadUsers()
-  // }, [])
+
+
 
   useEffect(() => {
     if (boardId) {
       setSelectedBoard(boards.find((board) => board._id === boardId))
       setFilteredBoard(boards.find((board) => board._id === boardId))
-      socketService.off('board-watch')
-      socketService.on('board-watch',boardId)
+      socketService.emit('workspace-set-board', boardId)
     } else {
       setSelectedBoard(boards[0])
       setFilteredBoard(boards[0])
-      socketService.off('board-watch')
-      socketService.on('board-watch',boards[0])
+      socketService.emit('workspace-set-board', boards[0])
     }
   }, [boardId, boards])
 
@@ -103,7 +100,7 @@ export function WorkSpaceBoard() {
     try {
       await saveBoard(boardId)
     } catch (err) {
-      console.log('Cannot add board', err)
+      console.error('Cannot add board', err)
     }
   }
 
