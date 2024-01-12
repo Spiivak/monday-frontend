@@ -23,6 +23,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
   const [columns, setColumns] = useState([])
   const [rows, setRows] = useState([])
   const [initText, setInitText] = useState('')
+  const [isTableOpen, setIsTableOpen] = useState(true)
 
   useEffect(() => {
     setColumns([
@@ -117,62 +118,116 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
   }
 
   //!!! TURN OFF BOARD LOADER !!!//
+  const toggleTable = () => {
+    setIsTableOpen(!isTableOpen);
+  }
 
   return (
-    <section className="board-view-group ">
-      <div className="board-title flex align-center gap8">
-        <div className="menu-btn flex align-center">
-          <ContextBtn type="group" onDeleteGroup={onDeleteGroup} />
-        </div>
-        <button
-          className="btn-icon small-transparent"
-          style={{ color: group.style.color }}
-        >
-          <NavigationChevronDownIcon color={group.style.color} />
-        </button>
-        <h2 style={{ color: group.style.color }} className="group-title">
-          <EditableText
-            type={'groupTitle'}
-            initialText={group.title}
-            textColor={group.style.color}
-            onSave={(text) => {
-              onUpdateGroup(boardId, group.id, group, text)
+    <>
+      {isTableOpen && (
+        <section className="board-view-group">
+          <div className="board-title flex align-center gap8">
+            <div className="menu-btn flex align-center">
+              <ContextBtn type="group" onDeleteGroup={onDeleteGroup} />
+            </div>
+            <button
+              className="btn-icon small-transparent"
+              style={{ color: group.style.color }}
+              onClick={toggleTable}
+            >
+              <NavigationChevronDownIcon color={group.style.color} />
+            </button>
+            <h2 style={{ color: group.style.color }} className="group-title">
+              <EditableText
+                type={'groupTitle'}
+                initialText={group.title}
+                textColor={group.style.color}
+                onSave={(text) => {
+                  onUpdateGroup(boardId, group.id, group, text);
+                }}
+                placeholder={group.title}
+              />
+            </h2>
+            <span>{group.tasks.length} items </span>
+          </div>
+
+          {/* Render table only if it's open */}
+          <div
+            style={{
+              '--gtc': `50px 350px repeat(${columns.length - 1},200px) minmax(80px,1fr)`,
             }}
-            placeholder={group.title}
-          />
-        </h2>
-        <span>{group.tasks.length} items </span>
+            className="board-group-table-container"
+          >
+            <GroupTableHeaders
+              columns={columns}
+              group={group}
+              onUpdateColumn={onUpdateColumn}
+              boardId={boardId}
+              onDeleteColumn={onDeleteColumn}
+              onAddColumn={onAddColumn}
+            />
+
+            <GroupTableBody
+              rows={rows}
+              columns={columns}
+              group={group}
+              boardId={boardId}
+              onTaskUpdate={onTaskUpdate}
+              initText={initText}
+              saveNewTask={saveNewTask}
+              cmpsOrder={cmpsOrder}
+              onDeleteTask={onDeleteTask}
+            />
+
+            <GroupTableFooter
+              {...{
+                rows,
+                columns,
+                group,
+              }}
+            />
+          </div>
+        </section>
+      )}
+      {!isTableOpen && <CollapsedTable onDeleteGroup={onDeleteGroup} group={group} rows={rows} columns={columns} toggleTable={toggleTable} onUpdateColumn={onUpdateColumn} onAddColumn={onAddColumn} boardId={boardId} onDeleteColumn={onDeleteColumn} />}
+    </>
+  );
+}
+
+function CollapsedTable({ onDeleteGroup, group, toggleTable, rows, columns, onUpdateColumn, onAddColumn, boardId, onDeleteColumn }) {
+  return (
+    <section className="collapsed-table grid" style={{ borderLeftColor: group.style.color }}>
+      <div className="left-side">
+
+        <div className="board-title flex align-center gap8">
+          <div className="menu-btn flex align-center">
+            <ContextBtn type="group" onDeleteGroup={onDeleteGroup} />
+          </div>
+          <div className="title-section flex column">
+            <div className="title flex">
+
+              <button className="btn-icon small-transparent collapse-btn" style={{ color: group.style.color }} onClick={toggleTable}>
+                <NavigationChevronDownIcon color={group.style.color} />
+              </button>
+              <h2 style={{ color: group.style.color }} className="group-title flex">
+                <EditableText
+                  type={'groupTitle'}
+                  initialText={group.title}
+                  textColor={group.style.color}
+                  onSave={(text) => {
+                    onUpdateGroup(boardId, group.id, group, text);
+                  }}
+                  placeholder={group.title}
+                />
+              </h2>
+            </div>
+            <span className='tasks-length'>
+              {group.tasks.length} {group.tasks.length === 1 ? 'item' : 'items'}
+            </span>
+          </div>
+        </div>
       </div>
-
-      <div
-        style={{
-          '--gtc': `50px 350px repeat(${
-            columns.length - 1
-          },200px) minmax(80px,1fr)`,
-        }}
-        className="board-group-table-container"
-      >
-        <GroupTableHeaders
-          columns={columns}
-          group={group}
-          onUpdateColumn={onUpdateColumn}
-          boardId={boardId}
-          onDeleteColumn={onDeleteColumn}
-          onAddColumn={onAddColumn}
-        />
-
-        <GroupTableBody
-          rows={rows}
-          columns={columns}
-          group={group}
-          boardId={boardId}
-          onTaskUpdate={onTaskUpdate}
-          initText={initText}
-          saveNewTask={saveNewTask}
-          cmpsOrder={cmpsOrder}
-          onDeleteTask={onDeleteTask}
-        />
-
+      <div className="right-side">
         <GroupTableFooter
           {...{
             rows,
@@ -181,6 +236,9 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           }}
         />
       </div>
+
     </section>
+
   )
 }
+
