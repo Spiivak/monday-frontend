@@ -12,15 +12,19 @@ import { useEffect } from 'react'
 import { loadUsers } from '../store/actions/user.actions'
 import { boardService } from '../services/board.service'
 import { BatchMenu } from '../cmps/Workspace/board/groups/table/BatchMenu'
+import { userService } from '../services/user.service'
+import { socketService } from '../services/socket.service'
+import { useSelector } from 'react-redux'
 
 export function WorkSpacePage() {
+  const user = useSelector((storeState) => storeState.userModule.user)
   const navigate = useNavigate()
   useEffect(() => {
     loadAsync()
-    // loadUsers()
-  }, [])
+    socketService.login(user._id)
+  }, [user])
 
-  async function loadAsync(){
+  async function loadAsync() {
     await loadBoards()
   }
   //TODO add user to own the added board

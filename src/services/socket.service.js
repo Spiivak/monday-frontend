@@ -1,5 +1,8 @@
 import io from 'socket.io-client'
 import { userService } from './user.service.js'
+import { store } from '../store/store.js'
+import { ADD_COLUMN, ADD_TASK, REMOVE_COLUMN } from '../store/reducers/board.reducer.js'
+import {REMOVE_TASK, UPDATE_COLUMN, UPDATE_TASK } from '../store/reducers/board.reducer.js'
 
 export const SOCKET_EVENT_ADD_MSG = 'chat-add-msg'
 export const SOCKET_EMIT_SEND_MSG = 'chat-send-msg'
@@ -15,9 +18,7 @@ const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
 const baseUrl = process.env.NODE_ENV === 'production' ? '' : '//localhost:3030'
 
 export const socketService = createSocketService()
-// export const socketService = createDummySocketService()
 
-// for debugging from console
 window.socketService = socketService
 
 socketService.setup()
@@ -54,81 +55,30 @@ function createSocketService() {
   return socketService
 }
 
+// * TASK SOCKETS *
 socketService.on('add-task', (data) => {
-  console.log(data)
+  const { boardId, groupId, task } = data
+  store.dispatch({ type: ADD_TASK, boardId, groupId, task })
 })
-
 socketService.on('update-task', (data) => {
-  console.log(data)
+  const { boardId, groupId, taskId, task } = data
+  store.dispatch({ type: UPDATE_TASK, boardId, groupId, taskId, task })
 })
-
 socketService.on('remove-task', (data) => {
-  console.log(data)
+  const { boardId, groupId, deletedTaskId } = data
+  store.dispatch({ type: REMOVE_TASK, boardId, groupId, deletedTaskId })
 })
 
-
-function createDummySocketService() {
-  var listenersMap = {}
-  const socketService = {
-    listenersMap,
-    setup() {
-      listenersMap = {}
-    },
-    terminate() {
-      this.setup()
-    },
-    login() {
-      console.log('Dummy socket service here, login - got it')
-    },
-    logout() {
-      console.log('Dummy socket service here, logout - got it')
-    },
-    on(eventName, cb) {
-      listenersMap[eventName] = [...(listenersMap[eventName] || []), cb]
-    },
-    off(eventName, cb) {
-      if (!listenersMap[eventName]) return
-      if (!cb) delete listenersMap[eventName]
-      else
-        listenersMap[eventName] = listenersMap[eventName].filter(
-          (l) => l !== cb
-        )
-    },
-    emit(eventName, data) {
-      var listeners = listenersMap[eventName]
-      if (eventName === SOCKET_EMIT_SEND_MSG) {
-        listeners = listenersMap[SOCKET_EVENT_ADD_MSG]
-      }
-
-      if (!listeners) return
-
-      listeners.forEach((listener) => {
-        listener(data)
-      })
-    },
-    // Functions for easy testing of pushed data
-    testChatMsg() {
-      this.emit(SOCKET_EVENT_ADD_MSG, {
-        from: 'Someone',
-        txt: 'Aha it worked!',
-      })
-    },
-    testUserUpdate() {
-      this.emit(SOCKET_EVENT_USER_UPDATED, {
-        ...userService.getLoggedinUser(),
-        score: 555,
-      })
-    },
-  }
-  window.listenersMap = listenersMap
-  return socketService
-}
-
-// Basic Tests
-// function cb(x) {console.log('Socket Test - Expected Puk, Actual:', x)}
-// socketService.on('baba', cb)
-// socketService.on('baba', cb)
-// socketService.on('baba', cb)
-// socketService.on('mama', cb)
-// socketService.emit('baba', 'Puk')
-// socketService.off('baba', cb)
+// * COLUMN SOCKETS *
+socketService.on('add-column', (data) => {
+  const { boardId, addedColumn } = data
+  store.dispatch({ type: ADD_COLUMN, boardId, addedColumn })
+})
+socketService.on('update-column', (data) => {
+  const { boardId, columnId, updatedColumn } = data
+  store.dispatch({ type: UPDATE_COLUMN, boardId, columnId, updatedColumn })
+})
+socketService.on('remove-column', (data) => {
+  const { boardId, columnId } = data
+  store.dispatch({ type: REMOVE_COLUMN, boardId, deletedColumnId:columnId })
+})
