@@ -161,3 +161,27 @@
 
 
 
+//board group
+$task-col: 200px;
+$first-col: $task-col + 42px;
+$person-col: 97px;
+$status-col: 139px;
+$priority-col: 139px;
+$date-col: 174px;
+$link-col: 139px;
+$file-col: 138px;
+$line-end: minmax(90px, 1fr);
+
+$board-grid: $first-col $person-col $status-col $priority-col $date-col $link-col $file-col $line-end;
+
+.main-grid {
+  display: grid;
+  grid-template-columns: $board-grid;
+  grid-auto-flow: row;
+}
+
+// .subgrid {
+// display: grid;
+// grid-template-columns: subgrid;
+// grid-column: 1 / -1;
+// }
