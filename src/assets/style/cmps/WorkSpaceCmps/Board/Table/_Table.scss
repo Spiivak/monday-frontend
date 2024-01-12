@@ -55,7 +55,7 @@
   }
 
   .last-row {
-    border-bottom: 2px solid #eee;
+    border-bottom: 1px solid #d0d4e4;
   }
 
   .first-column {
@@ -82,37 +82,37 @@
   }
 
   .checkbox-cell {
-    background-color: #fff;
-    position: sticky;
-    left: 0;
-    z-index: 10;
+    // background-color: #fff;
+    // position: sticky;
+    // left: 0;
+    // z-index: 10;
   }
 
   .title {
-    background-color: #fff;
-    position: sticky;
-    left: 48px;
-    top: 0;
-    z-index: 15;
+    // background-color: #fff;
+    // position: sticky;
+    // left: 48px;
+    // top: 0;
+    // z-index: 15;
   }
 
   .add-task-lr {
-    background-color: #fff;
-    position: sticky;
-    left: 68px;
-    top: 0;
-    z-index: 15;
+    // background-color: #fff;
+    // position: sticky;
+    // left: 68px;
+    // top: 0;
+    // z-index: 15;
   }
   &:has(.empty-column) {
     border: none;
   }
   .empty-column {
-    position: sticky;
-    width: 100%;
-    height: 100%;
-    left: 48px;
-    top: 0px;
-    z-index: 15;
-    background-color: #fff;
+    // position: sticky;
+    // width: 100%;
+    // height: 100%;
+    // left: 48px;
+    // top: 0px;
+    // z-index: 15;
+    // background-color: #fff;
   }
 }

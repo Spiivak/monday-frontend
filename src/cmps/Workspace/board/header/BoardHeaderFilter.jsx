@@ -1,6 +1,5 @@
 import { PersonFilter } from './filterBtns/PersonFilter'
 import { TextSearch } from './filterBtns/TextSearch'
-import { Tooltip } from '@mui/material'
 import { ToolTip } from '../../../ToolTip'
 import {
   FilterIcon,
@@ -91,8 +90,7 @@ export function BoardHeaderFilter({ board, isCollapsed }) {
         </div>
       </ToolTip>
       <ToolTip title="Group By Column">
-        <div
-          className="filter-item flex align-center">
+        <div className="filter-item flex align-center">
           <button className="btn-icon medium-transparent flex gap8">
             <GroupIcon />
             Group by

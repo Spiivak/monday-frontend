@@ -1,9 +1,9 @@
 import TextField from '@mui/material/TextField'
 import { useState } from 'react'
 
-export function NumbersPickers({ task, cmpId, handleUpdateTask }) {
+export function NumbersPickers({ task, cmpId, handleUpdateTask, cmpsOrder }) {
   const [num, setNum] = useState(task['number' + cmpId] || '')
-
+  const colName = cmpsOrder.find((cmp) => cmp.type === 'NumbersPicker')?.title
   function handleUpdateNumber(ev) {
     const input = ev.target.value
     const sanitizedInput = input.replace(/[^0-9]/g, '')
@@ -12,7 +12,19 @@ export function NumbersPickers({ task, cmpId, handleUpdateTask }) {
 
   async function handleBlur() {
     try {
+      const updatedTask = { ...task, ['number' + cmpId]: num }
       await handleUpdateTask('NumbersPicker', +num, task)
+      await handleUpdateTask(
+        'Activity',
+        {
+          createdAt: Date.now(),
+          title: updatedTask.title,
+          colName,
+          oldValue: task['number' + cmpId],
+          newValue: num,
+        },
+        updatedTask
+      )
     } catch (err) {
       console.error(err)
     }

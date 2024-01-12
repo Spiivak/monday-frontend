@@ -13,7 +13,7 @@ export function ActivityLogPreview() {
   return (
     <div className="activity-log flex column">
       {selectedTask.activity?.map((active) => (
-        <div className="flex" key={active.createdAt}>
+        <div key={active.createdAt}>
           <span className="time-format">
             <TimeIcon />
             {utilService.timeDiff(active.createdAt)}
