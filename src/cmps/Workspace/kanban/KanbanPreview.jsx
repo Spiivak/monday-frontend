@@ -9,107 +9,128 @@ export function KanbanPreview() {
   const boards = useSelector((storeState) => storeState.boardModule.boards)
   const { boardId } = useParams()
   const [selectedBoard, setSelectedBoard] = useState(null)
-
-  console.log('KanbanPreview  boards:', boards)
+  const [statusPickerCmp, setStatusPickerCmp] = useState(null)
 
   useEffect(() => {
     loadBoards()
   }, [])
   useEffect(() => {
-    const currBoard = boards.find((board) => {
-      console.log(board._id, boardId)
-      return board._id === boardId
-    })
-    setSelectedBoard(() => {
-    })
-  }, [boards])
+
+    const fetchBoard = async () => {
+      try {
+        const currBoard = await boards.find((board) => board._id === boardId);
+        console.log('fetchBoard  currBoard:', currBoard)
+        setSelectedBoard(currBoard);
+      } catch (error) {
+        console.error("Error fetching board:", error);
+      }
+    };
+
+    fetchBoard();
+  }, [boards, boardId])
+
+  function getCmpsOrder() {
+    if (!selectedBoard || !selectedBoard.cmpsOrder) {
+      console.error("selectedBoard or selectedBoard.cmpsOrder is null or undefined");
+      return [];
+    }
+
+    return Object.values(selectedBoard.cmpsOrder)
+      .filter(cmp => cmp.type === 'StatusPicker')
+      .map(statusPicker => ({
+        type: statusPicker.type,
+        id: statusPicker.id
+      }));
+  }
 
   const renderLabels = () => {
-    const uniqueStatuses = new Set()
+    const uniqueStatuses = new Set();
 
-    // const labelKeys =
+    if (selectedBoard) {
+      const statusPickerComponents = getCmpsOrder();
+      console.log('renderLabels  statusPickerComponents:', statusPickerComponents)
 
-    boards.forEach((board) => {
-      Object.values(board.groups).forEach((group) => {
-        Object.values(group.tasks).forEach((task) => {
-          const taskStatusc1 = task.statusc1
+      statusPickerComponents.forEach((statusPicker) => {
+        const statusKey = `status${statusPicker.id}`;
 
-          if (taskStatusc1 != null && !uniqueStatuses.has(taskStatusc1)) {
-            uniqueStatuses.add(taskStatusc1)
-          }
-        })
-      })
-    })
+        Object.values(selectedBoard.groups).forEach((group) => {
+          Object.values(group.tasks).forEach((task) => {
+            const taskStatus = task[statusKey];
 
-    const uniqueStatusesArray = Array.from(uniqueStatuses)
-    console.log(uniqueStatusesArray)
+            // Check if taskStatus is not undefined or null before adding to the set
+            if (taskStatus != null && !uniqueStatuses.has(taskStatus)) {
+              uniqueStatuses.add(taskStatus)
 
-    return uniqueStatusesArray
-  }
+              // Call getTasksByLabel here with the label
+            }
+          });
+        });
+      });
+    }
+
+    const uniqueStatusesArray = Array.from(uniqueStatuses);
+
+    return uniqueStatusesArray;
+  };
 
   const getTasksByLabel = (label) => {
-    const tasksArray = []
+    const tasksByLabel = {};
+    const statusPickerComponents = getCmpsOrder();
 
-    boards.forEach((board) => {
-      Object.values(board.groups).forEach((group) => {
+    statusPickerComponents.forEach((statusPicker) => {
+      const statusKey = `status${statusPicker.id}`;
+
+      console.log('statusPickerComponents.forEach  statusKey:', statusKey)
+      Object.values(selectedBoard.groups).forEach((group) => {
         Object.values(group.tasks).forEach((task) => {
-          const taskStatusc1 = task.statusc1
+          const taskStatusc1 = task[statusKey] || "Haven't Started";
 
           if (taskStatusc1 === label) {
-            tasksArray.push(task)
-          }
-        })
-      })
-    })
+            if (!tasksByLabel[label]) {
+              tasksByLabel[label] = [];
+            }
 
-    return tasksArray
-  }
-  if (!boards || boards.length === 0) return <div>Loading...</div>
-  return (
+            tasksByLabel[label].push(task);
+          }
+        });
+      });
+    })
+    console.log('Object.values  tasksByLabel:', tasksByLabel)
+    return tasksByLabel;
+  };
+
+  if (!selectedBoard || !selectedBoard.groups) {
+    return <div>Loading...</div>;
+  } return (
     <section className="kanban-section">
-      {console.log(selectedBoard)}
       <div className="kanban-header">
         <BoardHeader />
       </div>
       <main>
         <div className="group-container">
           <div className="group-tasks flex gap16">
-            {renderLabels().map((label) => (
-              <div key={label} className={`label-container`}>
+            {renderLabels().map((label) => {
+              console.log('KanbanPreview  label:', label)
+              return <div key={label} className={`label-container`}>
                 <div
-                  className={`label ${label} flex align-center justify-center`}>
+                  className={`label ${label} flex align-center justify-center`}
+                >
                   <h2>{label}</h2>
                 </div>
                 <div className="task-container">
                   <div className="card-container">
-                    {getTasksByLabel(label).map((task) => (
+                    {getTasksByLabel(label)[label].map((task) => (
                       <div key={task.id} className="task-card">
                         <p>{task.title}</p>
-                        <div className="members-container flex">
-                          <div className="person-title flex align-center gap8 btn-icon medium-transparent">
-                            <PersonRoundedIcon />
-                            Person
-                          </div>
-                          {task.membersc2.map((member) => (
-                            <div key={member._id} className="member-card flex">
-                              <picture>
-                                <img
-                                  src={member.imgUrl}
-                                  alt={member.fullname}
-                                />
-                              </picture>
-                            </div>
-                          ))}
-                        </div>
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
-            ))}
+            })}
           </div>
         </div>
       </main>
     </section>
-  )
+  );
 }
