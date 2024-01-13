@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { saveSelectedTasks } from '../../../../../store/actions/board.actions'
 
 export function GroupTableBody({
+  board,
   rows,
   columns,
   group,
@@ -22,18 +23,18 @@ export function GroupTableBody({
   function handleChange(row, event, groupId, boardId) {
     const { checked } = event.target;
     const taskId = row.id; // Use row.id directly
-    
+
     const selectedTask = { taskId, groupId, boardId };
-  
+
     const updatedTasks = checked
       ? [...checkedTaskIds, selectedTask]
       : checkedTaskIds.filter(
           (checkedTask) =>
             checkedTask.taskId !== taskId || checkedTask.groupId !== groupId
         );
-  
+
     saveSelectedTasks(updatedTasks);
-  
+
     return updatedTasks;
   }
   return (
@@ -73,6 +74,7 @@ export function GroupTableBody({
                   group={group}
                   onTaskUpdate={onTaskUpdate}
                   task={row}
+                  board={board}
                 />
               </div>
               <div

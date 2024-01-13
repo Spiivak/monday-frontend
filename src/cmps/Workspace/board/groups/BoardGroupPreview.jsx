@@ -11,7 +11,6 @@ import {
   removeColumn,
   removeGroup,
   removeTask,
-  setBoardLoading,
   updateColumn,
   updateGroup,
   updateTask,
@@ -19,7 +18,7 @@ import {
 import { EditableText } from '../editableText/EditableText'
 import { GroupTableFooter } from './table/GroupTableFooter'
 
-export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
+export function BoardGroupPreview({ board, group, boardId, cmpsOrder }) {
   const [columns, setColumns] = useState([])
   const [rows, setRows] = useState([])
   const [initText, setInitText] = useState('')
@@ -104,7 +103,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
   }
 
   function onAddColumn(boardId, type) {
-    addColumn(boardId, type)
+    addColumn(boardId, type, board)
   }
 
   // * GROUP
@@ -119,7 +118,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
 
   //!!! TURN OFF BOARD LOADER !!!//
   const toggleTable = () => {
-    setIsTableOpen(!isTableOpen);
+    setIsTableOpen(!isTableOpen)
   }
 
   return (
@@ -133,8 +132,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
             <button
               className="btn-icon small-transparent arrow-btn"
               style={{ color: group.style.color }}
-              onClick={toggleTable}
-            >
+              onClick={toggleTable}>
               <NavigationChevronDownIcon color={group.style.color} />
             </button>
             <h2 style={{ color: group.style.color }} className="group-title">
@@ -143,21 +141,22 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                 initialText={group.title}
                 textColor={group.style.color}
                 onSave={(text) => {
-                  onUpdateGroup(boardId, group.id, group, text);
+                  onUpdateGroup(boardId, group.id, group, text)
                 }}
                 placeholder={group.title}
               />
             </h2>
-            <span className='task-length'>{group.tasks.length} items </span>
+            <span className="task-length">{group.tasks.length} items </span>
           </div>
 
           {/* Render table only if it's open */}
           <div
             style={{
-              '--gtc': `50px 350px repeat(${columns.length - 1},200px) minmax(80px,1fr)`,
+              '--gtc': `50px 350px repeat(${
+                columns.length - 1
+              },200px) minmax(80px,1fr)`,
             }}
-            className="board-group-table-container"
-          >
+            className="board-group-table-container">
             <GroupTableHeaders
               columns={columns}
               group={group}
@@ -177,6 +176,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
               saveNewTask={saveNewTask}
               cmpsOrder={cmpsOrder}
               onDeleteTask={onDeleteTask}
+              board={board}
             />
 
             <GroupTableFooter
@@ -189,39 +189,66 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
           </div>
         </section>
       )}
-      {!isTableOpen && <CollapsedTable onDeleteGroup={onDeleteGroup} group={group} rows={rows} columns={columns} toggleTable={toggleTable} onUpdateColumn={onUpdateColumn} onAddColumn={onAddColumn} boardId={boardId} onDeleteColumn={onDeleteColumn} />}
+      {!isTableOpen && (
+        <CollapsedTable
+          onDeleteGroup={onDeleteGroup}
+          group={group}
+          rows={rows}
+          columns={columns}
+          toggleTable={toggleTable}
+          onUpdateColumn={onUpdateColumn}
+          onAddColumn={onAddColumn}
+          boardId={boardId}
+          onDeleteColumn={onDeleteColumn}
+        />
+      )}
     </>
-  );
+  )
 }
 
-function CollapsedTable({ onDeleteGroup, group, toggleTable, rows, columns, onUpdateColumn, onAddColumn, boardId, onDeleteColumn }) {
+function CollapsedTable({
+  onDeleteGroup,
+  group,
+  toggleTable,
+  rows,
+  columns,
+  onUpdateColumn,
+  onAddColumn,
+  boardId,
+  onDeleteColumn,
+}) {
   return (
-    <section className="collapsed-table grid" style={{ borderLeftColor: group.style.color }}>
+    <section
+      className="collapsed-table grid"
+      style={{ borderLeftColor: group.style.color }}>
       <div className="left-side">
-
         <div className="board-title flex align-center gap8">
           <div className="menu-btn flex align-center">
             <ContextBtn type="group" onDeleteGroup={onDeleteGroup} />
           </div>
           <div className="title-section flex column">
             <div className="title flex">
-
-              <button className="btn-icon small-transparent collapse-btn" style={{ color: group.style.color }} onClick={toggleTable}>
+              <button
+                className="btn-icon small-transparent collapse-btn"
+                style={{ color: group.style.color }}
+                onClick={toggleTable}>
                 <NavigationChevronDownIcon color={group.style.color} />
               </button>
-              <h2 style={{ color: group.style.color }} className="group-title flex">
+              <h2
+                style={{ color: group.style.color }}
+                className="group-title flex">
                 <EditableText
                   type={'groupTitle'}
                   initialText={group.title}
                   textColor={group.style.color}
                   onSave={(text) => {
-                    onUpdateGroup(boardId, group.id, group, text);
+                    onUpdateGroup(boardId, group.id, group, text)
                   }}
                   placeholder={group.title}
                 />
               </h2>
             </div>
-            <span className='tasks-length'>
+            <span className="tasks-length">
               {group.tasks.length} {group.tasks.length === 1 ? 'item' : 'items'}
             </span>
           </div>
@@ -236,9 +263,6 @@ function CollapsedTable({ onDeleteGroup, group, toggleTable, rows, columns, onUp
           }}
         />
       </div>
-
     </section>
-
   )
 }
-
