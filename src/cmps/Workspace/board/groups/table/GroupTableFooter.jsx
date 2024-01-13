@@ -2,23 +2,22 @@ import React from 'react'
 import { utilService } from '../../../../../services/util.service'
 import { MemberHoverModal } from '../cells/modals/MemberHoverModal'
 import { Tooltip, styled, tooltipClasses } from '@mui/material'
+import { KeySharp } from '@mui/icons-material'
 
-export function GroupTableFooter({ rows, columns, group }) {
+export function GroupTableFooter({ rows, columns, group, board }) {
   return (
-    <div className="table-body-row footer-row">
+    <div className="table-body-row footer-row flex" style={{ height: '100%' }}>
       <div
         className="empty-column"
-        style={{ gridRow: rows.length + 3, gridColumn: 1 }}
-      ></div>
+        style={{ gridRow: rows.length + 3, gridColumn: 1 }}></div>
       <div
         className="empty-column"
-        style={{ gridRow: rows.length + 3, gridColumn: 2 }}
-      ></div>
+        style={{ gridRow: rows.length + 3, gridColumn: 2 }}></div>
       {columns.map((column, colIdx) => {
         let colSummary
         if (!columns[colIdx + 1]) {
         } else {
-          colSummary = groupSummaryByColumn(columns[colIdx + 1], group)
+          colSummary = groupSummaryByColumn(columns[colIdx + 1], group, board)
         }
         if (colIdx === columns.length - 1) return
         return (
@@ -30,11 +29,10 @@ export function GroupTableFooter({ rows, columns, group }) {
                 borderBottom: '1px solid #d0d4e4',
                 borderLeft: '1px solid #d0d4e4',
                 width: '100%',
+                minHeight: '36px',
                 height: '100%',
-                translate: '0 -15%',
               }}
-              className="group-table-cell cell"
-            >
+              className="group-table-cell cell">
               {colSummary}
             </div>
           </React.Fragment>
@@ -44,17 +42,24 @@ export function GroupTableFooter({ rows, columns, group }) {
   )
 }
 
-function groupSummaryByColumn(column, group) {
+function groupSummaryByColumn(column, group, board) {
   let currAccessor = column.accessor
 
   switch (column.cmp.type) {
     case 'StatusPicker':
       const statusSum = group.tasks.reduce((acc, task) => {
-        const taskValue = task[currAccessor] || "Haven't Started"
+        const currLabel = board['labels' + column.cmp.id].find(
+          (label) => label.id === task[currAccessor]
+        )
+        const taskValue = currLabel?.title || "Haven't Started"
         acc[taskValue] = (acc[taskValue] || 0) + 1
         return acc
       }, {})
-      let statusSumBar = renderStatusBox(calculateStatusPercentage(statusSum))
+      let statusSumBar = renderStatusBox(
+        calculateStatusPercentage(statusSum, group),
+        board,
+        column
+      )
       return statusSumBar
 
     case 'DatePicker':
@@ -72,8 +77,7 @@ function groupSummaryByColumn(column, group) {
             backgroundColor: '#333',
             textAlign: 'center',
             color: 'white',
-          }}
-        >
+          }}>
           {utilService.formatDateRange([minDate, maxDate])}
         </div>
       )
@@ -104,8 +108,7 @@ function groupSummaryByColumn(column, group) {
             backgroundColor: '#333',
             textAlign: 'center',
             color: 'white',
-          }}
-        >
+          }}>
           {utilService.formatDateRange([minTimestamp, maxTimestamp])}
         </div>
       )
@@ -131,47 +134,66 @@ function groupSummaryByColumn(column, group) {
   }
 }
 
-function calculateStatusPercentage(tasks) {
-  const doneCount = tasks['Done'] || 0
-  const workingCount = tasks['Working on it'] || 0
-  const havenotStartedCount = tasks["Haven't Started"] || 0
-  const stuckCount = tasks['Stuck'] || 0
+function calculateStatusPercentage(tasks, group) {
+  const keys = Object.keys(tasks)
+  const values = Object.values(tasks)
+  const percentage = values.map((value) => {
+    const sum = group.tasks.length
+    return Math.floor((value / sum) * 100)
+  })
+  const percentageObj = keys.reduce((acc, key, idx) => {
+    acc[key] = percentage[idx]
+    return acc
+  }, {})
+  return percentageObj
+  // const doneCount = tasks['Done'] || 0
+  // const workingCount = tasks['Working on it'] || 0
+  // const havenotStartedCount = tasks["Haven't Started"] || 0
+  // const stuckCount = tasks['Stuck'] || 0
 
-  const totalTasks = doneCount + workingCount + havenotStartedCount + stuckCount
+  // const totalTasks = doneCount + workingCount + havenotStartedCount + stuckCount
 
-  const donePercentage = totalTasks === 0 ? 0 : (doneCount / totalTasks) * 100
-  const workingPercentage =
-    totalTasks === 0 ? 0 : (workingCount / totalTasks) * 100
-  const havenotStartedPercentage =
-    totalTasks === 0 ? 0 : (havenotStartedCount / totalTasks) * 100
-  const stuckPercentage = totalTasks === 0 ? 0 : (stuckCount / totalTasks) * 100
+  // const donePercentage = totalTasks === 0 ? 0 : (doneCount / totalTasks) * 100
+  // const workingPercentage =
+  //   totalTasks === 0 ? 0 : (workingCount / totalTasks) * 100
+  // const havenotStartedPercentage =
+  //   totalTasks === 0 ? 0 : (havenotStartedCount / totalTasks) * 100
+  // const stuckPercentage = totalTasks === 0 ? 0 : (stuckCount / totalTasks) * 100
 
-  return {
-    Done: donePercentage,
-    WorkingOnIt: workingPercentage,
-    Stuck: stuckPercentage,
-    HaventStarted: havenotStartedPercentage,
-  }
+  // return {
+  //   Done: donePercentage,
+  //   WorkingOnIt: workingPercentage,
+  //   Stuck: stuckPercentage,
+  //   HaventStarted: havenotStartedPercentage,
+  // }
 }
 
-function renderStatusBox(statusPercentages) {
+function renderStatusBox(statusPercentages, board, column) {
   const boxStyles = {
     width: '150px',
     height: '20px',
     display: 'flex',
   }
 
-  function getColor(status) {
-    if (status === 'Stuck') {
-      return '#E2445C'
-    } else if (status === 'WorkingOnIt') {
-      return '#FDAB3D'
-    } else if (status === 'HaventStarted') {
-      return '#c4c4c4'
-    } else {
-      return '#00C875'
-    }
-  }
+  const colorMap = board['labels' + column.cmp.id].reduce(
+    (acc, label) => {
+      acc[label.title] = label.color
+      return acc
+    },
+    { "Haven't Started": '#c4c4c4' }
+  )
+
+  // function getColor(status) {
+  //   if (status === 'Stuck') {
+  //     return '#E2445C'
+  //   } else if (status === 'WorkingOnIt') {
+  //     return '#FDAB3D'
+  //   } else if (status === 'HaventStarted') {
+  //     return '#c4c4c4'
+  //   } else {
+  //     return '#00C875'
+  //   }
+  // }
 
   const statusBars = Object.entries(statusPercentages).map(
     ([status, percentage]) => (
@@ -179,9 +201,8 @@ function renderStatusBox(statusPercentages) {
         key={status}
         style={{
           width: `${percentage}%`,
-          backgroundColor: getColor(status),
-        }}
-      ></div>
+          backgroundColor: colorMap[status],
+        }}></div>
     )
   )
 
@@ -259,8 +280,7 @@ function renderOverflowIndicator(members) {
       <div className="overflow-indicator flex align-center justify-center">
         <MultiLineTooltip
           title={members.map((member) => member.fullname).join('\n')}
-          arrow
-        >
+          arrow>
           <div className="overflow-tooltip-indicator">
             +{additionalMembersCount}
           </div>

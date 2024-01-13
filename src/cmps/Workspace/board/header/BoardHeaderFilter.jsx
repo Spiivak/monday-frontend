@@ -10,7 +10,7 @@ import {
   SortIcon,
 } from '../../../Icons'
 import { useState } from 'react'
-import { setStoreFilterBy } from '../../../../store/actions/board.actions'
+import { addTask, setStoreFilterBy } from '../../../../store/actions/board.actions'
 import { utilService } from '../../../../services/util.service'
 import { Dropdown } from 'antd'
 
@@ -39,12 +39,16 @@ export function BoardHeaderFilter({ board, isCollapsed }) {
     })
   }
 
+  function handleAdd(){
+    addTask(board._id, board.groups[0].id, {title: 'New task'})
+  }
+
   return (
     <section className={`board-filter flex gap6`}>
       <ToolTip title="New Item">
         <div className="new-item flex">
-          <button className="btn-ctn medium-primary new-item-btn">
-            New Item
+          <button className="btn-ctn medium-primary new-item-btn" onClick={handleAdd}>
+          {`New ${board?.option ? board.option.slice(0, -1) : "Task"}`}
           </button>
           <button className="btn-ctn medium-primary new-item-arrow">
             <NavigationChevronDownIcon />

@@ -52,7 +52,9 @@ export function DescriptionPicker({
   }
 
   return (
-    <div className="description-picker-cell relative cell">
+    <div
+      style={{ overflow: 'visible' }}
+      className="description-picker-cell relative cell">
       {!multiLine ? (
         <DescriptionPreview {...{ setOpenMultiLine, displayValue }} />
       ) : (

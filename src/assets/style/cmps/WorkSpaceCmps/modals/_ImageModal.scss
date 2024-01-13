@@ -1,12 +1,13 @@
 .image-modal {
   position: absolute;
+  bottom: 0;
   background: white;
   overflow: visible;
   border-radius: 8px;
   width: 250px;
   min-height: 250px;
   margin: 0 auto;
-  translate: -50% -103%;
+  // translate: -50% -103%;
   color: $text-color;
   border-radius: 8px;
   z-index: 9999;

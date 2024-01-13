@@ -9,6 +9,10 @@
 // empty-add-cell
 // task-title
 
+.task-title {
+  padding-left: 12px;
+}
+
 .checkbox-cell {
   $checkmark-color: rgba(36, 222, 36, 0.688);
   min-width: 50px;

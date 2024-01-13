@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DynamicTableCell } from '../DynamicTableCell'
 import { EditableText } from '../../editableText/EditableText'
 import { ContextBtn } from '../../../../ContextBtn'
@@ -6,35 +6,37 @@ import { useSelector } from 'react-redux'
 import { saveSelectedTasks } from '../../../../../store/actions/board.actions'
 
 export function GroupTableBody({
+  board,
   rows,
   columns,
   group,
+  boardId,
   onTaskUpdate,
   onDeleteTask,
   initText,
   saveNewTask,
   cmpsOrder,
 }) {
-  const selectedTask = useSelector(
-    (storeState) => storeState.boardModule.selectedTask
+  const checkedTaskIds = useSelector(
+    (storeState) => storeState.boardModule.checkedTaskIds
   )
-  const [checkedTasks, setCheckedTasks] = useState([])
+  function handleChange(row, event, groupId, boardId) {
+    const { checked } = event.target;
+    const taskId = row.id; // Use row.id directly
 
-  function handleChange(row, event) {
-    console.log('handleChange  row:', row)
-    const { checked } = event.target
-    const taskId = row.id
-    setCheckedTasks((prevCheckedTasks) => {
-      const updatedTasks = checked
-        ? [...prevCheckedTasks, taskId]
-        : prevCheckedTasks.filter((id) => id !== taskId)
+    const selectedTask = { taskId, groupId, boardId };
 
-      saveSelectedTasks(updatedTasks)
+    const updatedTasks = checked
+      ? [...checkedTaskIds, selectedTask]
+      : checkedTaskIds.filter(
+          (checkedTask) =>
+            checkedTask.taskId !== taskId || checkedTask.groupId !== groupId
+        );
 
-      return updatedTasks
-    })
+    saveSelectedTasks(updatedTasks);
+
+    return updatedTasks;
   }
-
   return (
     <>
       {rows.map((row, rowIdx) => (
@@ -47,7 +49,7 @@ export function GroupTableBody({
             }}
             className="first-column group-table-cell checkbox-cell flex align-center justify-center hoverable relative"
           >
-            <div className="hidden-hover absolute" style={{ right: '105%' }}>
+            <div className="absolute" style={{ right: '115%' }}>
               <ContextBtn
                 onDeleteRow={() => onDeleteTask(group.id, row.id)}
                 type={'row'}
@@ -55,8 +57,9 @@ export function GroupTableBody({
             </div>
             <input
               type="checkbox"
-              onChange={(event) => handleChange(row, event)}
-            />
+              onChange={(event) => handleChange(row, event, group.id, boardId)}
+              checked={checkedTaskIds.some((checkedTask) => checkedTask.taskId === row.id)}
+              />
           </div>
           {columns.map((column, colIdx) => (
             <React.Fragment key={column.id}>
@@ -71,6 +74,7 @@ export function GroupTableBody({
                   group={group}
                   onTaskUpdate={onTaskUpdate}
                   task={row}
+                  board={board}
                 />
               </div>
               <div
@@ -103,7 +107,7 @@ export function GroupTableBody({
             type={'addTask'}
             initialText={initText}
             onSave={saveNewTask}
-            placeholder={'+ Add task'}
+            placeholder={`+ Add ${board?.option ? board?.option.slice(0, -1) : "Task"}`}
           />
         </div>
       </div>

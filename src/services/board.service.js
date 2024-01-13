@@ -1077,6 +1077,7 @@ export const boardService = {
   getEmptyBoard,
   getEmptyGroup,
   geColors,
+  defaultLabels,
 }
 
 function query() {
@@ -1095,6 +1096,7 @@ function remove(boardId) {
 }
 
 function save(board) {
+  console.log('save  board:', board)
   if (board._id) {
     // return storageService.put(STORAGE_KEY, board)
     return httpService.put(BOARD_URL, board)
@@ -1178,6 +1180,7 @@ function getEmptyBoard() {
   return {
     title: 'new board',
     archivedAt: Date.now(),
+    option: 'Task',
     createdBy: {
       _id: 'u101',
       fullname: 'test teston',
@@ -1186,16 +1189,21 @@ function getEmptyBoard() {
     style: {
       color: gColors[utilService.getRandomIntInclusive(0, gColors.length)],
     },
-    labels: [
+    labelsdef1: [
       {
         id: 'l101',
         title: 'Done',
-        color: '#61bd4f',
+        color: '#00C875',
       },
       {
         id: 'l102',
-        title: 'Progress',
-        color: '#61bd33',
+        title: 'Working on it',
+        color: '#FDAB3D',
+      },
+      {
+        id: 'l103',
+        title: 'Stuck',
+        color: '#E2445C',
       },
     ],
     members: [],
@@ -1235,6 +1243,26 @@ function getEmptyBoard() {
       { type: 'NumbersPicker', id: 'def4', title: 'Number' },
     ],
   }
+}
+
+function defaultLabels(){
+  return [
+    {
+      id: 'l101',
+      title: 'Done',
+      color: '#00C875',
+    },
+    {
+      id: 'l102',
+      title: 'Working on it',
+      color: '#FDAB3D',
+    },
+    {
+      id: 'l103',
+      title: 'Stuck',
+      color: '#E2445C',
+    },
+  ]
 }
 
 function geColors() {

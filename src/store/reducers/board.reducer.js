@@ -35,6 +35,8 @@ export const COMPLETE_ADD_COLUMN = 'COMPLETE_ADD_COLUMN'
 // board members
 export const SET_BOARD_MEMBERS = 'SET_BOARD_MEMBERS'
 
+export const SET_IMG_TARGET = 'SET_IMG_TARGET'
+
 const initialState = {
   boards: [],
   selectedBoard: {},
@@ -46,10 +48,13 @@ const initialState = {
   activeTask: null,
   isAddingColumn: false,
   checkedTaskIds: [],
+  imgTarget: null,
+  imgTargetData: null,
 }
 
 export function boardReducer(state = initialState, action = {}) {
   let newBoards
+  let newCheckedTaskIds
 
   switch (action.type) {
     // * BOARDS CRUD
@@ -130,7 +135,7 @@ export function boardReducer(state = initialState, action = {}) {
       return { ...state, boards: [...newBoards] }
 
     case SET_CHECKED_TASKS:
-      return { ...state, checkedTaskIds: action.taskIds }
+      return { ...state, checkedTaskIds: [...action.taskIds] }
 
     case ADD_TASK:
       newBoards = state.boards.map((board) => {
@@ -230,6 +235,13 @@ export function boardReducer(state = initialState, action = {}) {
       return { ...state, isAddingColumn: true }
     case COMPLETE_ADD_COLUMN:
       return { ...state, isAddingColumn: false }
+
+    case SET_IMG_TARGET:
+      return {
+        ...state,
+        imgTarget: action.imgTarget,
+        imgTargetData: action.imgTargetData,
+      }
 
     default:
       return state

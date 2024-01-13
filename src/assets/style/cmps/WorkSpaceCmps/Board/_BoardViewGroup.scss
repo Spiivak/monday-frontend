@@ -14,8 +14,9 @@
 
     .menu-btn {
       opacity: 0;
-      margin-right: 4px;
       top: 0;
+      position: relative;
+      left: -8px;
     }
 
     .arrow-btn {
@@ -23,13 +24,13 @@
       align-items: center;
 
       svg {
-        width: 16px;
-        height: 16px;
+        width: 22px;
+        height: 22px;
       }
     }
 
-    span {
-      // display: none;
+    .task-length {
+      display: none;
       font: 400 14px Figtree;
       color: #676879;
       align-items: center;
@@ -64,114 +65,6 @@
     overflow-x: auto;
   }
 
-  table {
-    width: max-content;
-    margin-bottom: 36px;
-
-    td,
-    th {
-      height: 36px;
-      width: max-content;
-    }
-
-    tr:hover {
-      background-color: #F4F5F8;
-      box-shadow: 4px 3px 6px -3px #c3c6d4;
-    }
-
-
-    // ! TEMPORERY
-    // TODO: Create selected array
-    tr:has(input[type="checkbox"]:checked) {
-      background-color: #CCE5FF;
-    }
-
-    td:nth-child(1),
-    th:nth-child(1) {
-      width: 33px !important;
-    }
-
-    // td:nth-child(2),
-    // th:nth-child(2) {
-    //   width: 360px !important;
-    // }
-
-    border-collapse: collapse;
-    border-radius: 12px;
-    position: relative;
-
-    td:first-of-type::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 37px;
-      width: 6px;
-      background-color: rgb(162, 93, 220);
-      border-top-left-radius: 6px;
-    }
-
-    td:not(:first-of-type, :last-of-type)::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      height: 36px;
-      width: 6px;
-      background-color: rgb(162, 93, 220);
-    }
-
-    td:last-of-type::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      height: 37px;
-      width: 6px;
-      background-color: rgba(163, 93, 220, 0.171);
-      border-bottom-left-radius: 6px;
-    }
-  }
-
-  th:not(:first-child, :last-child),
-  td:not(:first-child, :last-child),
-  tr:not(:last-of-type) td:first-child,
-  tr:not(:last-of-type) td:last-child {
-    box-shadow: 0 0 0 0.2px rgba(0, 0, 122, 0.3);
-    max-height: 36px;
-
-
-  }
-
-  th:first-child {
-    border-top-left-radius: 12px;
-    box-shadow: 0 0 0 0.2px rgba(0, 0, 122, 0.3);
-  }
-
-  th:last-child {
-    // border-top-right-radius: 12px;
-    box-shadow: 0 0 0 0.2px rgba(0, 0, 122, 0.3);
-  }
-
-  tr[role="row"] th {
-    // background: red;
-    justify-content: center;
-
-    th {
-      display: table-cell;
-    }
-  }
-
-  tr:last-child td:first-child {
-    border-bottom-left-radius: 12px;
-    box-shadow: 0 0 0 0.2px rgba(0, 0, 122, 0.3);
-
-  }
-
-  tr:last-child td:last-child {
-    // border-bottom-right-radius: 12px;
-    box-shadow: 0 0 0 0.2px rgba(0, 0, 122, 0.3);
-  }
-
   .row-context {
     z-index: 500;
     left: -32px;
@@ -197,3 +90,74 @@
     }
   }
 }
+
+.collapsed-table {
+  background-color: white;
+  border: 1px solid #dcdfec;
+  min-height: 60px;
+  border-left: 8px solid;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  display: grid;
+  margin-bottom: 32px;
+  grid-template-columns: auto 1fr;
+  // align-items: center;
+  position: relative;
+  margin-left: 0;
+
+
+  .left-side {
+    padding-top: $spacing-xs;
+    padding-bottom: $spacing-small;
+    padding-right: $spacing-small;
+    width: 400px;
+  }
+  .menu-btn {
+    position: absolute;
+    left: -38px;
+    top: 20px;
+  }
+
+  .collapse-btn {
+    margin-left: 8px;
+    rotate: -90deg;
+
+    svg{
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  .group-title {
+    padding: 0 4px;
+  }
+
+  .tasks-length {
+    padding-left: 44px;
+  }
+
+  .right-side {
+    margin-left: 48px;
+    .group-table-cell {
+      border-bottom: none !important;
+      border: none;
+    }
+    .table-body-row {
+      .empty-column {
+        display: none;
+      }
+    }
+  }
+}
+
+
+// .board-group-table-container {
+//   position: relative;
+//   .table-body-row:first-child {
+//     position: sticky;
+//     top: 0;
+//     left: 0;
+//     z-index: 500;
+//     background-color: lightblue;
+//   }
+// }

@@ -8,6 +8,7 @@ import { NumbersPickers } from './cells/NumbersPicker'
 import { TaskTitle } from './cells/TaskTitle'
 
 export function DynamicTableCell({
+  board,
   cmp,
   cmpId,
   task,
@@ -27,7 +28,7 @@ export function DynamicTableCell({
     case 'title':
       return <TaskTitle {...{ task, cmpId, handleUpdateTask, cmpsOrder }} />
     case 'StatusPicker':
-      return <StatusPicker {...{ task, cmpId, handleUpdateTask, cmpsOrder }} />
+      return <StatusPicker {...{ task, cmpId, handleUpdateTask, cmpsOrder, board }} />
     case 'MemberPicker':
       return <MemberPicker {...{ task, cmpId, handleUpdateTask, cmpsOrder }} />
     case 'DatePicker':

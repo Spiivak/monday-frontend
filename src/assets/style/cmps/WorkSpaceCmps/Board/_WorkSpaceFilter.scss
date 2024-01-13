@@ -37,6 +37,9 @@
     height: 65px;
 
     .filter-item {
+      button {
+        height: 100%;
+      }
       &:hover {
         border-radius: $border-radius-small;
         background-color: #d0d4e4;

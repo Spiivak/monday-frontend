@@ -87,12 +87,13 @@ export function AddBoardModal({ onClose, SetAddModalOpen }) {
 }
 
 export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
-  const [selectedOption, setSelectedOption] = useState('Items')
-  const [title, setTitle] = useState('')
   const navigate = useNavigate()
+  const [title, setTitle] = useState('')
+  const [option, setOption] = useState('Items')
+  console.log('OnAddBoardModal  option:', option)
 
   const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value)
+    setOption(event.target.value)
   }
 
   function handleChange({ target }) {
@@ -112,13 +113,14 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
     }
     setTitle(value)
   }
-  async function onAddBoard(title) {
+  async function onAddBoard() {
     if (!title) return
     try {
       const newBoard = await boardService.getEmptyBoard()
       newBoard.title = title
-      await saveBoard(newBoard)
-      navigate(`/workspace/${newBoard._id}`)
+      newBoard.option = option
+      const savedBoard = await saveBoard(newBoard)
+      navigate(`/workspace/${savedBoard._id}`)
     } catch (err) {
       console.error('Cannot add board', err)
     }
@@ -130,7 +132,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
 
   const handleCreateBoard = () => {
     if (!title) return
-    onAddBoard(title)
+    onAddBoard()
     SetAddModalOpen(false)
     setModalOpen(false)
   }
@@ -145,19 +147,6 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
             <label htmlFor="title">Board name</label>
             <input type="text" name="title" onChange={handleChange} />
           </div>
-          <div className="board-privacy">
-            <span>Privacy</span>
-            <label htmlFor="main">
-              <input
-                type="radio"
-                value="main"
-                checked={selectedOption === 'Main'}
-                onChange={handleOptionChange}
-              />
-              Main
-            </label>
-            <p>Visible to everyone ine your account</p>
-          </div>
           <div className="select-type-board">
             <div className="divider"></div>
             <h3>Select what you're managing in this board</h3>
@@ -166,7 +155,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Items"
-                  checked={selectedOption === 'Items'}
+                  checked={option === 'Items'}
                   onChange={handleOptionChange}
                 />
                 Items
@@ -175,8 +164,8 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
               <label>
                 <input
                   type="radio"
-                  value="Budget"
-                  checked={selectedOption === 'Budget'}
+                  value="Budgets"
+                  checked={option === 'Budgets'}
                   onChange={handleOptionChange}
                 />
                 Budget
@@ -186,7 +175,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Employees"
-                  checked={selectedOption === 'Employees'}
+                  checked={option === 'Employees'}
                   onChange={handleOptionChange}
                 />
                 Employees
@@ -196,7 +185,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Campaigns"
-                  checked={selectedOption === 'Campaigns'}
+                  checked={option === 'Campaigns'}
                   onChange={handleOptionChange}
                 />
                 Campaigns
@@ -206,7 +195,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Leads"
-                  checked={selectedOption === 'Leads'}
+                  checked={option === 'Leads'}
                   onChange={handleOptionChange}
                 />
                 Leads
@@ -216,7 +205,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Projects"
-                  checked={selectedOption === 'Projects'}
+                  checked={option === 'Projects'}
                   onChange={handleOptionChange}
                 />
                 Projects
@@ -226,7 +215,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Creatives"
-                  checked={selectedOption === 'Creatives'}
+                  checked={option === 'Creatives'}
                   onChange={handleOptionChange}
                 />
                 Creatives
@@ -236,7 +225,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Clients"
-                  checked={selectedOption === 'Clients'}
+                  checked={option === 'Clients'}
                   onChange={handleOptionChange}
                 />
                 Clients
@@ -246,7 +235,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Tasks"
-                  checked={selectedOption === 'Tasks'}
+                  checked={option === 'Tasks'}
                   onChange={handleOptionChange}
                 />
                 Tasks
@@ -256,17 +245,17 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Custom"
-                  checked={selectedOption === 'Custom'}
+                  checked={option === 'Custom'}
                   onChange={handleOptionChange}
                 />
                 Custom
               </label>
 
-              {selectedOption === 'Custom' && (
+              {option === 'Custom' && (
                 <input
                   type="text"
                   placeholder="Enter custom text"
-                  value={selectedOption}
+                  value={option}
                   onChange={handleOptionChange}
                 />
               )}
