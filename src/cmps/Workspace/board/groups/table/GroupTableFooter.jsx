@@ -56,7 +56,7 @@ function groupSummaryByColumn(column, group, board) {
         return acc
       }, {})
       let statusSumBar = renderStatusBox(
-        calculateStatusPercentage(statusSum),
+        calculateStatusPercentage(statusSum,group),
         board,
         column
       )
@@ -134,17 +134,17 @@ function groupSummaryByColumn(column, group, board) {
   }
 }
 
-function calculateStatusPercentage(tasks) {
+function calculateStatusPercentage(tasks,group) {
   const keys = Object.keys(tasks)
   const values = Object.values(tasks)
-  const percentage = values.map((value) =>
-    Math.floor((value / (values.length + 1)) * 100)
-  )
+  const percentage = values.map((value) => {
+    const sum = (group.tasks.length)
+    return Math.floor((value / (sum)) * 100)
+  })
   const percentageObj = keys.reduce((acc, key, idx) => {
     acc[key] = percentage[idx]
     return acc
   }, {})
-  console.log(percentageObj)
   return percentageObj
   // const doneCount = tasks['Done'] || 0
   // const workingCount = tasks['Working on it'] || 0
@@ -175,10 +175,13 @@ function renderStatusBox(statusPercentages, board, column) {
     display: 'flex',
   }
 
-  const colorMap = board['labels' + column.cmp.id].reduce((acc, label) => {
-    acc[label.title] = label.color
-    return acc
-  }, {"Haven't Started": '#c4c4c4'})
+  const colorMap = board['labels' + column.cmp.id].reduce(
+    (acc, label) => {
+      acc[label.title] = label.color
+      return acc
+    },
+    { "Haven't Started": '#c4c4c4' }
+  )
   console.log(colorMap)
 
   function getColor(status) {
