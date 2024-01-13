@@ -29,9 +29,9 @@ export function BoardGroupPreview({ board, group, boardId, cmpsOrder }) {
     setColumns([
       {
         id: 0,
-        Header: board.option || 'Tasks',
+        Header: board?.option || 'Tasks',
         accessor: 'title',
-        cmp: { id: 0, title: board.option || 'Tasks', type: 'title' },
+        cmp: { id: 0, title: board?.option || 'Tasks', type: 'title' },
       },
       ...cmpsOrder.map((cmp) => {
         let accessor
