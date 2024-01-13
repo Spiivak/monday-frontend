@@ -1,6 +1,5 @@
 import { Edit } from '@mui/icons-material'
-import { Button, ConfigProvider, Divider, Dropdown, Space } from 'antd'
-import useToken from 'antd/es/theme/useToken'
+import { ConfigProvider, Dropdown } from 'antd'
 import React from 'react'
 
 export function StatusPicker({
@@ -9,6 +8,7 @@ export function StatusPicker({
   handleUpdateTask,
   cmpsOrder,
   board,
+  loggedInUser,
 }) {
   const colName = cmpsOrder.find((cmp) => cmp.type === 'StatusPicker')?.title
   const oldValue = task['status' + cmpId]
@@ -20,6 +20,7 @@ export function StatusPicker({
       await handleUpdateTask(
         'Activity',
         {
+          by: loggedInUser,
           createdAt: Date.now(),
           title: updatedTask.title,
           colName,
@@ -48,7 +49,8 @@ export function StatusPicker({
               height: '32px',
               margin: '10px 10px 0 10px',
             }}
-            onClick={() => handleUpdateStatus(label.id)}>
+            onClick={() => handleUpdateStatus(label.id)}
+          >
             {label.title}
           </button>
         ),
@@ -160,7 +162,8 @@ export function StatusPicker({
       <ConfigProvider
         theme={{
           boxShadow: 'none',
-        }}>
+        }}
+      >
         {' '}
         <Dropdown
           rootClassName="dropdown-status-picker"
@@ -171,14 +174,16 @@ export function StatusPicker({
           placement="bottom"
           arrow={{
             pointAtCenter: true,
-          }}>
+          }}
+        >
           <div style={{ width: '100%', height: '100%' }}>
             <button
               className="label-btn"
               style={{
                 backgroundColor: selectedLabel?.color || '#c4c4c4',
                 color: 'white',
-              }}>
+              }}
+            >
               {selectedLabel?.title || "Haven't Started"}
             </button>
           </div>

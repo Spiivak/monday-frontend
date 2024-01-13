@@ -12,6 +12,7 @@ import {
 import { boardService } from '../../../../services/board.service'
 import { saveBoard } from '../../../../store/actions/board.actions'
 import { useNavigate } from 'react-router'
+import { useSelector } from 'react-redux'
 
 export function AddBoardModal({ onClose, SetAddModalOpen }) {
   const modalRef = useRef()
@@ -90,6 +91,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
   const navigate = useNavigate()
   const [title, setTitle] = useState('')
   const [option, setOption] = useState('Items')
+  const loggedInUser = useSelector((storeState) => storeState.userModule.user)
   console.log('OnAddBoardModal  option:', option)
 
   const handleOptionChange = (event) => {

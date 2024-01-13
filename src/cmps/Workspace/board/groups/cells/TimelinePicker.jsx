@@ -10,6 +10,7 @@ export function TimelinePicker({
   handleUpdateTask,
   group,
   cmpsOrder,
+  loggedInUser,
 }) {
   const [dateModal, setDateModal] = useState(false)
   const [color, setColor] = useState('#333')
@@ -57,6 +58,7 @@ export function TimelinePicker({
         await handleUpdateTask(
           'Activity',
           {
+            by: loggedInUser,
             createdAt: Date.now(),
             title: updatedTask.title,
             colName,
@@ -85,6 +87,7 @@ export function TimelinePicker({
       await handleUpdateTask(
         'Activity',
         {
+          by: loggedInUser,
           createdAt: Date.now(),
           title: updatedTask.title,
           colName,

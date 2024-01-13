@@ -5,7 +5,13 @@ import { CloseSmallIcon, PersonRoundedIcon } from '../../../../Icons'
 import { MemberHoverModal } from './modals/MemberHoverModal'
 import { Tooltip, styled, tooltipClasses } from '@mui/material'
 
-export function MemberPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
+export function MemberPicker({
+  task,
+  cmpId,
+  handleUpdateTask,
+  cmpsOrder,
+  loggedInUser,
+}) {
   const boardMembers = useSelector(
     (storeState) => storeState.boardModule.selectedBoard?.members
   )
@@ -30,6 +36,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
       await handleUpdateTask(
         'Activity',
         {
+          by: loggedInUser,
           createdAt: Date.now(),
           title: updatedTask.title,
           colName,

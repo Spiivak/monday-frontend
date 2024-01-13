@@ -17,6 +17,7 @@ import { ToolTip } from '../../ToolTip'
 export function WorkspaceIndex() {
   const navigate = useNavigate()
   const boards = useSelector((storeState) => storeState.boardModule.boards)
+  const user = useSelector((storeState) => storeState.userModule.user)
 
   return (
     <section className="workspace-index test">
@@ -24,7 +25,7 @@ export function WorkspaceIndex() {
         <div className="greeting-section flex align-center">
           <div className="greetings">
             <span className="greeting">
-              {utilService.getGreeting()}, Spiivak
+              {utilService.getGreeting()}, {user.fullname}
             </span>
             <p>Quickly access your recent boards, inboxs and workspaces</p>
           </div>

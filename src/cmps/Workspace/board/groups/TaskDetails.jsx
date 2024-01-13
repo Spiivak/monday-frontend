@@ -12,7 +12,7 @@ export function TaskDetails() {
     (storeState) => storeState.boardModule.activeTask
   )
 
-  const [activeTab, setActiveTab] = useState('activityLog'); // Default to 'updates'
+  const [activeTab, setActiveTab] = useState('activityLog') // Default to 'updates'
 
   const modalRef = useRef()
 
@@ -37,75 +37,96 @@ export function TaskDetails() {
     }
   }, [])
   const handleTabChange = (tab) => {
-    setActiveTab(tab);
-  };
+    setActiveTab(tab)
+  }
   if (!activeTask) return
   return (
     <div className="task-details-modal" ref={modalRef}>
       {/* CLOSE BUTTON */}
       {/* TASK HEADER */}
       <div className="header">
-      <button
-        className="btn-icon small-transparent btn-close"
-        onClick={() => deactivateTask()}
-      >
-        <CloseSmallIcon />
-      </button>
+        <button
+          className="btn-icon small-transparent btn-close"
+          onClick={() => deactivateTask()}
+        >
+          <CloseSmallIcon />
+        </button>
 
-      <div className="task-header flex align-center space-between">
-
-        <div className="task-title">
-          <span>{activeTask.title}</span>
-        </div>
-        <div className="header-actions flex align-center">
-          <div className="members-list flex align-center">
-            <picture className="flex">
-              <img src={Frame} alt="" />
-            </picture>
-            <picture className="flex">
-              <img src={Frame} alt="" />
-            </picture>
+        <div className="task-header flex align-center space-between">
+          <div className="task-title">
+            <span>{activeTask.title}</span>
           </div>
-          <div className="more-btn">
-            <button className="btn-icon medium-transparent">
-              <MenuIcon />
-            </button>
+          <div className="header-actions flex align-center">
+            <div className="members-list flex align-center">
+              <picture className="flex">
+                <img src={Frame} alt="" />
+              </picture>
+            </div>
+            <div className="more-btn">
+              <button className="btn-icon medium-transparent">
+                <MenuIcon />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="task-header-tabs flex space-between">
-        <div className="task-tabs quick-filters">
-          <div className="tabs">
-            <div className={`tab-container flex gap16`} onClick={() => handleTabChange('updates')}>
-              <div className="tab-label flex gap8 align-center btn-txt medium-sec">
-                <HomeIcon />
-                <div className="tab">
-                  <span>Updates</span>
-                  <span className={activeTab === 'updates' ? "underline-active" : ''}></span>
+        <div className="task-header-tabs flex space-between">
+          <div className="task-tabs quick-filters">
+            <div className="tabs">
+              <div
+                className={`tab-container flex gap16`}
+                onClick={() => handleTabChange('updates')}
+              >
+                <div className="tab-label flex gap8 align-center btn-txt medium-sec">
+                  <HomeIcon />
+                  <div className="tab">
+                    <span>Updates</span>
+                    <span
+                      className={
+                        activeTab === 'updates' ? 'underline-active' : ''
+                      }
+                    ></span>
+                  </div>
+                </div>
+              </div>
+              <div
+                className={`tab-container`}
+                onClick={() => handleTabChange('files')}
+              >
+                <div className="tab-label btn-txt medium-sec">
+                  <span>Files</span>
+                  {activeTab === 'files' && (
+                    <span
+                      className={
+                        activeTab === 'files' ? 'underline-active' : ''
+                      }
+                    ></span>
+                  )}
+                </div>
+              </div>
+              <div
+                className={`tab-container`}
+                onClick={() => handleTabChange('activityLog')}
+              >
+                <div className="tab-label btn-txt medium-sec">
+                  <span>Activity Log</span>
+                  {activeTab === 'activityLog' && (
+                    <span
+                      className={
+                        activeTab === 'activityLog' ? 'underline-active' : ''
+                      }
+                    ></span>
+                  )}
                 </div>
               </div>
             </div>
-            <div className={`tab-container`} onClick={() => handleTabChange('files')}>
-              <div className="tab-label btn-txt medium-sec">
-                <span>Files</span>
-                {activeTab === 'files' && <span className={activeTab === 'files' ? "underline-active" : ''}></span>}
-              </div>
-            </div>
-            <div className={`tab-container`} onClick={() => handleTabChange('activityLog')}>
-              <div className="tab-label btn-txt medium-sec">
-                <span>Activity Log</span>
-                {activeTab === 'activityLog' && <span className={activeTab === 'activityLog' ? "underline-active" : ''}></span>}
-              </div>
-            </div>
+          </div>
+          <div className="add-view flex align-center">
+            <button className="btn-icon small-transparent">
+              <AddIcon />
+            </button>
           </div>
         </div>
-        <div className="add-view flex align-center">
-          <button className="btn-icon small-transparent">
-            <AddIcon />
-          </button>
-        </div>
-      </div>
       </div>
 
       {activeTab === 'updates' && (
@@ -119,14 +140,17 @@ export function TaskDetails() {
       {activeTab === 'files' && (
         <div>
           <img src={emptyState} alt="" />
-          <p><b>Drag & drop</b> or <b>add files here</b></p>
-          <p>Upload, comment and review all files in this item to easily collaborate in context</p>
+          <p>
+            <b>Drag & drop</b> or <b>add files here</b>
+          </p>
+          <p>
+            Upload, comment and review all files in this item to easily
+            collaborate in context
+          </p>
         </div>
       )}
 
-      {activeTab === 'activityLog' && (
-        <ActivityLogPreview />
-      )}
+      {activeTab === 'activityLog' && <ActivityLogPreview />}
     </div>
-  );
+  )
 }

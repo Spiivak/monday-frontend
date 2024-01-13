@@ -1181,11 +1181,7 @@ function getEmptyBoard() {
     title: 'new board',
     archivedAt: Date.now(),
     option: 'Task',
-    createdBy: {
-      _id: 'u101',
-      fullname: 'test teston',
-      imgUrl: 'http://some-img',
-    },
+    createdBy: {},
     style: {
       color: gColors[utilService.getRandomIntInclusive(0, gColors.length)],
     },
@@ -1245,7 +1241,7 @@ function getEmptyBoard() {
   }
 }
 
-function defaultLabels(){
+function defaultLabels() {
   return [
     {
       id: 'l101',

@@ -4,7 +4,13 @@ import { useEffect, useRef, useState } from 'react'
 import { DatePreview } from './cellsPreview/DatePreview'
 import { CalenderIcon } from '../../../../Icons'
 
-export function DatePickerC({ task, cmpId, handleUpdateTask, cmpsOrder }) {
+export function DatePickerC({
+  task,
+  cmpId,
+  handleUpdateTask,
+  cmpsOrder,
+  loggedInUser,
+}) {
   const [dateModal, setDateModal] = useState(false)
   const colName = cmpsOrder.find((cmp) => cmp.type === 'DatePicker')?.title
   const divRef = useRef()
@@ -34,6 +40,7 @@ export function DatePickerC({ task, cmpId, handleUpdateTask, cmpsOrder }) {
         await handleUpdateTask(
           'Activity',
           {
+            by: loggedInUser,
             createdAt: Date.now(),
             title: updatedTask.title,
             colName,
@@ -69,6 +76,7 @@ export function DatePickerC({ task, cmpId, handleUpdateTask, cmpsOrder }) {
       await handleUpdateTask(
         'Activity',
         {
+          by: loggedInUser,
           createdAt: Date.now(),
           title: updatedTask.title,
           colName,

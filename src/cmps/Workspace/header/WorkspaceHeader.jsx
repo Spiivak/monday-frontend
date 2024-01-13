@@ -1,4 +1,3 @@
-// import { LogoBtn } from './LogoBtn'
 import { useState } from 'react'
 
 // MODALS
@@ -13,12 +12,11 @@ import {
   MwmIcon,
   NotificationsIcon,
   SearchIcon,
-  SwitcherIcon,
 } from '../../Icons'
 import { InviteMemberModal } from './modals/InviteMemberModal'
 import { SearchEverythingModal } from './modals/SearchEverythingModal'
-// import UserProfile from '../../../assets/img/user-profile.png'
-import UserProfile from '../../../assets/img/user-profile.png'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 export function WorkspaceHeader() {
   const [isNotificationModalOpen, setNotificationModalOpen] = useState(false)
@@ -26,6 +24,7 @@ export function WorkspaceHeader() {
   const [isInviteMembersModalOpen, setInviteMembersModalOpen] = useState(false)
   const [isSearchModalOpen, setSearchModalOpen] = useState(false)
   const [isHelpModalOpen, setHelpModalOpen] = useState(false)
+  const user = useSelector((storeState) => storeState.userModule.user)
 
   function onClickNotifyModal() {
     setNotificationModalOpen((prev) => !prev)
@@ -60,9 +59,9 @@ export function WorkspaceHeader() {
       <header className="work-space-header full flex space-between align-center">
         <section className="header-logo-sect flex align-center">
           <div className="switcher-logo">
-            <button className="btn-icon medium-transparent">
-              <SwitcherIcon />
-            </button>
+            <Link className="btn-icon medium-transparent" to="/">
+              <MondayIcon />
+            </Link>
           </div>
           <div className="work-management-logo flex align-center">
             <MwmIcon />
@@ -117,9 +116,14 @@ export function WorkspaceHeader() {
           <button className="btn-icon small-transparent flex gap8">
             <MondayIcon />
             <img
-              src={UserProfile}
+              src={user.imgUrl}
               alt=""
-              style={{ maxWidth: '32px', borderRadius: '50px' }}
+              style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '50px',
+                objectFit: 'cover',
+              }}
             />
           </button>
 
