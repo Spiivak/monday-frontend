@@ -87,8 +87,8 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
       const newBoard = await boardService.getEmptyBoard()
       newBoard.title = title
       newBoard.option = option
-      await saveBoard(newBoard)
-      navigate(`/workspace/${newBoard._id}`)
+      const savedBoard = await saveBoard(newBoard)
+      navigate(`/workspace/${savedBoard._id}`)
     } catch (err) {
       console.error('Cannot add board', err)
     }
@@ -100,7 +100,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
 
   const handleCreateBoard = () => {
     if (!title) return
-    onAddBoard(title)
+    onAddBoard()
     SetAddModalOpen(false)
     setModalOpen(false)
   }
@@ -132,8 +132,8 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
               <label>
                 <input
                   type="radio"
-                  value="Budget"
-                  checked={option === 'Budget'}
+                  value="Budgets"
+                  checked={option === 'Budgets'}
                   onChange={handleOptionChange}
                 />
                 Budget
