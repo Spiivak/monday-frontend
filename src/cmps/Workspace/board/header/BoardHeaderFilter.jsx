@@ -48,7 +48,7 @@ export function BoardHeaderFilter({ board, isCollapsed }) {
       <ToolTip title="New Item">
         <div className="new-item flex">
           <button className="btn-ctn medium-primary new-item-btn" onClick={handleAdd}>
-          {`New ${board.option || "Task"}`}
+          {`New ${board?.option || "Task"}`}
           </button>
           <button className="btn-ctn medium-primary new-item-arrow">
             <NavigationChevronDownIcon />
