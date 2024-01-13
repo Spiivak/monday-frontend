@@ -1,45 +1,63 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { utilService } from '../../../../../services/util.service'
 import { MemberHoverModal } from '../cells/modals/MemberHoverModal'
 import { Tooltip, styled, tooltipClasses } from '@mui/material'
 import { KeySharp } from '@mui/icons-material'
 
-export function GroupTableFooter({ rows, columns, group, board }) {
+export function GroupTableFooter({
+  rows = [],
+  columns = [],
+  group = [],
+  board = [],
+}) {
   return (
-    <div className="table-body-row footer-row flex" style={{ height: '100%' }}>
+    <Suspense fallback={<Loading />}>
       <div
-        className="empty-column"
-        style={{ gridRow: rows.length + 3, gridColumn: 1 }}></div>
-      <div
-        className="empty-column"
-        style={{ gridRow: rows.length + 3, gridColumn: 2 }}></div>
-      {columns.map((column, colIdx) => {
-        let colSummary
-        if (!columns[colIdx + 1]) {
-        } else {
-          colSummary = groupSummaryByColumn(columns[colIdx + 1], group, board)
-        }
-        if (colIdx === columns.length - 1) return
-        return (
-          <React.Fragment key={column.id}>
-            <div
-              style={{
-                gridRow: rows.length + 3,
-                gridColumn: colIdx + 3,
-                borderBottom: '1px solid #d0d4e4',
-                borderLeft: '1px solid #d0d4e4',
-                width: '100%',
-                minHeight: '36px',
-                height: '100%',
-              }}
-              className="group-table-cell cell">
-              {colSummary}
-            </div>
-          </React.Fragment>
-        )
-      })}
-    </div>
+        className="table-body-row footer-row flex"
+        style={{ height: '100%' }}>
+        <div
+          className="empty-column"
+          style={{ gridRow: rows.length + 3, gridColumn: 1 }}></div>
+        <div
+          className="empty-column"
+          style={{ gridRow: rows.length + 3, gridColumn: 2 }}></div>
+        {Array.isArray(columns) &&
+          columns.map((column, colIdx) => {
+            let colSummary
+            if (!columns[colIdx + 1]) {
+            } else {
+              colSummary = groupSummaryByColumn(
+                columns[colIdx + 1],
+                group,
+                board
+              )
+            }
+            if (colIdx === columns.length - 1) return
+            return (
+              <React.Fragment key={column.id}>
+                <div
+                  style={{
+                    gridRow: rows.length + 3,
+                    gridColumn: colIdx + 3,
+                    borderBottom: '1px solid #d0d4e4',
+                    borderLeft: '1px solid #d0d4e4',
+                    width: '100%',
+                    minHeight: '36px',
+                    height: '100%',
+                  }}
+                  className="group-table-cell cell">
+                  {colSummary}
+                </div>
+              </React.Fragment>
+            )
+          })}
+      </div>
+    </Suspense>
   )
+}
+
+function Loading() {
+  return <h1>loading...</h1>
 }
 
 function groupSummaryByColumn(column, group, board) {
@@ -48,7 +66,8 @@ function groupSummaryByColumn(column, group, board) {
   switch (column.cmp.type) {
     case 'StatusPicker':
       const statusSum = group.tasks.reduce((acc, task) => {
-        const currLabel = board['labels' + column.cmp.id].find(
+        if (!board['labels' + column.cmp.id]) return acc
+        const currLabel = board['labels' + column.cmp.id]?.find(
           (label) => label.id === task[currAccessor]
         )
         const taskValue = currLabel?.title || "Haven't Started"
@@ -175,6 +194,7 @@ function renderStatusBox(statusPercentages, board, column) {
     display: 'flex',
   }
 
+  if (!board['labels' + column.cmp.id]) return
   const colorMap = board['labels' + column.cmp.id].reduce(
     (acc, label) => {
       acc[label.title] = label.color
