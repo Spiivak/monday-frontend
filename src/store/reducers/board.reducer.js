@@ -32,10 +32,12 @@ export const DEACTIVATE_TASK = 'DEACTIVATE_TASK'
 //
 export const START_ADD_COLUMN = 'START_ADD_COLUMN'
 export const COMPLETE_ADD_COLUMN = 'COMPLETE_ADD_COLUMN'
+// board members
+export const SET_BOARD_MEMBERS = 'SET_BOARD_MEMBERS'
 
 const initialState = {
   boards: [],
-  board: null,
+  selectedBoard: {},
   filterBy: {},
   boardLoading: false,
   isLoading: false,
@@ -56,10 +58,9 @@ export function boardReducer(state = initialState, action = {}) {
 
     case SET_BOARD:
       newBoards = state.boards.map((board) => {
-        if (board._id !== action.board[0]._id) return board
-        return action.board[0]
+        return board._id !== action.board._id ? board : action.board
       })
-      return { ...state, boards: [...newBoards] }
+      return { ...state, boards: [...newBoards], selectedBoard: action.board }
 
     case REMOVE_BOARD:
       newBoards = state.boards.filter((board) => board._id !== action.boardId)

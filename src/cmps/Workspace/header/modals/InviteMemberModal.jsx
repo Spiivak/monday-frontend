@@ -1,18 +1,27 @@
 import { useEffect, useRef, useState } from 'react'
 import { CloseIcon } from '../../../Icons'
+import { loadUsers } from '../../../../store/actions/user.actions'
+import { useSelector } from 'react-redux'
+import { saveBoard } from '../../../../store/actions/board.actions'
 
 export function InviteMemberModal({ onClose }) {
   const [email, setEmail] = useState('')
   const [role, setRole] = useState('member')
-
+  const [selectedUser, setSelectedUser] = useState(null)
   const modalRef = useRef()
+  const users = useSelector((storeState) => storeState.userModule.users)
+  const boardMembers = useSelector(
+    (storeState) => storeState.boardModule.selectedBoard?.members
+  )
+  const selectedBoard = useSelector(
+    (storeState) => storeState.boardModule.selectedBoard
+  )
+  useEffect(() => {
+    loadUsers()
+  }, [])
 
   const handleClickOutside = (event) => {
-    const isInviteButton = event.target.closest('[data-invite-button="true"]')
-    if (
-      !modalRef.current ||
-      (!modalRef.current.contains(event.target) && !isInviteButton)
-    ) {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
       onClose()
     }
   }
@@ -34,16 +43,20 @@ export function InviteMemberModal({ onClose }) {
     setRole(e.target.value)
   }
 
-  const handleInvite = () => {
-    // Add logic to handle the invite here
-    console.log(`Inviting ${email} as a ${role}`)
-    // Close the modal or perform other actions as needed
+  async function handleInvite(user) {
+    try {
+      selectedBoard.members.push(user)
+      await saveBoard(selectedBoard)
+      onClose()
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   return (
     <>
       <div className="overlay"></div>
-      <div className="invite-member-modal">
+      <div ref={modalRef} className="invite-member-modal">
         <button
           onClick={onClose}
           className="absolute btn-icon small-transparent"
@@ -65,6 +78,38 @@ export function InviteMemberModal({ onClose }) {
               value={email}
               onChange={handleEmailChange}
             />
+          </div>
+          <div style={{ maxHeight: '150px', overflowY: 'auto' }}>
+            {users
+              .filter(
+                (user) =>
+                  !boardMembers.some(
+                    (boardMember) => boardMember._id === user._id
+                  )
+              )
+              .map((user) => (
+                <div
+                  style={{
+                    margin: '5px 0',
+                    backgroundColor: selectedUser === user ? 'lightBlue' : '',
+                    borderRadius: '7px',
+                  }}
+                  className="flex gap8 align-center"
+                  key={user._id}
+                  onClick={() => setSelectedUser(user)}
+                >
+                  <img
+                    style={{
+                      width: '20px',
+                      height: '20px',
+                      borderRadius: '50%',
+                    }}
+                    src={user.imgUrl}
+                    alt={user.username}
+                  />
+                  <div>{user.fullname}</div>
+                </div>
+              ))}
           </div>
           <div className="select flex gap16">
             <div className="option flex gap8">
@@ -90,7 +135,10 @@ export function InviteMemberModal({ onClose }) {
           </div>
 
           <div className="buttons flex">
-            <button onClick={handleInvite} className="btn-ctn medium-primary">
+            <button
+              onClick={() => handleInvite(selectedUser)}
+              className="btn-ctn medium-primary"
+            >
               Invite
             </button>
           </div>

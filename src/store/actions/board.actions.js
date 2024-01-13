@@ -45,11 +45,10 @@ export async function loadBoards() {
   }
 }
 
-export async function loadBoard(boardId){
+export async function loadBoard(boardId) {
   try {
     const board = await boardService.getById(boardId)
-    console.log(board)
-    store.dispatch({ type: SET_BOARD, board})
+    store.dispatch({ type: SET_BOARD, board })
   } catch (err) {
     console.error('board action -> cannot load board', err)
   }
@@ -67,7 +66,6 @@ export async function saveBoard(board) {
     throw err
   }
 }
-
 
 export async function removeBoard(boardId) {
   store.dispatch({ type: SET_IS_LOADING, isLoading: true })
