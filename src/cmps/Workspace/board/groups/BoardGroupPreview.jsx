@@ -181,6 +181,7 @@ export function BoardGroupPreview({ board, group, boardId, cmpsOrder }) {
 
             <GroupTableFooter
               {...{
+                board,
                 rows,
                 columns,
                 group,
