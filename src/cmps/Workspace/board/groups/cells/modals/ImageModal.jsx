@@ -1,16 +1,5 @@
 import { useEffect, useRef } from 'react'
-import {
-  AddSmallIcon,
-  ArchiveIcon,
-  CollapseIcon,
-  DeleteIcon,
-  EditIcon,
-  MwmIcon,
-  SettingsIcon,
-  SwitchIcon,
-  TimeIcon,
-} from '../../../../../Icons'
-import { Save } from '@mui/icons-material'
+import { TimeIcon } from '../../../../../Icons'
 export function ImageModal({ src }) {
   const modalRef = useRef()
 
@@ -24,7 +13,6 @@ export function ImageModal({ src }) {
     }
   }
 
-  console.log(src)
   useEffect(() => {
     const handleOutsideClick = (event) => handleClickOutside(event)
     window.addEventListener('mousedown', handleOutsideClick)

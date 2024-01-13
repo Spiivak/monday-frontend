@@ -37,7 +37,6 @@ export const SET_IMG_TARGET = 'SET_IMG_TARGET'
 
 const initialState = {
   boards: [],
-  board: null,
   filterBy: {},
   boardLoading: false,
   isLoading: false,

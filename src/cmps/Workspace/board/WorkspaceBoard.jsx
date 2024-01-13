@@ -104,9 +104,9 @@ export function WorkSpaceBoard() {
     }
   }, [filterBy])
 
-  async function onUpdateBoard(boardId) {
+  async function onUpdateBoard(boardToUpdate) {
     try {
-      await saveBoard(boardId)
+      await saveBoard(boardToUpdate)
     } catch (err) {
       console.error('Cannot add board', err)
     }

@@ -46,11 +46,10 @@ export async function loadBoards() {
   }
 }
 
-export async function loadBoard(boardId){
+export async function loadBoard(boardId) {
   try {
     const board = await boardService.getById(boardId)
-    console.log(board)
-    store.dispatch({ type: SET_BOARD, board})
+    store.dispatch({ type: SET_BOARD, board })
   } catch (err) {
     console.error('board action -> cannot load board', err)
   }
@@ -68,7 +67,6 @@ export async function saveBoard(board) {
     throw err
   }
 }
-
 
 export async function removeBoard(boardId) {
   store.dispatch({ type: SET_IS_LOADING, isLoading: true })
@@ -206,20 +204,20 @@ export async function removeTask(boardId, groupId, taskId) {
 }
 
 export async function removeAllTasks(props) {
-  console.log('removeAllTasks props:', props);
+  console.log('removeAllTasks props:', props)
 
   try {
     // Assuming each object in the array has properties boardId, groupId, and taskId
     const removedTaskIds = await Promise.all(
       props.map(async ({ boardId, groupId, taskId }) => {
-        store.dispatch({ type: SET_CHECKED_TASKS, taskIds: []})
-        return await removeTask(boardId, groupId, taskId);
+        store.dispatch({ type: SET_CHECKED_TASKS, taskIds: [] })
+        return await removeTask(boardId, groupId, taskId)
       })
-    );
+    )
 
-    console.log('removedTaskIds:', removedTaskIds);
+    console.log('removedTaskIds:', removedTaskIds)
   } catch (err) {
-    console.error('Error removing all tasks:', err);
+    console.error('Error removing all tasks:', err)
   }
 }
 
@@ -235,15 +233,15 @@ export async function saveSelectedTasks(taskIds) {
 export async function resetSelectedTasks() {
   try {
     // Dispatch the action to reset the selected tasks
-    store.dispatch({ type: SET_CHECKED_TASKS, taskIds: [] });
+    store.dispatch({ type: SET_CHECKED_TASKS, taskIds: [] })
   } catch (error) {
-    console.error('Error resetting selected tasks:', error);
+    console.error('Error resetting selected tasks:', error)
   }
 }
 
 // * COLUMN CRUD
 
-export async function addColumn(boardId, type) {
+export async function addColumn(boardId, type, board) {
   let newColumn
   switch (type) {
     case 'numbers':
@@ -298,7 +296,21 @@ export async function addColumn(boardId, type) {
 
   try {
     const addedColumn = await boardService.addColumn(boardId, newColumn)
-    store.dispatch({ type: ADD_COLUMN, boardId, addedColumn })
+    console.log(addedColumn.type)
+    if (addedColumn.type === 'StatusPicker') {
+      const labelsMap = {
+        ['labels' + addedColumn.id]: boardService.defaultLabels(),
+      }
+      const newBoard = {
+        ...board,
+        ...labelsMap,
+        cmpsOrder: [...board.cmpsOrder, addedColumn],
+      }
+      const boardToSave = await boardService.save(newBoard)
+      store.dispatch({ type: SET_BOARD, board: [boardToSave] })
+    } else {
+      store.dispatch({ type: ADD_COLUMN, boardId, addedColumn })
+    }
     store.dispatch({ type: START_ADD_COLUMN })
   } catch (err) {}
 }
@@ -353,10 +365,9 @@ export function setBoardLoading(type) {
   store.dispatch({ type: SET_IS_BOARD_LOADING, boardLoading: type })
 }
 
-
-export function setImg(imgTarget, imgTargetData){
+export function setImg(imgTarget, imgTargetData) {
   console.log(imgTarget, imgTargetData)
-  store.dispatch({type: SET_IMG_TARGET, imgTarget, imgTargetData})
+  store.dispatch({ type: SET_IMG_TARGET, imgTarget, imgTargetData })
 }
 
 // export async function addBoardMsg(boardId,msg,user){

@@ -15,6 +15,7 @@ export function BoardGroupList({ board, onAddGroup }) {
                   key={index}
                   group={group}
                   cmpsOrder={board.cmpsOrder}
+                  board={board}
                 />
               </div>
             )
