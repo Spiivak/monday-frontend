@@ -1096,6 +1096,7 @@ function remove(boardId) {
 }
 
 function save(board) {
+  console.log('save  board:', board)
   if (board._id) {
     // return storageService.put(STORAGE_KEY, board)
     return httpService.put(BOARD_URL, board)
@@ -1179,6 +1180,7 @@ function getEmptyBoard() {
   return {
     title: 'new board',
     archivedAt: Date.now(),
+    option: 'Task',
     createdBy: {
       _id: 'u101',
       fullname: 'test teston',

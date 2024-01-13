@@ -18,6 +18,7 @@ import {
 } from '../../../../store/actions/board.actions'
 import { EditableText } from '../editableText/EditableText'
 import { GroupTableFooter } from './table/GroupTableFooter'
+import { boardService } from '../../../../services/board.service'
 
 export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
   const [columns, setColumns] = useState([])
@@ -29,9 +30,9 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
     setColumns([
       {
         id: 0,
-        Header: 'Task',
+        Header: group.option || 'Task',
         accessor: 'title',
-        cmp: { id: 0, title: 'task', type: 'title' },
+        cmp: { id: 0, title: group.option || 'Task', type: 'title' },
       },
       ...cmpsOrder.map((cmp) => {
         let accessor

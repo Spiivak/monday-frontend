@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { AppsIcon, BoardIcon, BoardTemplateIcon, CheckboxIcon, DashboardIcon, DocIcon, FormIcon, UploadIcon } from "../../../Icons"
 import { boardService } from "../../../../services/board.service"
 import { saveBoard } from "../../../../store/actions/board.actions"
+import { useNavigate } from "react-router"
 
 export function AddBoardModal({ onClose, SetAddModalOpen }) {
   const modalRef = useRef()
@@ -54,11 +55,13 @@ export function AddBoardModal({ onClose, SetAddModalOpen }) {
 
 
 export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
-  const [selectedOption, setSelectedOption] = useState('Items')
+  const navigate = useNavigate()
   const [title, setTitle] = useState('')
+  const [option, setOption] = useState('Items')
+  console.log('OnAddBoardModal  option:', option)
 
   const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value)
+    setOption(event.target.value)
   }
 
   function handleChange({ target }) {
@@ -78,11 +81,13 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
     }
     setTitle(value)
   }
-  async function onAddBoard(title) {
+  async function onAddBoard() {
     if (!title) return
     try {
       const newBoard = await boardService.getEmptyBoard()
       newBoard.title = title
+      newBoard.option = option
+      console.log('onAddBoard  newBoard:', newBoard)
       await saveBoard(newBoard)
       navigate(`/workspace/${newBoard._id}`)
     } catch (err) {
@@ -117,7 +122,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
               <input
                     type="radio"
                     value="main"
-                    checked={selectedOption === 'Main'}
+                    checked={option === 'Main'}
                     onChange={handleOptionChange}
                   />
                   Main
@@ -132,7 +137,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Items"
-                  checked={selectedOption === 'Items'}
+                  checked={option === 'Items'}
                   onChange={handleOptionChange}
                 />
                 Items
@@ -142,7 +147,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Budget"
-                  checked={selectedOption === 'Budget'}
+                  checked={option === 'Budget'}
                   onChange={handleOptionChange}
                 />
                 Budget
@@ -152,7 +157,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Employees"
-                  checked={selectedOption === 'Employees'}
+                  checked={option === 'Employees'}
                   onChange={handleOptionChange}
                 />
                 Employees
@@ -162,7 +167,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Campaigns"
-                  checked={selectedOption === 'Campaigns'}
+                  checked={option === 'Campaigns'}
                   onChange={handleOptionChange}
                 />
                 Campaigns
@@ -172,7 +177,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Leads"
-                  checked={selectedOption === 'Leads'}
+                  checked={option === 'Leads'}
                   onChange={handleOptionChange}
                 />
                 Leads
@@ -182,7 +187,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Projects"
-                  checked={selectedOption === 'Projects'}
+                  checked={option === 'Projects'}
                   onChange={handleOptionChange}
                 />
                 Projects
@@ -192,7 +197,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Creatives"
-                  checked={selectedOption === 'Creatives'}
+                  checked={option === 'Creatives'}
                   onChange={handleOptionChange}
                 />
                 Creatives
@@ -202,7 +207,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Clients"
-                  checked={selectedOption === 'Clients'}
+                  checked={option === 'Clients'}
                   onChange={handleOptionChange}
                 />
                 Clients
@@ -212,7 +217,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Tasks"
-                  checked={selectedOption === 'Tasks'}
+                  checked={option === 'Tasks'}
                   onChange={handleOptionChange}
                 />
                 Tasks
@@ -222,17 +227,17 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 <input
                   type="radio"
                   value="Custom"
-                  checked={selectedOption === 'Custom'}
+                  checked={option === 'Custom'}
                   onChange={handleOptionChange}
                 />
                 Custom
               </label>
 
-              {selectedOption === 'Custom' && (
+              {option === 'Custom' && (
                 <input
                   type="text"
                   placeholder="Enter custom text"
-                  value={selectedOption}
+                  value={option}
                   onChange={handleOptionChange}
                 />
               )}

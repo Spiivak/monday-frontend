@@ -5,7 +5,6 @@ import { removeAllTasks, resetSelectedTasks } from "../../../../../store/actions
 
 export function BatchMenu() {
   const checkedTaskIds = useSelector((storeState) => storeState.boardModule.checkedTaskIds)
-  console.log('BatchMenu  checkedTaskIds:', checkedTaskIds)
 
   if (checkedTaskIds.length === 0) return
   return (
