@@ -23,9 +23,9 @@ export function DynamicCellModals() {
         console.log(imgTarget.clinetX, imgTarget.clinetY)
 
         if (left > innerWidth / 2) {
-          newLeft = left - 240
+          newLeft = left - 140
         } else {
-          newLeft = left - 240
+          newLeft = left - 140
         }
 
         if (top > innerHeight / 2) {
@@ -53,7 +53,7 @@ export function DynamicCellModals() {
         top: position.top,
         left: position.left,
         padding: '1rem',
-        zIndex: '20',
+        zIndex: '2000',
       }}>
       <ImageModal src={imgTargetData} />
     </div>
