@@ -20,7 +20,6 @@ export function DynamicCellModals() {
         let newLeft, newTop
         const left = imgTarget.pageX
         const top = imgTarget.pageY
-        console.log(imgTarget.clinetX, imgTarget.clinetY)
 
         if (left > innerWidth / 2) {
           newLeft = left - 140
@@ -41,7 +40,7 @@ export function DynamicCellModals() {
     handleResize()
   }, [imgTarget])
 
-  if(!imgTarget) return
+  if (!imgTarget) return
 
   return (
     <div

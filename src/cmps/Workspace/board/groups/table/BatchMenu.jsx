@@ -1,11 +1,24 @@
-import { useSelector } from "react-redux";
-import { AppsIcon, ArchiveIcon, CloseIcon, DeleteIcon, DownloadIcon, DuplicateIcon, NavigationChevronRightIcon, RemoveIcon } from "../../../../Icons";
-import { useState } from "react";
-import { removeAllTasks, resetSelectedTasks } from "../../../../../store/actions/board.actions";
+import { useSelector } from 'react-redux'
+import {
+  AppsIcon,
+  ArchiveIcon,
+  CloseIcon,
+  DeleteIcon,
+  DownloadIcon,
+  DuplicateIcon,
+  NavigationChevronRightIcon,
+  RemoveIcon,
+} from '../../../../Icons'
+import { useState } from 'react'
+import {
+  removeAllTasks,
+  resetSelectedTasks,
+} from '../../../../../store/actions/board.actions'
 
 export function BatchMenu() {
-  const checkedTaskIds = useSelector((storeState) => storeState.boardModule.checkedTaskIds)
-  console.log('BatchMenu  checkedTaskIds:', checkedTaskIds)
+  const checkedTaskIds = useSelector(
+    (storeState) => storeState.boardModule.checkedTaskIds
+  )
 
   if (checkedTaskIds.length === 0) return
   return (
@@ -15,9 +28,13 @@ export function BatchMenu() {
           <span>{checkedTaskIds.length}</span>
         </div>
         <div className="title flex column">
-          {checkedTaskIds.length === 1 ? <span>Item Selected</span> : <span>Items Selected</span>}
+          {checkedTaskIds.length === 1 ? (
+            <span>Item Selected</span>
+          ) : (
+            <span>Items Selected</span>
+          )}
           <div className="pulses-dots flex">
-          {checkedTaskIds.map((task, index) => (
+            {checkedTaskIds.map((task, index) => (
               <div key={index} className="dot"></div>
             ))}
           </div>
@@ -35,7 +52,9 @@ export function BatchMenu() {
             <ArchiveIcon />
             <span>Archive</span>
           </div> */}
-          <div className="batch-actions-item flex align-center justify-center column" onClick={() => removeAllTasks(checkedTaskIds)}>
+          <div
+            className="batch-actions-item flex align-center justify-center column"
+            onClick={() => removeAllTasks(checkedTaskIds)}>
             <DeleteIcon />
             <span>Delete</span>
           </div>
@@ -48,7 +67,9 @@ export function BatchMenu() {
             <span>Move to</span>
           </div> */}
         </div>
-        <div className="batch-actions-delete-item flex align-center justify-center" onClick={() => resetSelectedTasks()}>
+        <div
+          className="batch-actions-delete-item flex align-center justify-center"
+          onClick={() => resetSelectedTasks()}>
           <CloseIcon />
         </div>
       </div>
