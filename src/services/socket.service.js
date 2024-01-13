@@ -2,11 +2,14 @@ import io from 'socket.io-client'
 import { userService } from './user.service.js'
 import { store } from '../store/store.js'
 import {
+  ADD_BOARD,
   ADD_COLUMN,
   ADD_GROUP,
   ADD_TASK,
+  REMOVE_BOARD,
   REMOVE_COLUMN,
   REMOVE_GROUP,
+  UPDATE_BOARD,
   UPDATE_GROUP,
 } from '../store/reducers/board.reducer.js'
 import {
@@ -69,19 +72,19 @@ function createSocketService() {
 // * TASK SOCKETS *
 socketService.on('add-task', (data) => {
   const user = userService.getLoggedinUser()
-  console.log(user.fullname,':', data)
+  console.log(user.fullname, ':', data)
   const { boardId, groupId, task } = data
   store.dispatch({ type: ADD_TASK, boardId, groupId, task })
 })
 socketService.on('update-task', (data) => {
   const user = userService.getLoggedinUser()
-  console.log(user.fullname,':', data)
+  console.log(user.fullname, ':', data)
   const { boardId, groupId, taskId, task } = data
   store.dispatch({ type: UPDATE_TASK, boardId, groupId, taskId, task })
 })
 socketService.on('remove-task', (data) => {
   const user = userService.getLoggedinUser()
-  console.log(user.fullname,':', data)
+  console.log(user.fullname, ':', data)
   const { boardId, groupId, deletedTaskId } = data
   store.dispatch({ type: REMOVE_TASK, boardId, groupId, deletedTaskId })
 })
@@ -89,39 +92,59 @@ socketService.on('remove-task', (data) => {
 // * COLUMN SOCKETS *
 socketService.on('add-column', (data) => {
   const user = userService.getLoggedinUser()
-  console.log(user.fullname,':', data)
+  console.log(user.fullname, ':', data)
   const { boardId, addedColumn } = data
   store.dispatch({ type: ADD_COLUMN, boardId, addedColumn })
 })
 socketService.on('update-column', (data) => {
   const user = userService.getLoggedinUser()
-  console.log(user.fullname,':', data)
+  console.log(user.fullname, ':', data)
   const { boardId, columnId, updatedColumn } = data
   store.dispatch({ type: UPDATE_COLUMN, boardId, columnId, updatedColumn })
 })
 socketService.on('remove-column', (data) => {
   const user = userService.getLoggedinUser()
-  console.log(user.fullname,':', data)
+  console.log(user.fullname, ':', data)
   const { boardId, columnId } = data
   store.dispatch({ type: REMOVE_COLUMN, boardId, deletedColumnId: columnId })
 })
 
-// * COLUMN SOCKETS *
+// * GROUPS SOCKETS *
 socketService.on('add-group', (data) => {
   const user = userService.getLoggedinUser()
-  console.log(user.fullname,':', data)
+  console.log(user.fullname, ':', data)
   const { boardId, group } = data
   store.dispatch({ type: ADD_GROUP, boardId, savedGroup: group })
 })
 socketService.on('update-group', (data) => {
   const user = userService.getLoggedinUser()
-  console.log(user.fullname,':', data)
+  console.log(user.fullname, ':', data)
   const { boardId, groupId, group } = data
   store.dispatch({ type: UPDATE_GROUP, boardId, groupId, updatedGroup: group })
 })
 socketService.on('remove-group', (data) => {
   const user = userService.getLoggedinUser()
-  console.log(user.fullname,':', data)
+  console.log(user.fullname, ':', data)
   const { boardId, groupId } = data
   store.dispatch({ type: REMOVE_GROUP, boardId, deletedGroupId: groupId })
+})
+
+// * GROUPS SOCKETS *
+socketService.on('add-board', (data) => {
+  const user = userService.getLoggedinUser()
+  console.log(user.fullname, ':', data)
+  const { addedBoard } = data
+  store.dispatch({ type: ADD_BOARD, board: addedBoard })
+})
+socketService.on('update-board', (data) => {
+  const user = userService.getLoggedinUser()
+  console.log(user.fullname, ':', data)
+  const { updatedBoard } = data
+  store.dispatch({ type: UPDATE_BOARD, board: updatedBoard })
+})
+socketService.on('remove-board', (data) => {
+  const user = userService.getLoggedinUser()
+  console.log(user.fullname, ':', data)
+  const { boardId } = data
+  store.dispatch({ type: REMOVE_BOARD, boardId: boardId })
 })
