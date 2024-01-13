@@ -131,7 +131,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
               <ContextBtn type="group" onDeleteGroup={onDeleteGroup} />
             </div>
             <button
-              className="btn-icon small-transparent"
+              className="btn-icon small-transparent arrow-btn"
               style={{ color: group.style.color }}
               onClick={toggleTable}
             >
@@ -148,7 +148,7 @@ export function BoardGroupPreview({ group, boardId, cmpsOrder }) {
                 placeholder={group.title}
               />
             </h2>
-            <span>{group.tasks.length} items </span>
+            <span className='task-length'>{group.tasks.length} items </span>
           </div>
 
           {/* Render table only if it's open */}

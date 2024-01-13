@@ -48,7 +48,7 @@ export function GroupTableBody({
             }}
             className="first-column group-table-cell checkbox-cell flex align-center justify-center hoverable relative"
           >
-            <div className="hidden-hover absolute" style={{ right: '105%' }}>
+            <div className="absolute" style={{ right: '115%' }}>
               <ContextBtn
                 onDeleteRow={() => onDeleteTask(group.id, row.id)}
                 type={'row'}

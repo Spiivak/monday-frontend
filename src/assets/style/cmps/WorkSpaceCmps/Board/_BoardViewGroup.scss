@@ -14,8 +14,9 @@
 
     .menu-btn {
       opacity: 0;
-      margin-right: 4px;
       top: 0;
+      position: relative;
+      left: -8px;
     }
 
     .arrow-btn {
@@ -23,13 +24,13 @@
       align-items: center;
 
       svg {
-        width: 16px;
-        height: 16px;
+        width: 22px;
+        height: 22px;
       }
     }
 
-    span {
-      // display: none;
+    .task-length {
+      display: none;
       font: 400 14px Figtree;
       color: #676879;
       align-items: center;
