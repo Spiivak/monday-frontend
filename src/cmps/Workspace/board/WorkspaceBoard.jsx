@@ -18,7 +18,6 @@ export function WorkSpaceBoard() {
   const [selectedBoard, setSelectedBoard] = useState(null)
   const [filteredBoard, setFilteredBoard] = useState(null)
   const boards = useSelector((storeState) => storeState.boardModule.boards)
-  const board = useSelector((storeState) => storeState.boardModule.boards)
   const filterBy = useSelector((storeState) => storeState.boardModule.filterBy)
   const boardLoading = useSelector(
     (storeState) => storeState.boardModule.boardLoading
