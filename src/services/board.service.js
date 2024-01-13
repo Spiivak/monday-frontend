@@ -1096,7 +1096,6 @@ function remove(boardId) {
 }
 
 function save(board) {
-  console.log('save  board:', board)
   if (board._id) {
     // return storageService.put(STORAGE_KEY, board)
     return httpService.put(BOARD_URL, board)
