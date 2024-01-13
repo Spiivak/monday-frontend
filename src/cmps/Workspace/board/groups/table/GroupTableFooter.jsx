@@ -144,7 +144,6 @@ function calculateStatusPercentage(tasks) {
     acc[key] = percentage[idx]
     return acc
   }, {})
-  console.log(percentageObj)
   return percentageObj
   // const doneCount = tasks['Done'] || 0
   // const workingCount = tasks['Working on it'] || 0
@@ -179,7 +178,6 @@ function renderStatusBox(statusPercentages, board, column) {
     acc[label.title] = label.color
     return acc
   }, {"Haven't Started": '#c4c4c4'})
-  console.log(colorMap)
 
   function getColor(status) {
     if (status === 'Stuck') {

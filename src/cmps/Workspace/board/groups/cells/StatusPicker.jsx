@@ -13,7 +13,6 @@ export function StatusPicker({
   const colName = cmpsOrder.find((cmp) => cmp.type === 'StatusPicker')?.title
   const oldValue = task['status' + cmpId]
 
-  console.log(board['labels' + cmpId])
 
   async function handleUpdateStatus(status) {
     try {
@@ -37,7 +36,6 @@ export function StatusPicker({
 
   const items = [
     ...board['labels' + cmpId]?.map((label, idx) => {
-      console.log(label)
       return {
         key: idx + 1,
         backgroundcolor: label.color,
@@ -156,9 +154,6 @@ export function StatusPicker({
 
   const selectedLabel = board['labels' + cmpId].find(
     (label) => label.id === task['status' + cmpId]
-  )
-  console.log(
-    board['labels' + cmpId].find((label) => label.id === task['status' + cmpId])
   )
 
   return (

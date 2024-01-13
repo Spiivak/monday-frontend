@@ -87,7 +87,6 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
       const newBoard = await boardService.getEmptyBoard()
       newBoard.title = title
       newBoard.option = option
-      console.log('onAddBoard  newBoard:', newBoard)
       await saveBoard(newBoard)
       navigate(`/workspace/${newBoard._id}`)
     } catch (err) {
@@ -115,19 +114,6 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
           <div className="board-input">
             <label htmlFor="title">Board name</label>
             <input type="text" name="title" onChange={handleChange} />
-          </div>
-          <div className="board-privacy">
-            <span>Privacy</span>
-            <label htmlFor="main">
-              <input
-                    type="radio"
-                    value="main"
-                    checked={option === 'Main'}
-                    onChange={handleOptionChange}
-                  />
-                  Main
-            </label>
-            <p>Visible to everyone ine your account</p>
           </div>
           <div className="select-type-board">
             <div className="divider"></div>

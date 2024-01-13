@@ -107,7 +107,7 @@ export function GroupTableBody({
             type={'addTask'}
             initialText={initText}
             onSave={saveNewTask}
-            placeholder={'+ Add task'}
+            placeholder={`+ Add ${board.option ? board.option.slice(0, -1) : "Task"}`}
           />
         </div>
       </div>
