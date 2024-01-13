@@ -10,7 +10,8 @@ import { TaskDetails } from './cmps/Workspace/board/groups/TaskDetails'
 import { WorkSpaceBoard } from './cmps/Workspace/board/WorkspaceBoard'
 import { WorkspaceIndex } from './cmps/Workspace/index/WorkspaceIndex'
 import { KanbanPreview } from './cmps/Workspace/kanban/KanbanPreview'
-import { DynamicCellModals } from './cmps/Workspace/board/groups/cells/cellsPreview/DynamicCellModals'
+import { FileImgModal } from './cmps/Workspace/board/groups/cells/modals/FileImgModal'
+import { EditLabelsModal } from './cmps/Workspace/board/groups/cells/modals/EditLabelsModal'
 
 export function App() {
   return (
@@ -30,7 +31,8 @@ export function App() {
           </Routes>
           <UserMsg />
         </Router>
-        <DynamicCellModals />
+        <EditLabelsModal />
+        <FileImgModal />
         <DynamicModalMenu />
         <TaskDetails />
       </Provider>

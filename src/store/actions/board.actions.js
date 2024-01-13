@@ -18,6 +18,7 @@ import {
   SET_BOARD,
   SET_BOARDS,
   SET_CHECKED_TASKS,
+  SET_EDIT_LABELS_TARGET,
   SET_FILTER_BY,
   SET_IMG_TARGET,
   SET_IS_BOARD_LOADING,
@@ -366,8 +367,11 @@ export function setBoardLoading(type) {
 }
 
 export function setImg(imgTarget, imgTargetData) {
-  console.log(imgTarget, imgTargetData)
   store.dispatch({ type: SET_IMG_TARGET, imgTarget, imgTargetData })
+}
+
+export function setLabels(editLabelTarget, editLabelTargetData) {
+  store.dispatch({ type: SET_EDIT_LABELS_TARGET, editLabelTarget, editLabelTargetData })
 }
 
 // export async function addBoardMsg(boardId,msg,user){

@@ -34,6 +34,7 @@ export const START_ADD_COLUMN = 'START_ADD_COLUMN'
 export const COMPLETE_ADD_COLUMN = 'COMPLETE_ADD_COLUMN'
 
 export const SET_IMG_TARGET = 'SET_IMG_TARGET'
+export const SET_EDIT_LABELS_TARGET = 'SET_EDIT_LABELS_TARGET'
 
 const initialState = {
   boards: [],
@@ -47,6 +48,8 @@ const initialState = {
   checkedTaskIds: [],
   imgTarget: null,
   imgTargetData: null,
+  editLabelTarget: null,
+  editLabelTargetData: null,
 }
 
 export function boardReducer(state = initialState, action = {}) {
@@ -239,6 +242,12 @@ export function boardReducer(state = initialState, action = {}) {
         ...state,
         imgTarget: action.imgTarget,
         imgTargetData: action.imgTargetData,
+      }
+    case SET_EDIT_LABELS_TARGET:
+      return {
+        ...state,
+        editLabelTarget: action.editLabelTarget,
+        editLabelTarget: action.editLabelTarget,
       }
 
     default:

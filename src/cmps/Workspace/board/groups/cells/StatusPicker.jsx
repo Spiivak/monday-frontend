@@ -1,7 +1,7 @@
 import { Edit } from '@mui/icons-material'
 import { Button, ConfigProvider, Divider, Dropdown, Space } from 'antd'
 import useToken from 'antd/es/theme/useToken'
-import React from 'react'
+import React, { useRef } from 'react'
 
 export function StatusPicker({
   task,
@@ -60,103 +60,34 @@ export function StatusPicker({
     {
       key: board['labels' + cmpId].length + 1,
       label: (
-        <div className="flex align-center justify-center gap8 label-btn">
+        <div
+          onClick={() =>
+            openLabelEditModal(
+              statusPickerRef,
+              `labels${cmpId}`,
+              board['labels' + cmpId]
+            )
+          }
+          className="flex align-center justify-center gap8 label-btn">
           <Edit />
           Edit Labels
         </div>
       ),
     },
   ]
-  // {
-  //   key: '1',
-  //   backgroundcolor: '#00C875',
-  //   status: 'Done',
-  //   label: (
-  //     <button
-  //       className="btn-ctn medium-primary"
-  //       style={{
-  //         backgroundColor: '#00C875',
-  //         width: '152px',
-  //         height: '32px',
-  //         margin: '10px 10px 0 10px',
-  //       }}
-  //       onClick={() => handleUpdateStatus('Done')}>
-  //       Done
-  //     </button>
-  //   ),
-  // },
-  // {
-  //   key: '2',
-  //   backgroundcolor: '#FDAB3D',
-  //   status: 'Working on it',
-  //   label: (
-  //     <button
-  //       className="btn-ctn medium-primary "
-  //       style={{
-  //         backgroundColor: '#FDAB3D',
-  //         width: '152px',
-  //         height: '32px',
-  //         margin: '0 10px',
-  //       }}
-  //       onClick={() => handleUpdateStatus('Working on it')}>
-  //       Working on it
-  //     </button>
-  //   ),
-  // },
-  // {
-  //   key: '3',
-  //   backgroundcolor: '#E2445C',
-  //   status: 'Stuck',
-  //   label: (
-  //     <button
-  //       className="btn-ctn medium-primary"
-  //       style={{
-  //         backgroundColor: '#E2445C',
-  //         width: '152px',
-  //         height: '32px',
-  //         margin: '0 10px 10px 10px',
-  //       }}
-  //       onClick={() => handleUpdateStatus('Stuck')}>
-  //       Stuck
-  //     </button>
-  //   ),
-  // },
-  // {
-  //   type: 'divider',
-  // },
-  // {
-  //   key: '4',
-  //   label: (
-  //     <div className="flex align-center justify-center gap8 label-btn">
-  //       <Edit />
-  //       Edit Labels
-  //     </div>
-  //   ),
-  // },
-  // ]
-  const bgc = items.reduce((acc, item) => {
-    if (item.status === task['status' + cmpId]) {
-      return item.backgroundcolor
-    }
-    return acc
-  }, '')
-
-  const contentStyle = {
-    // backgroundColor: 'black',
-    // borderRadius: 'red',
-    // boxShadow: 'blue',
-  }
-
-  const menuStyle = {
-    boxShadow: 'none',
-  }
 
   const selectedLabel = board['labels' + cmpId].find(
     (label) => label.id === task['status' + cmpId]
   )
 
+  function openLabelEditModal(statusPickerRef, labelsId) {
+    console.log(statusPickerRef, labelsId)
+  }
+
+  const statusPickerRef = useRef()
+
   return (
-    <div className="cell status-picker-cell">
+    <div ref={statusPickerRef} className="cell status-picker-cell">
       <ConfigProvider
         theme={{
           boxShadow: 'none',

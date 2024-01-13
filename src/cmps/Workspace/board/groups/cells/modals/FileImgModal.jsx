@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { ImageModal } from '../modals/ImageModal'
+import { ImageModal } from './ImageModal'
 import { setImg } from '../../../../../../store/actions/board.actions'
 
-export function DynamicCellModals() {
+export function FileImgModal() {
   const imgTarget = useSelector(
     (storeState) => storeState.boardModule.imgTarget
   )
@@ -14,9 +14,7 @@ export function DynamicCellModals() {
   useEffect(() => {
     const handleResize = () => {
       if (imgTarget) {
-        // Your logic for calculating newLeft and newTop
         const { innerWidth, innerHeight } = window
-        // const { top, left, height, width } = imgTarget.getBoundingClientRect()
         let newLeft, newTop
         const left = imgTarget.pageX
         const top = imgTarget.pageY
