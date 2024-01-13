@@ -33,6 +33,7 @@ export function StatusPicker({
     }
   }
 
+  if(!!!board) return
   const items = [
     ...board['labels' + cmpId]?.map((label, idx) => {
       return {
