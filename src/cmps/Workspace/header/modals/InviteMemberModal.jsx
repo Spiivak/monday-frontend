@@ -91,10 +91,12 @@ export function InviteMemberModal({ onClose }) {
                 <div
                   style={{
                     margin: '5px 0',
-                    backgroundColor: selectedUser === user ? 'lightBlue' : '',
-                    borderRadius: '7px',
+                    padding: '4px',
+                    cursor: 'pointer',
+                    backgroundColor: selectedUser === user ? '#d0defe' : '',
+                    borderRadius: '4px',
                   }}
-                  className="flex gap8 align-center"
+                  className="selection flex gap8 align-center"
                   key={user._id}
                   onClick={() => setSelectedUser(user)}
                 >
