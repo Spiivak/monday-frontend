@@ -7,6 +7,7 @@ export function DescriptionPicker({
   cmpId,
   handleUpdateTask,
   cmpsOrder,
+  loggedInUser,
 }) {
   const [desc, setDesc] = useState(task['description' + cmpId] || '')
   const [multiLine, setOpenMultiLine] = useState(false)
@@ -32,6 +33,7 @@ export function DescriptionPicker({
       await handleUpdateTask(
         'Activity',
         {
+          by: loggedInUser,
           createdAt: Date.now(),
           title: updatedTask.title,
           colName,
@@ -54,7 +56,8 @@ export function DescriptionPicker({
   return (
     <div
       style={{ overflow: 'visible' }}
-      className="description-picker-cell relative cell">
+      className="description-picker-cell relative cell"
+    >
       {!multiLine ? (
         <DescriptionPreview {...{ setOpenMultiLine, displayValue }} />
       ) : (

@@ -1,8 +1,18 @@
-import { useEffect, useRef, useState } from "react"
-import { AppsIcon, BoardIcon, BoardTemplateIcon, CheckboxIcon, DashboardIcon, DocIcon, FormIcon, UploadIcon } from "../../../Icons"
-import { boardService } from "../../../../services/board.service"
-import { saveBoard } from "../../../../store/actions/board.actions"
-import { useNavigate } from "react-router"
+import { useEffect, useRef, useState } from 'react'
+import {
+  AppsIcon,
+  BoardIcon,
+  BoardTemplateIcon,
+  CheckboxIcon,
+  DashboardIcon,
+  DocIcon,
+  FormIcon,
+  UploadIcon,
+} from '../../../Icons'
+import { boardService } from '../../../../services/board.service'
+import { saveBoard } from '../../../../store/actions/board.actions'
+import { useNavigate } from 'react-router'
+import { useSelector } from 'react-redux'
 
 export function AddBoardModal({ onClose, SetAddModalOpen }) {
   const modalRef = useRef()
@@ -11,8 +21,6 @@ export function AddBoardModal({ onClose, SetAddModalOpen }) {
   const handleToggleModal = () => {
     setModalOpen(!isModalOpen)
   }
-
-
 
   const handleClickOutside = (event) => {
     if (!modalRef.current.contains(event.target)) {
@@ -34,30 +42,56 @@ export function AddBoardModal({ onClose, SetAddModalOpen }) {
   return (
     <>
       <div className="add-board-modal flex gap8" ref={modalRef}>
-
-        <button data-addnewboard-button="true" className="flex btn-icon medium-transparent gap8" onClick={() => handleToggleModal()}><BoardIcon />New Board</button>
-        <button disabled className="flex btn-icon medium-transparent gap8"><DocIcon /> New Doc</button>
-        <button disabled className="flex btn-icon medium-transparent gap8"><DashboardIcon />New Dashboard</button>
-        <button disabled className="flex btn-icon medium-transparent gap8"><BoardTemplateIcon /> Choose from templates</button>
-        <button disabled className="flex btn-icon medium-transparent gap8"><UploadIcon />Import data</button>
+        <button
+          data-addnewboard-button="true"
+          className="flex btn-icon medium-transparent gap8"
+          onClick={() => handleToggleModal()}
+        >
+          <BoardIcon />
+          New Board
+        </button>
+        <button disabled className="flex btn-icon medium-transparent gap8">
+          <DocIcon /> New Doc
+        </button>
+        <button disabled className="flex btn-icon medium-transparent gap8">
+          <DashboardIcon />
+          New Dashboard
+        </button>
+        <button disabled className="flex btn-icon medium-transparent gap8">
+          <BoardTemplateIcon /> Choose from templates
+        </button>
+        <button disabled className="flex btn-icon medium-transparent gap8">
+          <UploadIcon />
+          Import data
+        </button>
         <div className="divider"></div>
-        <button disabled className="flex btn-icon medium-transparent gap8"><AppsIcon /> Apps</button>
-        <button disabled className="flex btn-icon medium-transparent gap8"><FormIcon /> New Form</button>
+        <button disabled className="flex btn-icon medium-transparent gap8">
+          <AppsIcon /> Apps
+        </button>
+        <button disabled className="flex btn-icon medium-transparent gap8">
+          <FormIcon /> New Form
+        </button>
         <div className="divider"></div>
-        <button disabled className="flex btn-icon medium-transparent gap8"><CheckboxIcon /> New Folder</button>
+        <button disabled className="flex btn-icon medium-transparent gap8">
+          <CheckboxIcon /> New Folder
+        </button>
       </div>
-      {isModalOpen && <OnAddBoardModal setModalOpen={setModalOpen} modalRef={modalRef} SetAddModalOpen={SetAddModalOpen}/>}
+      {isModalOpen && (
+        <OnAddBoardModal
+          setModalOpen={setModalOpen}
+          modalRef={modalRef}
+          SetAddModalOpen={SetAddModalOpen}
+        />
+      )}
     </>
   )
 }
-
-
-
 
 export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
   const navigate = useNavigate()
   const [title, setTitle] = useState('')
   const [option, setOption] = useState('Items')
+  const loggedInUser = useSelector((storeState) => storeState.userModule.user)
   console.log('OnAddBoardModal  option:', option)
 
   const handleOptionChange = (event) => {
@@ -234,10 +268,13 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
           <button className="btn-txt medium-sec" onClick={handleCancel}>
             Cancel
           </button>
-          <button className="btn-ctn medium-primary" onClick={handleCreateBoard}>
+          <button
+            className="btn-ctn medium-primary"
+            onClick={handleCreateBoard}
+          >
             Create Board
           </button>
-          </div>
+        </div>
       </div>
     </>
   )

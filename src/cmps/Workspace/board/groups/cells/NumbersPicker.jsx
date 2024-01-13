@@ -1,7 +1,13 @@
 import TextField from '@mui/material/TextField'
 import { useState } from 'react'
 
-export function NumbersPickers({ task, cmpId, handleUpdateTask, cmpsOrder }) {
+export function NumbersPicker({
+  task,
+  cmpId,
+  handleUpdateTask,
+  cmpsOrder,
+  loggedInUser,
+}) {
   const [num, setNum] = useState(+task['number' + cmpId] || 0)
   const colName = cmpsOrder.find((cmp) => cmp.type === 'NumbersPicker')?.title
   function handleUpdateNumber(ev) {
@@ -17,6 +23,7 @@ export function NumbersPickers({ task, cmpId, handleUpdateTask, cmpsOrder }) {
       await handleUpdateTask(
         'Activity',
         {
+          by: loggedInUser,
           createdAt: Date.now(),
           title: updatedTask.title,
           colName,

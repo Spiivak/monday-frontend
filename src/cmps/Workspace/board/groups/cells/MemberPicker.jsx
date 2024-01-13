@@ -5,8 +5,16 @@ import { CloseSmallIcon, PersonRoundedIcon } from '../../../../Icons'
 import { MemberHoverModal } from './modals/MemberHoverModal'
 import { Tooltip, styled, tooltipClasses } from '@mui/material'
 
-export function MemberPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
-  const users = useSelector((storeState) => storeState.userModule.users)
+export function MemberPicker({
+  task,
+  cmpId,
+  handleUpdateTask,
+  cmpsOrder,
+  loggedInUser,
+}) {
+  const boardMembers = useSelector(
+    (storeState) => storeState.boardModule.selectedBoard?.members
+  )
   const colName = cmpsOrder.find((cmp) => cmp.type === 'MemberPicker')?.title
 
   async function handleUpdateUser(selectedUser) {
@@ -28,6 +36,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
       await handleUpdateTask(
         'Activity',
         {
+          by: loggedInUser,
           createdAt: Date.now(),
           title: updatedTask.title,
           colName,
@@ -56,13 +65,13 @@ export function MemberPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
     }
   }
 
-  const suggestedUsers = users.filter(
+  const suggestedUsers = boardMembers?.filter(
     (user) =>
       !task['members' + cmpId] ||
       !task['members' + cmpId].some((member) => member._id === user._id)
   )
 
-  const currentUsers = users.filter((user) =>
+  const currentUsers = boardMembers?.filter((user) =>
     task['members' + cmpId]?.some((member) => member._id === user._id)
   )
 
@@ -78,7 +87,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
         />
       ),
     },
-    ...currentUsers.map((user) => ({
+    ...(currentUsers?.map((user) => ({
       key: `current-${user._id}`,
       label: (
         <div key={user._id}>
@@ -103,7 +112,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
           </div>
         </div>
       ),
-    })),
+    })) || []),
     {
       key: '3',
       label: (
@@ -117,7 +126,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
         </div>
       ),
     },
-    ...suggestedUsers.map((user) => ({
+    ...(suggestedUsers?.map((user) => ({
       key: `suggested-${user._id}`,
       label: (
         <div className="flex gap8 column" key={user._id}>
@@ -138,7 +147,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
           </div>
         </div>
       ),
-    })),
+    })) || []),
   ]
 
   function renderAvatars() {
@@ -198,7 +207,7 @@ export function MemberPicker({ task, cmpId, handleUpdateTask, cmpsOrder }) {
           overlayStyle={{ width: '372px', padding: '6px' }}
         >
           <div>
-            {currentUsers.length > 0 ? (
+            {currentUsers?.length > 0 ? (
               <div className="avatars-wrapper flex align-center">
                 {renderAvatars()}
                 {renderOverflowIndicator()}

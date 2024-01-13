@@ -19,8 +19,17 @@ export function ActivityLogPreview() {
             {utilService.timeDiff(active.createdAt)}
           </span>
           <span className="active-userimg">
-            <PersonRoundedIcon />
+            <img
+              src={active.by.imgUrl}
+              style={{
+                width: '20px',
+                height: '20px',
+                borderRadius: '50%',
+                objectFit: 'cover',
+              }}
+            />
           </span>
+          {/* <span className="active-fullname">{active.by.fullname}</span> */}
           <span className="active-title">{active.title}</span>
           <span className="active-colname">{active.colName}</span>
           <span className="old-value">{active.oldValue}</span>

@@ -25,13 +25,13 @@ export function WorkSpaceBoard() {
   )
   const { boardId } = useParams()
 
-  useEffect(()=>{
-    if(boardId){
+  useEffect(() => {
+    if (boardId) {
       loadBoard(boardId)
     } else {
       loadBoard(boards[0]._id)
     }
-  },[boardId])
+  }, [boardId])
 
   useEffect(() => {
     if (boardLoading && filteredBoard) {
@@ -50,7 +50,6 @@ export function WorkSpaceBoard() {
       socketService.emit('workspace-set-board', boards[0])
     }
   }, [boardId, boards])
-
 
   useEffect(() => {
     if (filteredBoard) {

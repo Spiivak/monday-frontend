@@ -4,14 +4,14 @@
   background: #fff;
   overflow: visible;
   border-radius: 8px;
-  height: auto;
+  // height: auto;
   width: 600px;
-  max-height: 380px;
+  // max-height: 380px;
   margin: 0 auto;
-  translate: -50% -50%;
+  translate: -70% -50%;
   color: $text-color;
+  height: max-content;
 
-  padding: 20px;
   border-radius: 8px;
   z-index: 9999;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -46,4 +46,12 @@
     }
   }
 
+}
+
+.selection {
+  
+  &:hover {
+    background-color: #d0defe;
+
+  }
 }
