@@ -13,7 +13,6 @@ export function StatusPicker({
   const colName = cmpsOrder.find((cmp) => cmp.type === 'StatusPicker')?.title
   const oldValue = task['status' + cmpId]
 
-
   async function handleUpdateStatus(status) {
     try {
       const updatedTask = { ...task, ['status' + cmpId]: status }

@@ -56,7 +56,7 @@ function groupSummaryByColumn(column, group, board) {
         return acc
       }, {})
       let statusSumBar = renderStatusBox(
-        calculateStatusPercentage(statusSum),
+        calculateStatusPercentage(statusSum, group),
         board,
         column
       )
@@ -134,12 +134,13 @@ function groupSummaryByColumn(column, group, board) {
   }
 }
 
-function calculateStatusPercentage(tasks) {
+function calculateStatusPercentage(tasks, group) {
   const keys = Object.keys(tasks)
   const values = Object.values(tasks)
-  const percentage = values.map((value) =>
-    Math.floor((value / (values.length + 1)) * 100)
-  )
+  const percentage = values.map((value) => {
+    const sum = group.tasks.length
+    return Math.floor((value / sum) * 100)
+  })
   const percentageObj = keys.reduce((acc, key, idx) => {
     acc[key] = percentage[idx]
     return acc
@@ -174,22 +175,25 @@ function renderStatusBox(statusPercentages, board, column) {
     display: 'flex',
   }
 
-  const colorMap = board['labels' + column.cmp.id].reduce((acc, label) => {
-    acc[label.title] = label.color
-    return acc
-  }, {"Haven't Started": '#c4c4c4'})
+  const colorMap = board['labels' + column.cmp.id].reduce(
+    (acc, label) => {
+      acc[label.title] = label.color
+      return acc
+    },
+    { "Haven't Started": '#c4c4c4' }
+  )
 
-  function getColor(status) {
-    if (status === 'Stuck') {
-      return '#E2445C'
-    } else if (status === 'WorkingOnIt') {
-      return '#FDAB3D'
-    } else if (status === 'HaventStarted') {
-      return '#c4c4c4'
-    } else {
-      return '#00C875'
-    }
-  }
+  // function getColor(status) {
+  //   if (status === 'Stuck') {
+  //     return '#E2445C'
+  //   } else if (status === 'WorkingOnIt') {
+  //     return '#FDAB3D'
+  //   } else if (status === 'HaventStarted') {
+  //     return '#c4c4c4'
+  //   } else {
+  //     return '#00C875'
+  //   }
+  // }
 
   const statusBars = Object.entries(statusPercentages).map(
     ([status, percentage]) => (
