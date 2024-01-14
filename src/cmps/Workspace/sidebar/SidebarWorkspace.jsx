@@ -3,6 +3,7 @@ import { MenuIcon, NavigationChevronDownIcon, TestIcon } from '../../Icons'
 import { MoreModal } from './modals/MoreModal'
 import Frame from '../../../assets/img/Frame.png'
 import { WorkSpaceContext } from './modals/WorkSpaceContext'
+import { ToolTip } from '../../ToolTip'
 
 export function SidebarWorkspace() {
   const [isMenuModalOpen, setIsMenuModanOpen] = useState(false)
@@ -29,7 +30,9 @@ export function SidebarWorkspace() {
               <picture className="flex">
                 <img src={Frame} alt="" />
               </picture>
-              <span>Sprint 4</span>
+              <ToolTip title="Coding Academy">
+              <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}}>Coding Academy</span>
+              </ToolTip>
             </div>
           </div>
           <div className="dropdown-icon-wrapper flex align-center gap8">
