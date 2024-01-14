@@ -62,13 +62,13 @@
               border: none;
               padding: 0;
               &:focus {
-                border: 1px solid red;
+                // border: 1px solid red;
               }
             }
             &:hover{
               button {
                 &:active {
-                  background-color: red;
+                  // background-color: red;
                 }
                 &.filter {
                   display: flex;
