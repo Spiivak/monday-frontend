@@ -24,13 +24,13 @@ export function WorkSpaceBoard() {
   )
   const { boardId } = useParams()
 
-  useEffect(() => {
-    if (boardId) {
-      loadBoard(boardId)
-    } else {
-      loadBoard(boards[0]._id)
-    }
-  }, [boardId])
+  // useEffect(() => {
+  //   if (boardId) {
+  //     loadBoard(boardId)
+  //   } else {
+  //     loadBoard(boards[0]._id)
+  //   }
+  // }, [boardId])
 
   useEffect(() => {
     if (boardLoading && filteredBoard) {

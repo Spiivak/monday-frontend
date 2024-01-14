@@ -3,6 +3,7 @@ import { CloseIcon } from '../../../Icons'
 import { loadUsers } from '../../../../store/actions/user.actions'
 import { useSelector } from 'react-redux'
 import { saveBoard } from '../../../../store/actions/board.actions'
+import { useParams } from 'react-router'
 
 export function InviteMemberModal({ onClose }) {
   const [email, setEmail] = useState('')
@@ -10,12 +11,12 @@ export function InviteMemberModal({ onClose }) {
   const [selectedUser, setSelectedUser] = useState(null)
   const modalRef = useRef()
   const users = useSelector((storeState) => storeState.userModule.users)
-  const boardMembers = useSelector(
-    (storeState) => storeState.boardModule.selectedBoard?.members
-  )
-  const selectedBoard = useSelector(
-    (storeState) => storeState.boardModule.selectedBoard
-  )
+  const boards = useSelector((storeState) => storeState.boardModule.boards)
+
+  const { boardId } = useParams()
+  const selectedBoard = boards.find((board) => board._id === boardId)
+  const boardMembers = selectedBoard.members
+
   useEffect(() => {
     loadUsers()
   }, [])
@@ -45,11 +46,13 @@ export function InviteMemberModal({ onClose }) {
 
   async function handleInvite(user) {
     try {
+      if (!user) return
       selectedBoard.members.push(user)
       await saveBoard(selectedBoard)
-      onClose()
     } catch (err) {
       console.error(err)
+    } finally {
+      onClose()
     }
   }
 
