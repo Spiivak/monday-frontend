@@ -16,11 +16,25 @@ export function GroupTableFooter({
         className="table-body-row footer-row flex"
         style={{ height: '100%' }}>
         <div
-          className="empty-column"
-          style={{ gridRow: rows.length + 3, gridColumn: 1 }}></div>
+          className="empty-column empty-1"
+          style={{
+            position:'sticky',
+            left:'50px',
+            zIndex:1000,
+            backgroundColor:'#fff',
+            // gridRow: rows.length + 3,
+            gridColumn: 1,
+          }}></div>
         <div
-          className="empty-column"
-          style={{ gridRow: rows.length + 3, gridColumn: 2 }}></div>
+          className="empty-column empty-2"
+          style={{
+            position:'sticky',
+            left:'90px',
+            zIndex:1000,
+            backgroundColor:'#fff',
+            // gridRow: rows.length + 3,
+            gridColumn: 2,
+          }}></div>
         {Array.isArray(columns) &&
           columns.map((column, colIdx) => {
             let colSummary
@@ -37,7 +51,7 @@ export function GroupTableFooter({
               <React.Fragment key={column.id}>
                 <div
                   style={{
-                    gridRow: rows.length + 3,
+                    // gridRow: rows.length + 3,
                     gridColumn: colIdx + 3,
                     borderBottom: '1px solid #d0d4e4',
                     borderLeft: '1px solid #d0d4e4',
@@ -55,7 +69,7 @@ export function GroupTableFooter({
           })}
         <div
           style={{
-            gridRow: rows.length + 3,
+            // gridRow: rows.length + 3,
             gridColumn: columns.length + 2,
             borderBottom: '1px solid #d0d4e4',
             borderLeft: '1px solid #d0d4e4',
@@ -63,8 +77,7 @@ export function GroupTableFooter({
             minHeight: '36px',
             height: '100%',
           }}
-          className="group-table-cell cell">
-        </div>
+          className="group-table-cell cell"></div>
       </div>
     </Suspense>
   )
