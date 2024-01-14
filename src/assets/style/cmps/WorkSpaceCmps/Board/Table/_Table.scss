@@ -9,10 +9,11 @@
   .table-body-row {
     border-bottom: 1px solid #d0d4e4;
     display: grid;
+    height: 100%;
     grid-template-columns: var(--gtc);
     grid-auto-flow: column;
 
-    &:hover {
+    &:not(.footer-row,.table-header, .checked):hover {
       background-color: #f3f5f7;
       box-shadow: 4px 3px 6px -3px #c3c6d4;
       z-index: 100;
@@ -95,14 +96,38 @@
   }
 
   .checkbox-cell {
-    // background-color: #fff;
+    position: sticky;
+    left: 40px;
+    z-index: 200;
+    background-color: inherit;
     // position: sticky;
     // left: 0;
     // z-index: 10;
   }
 
+  .checkbox-cell::after{
+    position:absolute;
+    content:'';
+    background-color: white;
+    width: 50px;
+    left: -50px;
+    height: 150%;
+    z-index: 200;
+  }
+
+  .add-task-lr{
+    position:sticky;
+    left: 100px;
+    background-color: inherit;
+    z-index: 1000;
+  }
+
   .title {
-    position: relative;
+    position:sticky;
+    border-right: 1px solid #d0d4e4;
+    left: 79px;
+    background-color: inherit;
+    z-index: 1000;
     button {
       font: 400 14px Figtree;
       display: flex;
@@ -139,4 +164,35 @@
     // z-index: 15;
     // background-color: #fff;
   }
+}
+
+.empty-column.empty-1::before{
+  content: '';
+  position: absolute;
+  left: -50px;
+  height: 110%;
+  width: 50px;
+  background-color: white;
+}
+
+.empty-column.empty-2::after{
+  content:'';
+  position: absolute;
+  right: -8px;
+  height: 100%;
+  width: 8px;
+  border-left: 1px solid #d0d4e4;
+  border-bottom: 1px solid #d0d4e4;
+  border-bottom-left-radius: 8px;
+  z-index: 200;
+}
+.empty-column.empty-2::before{
+  z-index: 100;
+  content:'';
+  position: absolute;
+  right: -7px;
+  top: 90%;
+  height: 15%;
+  width: 8px;
+  background-color: white;
 }
