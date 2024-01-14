@@ -16,7 +16,7 @@ export function MemberPicker({
   const boards = useSelector((storeState) => storeState.boardModule.boards)
   const { boardId } = useParams()
   const selectedBoard = boards.find((board) => board._id === boardId)
-  const boardMembers = selectedBoard.members
+  const boardMembers = selectedBoard?.members
 
   const colName = cmpsOrder.find((cmp) => cmp.type === 'MemberPicker')?.title
 
