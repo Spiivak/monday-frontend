@@ -13,7 +13,7 @@
     grid-template-columns: var(--gtc);
     grid-auto-flow: column;
 
-    &:not(.footer-row,.table-header):hover {
+    &:not(.footer-row,.table-header, .checked):hover {
       background-color: #f3f5f7;
       box-shadow: 4px 3px 6px -3px #c3c6d4;
       z-index: 100;
@@ -99,7 +99,7 @@
     position: sticky;
     left: 40px;
     z-index: 200;
-    background-color: #fff;
+    background-color: inherit;
     // position: sticky;
     // left: 0;
     // z-index: 10;
