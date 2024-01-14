@@ -1,6 +1,5 @@
 import { Edit } from '@mui/icons-material'
-import { Button, ConfigProvider, Divider, Dropdown, Space } from 'antd'
-import useToken from 'antd/es/theme/useToken'
+import { ConfigProvider, Dropdown } from 'antd'
 import React, { useRef } from 'react'
 import { setLabels } from '../../../../../store/actions/board.actions'
 
@@ -12,8 +11,17 @@ export function StatusPicker({
   board,
   loggedInUser,
 }) {
-  const colName = cmpsOrder.find((cmp) => cmp.type === 'StatusPicker')?.title
-  const oldValue = task['status' + cmpId]
+  const colName =
+    cmpsOrder.find((cmp) => cmp.type === 'StatusPicker')?.title || ''
+  const oldValue = task['status' + cmpId] || ''
+
+  const selectedLabel = board['labels' + cmpId]?.find(
+    (label) => label.id === task['status' + cmpId]
+  )
+
+  function getLabelById(labelId) {
+    return board['labels' + cmpId]?.find((label) => label.id === labelId)
+  }
 
   async function handleUpdateStatus(status) {
     try {
@@ -24,10 +32,12 @@ export function StatusPicker({
         {
           by: loggedInUser,
           createdAt: Date.now(),
-          title: updatedTask.title,
+          title: updatedTask.title || '',
           colName,
-          oldValue: oldValue,
-          newValue: status,
+          oldValue: getLabelById(oldValue)?.title || "Haven't Starterd",
+          oldValueColor: getLabelById(oldValue)?.color || '#eee',
+          newValue: getLabelById(status)?.title,
+          newValueColor: getLabelById(status)?.color,
         },
         updatedTask
       )
@@ -36,34 +46,36 @@ export function StatusPicker({
     }
   }
 
-  if(!!!board) return
+  const labelItems =
+    board['labels' + cmpId]?.map((label, idx) => ({
+      key: idx + 1,
+      backgroundcolor: label.color,
+      status: label.title,
+      label: (
+        <button
+          key={label.id}
+          className="btn-ctn medium-primary"
+          style={{
+            backgroundColor: label.color,
+            width: '152px',
+            height: '32px',
+            margin: '10px 10px 0 10px',
+          }}
+          onClick={() => {
+            handleUpdateStatus(label.id)
+          }}>
+          {label.title}
+        </button>
+      ),
+    })) || []
+
   const items = [
-    ...board['labels' + cmpId]?.map((label, idx) => {
-      return {
-        key: idx + 1,
-        backgroundcolor: label.color,
-        status: label.title,
-        label: (
-          <button
-            className="btn-ctn medium-primary"
-            style={{
-              backgroundColor: label.color,
-              width: '152px',
-              height: '32px',
-              margin: '10px 10px 0 10px',
-            }}
-            onClick={() => handleUpdateStatus(label.id)}
-          >
-            {label.title}
-          </button>
-        ),
-      }
-    }),
+    ...labelItems,
     {
       type: 'divider',
     },
     {
-      key: board['labels' + cmpId].length + 1,
+      key: (board['labels' + cmpId]?.length || 0) + 1,
       label: (
         <div
           onClick={() =>
@@ -81,10 +93,6 @@ export function StatusPicker({
     },
   ]
 
-  const selectedLabel = board['labels' + cmpId].find(
-    (label) => label.id === task['status' + cmpId]
-  )
-
   function openLabelEditModal(statusPickerRef, labelsId) {
     setLabels(statusPickerRef, labelsId)
   }
@@ -96,9 +104,7 @@ export function StatusPicker({
       <ConfigProvider
         theme={{
           boxShadow: 'none',
-        }}
-      >
-        {' '}
+        }}>
         <Dropdown
           rootClassName="dropdown-status-picker"
           menu={{
@@ -108,16 +114,14 @@ export function StatusPicker({
           placement="bottom"
           arrow={{
             pointAtCenter: true,
-          }}
-        >
+          }}>
           <div style={{ width: '100%', height: '100%' }}>
             <button
               className="label-btn"
               style={{
                 backgroundColor: selectedLabel?.color || '#c4c4c4',
                 color: 'white',
-              }}
-            >
+              }}>
               {selectedLabel?.title || "Haven't Started"}
             </button>
           </div>

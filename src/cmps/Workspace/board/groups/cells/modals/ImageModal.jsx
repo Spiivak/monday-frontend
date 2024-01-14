@@ -21,12 +21,13 @@ export function ImageModal({ src }) {
       window.removeEventListener('mousedown', handleOutsideClick)
     }
   }, [])
-
   if (!src) return
   return (
     <div
+      style={{ bottom: '35px' }}
       className="image-modal flex column align-center space-between"
-      ref={modalRef}>
+      ref={modalRef}
+    >
       <img src={src.imgUrl} alt="" />
 
       <div className="img-bottom flex space-between align-center gap16">

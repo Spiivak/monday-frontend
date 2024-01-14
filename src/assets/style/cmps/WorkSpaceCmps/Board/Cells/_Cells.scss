@@ -15,7 +15,8 @@
 
 .checkbox-cell {
   $checkmark-color: rgba(36, 222, 36, 0.688);
-  min-width: 50px;
+  min-width: 39px;
+  padding-left: 8px;
   height: 100%;
   input[type='checkbox'] {
     padding: 0;
@@ -68,7 +69,6 @@
 
 .status-picker-cell {
   min-width: 180px;
-
   // TODO: Add corner fold effect
 }
 
@@ -121,6 +121,20 @@
 .description-picker-cell {
   width: 200px;
   overflow: none;
+
+  .description-preview {
+    span {
+      opacity: 0;
+    }
+  }
+
+  &:hover {
+    .description-preview {
+      span {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 .file-picker-cell {

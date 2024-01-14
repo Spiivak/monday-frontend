@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { CloseSmallIcon, PersonRoundedIcon } from '../../../../Icons'
 import { MemberHoverModal } from './modals/MemberHoverModal'
 import { Tooltip, styled, tooltipClasses } from '@mui/material'
+import { useParams } from 'react-router'
 
 export function MemberPicker({
   task,
@@ -12,9 +13,11 @@ export function MemberPicker({
   cmpsOrder,
   loggedInUser,
 }) {
-  const boardMembers = useSelector(
-    (storeState) => storeState.boardModule.selectedBoard?.members
-  )
+  const boards = useSelector((storeState) => storeState.boardModule.boards)
+  const { boardId } = useParams()
+  const selectedBoard = boards.find((board) => board._id === boardId)
+  const boardMembers = selectedBoard?.members
+
   const colName = cmpsOrder.find((cmp) => cmp.type === 'MemberPicker')?.title
 
   async function handleUpdateUser(selectedUser) {

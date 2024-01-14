@@ -27,7 +27,7 @@ export function BatchMenu() {
         <div className="display-selected flex align-center justify-center">
           <span>{checkedTaskIds.length}</span>
         </div>
-        <div className="title flex column">
+        <div style={{marginBottom:'12px'}} className="title flex column space-between">
           {checkedTaskIds.length === 1 ? (
             <span>Item Selected</span>
           ) : (

@@ -1071,6 +1071,7 @@ export const boardService = {
   updateTask,
   addTask,
   removeTask,
+  updateTasks,
   addColumn,
   removeColumn,
   updateColumn,
@@ -1096,7 +1097,6 @@ function remove(boardId) {
 }
 
 function save(board) {
-  console.log('save  board:', board)
   if (board._id) {
     // return storageService.put(STORAGE_KEY, board)
     return httpService.put(BOARD_URL, board)
@@ -1141,6 +1141,10 @@ function addTask(boardId, groupId, task) {
 function removeTask(boardId, groupId, taskId) {
   // return storageService.removeTask(STORAGE_KEY, boardId, groupId, taskId)
   return httpService.delete(TASK_URL + boardId + '/' + groupId + '/' + taskId)
+}
+
+function updateTasks(boardId, groupId, tasks) {
+  return httpService.put(TASK_URL + 'swap/', { boardId, groupId, tasks })
 }
 
 // * Columns

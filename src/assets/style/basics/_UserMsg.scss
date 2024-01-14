@@ -1,23 +1,58 @@
 .user-msg {
   background-color: lightgray;
-  padding: 0.2em 0.5em;
+  padding: 8px;
   position: fixed;
-  bottom: 0;
-  right: 1em;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
   color: white;
-  border-radius: 2px;
+  border-radius: 4px;
+  z-index: 9999999;
+
+  min-width: 370px;
+  height: 48px;
+  align-items: center;
 }
 
 .user-msg.success {
-  background-color: $color-success;
+  background-color: #00854D;
 }
 
 .user-msg.error {
   background-color: $color-error;
 }
 
+.user-msg.visible {
+  animation: fadeInOut 0.5s ease-out;
+}
+
 .user-msg button {
-  font-size: 0.5em;
-  float: right;
-  margin: 0.5em;
+  all: unset;
+  cursor: pointer;
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    backdrop-filter: brightness(85%);
+  } 
+}
+
+
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  25%,
+  75% {
+    opacity: 1;
+  }
 }

@@ -62,7 +62,7 @@ export function TimelinePicker({
             createdAt: Date.now(),
             title: updatedTask.title,
             colName,
-            oldValue: utilService.formatDateRange(oldValue),
+            oldValue: !oldValue ? '-' : utilService.formatDateRange(oldValue),
             newValue: utilService.formatDateRange([
               timestampStartDate,
               timestampEndDate,
@@ -103,7 +103,7 @@ export function TimelinePicker({
   }
 
   return (
-    <div className="cell timeline-picker-cell">
+    <div style={{ cursor: 'pointer' }} className="cell timeline-picker-cell">
       {!dateModal ? (
         <TimelinePreview
           {...{

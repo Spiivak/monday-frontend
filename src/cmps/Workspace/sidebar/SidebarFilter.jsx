@@ -35,13 +35,22 @@ export function SidebarFilter({ onAddBoard }) {
           </div>
         </button>
       </div>
-      <div className="add-btn flex align-center justify-center" data-addboard-button="true">
-        <button className="btn-ctn medium-primary" onClick={() => openAddModal()}>
+      <div
+        className="add-btn flex align-center justify-center"
+        data-addboard-button="true"
+      >
+        <button
+          id="test"
+          className="btn-ctn medium-primary"
+          onClick={() => openAddModal()}
+        >
           <AddSmallIcon />
         </button>
       </div>
       {isFilterModalOpen && <FilterModal onClose={onClose} />}
-      {isAddModalOpen && <AddBoardModal onClose={onClose} SetAddModalOpen={SetAddModalOpen}/>}
+      {isAddModalOpen && (
+        <AddBoardModal onClose={onClose} SetAddModalOpen={SetAddModalOpen} />
+      )}
     </div>
   )
 }

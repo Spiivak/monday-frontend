@@ -59,7 +59,7 @@ export function WorkspaceHeader() {
       <header className="work-space-header full flex space-between align-center">
         <section className="header-logo-sect flex align-center">
           <div className="switcher-logo">
-            <Link className="btn-icon medium-transparent" to="/">
+            <Link className="btn-icon medium-transparent" to="/" style={{ padding: '10px'}}>
               <MondayIcon />
             </Link>
           </div>
@@ -72,47 +72,52 @@ export function WorkspaceHeader() {
           {/* <LogoBtn>See plans</LogoBtn> */}
         </section>
 
-        <section className="header-action-btns-sect">
+        <section className="header-action-btns-sect flex gap8">
           <button
-            className="btn-icon large-transparent"
+            className="btn-icon medium-transparent"
             onClick={onClickNotifyModal}
+            style={{ padding: '10px' }}
           >
             <div className="flex align-center" data-notification-button="true">
               <NotificationsIcon />
             </div>
           </button>
-          <button
+          {/* <button
             className="btn-icon large-transparent"
             onClick={onClickInboxModal}
+            style={{ padding: '8px'}}
           >
             <div className="flex align-center" data-inbox-button="true">
               <InboxIcon />
             </div>
-          </button>
+          </button> */}
           <button
-            className="btn-icon large-transparent"
+            className="btn-icon medium-transparent"
             onClick={onClickInviteModal}
+            style={{ padding: '10px' }}
           >
             <div className="flex align-center" data-invite-button="true">
               <InviteMembersIcon />
             </div>
           </button>
-          <button
+          {/* <button
             className="btn-icon large-transparent"
             onClick={onClickSearchModal}
+            style={{ padding: '8px'}}
           >
             <div className="flex align-center" data-search-button="true">
               <SearchIcon />
             </div>
-          </button>
-          <button
+          </button> */}
+          {/* <button
             className="btn-icon large-transparent"
             onClick={onClickHelpModal}
+            style={{ padding: '10px' }}
           >
             <div className="flex align-center" data-help-button="true">
               <HelpIcon />
             </div>
-          </button>
+          </button> */}
           <button className="btn-icon small-transparent flex gap8">
             <MondayIcon />
             <img

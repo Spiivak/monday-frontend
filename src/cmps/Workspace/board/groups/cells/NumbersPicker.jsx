@@ -18,7 +18,7 @@ export function NumbersPicker({
 
   async function handleBlur() {
     try {
-      const updatedTask = { ...task, ['number' + cmpId]: num }
+      const updatedTask = { ...task, ['number' + cmpId]: +num }
       await handleUpdateTask('NumbersPicker', +num, task)
       await handleUpdateTask(
         'Activity',
@@ -27,8 +27,8 @@ export function NumbersPicker({
           createdAt: Date.now(),
           title: updatedTask.title,
           colName,
-          oldValue: task['number' + cmpId],
-          newValue: num,
+          oldValue: +task['number' + cmpId],
+          newValue: +num,
         },
         updatedTask
       )
@@ -46,7 +46,7 @@ export function NumbersPicker({
         id="outlined-number"
         onChange={handleUpdateNumber}
         onBlur={handleBlur}
-        value={num}
+        value={+num}
         type="text"
         inputProps={{
           inputMode: 'numeric',

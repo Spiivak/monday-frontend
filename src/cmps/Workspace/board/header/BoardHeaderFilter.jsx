@@ -10,7 +10,10 @@ import {
   SortIcon,
 } from '../../../Icons'
 import { useState } from 'react'
-import { addTask, setStoreFilterBy } from '../../../../store/actions/board.actions'
+import {
+  addTask,
+  setStoreFilterBy,
+} from '../../../../store/actions/board.actions'
 import { utilService } from '../../../../services/util.service'
 import { Dropdown } from 'antd'
 
@@ -39,16 +42,21 @@ export function BoardHeaderFilter({ board, isCollapsed }) {
     })
   }
 
-  function handleAdd(){
-    addTask(board._id, board.groups[0].id, {title: 'New task'})
+  function handleAdd() {
+    addTask(board._id, board.groups[0].id, {
+      title: `New ${board?.option ? board.option.slice(0, -1) : 'Task'}`,
+    })
   }
 
   return (
     <section className={`board-filter flex gap6`}>
       <ToolTip title="New Item">
         <div className="new-item flex">
-          <button className="btn-ctn medium-primary new-item-btn" onClick={handleAdd}>
-          {`New ${board?.option ? board.option.slice(0, -1) : "Task"}`}
+          <button
+            className="btn-ctn medium-primary new-item-btn"
+            onClick={handleAdd}
+          >
+            {`New ${board?.option ? board.option.slice(0, -1) : 'Task'}`}
           </button>
           <button className="btn-ctn medium-primary new-item-arrow">
             <NavigationChevronDownIcon />
@@ -85,27 +93,27 @@ export function BoardHeaderFilter({ board, isCollapsed }) {
           </button>
         </div>
       </ToolTip>
-      <ToolTip title="Hidden Columns">
+      {/* <ToolTip title="Hidden Columns">
         <div className="filter-item flex align-center">
           <button className="btn-icon medium-transparent flex gap8">
             <HideIcon />
             Hide
           </button>
         </div>
-      </ToolTip>
-      <ToolTip title="Group By Column">
+      </ToolTip> */}
+      {/* <ToolTip title="Group By Column">
         <div className="filter-item flex align-center">
           <button className="btn-icon medium-transparent flex gap8">
             <GroupIcon />
             Group by
           </button>
         </div>
-      </ToolTip>
-      <div className="filter-item flex align-center">
+      </ToolTip> */}
+      {/* <div className="filter-item flex align-center">
         <button className="btn-icon medium-transparent">
           <MenuIcon />
         </button>
-      </div>
+      </div> */}
     </section>
   )
 }

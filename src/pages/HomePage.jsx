@@ -70,8 +70,8 @@ export function HomePage() {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
     
-      if (scrollPosition >= 2500 && scrollPosition <= 4150) {
-        const parallaxSpeed = 8.9;
+      if (scrollPosition >= 2500 && scrollPosition <= 4100) {
+        const parallaxSpeed = 6;
         const translateY = (scrollPosition - 2400) * parallaxSpeed / 9;
     
         // Apply the parallax effect to your video element

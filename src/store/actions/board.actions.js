@@ -23,6 +23,7 @@ import {
   SET_IMG_TARGET,
   SET_IS_BOARD_LOADING,
   SET_IS_LOADING,
+  SET_TASKS,
   START_ADD_COLUMN,
   UPDATE_BOARD,
   UPDATE_COLUMN,
@@ -204,9 +205,15 @@ export async function removeTask(boardId, groupId, taskId) {
   } catch (err) {}
 }
 
-export async function removeAllTasks(props) {
-  console.log('removeAllTasks props:', props)
+export async function updateTasks(boardId, groupId, tasks) {
+  try {
+    store.dispatch({ type: SET_TASKS, boardId, groupId, tasks })
+    const updatedTasks = await boardService.updateTasks(boardId, groupId, tasks)
+    console.log(updatedTasks)
+  } catch (err) {}
+}
 
+export async function removeAllTasks(props) {
   try {
     // Assuming each object in the array has properties boardId, groupId, and taskId
     const removedTaskIds = await Promise.all(
@@ -215,8 +222,6 @@ export async function removeAllTasks(props) {
         return await removeTask(boardId, groupId, taskId)
       })
     )
-
-    console.log('removedTaskIds:', removedTaskIds)
   } catch (err) {
     console.error('Error removing all tasks:', err)
   }
@@ -253,7 +258,7 @@ export async function addColumn(boardId, type, board) {
       break
     case 'timeline':
       newColumn = {
-        title: 'Time line',
+        title: 'Timeline',
         type: 'TimelinePicker',
       }
       break
@@ -297,7 +302,6 @@ export async function addColumn(boardId, type, board) {
 
   try {
     const addedColumn = await boardService.addColumn(boardId, newColumn)
-    console.log(addedColumn.type)
     if (addedColumn.type === 'StatusPicker') {
       const labelsMap = {
         ['labels' + addedColumn.id]: boardService.defaultLabels(),
@@ -308,7 +312,7 @@ export async function addColumn(boardId, type, board) {
         cmpsOrder: [...board.cmpsOrder, addedColumn],
       }
       const boardToSave = await boardService.save(newBoard)
-      store.dispatch({ type: SET_BOARD, board: [boardToSave] })
+      store.dispatch({ type: SET_BOARD, board: boardToSave })
     } else {
       store.dispatch({ type: ADD_COLUMN, boardId, addedColumn })
     }

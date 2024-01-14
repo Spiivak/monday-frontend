@@ -23,27 +23,27 @@ export function AddBoardModal({ onClose, SetAddModalOpen }) {
   }
 
   const handleClickOutside = (event) => {
-    if (!modalRef.current.contains(event.target)) {
+    if (
+      modalRef.current &&
+      !modalRef.current.contains(event.target) &&
+      event.target.getAttribute('id') !== 'test'
+    ) {
       onClose()
     }
   }
 
   useEffect(() => {
-    if (isModalOpen) {
-      window.addEventListener('mousedown', handleClickOutside)
-    } else {
-      window.removeEventListener('mousedown', handleClickOutside)
-    }
+    const handleOutsideClick = (event) => handleClickOutside(event)
+    window.addEventListener('mousedown', handleOutsideClick)
 
     return () => {
-      window.removeEventListener('mousedown', handleClickOutside)
+      window.removeEventListener('mousedown', handleOutsideClick)
     }
-  }, [isModalOpen, onClose])
+  }, [onClose])
   return (
     <>
-      <div className="add-board-modal flex gap8" ref={modalRef}>
+      <div id="test" className="add-board-modal flex gap8" ref={modalRef}>
         <button
-          data-addnewboard-button="true"
           className="flex btn-icon medium-transparent gap8"
           onClick={() => handleToggleModal()}
         >
@@ -89,10 +89,9 @@ export function AddBoardModal({ onClose, SetAddModalOpen }) {
 
 export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
   const navigate = useNavigate()
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState('New Board')
   const [option, setOption] = useState('Items')
   const loggedInUser = useSelector((storeState) => storeState.userModule.user)
-  console.log('OnAddBoardModal  option:', option)
 
   const handleOptionChange = (event) => {
     setOption(event.target.value)
@@ -147,7 +146,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
           <span>Create board</span>
           <div className="board-input">
             <label htmlFor="title">Board name</label>
-            <input type="text" name="title" onChange={handleChange} />
+            <input type="text" name="title" onChange={handleChange} placeholder='New Board' value={title} />
           </div>
           <div className="select-type-board">
             <div className="divider"></div>
@@ -242,34 +241,15 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 />
                 Tasks
               </label>
-
-              <label>
-                <input
-                  type="radio"
-                  value="Custom"
-                  checked={option === 'Custom'}
-                  onChange={handleOptionChange}
-                />
-                Custom
-              </label>
-
-              {option === 'Custom' && (
-                <input
-                  type="text"
-                  placeholder="Enter custom text"
-                  value={option}
-                  onChange={handleOptionChange}
-                />
-              )}
             </div>
           </div>
         </div>
         <div className="modal-footer">
-          <button className="btn-txt medium-sec" onClick={handleCancel}>
+          <button className="btn-txt large-sec" onClick={handleCancel}>
             Cancel
           </button>
           <button
-            className="btn-ctn medium-primary"
+            className="btn-ctn large-primary"
             onClick={handleCreateBoard}
           >
             Create Board

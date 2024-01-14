@@ -10,6 +10,7 @@ export const utilService = {
   getGreeting,
   timeDiff,
   formatDateRange,
+  formatDate,
 }
 
 function makeId(length = 6) {
@@ -163,4 +164,15 @@ function formatDateRange(timestamps) {
   })
 
   return `${startDayNumber} ${startMonthAbbreviation} - ${endDayNumber} ${endMonthAbbreviation}`
+}
+
+function formatDate(timestamp) {
+  const dateObj = new Date(timestamp)
+
+  const dayNumber = dateObj.getDate()
+  const monthAbbreviation = dateObj.toLocaleString('default', {
+    month: 'short',
+  })
+
+  return `${dayNumber} ${monthAbbreviation}`
 }

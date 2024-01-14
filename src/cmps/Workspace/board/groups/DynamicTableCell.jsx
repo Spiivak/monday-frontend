@@ -74,5 +74,7 @@ export function DynamicTableCell({
           }}
         />
       )
+    default:
+      return
   }
 }
