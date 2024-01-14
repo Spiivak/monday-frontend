@@ -77,6 +77,11 @@
   &.th-header {
     grid-template-columns: 1fr 24px;
     align-items: center;
+    .context-menu {
+      button {
+        top: 0px !important;
+      }
+    }
   }
 }
 
