@@ -1,66 +1,94 @@
-import { Dropdown } from 'antd'
-import { ToolTip } from '../../../../ToolTip'
-import React, { useState } from 'react'
-import { PersonIcon } from '../../../../Icons'
+import React, { useEffect, useRef, useState } from 'react';
+import { ToolTip } from '../../../../ToolTip';
+import { CloseIcon, PersonIcon } from '../../../../Icons';
+
 export function PersonFilter({ filterBy, handleChange, handleSubmit, board }) {
-  const members = board?.members
-  const [selectedMember, setSelectedMember] = useState(null)
-  let items
-  if (members) {
-    items = [
-      ...members?.map((member) => {
-        return {
-          key: member._id,
-          label: (
-            <div key={member._id} onClick={() => handleMemberSelect(member)}>
-              <div className="flex align-center  gap8">
-                <img
-                  src={member.imgUrl}
-                  alt={member.fullname}
-                  style={{
-                    width: '15px',
-                    height: '15px',
-                    objectFit: 'cover',
-                    borderRadius: '50%',
-                  }}
-                />
-                <h5>{member.fullname}</h5>
-              </div>
-            </div>
-          ),
-        }
-      }),
-    ]
-  }
-  function handleMemberSelect(member) {
-    setSelectedMember(member)
-    const filterBy = { person: member }
-    handleSubmit(filterBy)
+  const members = board?.members;
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedMember, setSelectedMember] = useState(null);
+
+  function handleOpenModal(event) {
+    event.stopPropagation();
+
+    setIsModalVisible((prevIsModalVisible) => !prevIsModalVisible)
   }
 
-  if (!items) return
-  return (
-    <Dropdown
-      menu={{
-        items,
-      }}
-      trigger={['click']}
-      placement="bottom"
-      arrow={{
-        pointAtCenter: true,
-      }}
-      overlayStyle={{ width: '372px', padding: '6px' }}
-    >
-      {selectedMember ? (
-        <ToolTip title="Filter by person">
-          <button
-            style={{ height: '32px', backgroundColor: '#cce5ff' }}
-            className="btn-icon medium-transparent flex align-center gap8"
-          >
+  function handleCloseModal() {
+    setIsModalVisible(false);
+  }
+
+  function handleMemberSelect(member) {
+    setSelectedMember(member);
+    const filterBy = { person: member };
+    handleSubmit(filterBy);
+    handleCloseModal();
+  }
+
+  const PersonFilterModal = ({ members, onSelect, onClose }) => {
+    
+    const modalRef = useRef(null)
+
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (modalRef.current && !modalRef.current.contains(event.target)) {
+          onClose()
+        }
+      }
+  
+      window.addEventListener('click', handleClickOutside);
+  
+      return () => {
+        window.removeEventListener('click', handleClickOutside);
+      }
+    }, [onClose]);
+  
+    return (
+
+      <div className="person-filter-modal" ref={modalRef}>
+          <h3 className='title'>Quick person filter</h3>
+          <span className='subtitle'>Filter items and subitems by person</span>
+        <div className="modal-content flex">
+          {members.map((member) => (
             <div
-              className="avatar-logo flex align-center justify-center gap8"
-              key={selectedMember._id}
-            >
+              key={member._id}
+              className="modal-item"
+              onClick={() => onSelect(member)}
+              >
+              <img
+                src={member.imgUrl}
+                alt={member.fullname}
+                style={{
+                  width: '30px',
+                  height: '30px',
+                  objectFit: 'cover',
+                  borderRadius: '50%',
+                }}
+              />
+              <div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+  )
+  }
+  
+  const buttonStyle = selectedMember
+  ? {
+      backgroundColor: '#CCE5FF',
+      // Add any other styles as needed
+    }
+  : {}
+    return (
+    <>
+      <ToolTip title="Filter by person">
+        <button
+          className="btn-icon medium-transparent flex align-center gap8"
+          onClick={handleOpenModal}
+          style={buttonStyle}
+        >
+          {selectedMember ? (
+            <div className="avatar-logo flex align-center justify-center gap8">
               <img
                 src={selectedMember.imgUrl}
                 alt=""
@@ -88,16 +116,22 @@ export function PersonFilter({ filterBy, handleChange, handleSubmit, board }) {
                 x
               </button>
             </div>
-          </button>
-        </ToolTip>
-      ) : (
-        <ToolTip title="Filter by person">
-          <button className="btn-icon medium-transparent flex align-center gap8">
-            <PersonIcon />
-            Person
-          </button>
-        </ToolTip>
+          ) : (
+            <>
+              <PersonIcon />
+              Person
+            </>
+          )}
+        </button>
+      </ToolTip>
+
+      {isModalVisible && (
+        <PersonFilterModal
+          members={members}
+          onSelect={handleMemberSelect}
+          onClose={handleCloseModal}
+        />
       )}
-    </Dropdown>
-  )
+    </>
+  );
 }
