@@ -15,16 +15,34 @@ export function GroupTitle({
   const [isEditing, setIsEditing] = useState(false)
   const [colorPicker, setColorPicker] = useState(false)
 
-  function openColorModal(ev) {
-    ev.preventDefault()
-    ev.stopPropagation()
+  const groupTitleRef = useRef()
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const target = event.target
+
+      if (groupTitleRef.current && !groupTitleRef.current.contains(target)) {
+        setTimeout(() => {
+          setIsEditing(false)
+        }, 100)
+      }
+    }
+
+    document.addEventListener('click', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [])
+
+  function openColorModal(ev) {
     setColorPicker(!colorPicker)
   }
 
   function handleColor(color) {
     onSave({ prop: 'style', value: { color: color } })
     setColorPicker(!colorPicker)
+    setIsEditing(false)
   }
 
   useEffect(() => {
@@ -38,7 +56,14 @@ export function GroupTitle({
     setInputText(text)
   }
 
-  function handleSave() {
+  function handleSave(ev) {
+    const relatedTarget = ev.relatedTarget
+    if (
+      relatedTarget &&
+      relatedTarget.classList.contains('open-color-modal-btn')
+    ) {
+      return
+    }
     if (inputText.length > 0) onSave({ prop: 'title', value: inputText })
     else setInputText(savedText)
     setIsEditing(false)
@@ -52,19 +77,21 @@ export function GroupTitle({
   function handleToggleEditing() {
     setIsEditing(true)
     setTimeout(() => {
-      textInputRef.current.focus();
+      textInputRef.current.focus()
     }, 1)
   }
   return (
-    <div className="group-title editable-txt editable-title">
+    <div
+      ref={groupTitleRef}
+      className="group-title editable-txt editable-title">
       <div
         style={{ display: isEditing ? 'flex' : 'none' }}
         ref={editableTextRef}
-        className="group-title-input"
-      >
+        className="group-title-input">
         {colorPicker && <ColorPickerModal {...{ handleColor }} />}
         <div style={{ position: 'relative' }}>
           <button
+            className="open-color-modal-btn"
             style={{
               position: 'absolute',
               backgroundColor: textColor,
@@ -74,9 +101,9 @@ export function GroupTitle({
               border: 'none',
               left: '6px',
               top: '7px',
+              zIndex: 100000000,
             }}
-            onClick={openColorModal}
-          ></button>
+            onClick={openColorModal}></button>
           <input
             ref={textInputRef}
             style={{
@@ -86,7 +113,7 @@ export function GroupTitle({
             type="text"
             value={inputText}
             onChange={handleChange}
-            onBlur={handleSave}
+            onBlur={(ev) => handleSave(ev)}
             placeholder={placeholder}
             onKeyDown={handleKeyDown}
           />
@@ -96,8 +123,7 @@ export function GroupTitle({
       <div
         style={{ display: isEditing ? 'none' : 'flex' }}
         className="flex align-center"
-        onClick={handleToggleEditing}
-      >
+        onClick={handleToggleEditing}>
         <span style={{ color: textColor }}>{inputText || placeholder}</span>
       </div>
     </div>
