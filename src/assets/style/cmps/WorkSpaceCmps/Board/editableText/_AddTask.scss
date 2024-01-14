@@ -1,20 +1,21 @@
 .add-task {
   .add-task-input {
     input {
-      margin-top: 4px;
       padding: 2px 4px;
       font: 400 14px/24px Figtree;
       max-height: 28px;
-      width: 32.8rem;
+      width: 330px;
     }
   }
   
   .add-task-text {
     height: 36px;
-    margin-top: 4px;
+    // margin-top: 4px;
     overflow: hidden;
     text-wrap: nowrap;
     text-overflow: ellipsis;
-    padding: 5px;
+    // padding: 5px;
+    // padding-bottom: 8px;
+    margin-left: 5px;
   }
 }

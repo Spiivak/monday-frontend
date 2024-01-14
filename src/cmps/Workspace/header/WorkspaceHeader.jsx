@@ -56,7 +56,7 @@ export function WorkspaceHeader() {
 
   return (
     <>
-      <header className="work-space-header full flex space-between align-center">
+      <header className="work-space-header full flex space-between align-center gap8">
         <section className="header-logo-sect flex align-center">
           <div className="switcher-logo">
             <Link className="btn-icon medium-transparent" to="/">
@@ -72,10 +72,11 @@ export function WorkspaceHeader() {
           {/* <LogoBtn>See plans</LogoBtn> */}
         </section>
 
-        <section className="header-action-btns-sect">
+        <section className="header-action-btns-sect flex gap8">
           <button
-            className="btn-icon large-transparent"
+            className="btn-icon medium-transparent"
             onClick={onClickNotifyModal}
+            style={{ padding: '8px' }}
           >
             <div className="flex align-center" data-notification-button="true">
               <NotificationsIcon />
@@ -84,14 +85,16 @@ export function WorkspaceHeader() {
           {/* <button
             className="btn-icon large-transparent"
             onClick={onClickInboxModal}
+            style={{ padding: '8px'}}
           >
             <div className="flex align-center" data-inbox-button="true">
               <InboxIcon />
             </div>
           </button> */}
           <button
-            className="btn-icon large-transparent"
+            className="btn-icon medium-transparent"
             onClick={onClickInviteModal}
+            style={{ padding: '8px' }}
           >
             <div className="flex align-center" data-invite-button="true">
               <InviteMembersIcon />
@@ -100,6 +103,7 @@ export function WorkspaceHeader() {
           {/* <button
             className="btn-icon large-transparent"
             onClick={onClickSearchModal}
+            style={{ padding: '8px'}}
           >
             <div className="flex align-center" data-search-button="true">
               <SearchIcon />
@@ -108,6 +112,7 @@ export function WorkspaceHeader() {
           <button
             className="btn-icon large-transparent"
             onClick={onClickHelpModal}
+            style={{ padding: '8px' }}
           >
             <div className="flex align-center" data-help-button="true">
               <HelpIcon />

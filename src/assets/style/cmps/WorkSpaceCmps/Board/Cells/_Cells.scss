@@ -15,7 +15,8 @@
 
 .checkbox-cell {
   $checkmark-color: rgba(36, 222, 36, 0.688);
-  min-width: 50px;
+  min-width: 39px;
+  padding-left: 8px;
   height: 100%;
   input[type='checkbox'] {
     padding: 0;

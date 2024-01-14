@@ -67,7 +67,7 @@ export function GroupTitle({
             style={{
               position: 'absolute',
               backgroundColor: textColor,
-              wdith: '14px',
+              width: '14px',
               height: '14px',
               borderRadius: '2px',
               border: 'none',
@@ -88,7 +88,6 @@ export function GroupTitle({
             onBlur={handleSave}
             placeholder={placeholder}
             onKeyDown={handleKeyDown}
-            autoFocus
           />
         </div>
       </div>

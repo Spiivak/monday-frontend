@@ -153,7 +153,7 @@ export function BoardGroupPreview({ board, group, boardId, cmpsOrder }) {
           {/* Render table only if it's open */}
           <div
             style={{
-              '--gtc': `50px 350px repeat(${
+              '--gtc': `39px 350px repeat(${
                 columns.length - 1
               },200px) minmax(80px,1fr)`,
             }}
@@ -202,6 +202,7 @@ export function BoardGroupPreview({ board, group, boardId, cmpsOrder }) {
           onAddColumn={onAddColumn}
           boardId={boardId}
           onDeleteColumn={onDeleteColumn}
+          onUpdateGroup={onUpdateGroup}
         />
       )}
     </>
@@ -218,6 +219,7 @@ function CollapsedTable({
   onAddColumn,
   boardId,
   onDeleteColumn,
+  onUpdateGroup,
 }) {
   return (
     <section
