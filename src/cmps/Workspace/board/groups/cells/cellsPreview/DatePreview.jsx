@@ -1,11 +1,6 @@
-export function DatePreview({
-  formatDate,
-  setDateModal,
-  removeDate,
-  task,
-  cmpId,
-  divRef,
-}) {
+import { utilService } from '../../../../../../services/util.service'
+
+export function DatePreview({ setDateModal, removeDate, task, cmpId, divRef }) {
   return (
     <div
       ref={divRef}
@@ -20,7 +15,7 @@ export function DatePreview({
         setDateModal(true)
       }}
     >
-      {formatDate(task['date' + cmpId])}
+      {utilService.formatDate(task['date' + cmpId])}
       <button
         onClick={removeDate}
         className=" btn-ctn medium-sec  "

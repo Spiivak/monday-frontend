@@ -3,6 +3,7 @@ import dayjs from 'dayjs'
 import { useEffect, useRef, useState } from 'react'
 import { DatePreview } from './cellsPreview/DatePreview'
 import { CalenderIcon } from '../../../../Icons'
+import { utilService } from '../../../../../services/util.service'
 
 export function DatePickerC({
   task,
@@ -44,8 +45,11 @@ export function DatePickerC({
             createdAt: Date.now(),
             title: updatedTask.title,
             colName,
-            oldValue: formatDate(oldValue),
-            newValue: formatDate(timestampDate),
+            oldValue:
+              utilService.formatDate(oldValue) === 'NaN Invalid Date'
+                ? '-'
+                : utilService.formatDate(oldValue),
+            newValue: utilService.formatDate(timestampDate),
           },
           updatedTask
         )
@@ -55,16 +59,6 @@ export function DatePickerC({
         setDateModal(false)
       }
     }
-  }
-  function formatDate(timestamp) {
-    const dateObj = new Date(timestamp)
-
-    const dayNumber = dateObj.getDate()
-    const monthAbbreviation = dateObj.toLocaleString('default', {
-      month: 'short',
-    })
-
-    return `${dayNumber} ${monthAbbreviation}`
   }
 
   async function removeDate(ev) {
@@ -80,7 +74,7 @@ export function DatePickerC({
           createdAt: Date.now(),
           title: updatedTask.title,
           colName,
-          oldValue: formatDate(oldValue),
+          oldValue: utilService.formatDate(oldValue),
           newValue: '-',
         },
         updatedTask
@@ -93,9 +87,7 @@ export function DatePickerC({
   return (
     <div ref={divRef} className="cell date-picker-cell">
       {task['date' + cmpId] && !dateModal ? (
-        <DatePreview
-          {...{ formatDate, setDateModal, removeDate, task, cmpId, divRef }}
-        />
+        <DatePreview {...{ setDateModal, removeDate, task, cmpId, divRef }} />
       ) : (
         <div className="empty-date-cell" style={{ position: 'relative' }}>
           <div
