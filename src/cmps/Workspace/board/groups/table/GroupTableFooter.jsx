@@ -29,7 +29,7 @@ export function GroupTableFooter({
           className="empty-column empty-2"
           style={{
             position:'sticky',
-            left:'90px',
+            left:'79px',
             zIndex:1000,
             backgroundColor:'#fff',
             // gridRow: rows.length + 3,
