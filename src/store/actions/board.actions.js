@@ -22,6 +22,7 @@ import {
   SET_IMG_TARGET,
   SET_IS_BOARD_LOADING,
   SET_IS_LOADING,
+  SET_TASKS,
   START_ADD_COLUMN,
   UPDATE_BOARD,
   UPDATE_COLUMN,
@@ -204,6 +205,14 @@ export async function removeTask(boardId, groupId, taskId) {
   } catch (err) {}
 }
 
+export async function updateTasks(boardId, groupId, tasks) {
+  try {
+    store.dispatch({ type: SET_TASKS, boardId, groupId, tasks })
+    const updatedTasks = await boardService.updateTasks(boardId, groupId, tasks)
+    console.log(updatedTasks)
+  } catch (err) {}
+}
+
 export async function removeAllTasks(props) {
   console.log('removeAllTasks props:', props)
 
@@ -308,7 +317,7 @@ export async function addColumn(boardId, type, board) {
         cmpsOrder: [...board.cmpsOrder, addedColumn],
       }
       const boardToSave = await boardService.save(newBoard)
-      store.dispatch({ type: SET_BOARD, board: [boardToSave] })
+      store.dispatch({ type: SET_BOARD, board: boardToSave })
     } else {
       store.dispatch({ type: ADD_COLUMN, boardId, addedColumn })
     }
