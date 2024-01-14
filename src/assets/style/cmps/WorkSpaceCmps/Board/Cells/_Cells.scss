@@ -121,6 +121,20 @@
 .description-picker-cell {
   width: 200px;
   overflow: none;
+
+  .description-preview {
+    span {
+      opacity: 0;
+    }
+  }
+
+  &:hover {
+    .description-preview {
+      span {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 .file-picker-cell {

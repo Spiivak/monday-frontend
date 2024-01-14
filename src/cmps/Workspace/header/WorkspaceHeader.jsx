@@ -76,43 +76,43 @@ export function WorkspaceHeader() {
           <button
             className="btn-icon medium-transparent"
             onClick={onClickNotifyModal}
-            style={{ padding: '8px'}}
+            style={{ padding: '8px' }}
           >
             <div className="flex align-center" data-notification-button="true">
               <NotificationsIcon />
             </div>
           </button>
-          <button
-            className="btn-icon medium-transparent"
+          {/* <button
+            className="btn-icon large-transparent"
             onClick={onClickInboxModal}
             style={{ padding: '8px'}}
           >
             <div className="flex align-center" data-inbox-button="true">
               <InboxIcon />
             </div>
-          </button>
+          </button> */}
           <button
             className="btn-icon medium-transparent"
             onClick={onClickInviteModal}
-            style={{ padding: '8px'}}
+            style={{ padding: '8px' }}
           >
             <div className="flex align-center" data-invite-button="true">
               <InviteMembersIcon />
             </div>
           </button>
-          <button
-            className="btn-icon medium-transparent"
+          {/* <button
+            className="btn-icon large-transparent"
             onClick={onClickSearchModal}
             style={{ padding: '8px'}}
           >
             <div className="flex align-center" data-search-button="true">
               <SearchIcon />
             </div>
-          </button>
+          </button> */}
           <button
             className="btn-icon large-transparent"
             onClick={onClickHelpModal}
-            style={{ padding: '8px'}}
+            style={{ padding: '8px' }}
           >
             <div className="flex align-center" data-help-button="true">
               <HelpIcon />

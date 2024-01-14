@@ -23,27 +23,27 @@ export function AddBoardModal({ onClose, SetAddModalOpen }) {
   }
 
   const handleClickOutside = (event) => {
-    if (!modalRef.current.contains(event.target)) {
+    if (
+      modalRef.current &&
+      !modalRef.current.contains(event.target) &&
+      event.target.getAttribute('id') !== 'test'
+    ) {
       onClose()
     }
   }
 
   useEffect(() => {
-    if (isModalOpen) {
-      window.addEventListener('mousedown', handleClickOutside)
-    } else {
-      window.removeEventListener('mousedown', handleClickOutside)
-    }
+    const handleOutsideClick = (event) => handleClickOutside(event)
+    window.addEventListener('mousedown', handleOutsideClick)
 
     return () => {
-      window.removeEventListener('mousedown', handleClickOutside)
+      window.removeEventListener('mousedown', handleOutsideClick)
     }
-  }, [isModalOpen, onClose])
+  }, [onClose])
   return (
     <>
-      <div className="add-board-modal flex gap8" ref={modalRef}>
+      <div id="test" className="add-board-modal flex gap8" ref={modalRef}>
         <button
-          data-addnewboard-button="true"
           className="flex btn-icon medium-transparent gap8"
           onClick={() => handleToggleModal()}
         >
@@ -92,7 +92,6 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
   const [title, setTitle] = useState('New Board')
   const [option, setOption] = useState('Items')
   const loggedInUser = useSelector((storeState) => storeState.userModule.user)
-  console.log('OnAddBoardModal  option:', option)
 
   const handleOptionChange = (event) => {
     setOption(event.target.value)
