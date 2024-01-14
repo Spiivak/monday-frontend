@@ -55,9 +55,9 @@ export function BoardHeader({ board, onUpdateBoard }) {
                 <button className="btn-icon medium-transparent">
                   <InfoIcon />
                 </button>
-                <button className="btn-icon medium-transparent">
+                {/* <button className="btn-icon medium-transparent">
                   <FavoriteIcon />
-                </button>
+                </button> */}
               </div>
             ) : (
               <BoardTabs
@@ -79,9 +79,9 @@ export function BoardHeader({ board, onUpdateBoard }) {
                 <InviteMembersIcon />
                 Invite / 4
               </button>
-              <button className="btn-icon medium-transparent">
+              {/* <button className="btn-icon medium-transparent">
                 <MenuIcon />
-              </button>
+              </button> */}
               {isCollapsed && (
                 <button
                   className="btn-icon medium-transparent"

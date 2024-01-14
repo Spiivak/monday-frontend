@@ -85,27 +85,27 @@ export function BoardHeaderFilter({ board, isCollapsed }) {
           </button>
         </div>
       </ToolTip>
-      <ToolTip title="Hidden Columns">
+      {/* <ToolTip title="Hidden Columns">
         <div className="filter-item flex align-center">
           <button className="btn-icon medium-transparent flex gap8">
             <HideIcon />
             Hide
           </button>
         </div>
-      </ToolTip>
-      <ToolTip title="Group By Column">
+      </ToolTip> */}
+      {/* <ToolTip title="Group By Column">
         <div className="filter-item flex align-center">
           <button className="btn-icon medium-transparent flex gap8">
             <GroupIcon />
             Group by
           </button>
         </div>
-      </ToolTip>
-      <div className="filter-item flex align-center">
+      </ToolTip> */}
+      {/* <div className="filter-item flex align-center">
         <button className="btn-icon medium-transparent">
           <MenuIcon />
         </button>
-      </div>
+      </div> */}
     </section>
   )
 }
