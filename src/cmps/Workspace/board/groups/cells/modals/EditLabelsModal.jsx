@@ -71,7 +71,7 @@ export function EditLabelsModal() {
   }
 
   function handleTextChange(text, labelId) {
-    labelChange('text', text, selectedBoard, labelId, editLabelTargetData)
+    labelChange('title', text, selectedBoard, labelId, editLabelTargetData)
     setIsColorModalOpen(null)
   }
 
