@@ -21,7 +21,7 @@ export function ImageModal({ src }) {
       window.removeEventListener('mousedown', handleOutsideClick)
     }
   }, [])
-
+  console.log(src)
   if (!src) return
   return (
     <div
