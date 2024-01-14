@@ -50,7 +50,7 @@ export function GroupTableBody({
           <div
             style={{
               '--before-color': group.style.color,
-              gridRow: rowIdx + 2,
+              // gridRow: rowIdx + 2,
               gridColumn: 1,
             }}
             className="first-column group-table-cell checkbox-cell flex align-center justify-center hoverable relative">
@@ -71,7 +71,9 @@ export function GroupTableBody({
           {columns.map((column, colIdx) => (
             <React.Fragment key={column.id}>
               <div
-                style={{ gridRow: rowIdx + 2, gridColumn: colIdx + 2 }}
+                style={{
+                  // gridRow: rowIdx + 2,
+                   gridColumn: colIdx + 2 }}
                 className={`group-table-cell ${column.cmp.type}`}>
                 <DynamicTableCell
                   cmpsOrder={cmpsOrder}
@@ -85,7 +87,7 @@ export function GroupTableBody({
               </div>
               <div
                 style={{
-                  gridRow: rowIdx + 2,
+                  // gridRow: rowIdx + 2,
                   gridColumn: columns.length + 2,
                 }}
                 className="group-table-cell"></div>
