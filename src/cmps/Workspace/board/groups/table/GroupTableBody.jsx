@@ -3,7 +3,7 @@ import { DynamicTableCell } from '../DynamicTableCell'
 import { EditableText } from '../../editableText/EditableText'
 import { ContextBtn } from '../../../../ContextBtn'
 import { useSelector } from 'react-redux'
-import { saveSelectedTasks } from '../../../../../store/actions/board.actions'
+import { saveSelectedTasks, updateTasks } from '../../../../../store/actions/board.actions'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 export function GroupTableBody({
@@ -40,9 +40,20 @@ export function GroupTableBody({
   }
 
   const onDragEnd = (result) => {
-    console.log('onDragEnd  result:', result)
-    // Handle the drag end logic, e.g., reorder rows
-    // result contains information about the drag and drop
+    if (!result.destination) {
+      return
+    }
+
+    const draggedRowIndex = result.source.index
+    let droppedRowIndex = result.destination.index
+
+    if(draggedRowIndex <= droppedRowIndex) droppedRowIndex++
+
+    const updatedRows = [...rows]
+
+    const [draggedRow] = updatedRows.splice(draggedRowIndex, 1)
+    updatedRows.splice(droppedRowIndex, 0, draggedRow)
+    updateTasks(board._id, group.id, updatedRows)
   }
 
   return (
@@ -82,7 +93,9 @@ export function GroupTableBody({
                         gridColumn: 1,
                       }}
                       className="first-column group-table-cell checkbox-cell flex align-center justify-center hoverable relative">
-                      <div className="context absolute" style={{zIndex:1000, right: '115%' }}>
+                      <div
+                        className="context absolute"
+                        style={{ zIndex: 1000, right: '115%' }}>
                         <ContextBtn
                           onDeleteRow={() => onDeleteTask(group.id, row.id)}
                           type={'row'}
