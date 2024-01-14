@@ -126,6 +126,7 @@
     .avatar-logo {
       height: 30px;
       width: 30px;
+      border: 2px solid #f5f6f8;
       border-radius: 100%;
       overflow: hidden;
       &:hover .member-modal {
@@ -139,8 +140,10 @@
     .overflow-indicator {
       background-color: #333333;
       border-radius: 50px;
-      width: 30px;
-      height: 30px;
+      width: 25px;
+      height: 25px;
+      border: 2px solid #f5f6f8;
+
       color: #fff;
       font-size: 12px;
       margin-left: -12px;
