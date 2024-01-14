@@ -43,9 +43,14 @@ export function BoardHeaderFilter({ board, isCollapsed }) {
   }
 
   function handleAdd() {
-    addTask(board._id, board.groups[0].id, {
-      title: `New ${board?.option ? board.option.slice(0, -1) : 'Task'}`,
-    })
+    addTask(
+      board._id,
+      board.groups[0].id,
+      {
+        title: `New ${board?.option ? board.option.slice(0, -1) : 'Task'}`,
+      },
+      'first'
+    )
   }
 
   return (

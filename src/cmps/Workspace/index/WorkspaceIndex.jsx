@@ -70,7 +70,7 @@ export function WorkspaceIndex() {
                 <div className="breadcrumbs flex gap8">
                   <MwmIcon />
                   <span className="flex gap4">
-                    work management <NavigationChevronDownIcon /> Sprint 4
+                    work management <NavigationChevronDownIcon /> Coding A...
                   </span>
                 </div>
               </div>

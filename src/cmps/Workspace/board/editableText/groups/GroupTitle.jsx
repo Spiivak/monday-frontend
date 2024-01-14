@@ -50,9 +50,10 @@ export function GroupTitle({
   }
 
   function handleToggleEditing() {
+    setIsEditing(true)
     setTimeout(() => {
-      setIsEditing(true)
-    }, 30)
+      textInputRef.current.focus();
+    }, 1)
   }
   return (
     <div className="group-title editable-txt editable-title">
