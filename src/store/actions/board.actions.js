@@ -1,5 +1,6 @@
 import { boardService } from '../../services/board.service'
 import { socketService } from '../../services/socket.service'
+import { utilService } from '../../services/util.service'
 
 import {
   ADD_BOARD,
@@ -375,7 +376,42 @@ export function setImg(imgTarget, imgTargetData) {
 }
 
 export function setLabels(editLabelTarget, editLabelTargetData) {
-  store.dispatch({ type: SET_EDIT_LABELS_TARGET, editLabelTarget, editLabelTargetData })
+  store.dispatch({
+    type: SET_EDIT_LABELS_TARGET,
+    editLabelTarget,
+    editLabelTargetData,
+  })
+}
+
+export function labelChange(type, data, board, labelId, accessor) {
+  const newBoard = {
+    ...board,
+    [accessor]: board[accessor].map((label) => {
+      if (label.id !== labelId) return label
+      console.log({ ...label, [type]: data })
+      return { ...label, [type]: data }
+    }),
+  }
+
+  saveBoard(newBoard)
+}
+export function addLabel(data, board, accessor) {
+  const newLabel = { id: utilService.makeId(), title: data, color: '#eee' }
+  const newBoard = {
+    ...board,
+    [accessor]: [...board[accessor], newLabel],
+  }
+
+  saveBoard(newBoard)
+}
+export function removeLabel(board, labelId, accessor) {
+  const newBoard = {
+    ...board,
+    [accessor]: board[accessor].filter((label) => {
+      return label.id !== labelId
+    }),
+  }
+  saveBoard(newBoard)
 }
 
 // export async function addBoardMsg(boardId,msg,user){

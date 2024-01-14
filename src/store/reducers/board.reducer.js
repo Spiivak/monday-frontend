@@ -83,7 +83,8 @@ export function boardReducer(state = initialState, action = {}) {
       newBoards = state.boards.map((board) =>
         board._id === action.board._id ? action.board : board
       )
-      return { ...state, boards: [...newBoards] }
+      console.log('updateBoard', newBoards)
+      return { ...state, boards: [...newBoards], selectedBoard: action.board }
 
     // * GROUP CRUD
     case ADD_GROUP:
