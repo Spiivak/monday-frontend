@@ -63,6 +63,7 @@ export async function saveBoard(board) {
   const errType = board._id ? 'update' : 'add'
   try {
     const boardToSave = await boardService.save(board)
+    console.log('saveBoard', boardToSave)
     store.dispatch({ type, board: boardToSave })
     return boardToSave
   } catch (err) {
@@ -393,7 +394,7 @@ export function labelChange(type, data, board, labelId, accessor) {
       return { ...label, [type]: data }
     }),
   }
-
+  console.log(newBoard.groups[0].tasks[0])
   saveBoard(newBoard)
 }
 export function addLabel(data, board, accessor) {

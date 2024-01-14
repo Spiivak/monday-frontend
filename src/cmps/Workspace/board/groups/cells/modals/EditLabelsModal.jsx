@@ -24,6 +24,7 @@ export function EditLabelsModal() {
   const labelsEditModal = useRef()
   const [position, setPosition] = useState({ top: 0, left: 0 })
   const [isColorModalOpen, setIsColorModalOpen] = useState(null)
+  const [currentBoard, setCurrentBoard] = useState(null)
 
   useEffect(() => {
     const handleResize = () => {
@@ -63,24 +64,27 @@ export function EditLabelsModal() {
       }
     }
     handleResize()
+    setCurrentBoard(()=>{
+      return boards.find(board=> board._id === selectedBoard._id)
+    })
   }, [editLabelTarget, selectedBoard])
 
   function handleColorChange(color, labelId) {
-    labelChange('color', color, selectedBoard, labelId, editLabelTargetData)
+    labelChange('color', color, currentBoard, labelId, editLabelTargetData)
     setIsColorModalOpen(null)
   }
 
   function handleTextChange(text, labelId) {
-    labelChange('title', text, selectedBoard, labelId, editLabelTargetData)
+    labelChange('title', text, currentBoard, labelId, editLabelTargetData)
     setIsColorModalOpen(null)
   }
 
   function onAddLabel(txt) {
-    addLabel(txt, selectedBoard, editLabelTargetData)
+    addLabel(txt, currentBoard, editLabelTargetData)
   }
 
   function onRemoveLabel(labelId) {
-    removeLabel(selectedBoard, labelId, editLabelTargetData)
+    removeLabel(currentBoard, labelId, editLabelTargetData)
   }
 
   if (!editLabelTarget) return
