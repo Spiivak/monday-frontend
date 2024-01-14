@@ -73,66 +73,48 @@ export function KanbanPreview() {
           })
           return acc
         }, {})
+
         return { statusPickerLabels, statusPerPicker }
       })
-      console.log(statusPickersWithTasks)
+      return statusPickersWithTasks.map((current, index) => {
+        const { statusPickerLabels, statusPerPicker } = current;
+        return (
+          <div key={index} className='flex gap16'>
+            {statusPickerLabels.map((label, index) => {
+              return (
+              <div className="board-section">
 
-      // const statusPickerComponents = getCmpsOrder();
-      // console.log('renderLabels  statusPickerComponents:', statusPickerComponents)
+              <div style={{backgroundColor: label.color}} className='label flex align-center justify-center'>
+                {label.title}
+              </div>
 
-      // statusPickerComponents.forEach((statusPicker) => {
-      //   const statusKey = `status${statusPicker.id}`;
-      //   console.log('statusKey:', statusKey)
-
-      //   Object.values(selectedBoard.groups).forEach((group) => {
-      //     Object.values(group.tasks).forEach((task) => {
-      //       const taskStatus = task[statusKey];
-
-      //       // Check if taskStatus is not undefined or null before adding to the set
-      //       if (taskStatus != null && !uniqueStatuses.has(taskStatus)) {
-      //         uniqueStatuses.add(taskStatus)
-
-      //         // Call getTasksByLabel here with the label
-      //       }
-      //     });
-      //   });
-      // });
+              <div className="task-container">
+              {Object.entries(statusPerPicker).map(([key, value]) => {
+                if(key !== label.id) return
+                {console.log('KEYSSSSSS', key, value)}
+                return value.map((task, idx) => {
+                  return (
+                  <div className='card-container'>
+                    <div className="task-card">
+                    <span>{task.title}</span>  
+                    </div>
+                  </div>
+                  )
+                })
+              })}
+              </div>
+              </div>
+              )
+            })}
+          </div>
+        )
+      })
     }
-
-    // const uniqueStatusesArray = Array.from(uniqueStatuses)
-
-    // return [uniqueStatusesArray]
   }
-
-  // const getTasksByLabel = (label) => {
-  //   const tasksByLabel = {}
-  //   const statusPickerComponents = getCmpsOrder()
-
-  //   statusPickerComponents.forEach((statusPicker) => {
-  //     const statusKey = `status${statusPicker.id}`
-
-  //     console.log('statusPickerComponents.forEach  statusKey:', statusKey)
-  //     Object.values(selectedBoard.groups).forEach((group) => {
-  //       Object.values(group.tasks).forEach((task) => {
-  //         const taskStatusc1 = task[statusKey] || "Haven't Started"
-
-  //         if (taskStatusc1 === label) {
-  //           if (!tasksByLabel[label]) {
-  //             tasksByLabel[label] = []
-  //           }
-
-  //           tasksByLabel[label].push(task)
-  //         }
-  //       })
-  //     })
-  //   })
-  //   console.log('Object.values  tasksByLabel:', tasksByLabel)
-  //   return tasksByLabel
-  // }
-
   if (!selectedBoard || !selectedBoard.groups) {
     return <div>Loading...</div>
   }
+  
   return (
     <section className="kanban-section">
       <div className="kanban-header">
@@ -141,27 +123,8 @@ export function KanbanPreview() {
       <main>
         <div className="group-container">
           <div className="group-tasks flex gap16">
+            {/* Render here labels */}
             {renderLabels()}
-            {/* {renderLabels().map((label) => {
-              console.log('KanbanPreview  label:', label)
-              return (
-                <div key={label} className={`label-container`}>
-                  <div
-                    className={`label ${label} flex align-center justify-center`}>
-                    <h2>{label}</h2>
-                  </div>
-                  <div className="task-container">
-                    <div className="card-container">
-                      {getTasksByLabel(label)[label].map((task) => (
-                        <div key={task.id} className="task-card">
-                          <p>{task.title}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )
-            })} */}
           </div>
         </div>
       </main>
