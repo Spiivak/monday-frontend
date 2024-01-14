@@ -49,7 +49,6 @@ export async function loadBoards() {
 export async function loadBoard(boardId) {
   try {
     const board = await boardService.getById(boardId)
-    console.log(board)
     store.dispatch({ type: SET_BOARD, board })
   } catch (err) {
     console.error('board action -> cannot load board', err)
@@ -205,8 +204,6 @@ export async function removeTask(boardId, groupId, taskId) {
 }
 
 export async function removeAllTasks(props) {
-  console.log('removeAllTasks props:', props)
-
   try {
     // Assuming each object in the array has properties boardId, groupId, and taskId
     const removedTaskIds = await Promise.all(
@@ -215,8 +212,6 @@ export async function removeAllTasks(props) {
         return await removeTask(boardId, groupId, taskId)
       })
     )
-
-    console.log('removedTaskIds:', removedTaskIds)
   } catch (err) {
     console.error('Error removing all tasks:', err)
   }
@@ -253,7 +248,7 @@ export async function addColumn(boardId, type, board) {
       break
     case 'timeline':
       newColumn = {
-        title: 'Time line',
+        title: 'Timeline',
         type: 'TimelinePicker',
       }
       break
@@ -297,7 +292,6 @@ export async function addColumn(boardId, type, board) {
 
   try {
     const addedColumn = await boardService.addColumn(boardId, newColumn)
-    console.log(addedColumn.type)
     if (addedColumn.type === 'StatusPicker') {
       const labelsMap = {
         ['labels' + addedColumn.id]: boardService.defaultLabels(),
@@ -367,7 +361,6 @@ export function setBoardLoading(type) {
 }
 
 export function setImg(imgTarget, imgTargetData) {
-  console.log(imgTarget, imgTargetData)
   store.dispatch({ type: SET_IMG_TARGET, imgTarget, imgTargetData })
 }
 

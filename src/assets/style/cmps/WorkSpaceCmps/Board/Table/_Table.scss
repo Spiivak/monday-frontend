@@ -14,7 +14,7 @@
   }
   .footer-row {
     border: none;
-    .first-footer-cell{
+    .first-footer-cell {
       border-bottom-left-radius: 8px;
       border-collapse: collapse;
     }
@@ -41,6 +41,9 @@
         right: 4px;
         top: 6px;
       }
+    }
+    .add-btn-left {
+      left: 4px;
     }
   }
 

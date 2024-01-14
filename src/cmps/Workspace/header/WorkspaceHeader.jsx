@@ -81,14 +81,14 @@ export function WorkspaceHeader() {
               <NotificationsIcon />
             </div>
           </button>
-          <button
+          {/* <button
             className="btn-icon large-transparent"
             onClick={onClickInboxModal}
           >
             <div className="flex align-center" data-inbox-button="true">
               <InboxIcon />
             </div>
-          </button>
+          </button> */}
           <button
             className="btn-icon large-transparent"
             onClick={onClickInviteModal}
@@ -97,14 +97,14 @@ export function WorkspaceHeader() {
               <InviteMembersIcon />
             </div>
           </button>
-          <button
+          {/* <button
             className="btn-icon large-transparent"
             onClick={onClickSearchModal}
           >
             <div className="flex align-center" data-search-button="true">
               <SearchIcon />
             </div>
-          </button>
+          </button> */}
           <button
             className="btn-icon large-transparent"
             onClick={onClickHelpModal}

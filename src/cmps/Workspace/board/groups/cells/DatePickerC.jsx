@@ -85,7 +85,11 @@ export function DatePickerC({
   }
 
   return (
-    <div ref={divRef} className="cell date-picker-cell">
+    <div
+      style={{ cursor: 'pointer' }}
+      ref={divRef}
+      className="cell date-picker-cell"
+    >
       {task['date' + cmpId] && !dateModal ? (
         <DatePreview {...{ setDateModal, removeDate, task, cmpId, divRef }} />
       ) : (

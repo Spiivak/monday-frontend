@@ -1,8 +1,6 @@
 import { Add, Description, Save, UploadFile } from '@mui/icons-material'
 import { useEffect, useRef, useState } from 'react'
-import {
-  AddIcon,
-} from '../../../../Icons'
+import { AddIcon } from '../../../../Icons'
 import { useSelector } from 'react-redux'
 import {
   deactivateContextBtn,
@@ -38,9 +36,9 @@ export default function AddColumnBtn({
     }
   }
   return (
-    <div className="context-menu hidden-hover">
+    <div className="context-menu hidden-hover add-btn-left">
       <button
-        className="btn-icon small-transparent"
+        className="btn-icon small-transparent add-btn-left"
         onClick={(ev) => {
           ev.stopPropagation()
           onSetActiveBtn(ev)

@@ -103,7 +103,7 @@ export function TimelinePicker({
   }
 
   return (
-    <div className="cell timeline-picker-cell">
+    <div style={{ cursor: 'pointer' }} className="cell timeline-picker-cell">
       {!dateModal ? (
         <TimelinePreview
           {...{
