@@ -62,7 +62,7 @@ export function TimelinePicker({
             createdAt: Date.now(),
             title: updatedTask.title,
             colName,
-            oldValue: utilService.formatDateRange(oldValue),
+            oldValue: !oldValue ? '-' : utilService.formatDateRange(oldValue),
             newValue: utilService.formatDateRange([
               timestampStartDate,
               timestampEndDate,
