@@ -58,7 +58,7 @@ export function WorkSpaceContext({ onClose }) {
             <div className="option">
               <button className="btn-icon medium-transparent flex gap16">
                 <span className="flex align-center">
-                  <HomeIcon /> Sprint 4
+                  <HomeIcon /> Coding Academy
                 </span>
               </button>
             </div>
