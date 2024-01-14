@@ -111,16 +111,18 @@
       .type-list {
         display: grid;
         grid-template-columns: repeat(auto-fill, 125px);
-        // gap: 18px;
+        gap: 8px;
         & h3 {
           margin-bottom: 10px;
         }
 
         & label {
-          display: block;
+          display: flex;
           margin-bottom: 8px;
-        font: 400 14px Figtree;
+          align-items: center;
+        font: 400 15px Figtree;
           input[type="radio"] {
+            display: flex;
             margin-right: 8px;
             align-items: center;
           } 
@@ -135,9 +137,6 @@
     justify-content: flex-end;
     gap: 16px;
 
-    button {
-      margin-left: 16px;
-    }
   }
   .divider {
     box-sizing: content-box;

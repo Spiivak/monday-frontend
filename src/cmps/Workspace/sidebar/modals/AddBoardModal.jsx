@@ -89,7 +89,7 @@ export function AddBoardModal({ onClose, SetAddModalOpen }) {
 
 export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
   const navigate = useNavigate()
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState('New Board')
   const [option, setOption] = useState('Items')
   const loggedInUser = useSelector((storeState) => storeState.userModule.user)
   console.log('OnAddBoardModal  option:', option)
@@ -147,7 +147,7 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
           <span>Create board</span>
           <div className="board-input">
             <label htmlFor="title">Board name</label>
-            <input type="text" name="title" onChange={handleChange} />
+            <input type="text" name="title" onChange={handleChange} placeholder='New Board' value={title} />
           </div>
           <div className="select-type-board">
             <div className="divider"></div>
@@ -242,34 +242,15 @@ export function OnAddBoardModal({ setModalOpen, modalRef, SetAddModalOpen }) {
                 />
                 Tasks
               </label>
-
-              <label>
-                <input
-                  type="radio"
-                  value="Custom"
-                  checked={option === 'Custom'}
-                  onChange={handleOptionChange}
-                />
-                Custom
-              </label>
-
-              {option === 'Custom' && (
-                <input
-                  type="text"
-                  placeholder="Enter custom text"
-                  value={option}
-                  onChange={handleOptionChange}
-                />
-              )}
             </div>
           </div>
         </div>
         <div className="modal-footer">
-          <button className="btn-txt medium-sec" onClick={handleCancel}>
+          <button className="btn-txt large-sec" onClick={handleCancel}>
             Cancel
           </button>
           <button
-            className="btn-ctn medium-primary"
+            className="btn-ctn large-primary"
             onClick={handleCreateBoard}
           >
             Create Board
