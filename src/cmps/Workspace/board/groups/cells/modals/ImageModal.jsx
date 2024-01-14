@@ -21,10 +21,10 @@ export function ImageModal({ src }) {
       window.removeEventListener('mousedown', handleOutsideClick)
     }
   }, [])
-  console.log(src)
   if (!src) return
   return (
     <div
+      style={{ bottom: '35px' }}
       className="image-modal flex column align-center space-between"
       ref={modalRef}
     >
