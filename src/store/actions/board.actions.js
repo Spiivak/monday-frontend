@@ -185,10 +185,10 @@ export async function updateTask(
   }
 }
 
-export async function addTask(boardId, groupId, newTaskTxt) {
+export async function addTask(boardId, groupId, newTaskTxt, at = 'last') {
   try {
-    const task = await boardService.addTask(boardId, groupId, newTaskTxt)
-    store.dispatch({ type: ADD_TASK, boardId, groupId, task })
+    const task = await boardService.addTask(boardId, groupId, newTaskTxt, at)
+    store.dispatch({ type: ADD_TASK, boardId, groupId, task, at })
   } catch (err) {}
 }
 

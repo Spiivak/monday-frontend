@@ -1134,8 +1134,8 @@ function updateTask(boardId, groupId, taskId, task) {
   return httpService.put(TASK_URL, { boardId, groupId, taskId, task })
 }
 
-function addTask(boardId, groupId, task) {
-  return httpService.post(TASK_URL, { boardId, groupId, task })
+function addTask(boardId, groupId, task, at) {
+  return httpService.post(TASK_URL, { boardId, groupId, task, at })
 }
 
 function removeTask(boardId, groupId, taskId) {

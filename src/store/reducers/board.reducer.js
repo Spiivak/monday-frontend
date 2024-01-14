@@ -162,7 +162,13 @@ export function boardReducer(state = initialState, action = {}) {
           ...board,
           groups: board.groups.map((group) => {
             if (group.id !== action.groupId) return group
-            return { ...group, tasks: [...group.tasks, action.task] }
+            return {
+              ...group,
+              tasks:
+                action.at === 'last'
+                  ? [...group.tasks, action.task]
+                  : [action.task, ...group.tasks],
+            }
           }),
         }
       })
