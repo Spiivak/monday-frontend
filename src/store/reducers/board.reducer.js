@@ -249,7 +249,7 @@ export function boardReducer(state = initialState, action = {}) {
       return {
         ...state,
         editLabelTarget: action.editLabelTarget,
-        editLabelTarget: action.editLabelTarget,
+        editLabelTargetData: action.editLabelTargetData,
       }
 
     default:

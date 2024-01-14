@@ -2,6 +2,7 @@ import { Edit } from '@mui/icons-material'
 import { Button, ConfigProvider, Divider, Dropdown, Space } from 'antd'
 import useToken from 'antd/es/theme/useToken'
 import React, { useRef } from 'react'
+import { setLabels } from '../../../../../store/actions/board.actions'
 
 export function StatusPicker({
   task,
@@ -85,7 +86,7 @@ export function StatusPicker({
   )
 
   function openLabelEditModal(statusPickerRef, labelsId) {
-    console.log(statusPickerRef, labelsId)
+    setLabels(statusPickerRef, labelsId)
   }
 
   const statusPickerRef = useRef()
