@@ -384,6 +384,7 @@ export function setLabels(editLabelTarget, editLabelTargetData) {
 }
 
 export function labelChange(type, data, board, labelId, accessor) {
+  console.log(type, data, board, labelId, accessor)
   const newBoard = {
     ...board,
     [accessor]: board[accessor].map((label) => {

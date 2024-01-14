@@ -65,9 +65,14 @@ export function EditLabelsModal() {
     handleResize()
   }, [editLabelTarget, selectedBoard])
 
-  function handleChange(type, data, labelId) {
+  function handleColorChange(color, labelId) {
+    labelChange('color', color, selectedBoard, labelId, editLabelTargetData)
     setIsColorModalOpen(null)
-    labelChange(type, data, selectedBoard, labelId, editLabelTargetData)
+  }
+
+  function handleTextChange(text, labelId) {
+    labelChange('text', text, selectedBoard, labelId, editLabelTargetData)
+    setIsColorModalOpen(null)
   }
 
   function onAddLabel(txt) {
@@ -82,7 +87,10 @@ export function EditLabelsModal() {
   if (!!!boards) return
   return (
     <div
-      onClick={() => setLabels(null, null)}
+      onClick={() => {
+        setLabels(null, null)
+        setIsColorModalOpen(null)
+      }}
       style={{
         position: 'fixed',
         inset: 0,
@@ -109,7 +117,9 @@ export function EditLabelsModal() {
             <div
               style={{ marginBottom: '8px' }}
               className="flex space-between"
-              onClick={(ev) => ev.stopPropagation()}>
+              onClick={(ev) => {
+                ev.stopPropagation()
+              }}>
               <div
                 onClick={() => {
                   setIsColorModalOpen((prev) => {
@@ -126,7 +136,7 @@ export function EditLabelsModal() {
                   <div onClick={(ev) => ev.stopPropagation()}>
                     <ColorPickerModal
                       handleColor={(color) =>
-                        handleChange('color', color, label.id)
+                        handleColorChange(color, label.id)
                       }
                     />
                     {console.log(isColorModalOpen)}
@@ -136,7 +146,7 @@ export function EditLabelsModal() {
               <EditableText
                 initialText={label.title}
                 type={'taskTitle'}
-                onSave={(text) => handleChange('title', text, label.id)}
+                onSave={(text) => handleTextChange(text, label.id)}
               />
               <button onClick={() => onRemoveLabel(label.id)}>x</button>
             </div>
