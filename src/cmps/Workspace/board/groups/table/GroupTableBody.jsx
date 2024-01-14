@@ -21,34 +21,39 @@ export function GroupTableBody({
     (storeState) => storeState.boardModule.checkedTaskIds
   )
   function handleChange(row, event, groupId, boardId) {
-    const { checked } = event.target;
-    const taskId = row.id; // Use row.id directly
+    const { checked } = event.target
+    const taskId = row.id // Use row.id directly
 
-    const selectedTask = { taskId, groupId, boardId };
+    const selectedTask = { taskId, groupId, boardId }
 
     const updatedTasks = checked
       ? [...checkedTaskIds, selectedTask]
       : checkedTaskIds.filter(
           (checkedTask) =>
             checkedTask.taskId !== taskId || checkedTask.groupId !== groupId
-        );
+        )
 
-    saveSelectedTasks(updatedTasks);
+    saveSelectedTasks(updatedTasks)
 
-    return updatedTasks;
+    return updatedTasks
   }
   return (
     <>
       {rows.map((row, rowIdx) => (
-        <div key={rowIdx} className="table-body-row">
+        <div
+          key={rowIdx}
+          className={`table-body-row ${
+            checkedTaskIds.some((checkedTask) => checkedTask.taskId === row.id)
+              ? 'checked'
+              : ''
+          }`}>
           <div
             style={{
               '--before-color': group.style.color,
               gridRow: rowIdx + 2,
               gridColumn: 1,
             }}
-            className="first-column group-table-cell checkbox-cell flex align-center justify-center hoverable relative"
-          >
+            className="first-column group-table-cell checkbox-cell flex align-center justify-center hoverable relative">
             <div className="absolute" style={{ right: '115%' }}>
               <ContextBtn
                 onDeleteRow={() => onDeleteTask(group.id, row.id)}
@@ -56,17 +61,18 @@ export function GroupTableBody({
               />
             </div>
             <input
-              type="checkbox"
+              type={`checkbox`}
               onChange={(event) => handleChange(row, event, group.id, boardId)}
-              checked={checkedTaskIds.some((checkedTask) => checkedTask.taskId === row.id)}
-              />
+              checked={checkedTaskIds.some(
+                (checkedTask) => checkedTask.taskId === row.id
+              )}
+            />
           </div>
           {columns.map((column, colIdx) => (
             <React.Fragment key={column.id}>
               <div
                 style={{ gridRow: rowIdx + 2, gridColumn: colIdx + 2 }}
-                className={`group-table-cell ${column.cmp.type}`}
-              >
+                className={`group-table-cell ${column.cmp.type}`}>
                 <DynamicTableCell
                   cmpsOrder={cmpsOrder}
                   cmp={column.cmp.type}
@@ -82,8 +88,7 @@ export function GroupTableBody({
                   gridRow: rowIdx + 2,
                   gridColumn: columns.length + 2,
                 }}
-                className="group-table-cell"
-              ></div>
+                className="group-table-cell"></div>
             </React.Fragment>
           ))}
         </div>
@@ -93,21 +98,21 @@ export function GroupTableBody({
           style={{
             '--before-color': group.style.color,
           }}
-          className="first-column last-row-cell  group-table-cell checkbox-cell flex align-center justify-center hoverable relative"
-        >
+          className="first-column last-row-cell  group-table-cell checkbox-cell flex align-center justify-center hoverable relative">
           <input disabled type="checkbox" />
         </div>
         <div
           className="group-table-cell wrapper flex align-center add-task-lr "
           style={{
             marginLeft: '20px',
-          }}
-        >
+          }}>
           <EditableText
             type={'addTask'}
             initialText={initText}
             onSave={saveNewTask}
-            placeholder={`+ Add ${board?.option ? board?.option.slice(0, -1) : "Task"}`}
+            placeholder={`+ Add ${
+              board?.option ? board?.option.slice(0, -1) : 'Task'
+            }`}
           />
         </div>
       </div>
