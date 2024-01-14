@@ -129,7 +129,7 @@ socketService.on('remove-group', (data) => {
   store.dispatch({ type: REMOVE_GROUP, boardId, deletedGroupId: groupId })
 })
 
-// * GROUPS SOCKETS *
+// * BOARD SOCKETS *
 socketService.on('add-board', (data) => {
   const user = userService.getLoggedinUser()
   console.log(user.fullname, ':', data)
