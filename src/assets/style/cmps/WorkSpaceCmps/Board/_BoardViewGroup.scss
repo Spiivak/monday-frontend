@@ -74,12 +74,15 @@
 .board-view-list {
   .add-new-group {
     border-color: #c3c6d4;
-    padding: 5px;
+    padding: 4px 8px;
     gap: 4.5px;
     margin-top: 8px;
+    line-height: 22px;
+    // display: flex;
+    // align-items: center;
     // transition: 70ms transform, 100ms, cubic-bezier(0.4,0,0.2,1), width;
 
-    font: 400 14px Figtree;
+    font: 400 15px/24px Figtree;
 
     svg {
       color: #323338
