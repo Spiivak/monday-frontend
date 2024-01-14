@@ -45,12 +45,26 @@ export function GroupTableFooter({
                     minHeight: '36px',
                     height: '100%',
                   }}
-                  className="group-table-cell cell">
+                  className={`group-table-cell cell ${
+                    colIdx === 0 ? 'first-footer-cell' : ''
+                  }`}>
                   {colSummary}
                 </div>
               </React.Fragment>
             )
           })}
+        <div
+          style={{
+            gridRow: rows.length + 3,
+            gridColumn: columns.length + 2,
+            borderBottom: '1px solid #d0d4e4',
+            borderLeft: '1px solid #d0d4e4',
+            width: '100%',
+            minHeight: '36px',
+            height: '100%',
+          }}
+          className="group-table-cell cell">
+        </div>
       </div>
     </Suspense>
   )
@@ -165,26 +179,6 @@ function calculateStatusPercentage(tasks, group) {
     return acc
   }, {})
   return percentageObj
-  // const doneCount = tasks['Done'] || 0
-  // const workingCount = tasks['Working on it'] || 0
-  // const havenotStartedCount = tasks["Haven't Started"] || 0
-  // const stuckCount = tasks['Stuck'] || 0
-
-  // const totalTasks = doneCount + workingCount + havenotStartedCount + stuckCount
-
-  // const donePercentage = totalTasks === 0 ? 0 : (doneCount / totalTasks) * 100
-  // const workingPercentage =
-  //   totalTasks === 0 ? 0 : (workingCount / totalTasks) * 100
-  // const havenotStartedPercentage =
-  //   totalTasks === 0 ? 0 : (havenotStartedCount / totalTasks) * 100
-  // const stuckPercentage = totalTasks === 0 ? 0 : (stuckCount / totalTasks) * 100
-
-  // return {
-  //   Done: donePercentage,
-  //   WorkingOnIt: workingPercentage,
-  //   Stuck: stuckPercentage,
-  //   HaventStarted: havenotStartedPercentage,
-  // }
 }
 
 function renderStatusBox(statusPercentages, board, column) {
@@ -202,18 +196,6 @@ function renderStatusBox(statusPercentages, board, column) {
     },
     { "Haven't Started": '#c4c4c4' }
   )
-
-  // function getColor(status) {
-  //   if (status === 'Stuck') {
-  //     return '#E2445C'
-  //   } else if (status === 'WorkingOnIt') {
-  //     return '#FDAB3D'
-  //   } else if (status === 'HaventStarted') {
-  //     return '#c4c4c4'
-  //   } else {
-  //     return '#00C875'
-  //   }
-  // }
 
   const statusBars = Object.entries(statusPercentages).map(
     ([status, percentage]) => (
