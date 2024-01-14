@@ -11,12 +11,14 @@
       padding-left: calc($spacing-small + 4px);
       padding-right: calc($spacing-xxl - 8px);
       padding-block: calc($spacing-small + 4px);
+
       .my-work {
         svg {
           width: 20px;
           height: 20px;
         }
       }
+
       a {
         min-height: 32px;
         font: 400 14px/20px Figtree;
@@ -47,38 +49,53 @@
 
           .filter-search {
             max-width: 180px;
+            max-height: 32px;
             border: 1px solid #d0d4e4;
             border-radius: $border-radius-small;
+            display: flex;
+            align-items: center;
+            padding: 0 3px 0 6px;
+            margin-left: 2px;
+
+            &:focus-within {
+              border: 1px solid $primary-color;
+            }
+
             button {
+              padding: 0 2px;
+              width: 24px;
+              height: 24px;
+              margin: 0 2px;
+              margin-left: -2px;
+
+              svg {
+                width: 18px;
+                height: 18px;
+              }
+
               &.filter {
-                display: none;
+                opacity: 0;
               }
             }
+
             input {
-              margin-bottom: 1px;
-              font-size: 14px;
+              font: 400 14px Figtree;
               width: 100%;
-              height: 32px;
+              height: 28px;
               border: none;
               padding: 0;
-              &:focus {
-                // border: 1px solid red;
-              }
             }
-            &:hover{
+
+            &:hover {
               button {
-                &:active {
-                  // background-color: red;
-                }
                 &.filter {
-                  display: flex;
+                  opacity: 1;
                 }
               }
             }
           }
 
           .add-btn {
-
             svg {
               color: white;
             }
@@ -87,15 +104,17 @@
 
         .workspace-dropdown-button {
           // align-items: center;
-      padding-left: calc($spacing-small + 4px);
+          padding-left: calc($spacing-small + 4px);
           margin-right: 14px;
           margin-bottom: 8px;
           margin-top: 14px;
+
           .dropdown-button {
             width: 100%;
             border-radius: $border-radius-small;
             padding: 5px;
             max-width: 180px;
+
             &:hover {
               background-color: #dbdfec;
             }
@@ -103,6 +122,7 @@
             .workspace-title {
               font: 600 15px Figtree;
               cursor: pointer;
+
               .workspace-name-wrapper {
                 span {
                   padding: 0 3px;
@@ -120,8 +140,7 @@
     border-radius: 0 $border-radius-medium 0 $border-radius-medium;
     background-color: #f6f7fb;
     position: absolute;
-    padding: calc($spacing-small + 4px) $spacing-small
-      calc($spacing-small + 4px) $spacing-small;
+    padding: calc($spacing-small + 4px) $spacing-small calc($spacing-small + 4px) $spacing-small;
     right: 0;
     top: 0;
     opacity: 0;
@@ -138,6 +157,7 @@
   .close-btn {
     opacity: 1;
   }
+
   .side-bar-container {
     display: none;
   }
@@ -145,11 +165,12 @@
   &:hover {
     min-width: 255px;
     animation: none;
-    box-shadow: 0 6px 20px rgba(0,0,0,.2);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
     z-index: 100000000;
+
     .side-bar-container {
       // width: 255px;
-    animation: none;
+      animation: none;
       display: flex;
     }
   }
@@ -157,19 +178,23 @@
 
 .workspaces-list {
   margin-top: 4px;
+
   .workspace-item {
     .context-menu {
-     position: absolute;
-     display: none;
-     right: 20px;
+      position: absolute;
+      display: none;
+      right: 20px;
     }
-  &:hover {
-    .context-menu {
-      display: flex;
+
+    &:hover {
+      .context-menu {
+        display: flex;
+      }
     }
-  }
+
     width: 100%;
     padding: 0 12px;
+
     a {
       width: 100%;
       font: 400 14px/20px Figtree;
@@ -187,11 +212,13 @@
     .link {
       width: 100%;
       padding: $spacing-small - 2px $spacing-small;
+
       .nav-link-content {
         // padding-left: calc($spacing-small);
         display: flex;
         justify-content: flex-start;
       }
+
       &:hover {
         background-color: #dbdfec;
         border-radius: $border-radius-small;
@@ -307,6 +334,10 @@
 
 .header-menu {
   position: relative;
+
+  svg {
+    color: $text-color !important;
+  }
 }
 
 .filter-modal {
@@ -328,9 +359,11 @@
     .filter-heading {
       margin-bottom: $spacing-small;
     }
+
     input {
       font-size: 14px;
     }
+
     .option {
       margin-bottom: $spacing-xs;
     }
