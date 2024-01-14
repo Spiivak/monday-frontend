@@ -33,10 +33,10 @@ export function StatusPicker({
           createdAt: Date.now(),
           title: updatedTask.title || '',
           colName,
-          oldValue: getLabelById(oldValue).title || 'Haven\'t Starterd',
-          oldValueColor: getLabelById(oldValue).color || '#eee',
-          newValue: getLabelById(status).title,
-          newValueColor: getLabelById(status).color,
+          oldValue: getLabelById(oldValue)?.title || 'Haven\'t Starterd',
+          oldValueColor: getLabelById(oldValue)?.color || '#eee',
+          newValue: getLabelById(status)?.title,
+          newValueColor: getLabelById(status)?.color,
         },
         updatedTask
       )
