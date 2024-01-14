@@ -76,7 +76,7 @@ export function WorkspaceHeader() {
           <button
             className="btn-icon medium-transparent"
             onClick={onClickNotifyModal}
-            style={{ padding: '8px' }}
+            style={{ padding: '10px' }}
           >
             <div className="flex align-center" data-notification-button="true">
               <NotificationsIcon />
@@ -94,7 +94,7 @@ export function WorkspaceHeader() {
           <button
             className="btn-icon medium-transparent"
             onClick={onClickInviteModal}
-            style={{ padding: '8px' }}
+            style={{ padding: '10px' }}
           >
             <div className="flex align-center" data-invite-button="true">
               <InviteMembersIcon />
@@ -109,15 +109,15 @@ export function WorkspaceHeader() {
               <SearchIcon />
             </div>
           </button> */}
-          <button
+          {/* <button
             className="btn-icon large-transparent"
             onClick={onClickHelpModal}
-            style={{ padding: '8px' }}
+            style={{ padding: '10px' }}
           >
             <div className="flex align-center" data-help-button="true">
               <HelpIcon />
             </div>
-          </button>
+          </button> */}
           <button className="btn-icon small-transparent flex gap8">
             <MondayIcon />
             <img
