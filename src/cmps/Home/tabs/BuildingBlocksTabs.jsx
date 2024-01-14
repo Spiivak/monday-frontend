@@ -8,28 +8,32 @@ import React from 'react'
 // import Apps from '../../../assets/icons/Apps.svg'
 // import Doc from '../../../assets/icons/Doc.svg'
 
-
-
-import { DocIcon, DashboardIcon, AppsIcon, RobotIcon, IntegrationsIcon, BoardIcon,  } from '../../Icons'
+import {
+  DocIcon,
+  DashboardIcon,
+  AppsIcon,
+  RobotIcon,
+  IntegrationsIcon,
+  BoardIcon,
+} from '../../Icons'
 import { NavLink } from 'react-router-dom'
 
 const tabsData = [
-  { id: 'boards', label: 'Boards', svg: <BoardIcon/> },
-  { id: 'views', label: 'Views', svg: <BoardIcon/> },
-  { id: 'dashboards', label: 'Dashboards', svg: <DashboardIcon/> },
-  { id: 'integrations', label: 'Integrations', svg: <IntegrationsIcon/> },
-  { id: 'automations', label: 'Automations', svg: <RobotIcon/> },
-  { id: 'apps', label: 'Apps', svg: <AppsIcon/> },
-  { id: 'docs', label: 'Docs', svg: <DocIcon/> },
+  { id: 'boards', label: 'Boards', svg: <BoardIcon /> },
+  { id: 'views', label: 'Views', svg: <BoardIcon /> },
+  { id: 'dashboards', label: 'Dashboards', svg: <DashboardIcon /> },
+  { id: 'integrations', label: 'Integrations', svg: <IntegrationsIcon /> },
+  { id: 'automations', label: 'Automations', svg: <RobotIcon /> },
+  { id: 'apps', label: 'Apps', svg: <AppsIcon /> },
+  { id: 'docs', label: 'Docs', svg: <DocIcon /> },
 ]
 
 export function BuildingBlocksTabs({ activeTab, onTabClick }) {
   return (
     <div className="building-blocks-tabs flex justify-center align-center">
       {tabsData.map((tab) => (
-        <NavLink>
+        <NavLink key={tab.id}>
           <div
-            key={tab.id}
             className={`tab ${tab.id} flex column align-center ${
               activeTab === tab.id ? 'active' : ''
             }`}

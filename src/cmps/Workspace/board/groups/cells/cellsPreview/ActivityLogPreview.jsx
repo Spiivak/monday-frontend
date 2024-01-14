@@ -11,7 +11,7 @@ export function ActivityLogPreview() {
   )
 
   return (
-    <div className="activity-log flex column">
+    <div className="activity-log flex column align-center">
       {selectedTask.activity?.map((active) => (
         <div key={active.createdAt}>
           <span className="time-format">
@@ -32,11 +32,31 @@ export function ActivityLogPreview() {
           {/* <span className="active-fullname">{active.by.fullname}</span> */}
           <span className="active-title">{active.title}</span>
           <span className="active-colname">{active.colName}</span>
-          <span className="old-value">{active.oldValue}</span>
+          <span
+            style={{
+              padding:active.oldValue ? '8px' : '',
+              placeSelf:active.oldValue ? 'center' : '',
+              width: active.oldValue ? '100%' : '',
+              textAlign: active.oldValue ? 'center' : '',
+              backgroundColor: active.oldValue ? active.oldValueColor : '',
+            }}
+            className="old-value">
+            {active.oldValue}
+          </span>
           <span className="chevron">
             <NavigationChevronDownIcon />
           </span>
-          <span className="new-value">{active.newValue}</span>
+          <span
+            style={{
+              padding:active.newValue ? '8px' : '',
+              placeSelf:active.newValue ? 'center' : '',
+              width: active.newValue ? '100%' : '',
+              textAlign: active.newValue ? 'center' : '',
+              backgroundColor: active.newValue ? active.newValueColor : '',
+            }}
+            className="new-value">
+            {active.newValue}
+          </span>
         </div>
       ))}
     </div>
