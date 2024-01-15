@@ -8,12 +8,14 @@ import {
   ADD_GROUP,
   ADD_TASK,
   COMPLETE_ADD_COLUMN,
+  DEACTIVATE_BOARD,
   DEACTIVATE_CONTEXT_BTN,
   DEACTIVATE_TASK,
   REMOVE_BOARD,
   REMOVE_COLUMN,
   REMOVE_GROUP,
   REMOVE_TASK,
+  SET_ACTIVE_BOARD,
   SET_ACTIVE_CONTEXT_BTN,
   SET_ACTIVE_TASK,
   SET_BOARD,
@@ -230,7 +232,6 @@ export async function removeAllTasks(props) {
 }
 
 export async function saveSelectedTasks(taskIds) {
-  console.error('saveSelectedTasks  selectedTaskIds:', taskIds)
   try {
     store.dispatch({ type: SET_CHECKED_TASKS, taskIds })
   } catch (error) {
@@ -364,6 +365,18 @@ export function deactivateTask() {
 
 // *
 
+// * ACTIVE BOARD
+
+export function setActiveBoard(activeBoard) {
+  store.dispatch({ type: SET_ACTIVE_BOARD, activeBoard })
+}
+
+export function deactivateBoard() {
+  store.dispatch({ type: DEACTIVATE_BOARD })
+}
+
+// *
+
 export function finishAddingColumn() {
   store.dispatch({ type: COMPLETE_ADD_COLUMN })
 }
@@ -407,8 +420,8 @@ export function addLabel(data, board, accessor) {
   saveBoard(newBoard)
 }
 
-export function swapLabels(labels, board, accessor){
-  const newBoard = {...board, [accessor]: [...labels]}
+export function swapLabels(labels, board, accessor) {
+  const newBoard = { ...board, [accessor]: [...labels] }
 
   saveBoard(newBoard)
 }

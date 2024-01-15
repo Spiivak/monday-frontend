@@ -1,6 +1,11 @@
 import React, { useRef, useState } from 'react'
 import { SearchIcon } from '../../../../Icons'
-export function TextSearch({ handleChange, handleSubmit, filterBy }) {
+export function TextSearch({
+  handleChange,
+  handleSubmit,
+  filterBy,
+  clearText,
+}) {
   const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef()
   function handleClick() {
@@ -12,6 +17,11 @@ export function TextSearch({ handleChange, handleSubmit, filterBy }) {
   function handleBlur() {
     if (filterBy.txt?.length === 0 || !filterBy.txt) setIsEditing(false)
     handleSubmit()
+  }
+
+  function handleClearTxt() {
+    clearText()
+    setIsEditing(false)
   }
   return (
     <div className="flex align-center relative">
@@ -40,11 +50,22 @@ export function TextSearch({ handleChange, handleSubmit, filterBy }) {
       <button
         onClick={handleClick}
         style={{ display: isEditing ? 'none' : 'flex' }}
-        className="btn-icon medium-transparent flex align-center gap8"
-      >
+        className="btn-icon medium-transparent flex align-center gap8">
         <SearchIcon />
         <span>Search</span>
       </button>
+      <div
+        style={{
+          display: isEditing ? 'flex' : 'none',
+          right: 0,
+          top: 0,
+          cursor: 'pointer',
+          translate: '-200% 0',
+          zIndex: 100000,
+        }}
+        onClick={handleClearTxt}>
+        x
+      </div>
 
       {/* <SearchIcon /> Search */}
     </div>
