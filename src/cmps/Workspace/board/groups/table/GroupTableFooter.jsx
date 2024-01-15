@@ -10,6 +10,7 @@ export function GroupTableFooter({
   columns = [],
   group = [],
   board = [],
+  isTableOpen = true,
 }) {
   console.log(board)
   return (
@@ -45,7 +46,8 @@ export function GroupTableFooter({
               colSummary = groupSummaryByColumn(
                 columns[colIdx + 1],
                 group,
-                board
+                board,
+                isTableOpen
               )
             }
             if (colIdx === columns.length - 1) return
@@ -102,9 +104,8 @@ function calculateDateColor(group, fromDate, toDate) {
   return group.style.color
 }
 
-function groupSummaryByColumn(column, group, board) {
+function groupSummaryByColumn(column, group, board, isTableOpen) {
   let currAccessor = column.accessor
-  console.log(board?.groups)
   switch (column.cmp.type) {
     case 'StatusPicker':
       const statusSum = group.tasks.reduce((acc, task) => {
@@ -121,7 +122,19 @@ function groupSummaryByColumn(column, group, board) {
         board,
         column
       )
-      return statusSumBar
+      return (
+        <div
+          className="flex column"
+          style={{
+            marginBlockStart: !isTableOpen && '-8px',
+            gap: !isTableOpen && '8px',
+          }}>
+          {!isTableOpen && (
+            <div style={{ textAlign: 'center' }}>{column.cmp.title}</div>
+          )}{' '}
+          {statusSumBar}
+        </div>
+      )
 
     case 'DatePicker':
       const dates = group.tasks

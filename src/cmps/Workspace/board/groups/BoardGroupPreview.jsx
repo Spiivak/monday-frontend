@@ -204,6 +204,7 @@ export function BoardGroupPreview({ board, group, boardId, cmpsOrder }) {
           onDeleteColumn={onDeleteColumn}
           onUpdateGroup={onUpdateGroup}
           board={board}
+          isTableOpen={isTableOpen}
         />
       )}
     </>
@@ -222,6 +223,7 @@ function CollapsedTable({
   boardId,
   onDeleteColumn,
   onUpdateGroup,
+  isTableOpen,
 }) {
   return (
     <section
@@ -267,6 +269,7 @@ function CollapsedTable({
             columns,
             group,
             board,
+            isTableOpen
           }}
         />
       </div>
