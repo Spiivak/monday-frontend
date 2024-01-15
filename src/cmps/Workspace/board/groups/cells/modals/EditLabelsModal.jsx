@@ -91,7 +91,7 @@ export function EditLabelsModal() {
     reorderedLabels.splice(endIndex, 0, removed);
 
     // Update the labels order
-    setLabels(selectedBoard, editLabelTargetData, reorderedLabels);
+    // setLabels(editLabelTargetData, reorderedLabels);
   };
 
 
@@ -136,7 +136,6 @@ export function EditLabelsModal() {
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
-                      isDragging={snapshot.isDragging}
                       className="label-row flex align-center"
                       style={{
                         ...provided.draggableProps.style,
