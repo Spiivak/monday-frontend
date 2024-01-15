@@ -128,10 +128,20 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
           style={{
             marginBlockStart: !isTableOpen && '-8px',
             gap: !isTableOpen && '8px',
+            padding: !isTableOpen && '8px',
+            maxWidth: '200px',
           }}>
           {!isTableOpen && (
-            <div style={{ textAlign: 'center' }}>{column.cmp.title}</div>
-          )}{' '}
+            <div
+              style={{
+                textAlign: 'center',
+                textWrap: 'nowrap',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+              }}>
+              {column.cmp.title}
+            </div>
+          )}
           {statusSumBar}
         </div>
       )
@@ -145,14 +155,34 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
       const maxDate = Math.max(...dates)
       return (
         <div
+          className="flex column"
           style={{
-            minWidth: '115px',
-            borderRadius: '15px',
-            background: calculateDateColor(group, minDate, maxDate),
-            textAlign: 'center',
-            color: 'white',
+            marginBlockStart: !isTableOpen && '-8px',
+            gap: !isTableOpen && '8px',
+            padding: !isTableOpen && '8px',
+            maxWidth: '200px',
           }}>
-          {utilService.formatDateRange([minDate, maxDate])}
+          {!isTableOpen && (
+            <div
+              style={{
+                textAlign: 'center',
+                textWrap: 'nowrap',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+              }}>
+              {column.cmp.title}
+            </div>
+          )}
+          <div
+            style={{
+              minWidth: '115px',
+              borderRadius: '15px',
+              background: calculateDateColor(group, minDate, maxDate),
+              textAlign: 'center',
+              color: 'white',
+            }}>
+            {utilService.formatDateRange([minDate, maxDate])}
+          </div>
         </div>
       )
     case 'NumbersPicker':
@@ -161,7 +191,29 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
         acc += +taskValue
         return acc
       }, 0)
-      return numbersSum
+      return (
+        <div
+          className="flex column"
+          style={{
+            marginBlockStart: !isTableOpen && '-8px',
+            gap: !isTableOpen && '8px',
+            padding: !isTableOpen && '8px',
+            maxWidth: '200px',
+          }}>
+          {!isTableOpen && (
+            <div
+              style={{
+                textAlign: 'center',
+                textWrap: 'nowrap',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+              }}>
+              {column.cmp.title}
+            </div>
+          )}
+          {numbersSum}
+        </div>
+      )
 
     case 'TimelinePicker':
       const timelines = group.tasks
@@ -176,14 +228,34 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
       )
       return (
         <div
+          className="flex column"
           style={{
-            minWidth: '115px',
-            borderRadius: '15px',
-            background: calculateDateColor(group, minTimestamp, maxTimestamp),
-            textAlign: 'center',
-            color: 'white',
+            marginBlockStart: !isTableOpen && '-8px',
+            gap: !isTableOpen && '8px',
+            padding: !isTableOpen && '8px',
+            maxWidth: '200px',
           }}>
-          {utilService.formatDateRange([minTimestamp, maxTimestamp])}
+          {!isTableOpen && (
+            <div
+              style={{
+                textAlign: 'center',
+                textWrap: 'nowrap',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+              }}>
+              {column.cmp.title}
+            </div>
+          )}
+          <div
+            style={{
+              minWidth: '115px',
+              borderRadius: '15px',
+              background: calculateDateColor(group, minTimestamp, maxTimestamp),
+              textAlign: 'center',
+              color: 'white',
+            }}>
+            {utilService.formatDateRange([minTimestamp, maxTimestamp])}
+          </div>
         </div>
       )
 
@@ -196,7 +268,29 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
       let uniqueMemberArray = membersOfTask.filter(
         (obj, index, self) => index === self.findIndex((t) => t._id === obj._id)
       )
-      return renderMembersStatus(uniqueMemberArray)
+      return (
+        <div
+          className="flex column"
+          style={{
+            marginBlockStart: !isTableOpen && '-8px',
+            gap: !isTableOpen && '8px',
+            padding: !isTableOpen && '8px',
+            maxWidth: '200px',
+          }}>
+          {!isTableOpen && (
+            <div
+              style={{
+                textAlign: 'center',
+                textWrap: 'nowrap',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+              }}>
+              {column.cmp.title}
+            </div>
+          )}
+          {renderMembersStatus(uniqueMemberArray)}
+        </div>
+      )
 
     case 'FilePicker':
       const filesOfTask = group.tasks
@@ -204,7 +298,29 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
         .map((task) => task[currAccessor])
       if (!filesOfTask.length) return
 
-      return renderFilesStatus(filesOfTask)
+      return (
+        <div
+          className="flex column"
+          style={{
+            marginBlockStart: !isTableOpen && '-8px',
+            gap: !isTableOpen && '8px',
+            padding: !isTableOpen && '8px',
+            maxWidth: '200px',
+          }}>
+          {!isTableOpen && (
+            <div
+              style={{
+                textAlign: 'center',
+                textWrap: 'nowrap',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+              }}>
+              {column.cmp.title}
+            </div>
+          )}
+          {renderFilesStatus(filesOfTask)}
+        </div>
+      )
   }
 }
 
@@ -258,7 +374,7 @@ function renderMembersStatus(members) {
   }
   const [firstMember, ...restMembers] = members
   return (
-    <div className="avatars-wrapper flex align-center">
+    <div className="avatars-wrapper flex justify-center align-center">
       {renderAvatar(firstMember)}
       {renderOverflowIndicator(restMembers)}
     </div>

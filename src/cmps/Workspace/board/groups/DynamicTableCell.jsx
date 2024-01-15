@@ -18,7 +18,6 @@ export function DynamicTableCell({
   cmpsOrder,
 }) {
   const loggedInUser = useSelector((storeState) => storeState.userModule.user)
-
   async function handleUpdateTask(cmpType, data, task) {
     try {
       await onTaskUpdate(cmpType, cmpId, data, task)
