@@ -36,7 +36,7 @@ export function ImgUploader({ id, imgData, handleUpdateTaskFile = null }) {
   return (
     <div
       className="upload-preview  flex space-between"
-      style={{ padding: '7px' }}
+      style={{ padding: '7px', height: '100%' }}
     >
       {isLoading ? (
         <CircularProgress size="16px" style={{ margin: 'auto' }} />
