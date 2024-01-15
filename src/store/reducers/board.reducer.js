@@ -121,7 +121,6 @@ export function boardReducer(state = initialState, action = {}) {
 
     // * TASK CRUD
     case SET_TASKS:
-      console.log('test')
       newBoards = state.boards.map((board) => {
         if (board._id !== action.boardId) return board
         return {
