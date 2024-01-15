@@ -9,7 +9,7 @@ import {
   NavigationChevronDownIcon,
   SortIcon,
 } from '../../../Icons'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   addTask,
   setStoreFilterBy,
@@ -53,14 +53,20 @@ export function BoardHeaderFilter({ board, isCollapsed }) {
     )
   }
 
+  function clearText() {
+    setFilterBy((prevFilterBy) => {
+      prevFilterBy.txt = ''
+      return prevFilterBy
+    })
+  }
+
   return (
     <section className={`board-filter flex gap6`}>
       <ToolTip title="New Item">
         <div className="new-item flex">
           <button
             className="btn-ctn medium-primary new-item-btn"
-            onClick={handleAdd}
-          >
+            onClick={handleAdd}>
             {`New ${board?.option ? board.option.slice(0, -1) : 'Task'}`}
           </button>
           <button className="btn-ctn medium-primary new-item-arrow">
@@ -72,6 +78,7 @@ export function BoardHeaderFilter({ board, isCollapsed }) {
         filterBy={filterBy}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+        clearText={clearText}
       />
       <PersonFilter
         board={board}
