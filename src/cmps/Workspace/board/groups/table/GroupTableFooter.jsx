@@ -3,6 +3,7 @@ import { utilService } from '../../../../../services/util.service'
 import { MemberHoverModal } from '../cells/modals/MemberHoverModal'
 import { Tooltip, styled, tooltipClasses } from '@mui/material'
 import { KeySharp } from '@mui/icons-material'
+import { useSelector } from 'react-redux'
 
 export function GroupTableFooter({
   rows = [],
@@ -10,6 +11,7 @@ export function GroupTableFooter({
   group = [],
   board = [],
 }) {
+  console.log(board)
   return (
     <Suspense fallback={<Loading />}>
       <div
@@ -18,20 +20,20 @@ export function GroupTableFooter({
         <div
           className="empty-column empty-1"
           style={{
-            position:'sticky',
-            left:'50px',
-            zIndex:1000,
-            backgroundColor:'#fff',
+            position: 'sticky',
+            left: '50px',
+            zIndex: 1000,
+            backgroundColor: '#fff',
             // gridRow: rows.length + 3,
             gridColumn: 1,
           }}></div>
         <div
           className="empty-column empty-2"
           style={{
-            position:'sticky',
-            left:'79px',
-            zIndex:1000,
-            backgroundColor:'#fff',
+            position: 'sticky',
+            left: '79px',
+            zIndex: 1000,
+            backgroundColor: '#fff',
             // gridRow: rows.length + 3,
             gridColumn: 2,
           }}></div>
@@ -87,9 +89,22 @@ function Loading() {
   return <h1>loading...</h1>
 }
 
+function calculateDateColor(group, fromDate, toDate) {
+  const today = Date.now()
+  let percentile
+  if (today <= fromDate) return '#333'
+  else if (today > fromDate && today < toDate) {
+    percentile = Math.floor(
+      100 - ((today - fromDate) / (toDate - fromDate)) * 100
+    )
+    return `linear-gradient(to left, #333 ${percentile}%, ${group.style.color} ${percentile}%)`
+  }
+  return group.style.color
+}
+
 function groupSummaryByColumn(column, group, board) {
   let currAccessor = column.accessor
-
+  console.log(board?.groups)
   switch (column.cmp.type) {
     case 'StatusPicker':
       const statusSum = group.tasks.reduce((acc, task) => {
@@ -120,7 +135,7 @@ function groupSummaryByColumn(column, group, board) {
           style={{
             minWidth: '115px',
             borderRadius: '15px',
-            backgroundColor: '#333',
+            background: calculateDateColor(group, minDate, maxDate),
             textAlign: 'center',
             color: 'white',
           }}>
@@ -151,7 +166,7 @@ function groupSummaryByColumn(column, group, board) {
           style={{
             minWidth: '115px',
             borderRadius: '15px',
-            backgroundColor: '#333',
+            background: calculateDateColor(group, minTimestamp, maxTimestamp),
             textAlign: 'center',
             color: 'white',
           }}>

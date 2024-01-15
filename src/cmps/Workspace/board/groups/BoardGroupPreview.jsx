@@ -203,6 +203,7 @@ export function BoardGroupPreview({ board, group, boardId, cmpsOrder }) {
           boardId={boardId}
           onDeleteColumn={onDeleteColumn}
           onUpdateGroup={onUpdateGroup}
+          board={board}
         />
       )}
     </>
@@ -215,6 +216,7 @@ function CollapsedTable({
   toggleTable,
   rows,
   columns,
+  board,
   onUpdateColumn,
   onAddColumn,
   boardId,
@@ -264,6 +266,7 @@ function CollapsedTable({
             rows,
             columns,
             group,
+            board,
           }}
         />
       </div>
