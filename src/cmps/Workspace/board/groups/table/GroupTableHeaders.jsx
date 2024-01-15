@@ -29,21 +29,13 @@ export function GroupTableHeaders({
     return updatedTasks
   }
 
-  const isChecked = group.tasks.every((task) =>
-    checkedTaskIds.includes(task.id)
-  )
-
   return (
     <div className="table-body-row table-header">
       <div
         style={{ '--before-color': group.style.color }}
         className="first-column group-table-header-cell checkbox-cell flex align-center justify-center first-row-cell"
       >
-        <input
-          type="checkbox"
-          onChange={handleGroupCheckboxChange}
-          checked={isChecked}
-        />
+        <input type="checkbox" onChange={handleGroupCheckboxChange} />
       </div>
       {columns.map((column, idx) => (
         <div

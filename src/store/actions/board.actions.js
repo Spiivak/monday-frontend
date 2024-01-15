@@ -232,7 +232,6 @@ export async function removeAllTasks(props) {
 }
 
 export async function saveSelectedTasks(taskIds) {
-  console.error('saveSelectedTasks  selectedTaskIds:', taskIds)
   try {
     store.dispatch({ type: SET_CHECKED_TASKS, taskIds })
   } catch (error) {
