@@ -37,7 +37,9 @@ export function TaskTitle({ initialText, onSave, placeholder, type }) {
     }, 30)
   }
   return (
-    <div className="task-title">
+    <div className="task-title"
+      style={{width: '250px'}}
+    >
       {isEditing ? (
         <div ref={editableTextRef} className="task-title-input">
           <input
@@ -49,11 +51,12 @@ export function TaskTitle({ initialText, onSave, placeholder, type }) {
             placeholder={placeholder}
             onKeyDown={handleKeyDown}
             autoFocus
+            style={{width: '250px'}}
           />
         </div>
       ) : (
         // <div className="editable-txt editable-task-title task-title-text" onClick={handleToggleEditing}>
-          <span onClick={handleToggleEditing} className="flex align-center editable-txt editable-task-title task-title-text">{inputText || placeholder}</span>
+          <span style={{width: '250px', textWrap:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}} onClick={handleToggleEditing} className="flex align-center editable-txt editable-task-title task-title-text"><span>{inputText || placeholder}</span></span>
         // </div>
       )}
     </div>
