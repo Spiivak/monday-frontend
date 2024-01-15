@@ -31,6 +31,10 @@ export const DEACTIVATE_CONTEXT_BTN = 'DEACTIVATE_CONTEXT_BTN'
 export const SET_ACTIVE_TASK = 'SET_ACTIVE_TASK'
 export const DEACTIVATE_TASK = 'DEACTIVATE_TASK'
 //
+// active board
+export const SET_ACTIVE_BOARD = 'SET_ACTIVE_BOARD'
+export const DEACTIVATE_BOARD = 'DEACTIVATE_BOARD'
+//
 export const START_ADD_COLUMN = 'START_ADD_COLUMN'
 export const COMPLETE_ADD_COLUMN = 'COMPLETE_ADD_COLUMN'
 // board members
@@ -48,6 +52,7 @@ const initialState = {
   activeContextBtn: null,
   activeContextBtnData: null,
   activeTask: null,
+  activeBoard: null,
   isAddingColumn: false,
   checkedTaskIds: [],
   imgTarget: null,
@@ -259,6 +264,12 @@ export function boardReducer(state = initialState, action = {}) {
       return { ...state, activeTask: action.activeTask }
     case DEACTIVATE_TASK:
       return { ...state, activeTask: null }
+
+    // * ACTIVE BOARD
+    case SET_ACTIVE_BOARD:
+      return { ...state, activeBoard: action.activeBoard }
+    case DEACTIVATE_BOARD:
+      return { ...state, activeBoard: null }
 
     case START_ADD_COLUMN:
       return { ...state, isAddingColumn: true }

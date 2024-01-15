@@ -3,13 +3,19 @@ import { useEffect, useRef, useState } from 'react'
 import { AddIcon, CloseSmallIcon, HomeIcon, MenuIcon } from '../../../Icons'
 import Frame from '../../../../assets/img/Frame.png'
 import { useSelector } from 'react-redux'
-import { deactivateTask } from '../../../../store/actions/board.actions'
+import {
+  deactivateBoard,
+  deactivateTask,
+} from '../../../../store/actions/board.actions'
 import { ActivityLogPreview } from './cells/cellsPreview/ActivityLogPreview'
 import emptyState from '../../../../assets/img/empty-state.svg'
 
 export function TaskDetails() {
   const activeTask = useSelector(
     (storeState) => storeState.boardModule.activeTask
+  )
+  const activeBoard = useSelector(
+    (storeState) => storeState.boardModule.activeBoard
   )
 
   const [activeTab, setActiveTab] = useState('activityLog') // Default to 'updates'
@@ -39,7 +45,7 @@ export function TaskDetails() {
   const handleTabChange = (tab) => {
     setActiveTab(tab)
   }
-  if (!activeTask) return
+  if (!activeTask && !activeBoard) return
   return (
     <div className="task-details-modal" ref={modalRef}>
       {/* CLOSE BUTTON */}
@@ -47,14 +53,14 @@ export function TaskDetails() {
       <div className="header">
         <button
           className="btn-icon small-transparent btn-close"
-          onClick={() => deactivateTask()}
+          onClick={() => deactivateTask() || deactivateBoard()}
         >
           <CloseSmallIcon />
         </button>
 
         <div className="task-header flex align-center space-between">
           <div className="task-title">
-            <span>{activeTask.title}</span>
+            <span>{activeTask ? activeTask.title : activeBoard.title}</span>
           </div>
           <div className="header-actions flex align-center">
             <div className="members-list flex align-center">
@@ -150,7 +156,9 @@ export function TaskDetails() {
         </div>
       )}
 
-      {activeTab === 'activityLog' && <ActivityLogPreview />}
+      {activeTab === 'activityLog' && (
+        <ActivityLogPreview {...{ activeTask, activeBoard }} />
+      )}
     </div>
   )
 }

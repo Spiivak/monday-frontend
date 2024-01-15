@@ -1,22 +1,32 @@
 import { useState, useEffect } from 'react'
 import {
   ActivityIcon,
-  FavoriteIcon,
   InfoIcon,
   InviteMembersIcon,
-  MenuIcon,
   NavigationChevronUpIcon,
 } from '../../../Icons'
-// import { EditableText } from '../EditableText'
-import { Tooltip } from '@mui/material'
-import { NavLink } from 'react-router-dom'
 import { BoardTabs } from './BoardTabs'
 import { BoardHeaderFilter } from './BoardHeaderFilter'
 import { EditableText } from '../editableText/EditableText'
+import {
+  deactivateBoard,
+  setActiveBoard,
+} from '../../../../store/actions/board.actions'
+import { useSelector } from 'react-redux'
 
 export function BoardHeader({ board, onUpdateBoard }) {
   const [isCollapsed, setIsCollapsed] = useState(false)
-
+  const activeBoard = useSelector(
+    (storeState) => storeState.boardModule.activeBoard
+  )
+  console.log('activeBoard:', activeBoard)
+  function onOpenBoard() {
+    if (activeBoard) {
+      deactivateBoard()
+    } else {
+      setActiveBoard(board)
+    }
+  }
   useEffect(() => {
     const handleScroll = () => {
       setIsCollapsed(window.scrollY > 50)
@@ -68,7 +78,10 @@ export function BoardHeader({ board, onUpdateBoard }) {
 
             <div className="right-btns flex align-center">
               {!isCollapsed && (
-                <button className="btn-icon medium-transparent">
+                <button
+                  onClick={onOpenBoard}
+                  className="btn-icon medium-transparent"
+                >
                   <ActivityIcon />
                 </button>
               )}
