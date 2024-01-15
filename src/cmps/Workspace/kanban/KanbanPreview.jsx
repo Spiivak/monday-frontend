@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { BoardHeader } from '../board/header/BoardHeader'
-import { PersonRoundedIcon } from '../../Icons'
-import { loadBoards } from '../../../store/actions/board.actions'
+import { ChatIcon, ConvertToItemIcon, MenuIcon, PersonRoundedIcon, SubitemsIcon } from '../../Icons'
+import { loadBoards, saveBoard } from '../../../store/actions/board.actions'
 import { useParams } from 'react-router'
+import { ToolTip } from '../../ToolTip'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { KanbanHeader } from './KanbanHeader'
 
 export function KanbanPreview() {
   const boards = useSelector((storeState) => storeState.boardModule.boards)
@@ -44,6 +47,25 @@ export function KanbanPreview() {
       }))
   }
 
+  const renderPersons = (task) => {
+    if (selectedBoard) {
+      const memberPicker = selectedBoard.cmpsOrder.reduce((acc, cmp) => {
+        if (cmp.type !== 'MemberPicker') return acc
+        return [...acc, cmp]
+      }, [])
+      if(!task["members" + memberPicker[0].id] || task["members" + memberPicker[0].id].length === 0) return <PersonRoundedIcon/>
+      return task["members" + memberPicker[0].id].map(member => {
+        return <img src={member.imgUrl} alt='member' style={{ width: '25px', height: '25px', borderRadius: '50%'}}/>
+      })
+      // console.log('memberPicker  memberPicker:', memberPicker[0].id)
+      
+    }
+  }
+
+  const handleDragEnd = (result) => {
+    console.log('handleDragEnd  result:', result)
+    };
+
   const renderLabels = () => {
     // const uniqueStatuses = new Set();
 
@@ -82,44 +104,105 @@ export function KanbanPreview() {
           <div key={index} className='flex gap16'>
             {statusPickerLabels.map((label, index) => {
               return (
-              <div className="board-section">
-
-              <div style={{backgroundColor: label.color}} className='label flex align-center justify-center'>
-                {label.title}
-              </div>
-
-              <div className="task-container">
-              {Object.entries(statusPerPicker).map(([key, value]) => {
-                if(key !== label.id) return
-                {console.log('KEYSSSSSS', key, value)}
-                return value.map((task, idx) => {
-                  return (
-                  <div className='card-container'>
-                    <div className="task-card">
-                    <span>{task.title}</span>  
-                    </div>
+                <div key={index} className="board-section">
+                  <div style={{ backgroundColor: label.color }} className='label flex align-center justify-center'>
+                    {label.title}
                   </div>
-                  )
-                })
-              })}
-              </div>
-              </div>
-              )
+                  <div className="task-container">
+                    <DragDropContext onDragEnd={handleDragEnd}>
+                      <Droppable droppableId={`droppable-${label.id}`} type="TASK">
+                        {(provided, snapshot) => (
+                          <div
+                            {...provided.droppableProps}
+                            ref={provided.innerRef}
+                            className="card-container"
+                          >
+                            {Object.entries(statusPerPicker).map(([key, value]) => {
+                              if (key !== label.id) return null;
+                              return value.map((task, idx) => (
+                                <Draggable
+                                  key={task.id}
+                                  draggableId={`draggable-${task.id}`}
+                                  index={idx}
+                                >
+                                  {(provided, snapshot) => (
+                                    <div
+                                      ref={provided.innerRef}
+                                      {...provided.draggableProps}
+                                      {...provided.dragHandleProps}
+                                    >
+                                      <div className='card-container'>
+                                        <div className="task-card flex column">
+                                          <div className="card-header flex space-between">
+                                            <div className="card-title">
+                                              <span>{task.title}</span>
+                                            </div>
+                                            <div className="card-actions flex gap8">
+                                              <ChatIcon/>
+                                              <MenuIcon/>
+                                            </div>
+                                          </div>
+                                          <div className="task-people flex align-center space-between">
+                                            <div className="people-title flex align-center">
+                                              <span className='flex align-center'>
+                                                <PersonRoundedIcon/>
+                                              </span>
+                                              <span>Person</span>
+                                            </div>
+                                            <div className="persons flex align-center justify-center">
+                                              {renderPersons(task)}
+                                            </div>
+                                          </div>
+                                          <div className="task-subitem flex space-between align-center">
+                                            <span className='flex align-center gap8'>
+                                              <SubitemsIcon/>
+                                            </span>
+                                            <ToolTip title="Subitems">
+                                              <span>Subitems</span>
+                                            </ToolTip>
+                                            <div className="subitem-actions flex align-center justify-center">
+                                              <SubitemsIcon/>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  )}
+                                </Draggable>
+                              ));
+                            })}
+                            {provided.placeholder}
+                          </div>
+                        )}
+                      </Droppable>
+                    </DragDropContext>
+                  </div>
+                </div>
+              );
             })}
           </div>
-        )
-      })
-    }
-  }
-  if (!selectedBoard || !selectedBoard.groups) {
+        );
+      });
+    };
+  
+    // ... (other code)
+  
+
+  
+    // ... (other code)
+  };  if (!selectedBoard || !selectedBoard.groups) {
     return <div>Loading...</div>
   }
-  
+  async function onUpdateBoard(boardToUpdate) {
+    try {
+      await saveBoard(boardToUpdate)
+    } catch (err) {
+      console.error('Cannot add board', err)
+    }
+  }
   return (
     <section className="kanban-section">
-      <div className="kanban-header">
-        <BoardHeader />
-      </div>
+          <BoardHeader board={selectedBoard} {...{ onUpdateBoard }} />
       <main>
         <div className="group-container">
           <div className="group-tasks flex gap16">

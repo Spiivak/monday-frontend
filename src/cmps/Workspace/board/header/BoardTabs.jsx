@@ -1,21 +1,23 @@
-import { NavLink } from 'react-router-dom'
-import { AddSmallIcon, HomeIcon, NavigationChevronUpIcon } from '../../../Icons'
+import { NavLink, useParams } from 'react-router-dom'
+import { HomeIcon, NavigationChevronUpIcon } from '../../../Icons'
 
-export function BoardTabs({ isCollapsed, onCollapse }) {
+export function BoardTabs({ isCollapsed, onCollapse, board }) {
+  const { boardId } = useParams()
   return (
     <section className={`board-tabs flex space-between`}>
       <div className="tabs flex">
-        <NavLink to="/workspace">
+        <NavLink to={`/workspace/${boardId}`}>
           <button className="btn-icon medium-transparent flex gap8">
             <HomeIcon />
             Main Table
           </button>
         </NavLink>
-        <div className='divider'>
-        <button className="btn-icon medium-transparent flex align-center add-view-btn">
-          <AddSmallIcon />
-        </button>
-        </div>
+        <div className='divider'></div>
+        <NavLink to={`/workspace/${boardId}/views`}>
+          <button className="btn-icon medium-transparent flex gap8">
+            Kanban
+          </button>
+        </NavLink>
       </div>
       {!isCollapsed && (
         <div className="expend-collapse flex align-center">

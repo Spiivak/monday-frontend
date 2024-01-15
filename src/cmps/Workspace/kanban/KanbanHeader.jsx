@@ -4,17 +4,17 @@ import {
   InfoIcon,
   InviteMembersIcon,
   NavigationChevronUpIcon,
-} from '../../../Icons'
-import { BoardTabs } from './BoardTabs'
-import { BoardHeaderFilter } from './BoardHeaderFilter'
-import { EditableText } from '../editableText/EditableText'
+} from '../../Icons'
+import { BoardTabs } from '../board/header/BoardTabs'
+import { BoardHeaderFilter } from '../board/header/BoardHeaderFilter'
+import { EditableText } from '../../../cmps/Workspace/board/editableText/EditableText'
 import {
   deactivateBoard,
   setActiveBoard,
-} from '../../../../store/actions/board.actions'
+} from '../../../store/actions/board.actions'
 import { useSelector } from 'react-redux'
 
-export function BoardHeader({ board, onUpdateBoard }) {
+export function KanbanHeader({ board, onUpdateBoard }) {
   const [isCollapsed, setIsCollapsed] = useState(false)
   const activeBoard = useSelector(
     (storeState) => storeState.boardModule.activeBoard
@@ -47,7 +47,7 @@ export function BoardHeader({ board, onUpdateBoard }) {
   }
 
   return (
-    <section className={'board-header flex column'}>
+    <section className={'kanban-header flex column'}>
       <div className="wrapper flex column">
         <div className="flex">
           {!!board && (
@@ -73,7 +73,6 @@ export function BoardHeader({ board, onUpdateBoard }) {
               <BoardTabs
                 onCollapse={() => setIsCollapsed(!isCollapsed)}
                 isCollapsed={isCollapsed}
-                board={board}
               />
             )}
 
@@ -113,6 +112,7 @@ export function BoardHeader({ board, onUpdateBoard }) {
             isCollapsed={isCollapsed}
             onCollapse={() => setIsCollapsed(!isCollapsed)}
           />
+
         )}
         <BoardHeaderFilter board={board} isCollapsed={isCollapsed} />
       </div>
