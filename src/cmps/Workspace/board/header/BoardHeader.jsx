@@ -19,7 +19,6 @@ export function BoardHeader({ board, onUpdateBoard }) {
   const activeBoard = useSelector(
     (storeState) => storeState.boardModule.activeBoard
   )
-  console.log('activeBoard:', activeBoard)
   function onOpenBoard() {
     if (activeBoard) {
       deactivateBoard()
