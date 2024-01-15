@@ -14,6 +14,9 @@ export function DescriptionPreview({ setOpenMultiLine, displayValue }) {
       {displayValue || (
         <span
           style={{
+            position: 'absolute',
+            bottom: '0px',
+            right: '90px',
             color: '#00000044',
           }}
         >
