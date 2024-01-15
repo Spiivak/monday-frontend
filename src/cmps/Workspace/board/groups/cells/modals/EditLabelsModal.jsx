@@ -8,6 +8,8 @@ import {
 } from '../../../../../../store/actions/board.actions'
 import { EditableText } from '../../../editableText/EditableText'
 import { ColorPickerModal } from '../../../ColorPickerModal'
+import { CloseSmallIcon, ColorPalleteIcon, DragIcon, TextColorIndicatorIcon } from '../../../../../Icons'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
 export function EditLabelsModal() {
   const editLabelTarget = useSelector(
@@ -84,8 +86,23 @@ export function EditLabelsModal() {
   }
 
   function onRemoveLabel(labelId) {
-    removeLabel(currentBoard, labelId, editLabelTargetData)
+    removeLabel(selectedBoard, labelId, editLabelTargetData)
   }
+
+  const handleDragEnd = (result) => {
+    if (!result.destination) return; // Dragged outside the list
+    const startIndex = result.source.index;
+    const endIndex = result.destination.index;
+
+    // Reorder the labels array
+    const reorderedLabels = Array.from(selectedBoard[editLabelTargetData]);
+    const [removed] = reorderedLabels.splice(startIndex, 1);
+    reorderedLabels.splice(endIndex, 0, removed);
+
+    // Update the labels order
+    // setLabels(editLabelTargetData, reorderedLabels);
+  };
+
 
   if (!editLabelTarget) return
   if (!!!boards) return
@@ -101,69 +118,112 @@ export function EditLabelsModal() {
         width: '100%',
         height: '100%',
         zIndex: '99999999999',
-      }}>
-      <div
-        onClick={(ev) => ev.stopPropagation()}
-        ref={labelsEditModal}
-        style={{
-          position: 'absolute',
-          inset: 0,
-          left: position.left,
-          top: position.top,
-          zIndex: '2000',
-          width: 'fit-content',
-          height: 'fit-content',
-          padding: '8px 12px',
-          backgroundColor: 'pink',
-        }}>
-        {selectedBoard[editLabelTargetData].map((label) => {
-          return (
+      }}
+    >
+      <DragDropContext onDragEnd={handleDragEnd}>
+        <Droppable droppableId="labels">
+          {(provided, snapshot) => (
             <div
-              style={{ marginBottom: '8px' }}
-              className="flex space-between"
-              onClick={(ev) => {
-                ev.stopPropagation()
-              }}>
+              ref={(el) => {
+                labelsEditModal.current = el;
+                provided.innerRef(el);
+              }}
+              {...provided.droppableProps}
+              className="edit-labels-modal flex align-center column gap8 relative"
+              onClick={(ev) => ev.stopPropagation()}
+              style={{
+                position: 'absolute',
+                inset: 0,
+                left: position.left,
+                top: position.top,
+                zIndex: '2000',
+                width: 'fit-content',
+                height: 'fit-content',
+              }}
+            >
+              {selectedBoard[editLabelTargetData].map((label, index) => (
+                <Draggable key={label.id} draggableId={label.id} index={index}>
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      className="label-row flex align-center"
+                      style={{
+                        ...provided.draggableProps.style,
+                        opacity: snapshot.isDragging ? 0.5 : 1,
+                        
+                      }}
+                    >
+                      <div className="drag flex align-center">
+                        <DragIcon />
+                      </div>
+                      <div
+                        className="label flex"
+                        onClick={(ev) => ev.stopPropagation()}
+                      >
+                        <div
+                          className="color-picker flex align-center justify-center absolute"
+                          onClick={() => {
+                            setIsColorModalOpen((prev) => {
+                              if (prev) return null;
+                              return label.id;
+                            });
+                          }}
+                          style={{
+                            backgroundColor: label.color,
+                          }}
+                        >
+                          <ColorPalleteIcon />
+                          {label.id === isColorModalOpen ? (
+                            <div onClick={(ev) => ev.stopPropagation()}>
+                              <ColorPickerModal
+                                handleColor={(color) =>
+                                  handleChange('color', color, label.id)
+                                }
+                              />
+                              {console.log(isColorModalOpen)}
+                            </div>
+                          ) : null}
+                        </div>
+                        <div className="label-text flex">
+                          <EditableText
+                            initialText={label.title}
+                            type={'taskTitle'}
+                            onSave={(text) =>
+                              handleChange('title', text, label.id)
+                            }
+                          />
+                        </div>
+                      </div>
+                      <div className="label-delete">
+                        <button
+                          className="btn-icon small-transparent"
+                          onClick={() => onRemoveLabel(label.id)}
+                        >
+                          <CloseSmallIcon />
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
               <div
-                onClick={() => {
-                  setIsColorModalOpen((prev) => {
-                    if (prev) return null
-                    return label.id
-                  })
-                }}
-                style={{
-                  width: '24px',
-                  height: '24px',
-                  backgroundColor: label.color,
-                }}>
-                {label.id === isColorModalOpen ? (
-                  <div onClick={(ev) => ev.stopPropagation()}>
-                    <ColorPickerModal
-                      handleColor={(color) =>
-                        handleColorChange(color, label.id)
-                      }
-                    />
-                    {console.log(isColorModalOpen)}
-                  </div>
-                ) : null}
+                onClick={(ev) => ev.stopPropagation()}
+                className="add-label flex align-center justify-center"
+              >
+                <EditableText
+                  initialText={'+ New label'}
+                  type={'taskTitle'}
+                  onSave={onAddLabel}
+                />
               </div>
-              <EditableText
-                initialText={label.title}
-                type={'taskTitle'}
-                onSave={(text) => handleTextChange(text, label.id)}
-              />
-              <button onClick={() => onRemoveLabel(label.id)}>x</button>
             </div>
-          )
-        })}
-        <div onClick={(ev) => ev.stopPropagation()}>
-          <EditableText
-            initialText={'add label'}
-            type={'taskTitle'}
-            onSave={onAddLabel}
-          />
-        </div>
-      </div>
+          )}
+        </Droppable>
+      </DragDropContext>
     </div>
-  )
+  );
+
 }

@@ -1,0 +1,132 @@
+.edit-labels-modal {
+  background-color: #fff;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.32);
+  font-size: 14px;
+  border-radius: 8px;
+  max-width: 212px;
+  transition: width .1s;
+  pointer-events: all;
+  padding: 24px 12px 16px;
+  position: relative;
+
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    margin-left: -8px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+  }
+
+  .label-row {
+    gap: 2px;
+
+    button {
+      padding: 2px !important;
+    }
+
+    .task-title {
+      padding: 0;
+      font: 400 14px Figtree;
+      line-height: 32px;
+      margin: 0 0 0 4px;
+      padding: 0 4px 0 4px;
+      padding-inline-start: 28px;
+
+      input {
+        font: 400 14px Figtree;
+        line-height: 32px;
+        height: 30px;
+        max-width: 150px;
+        text-indent: 35px;
+        margin: 0;
+      }
+    }
+
+    .label {
+      padding: 4px;
+      border-radius: 4px;
+      height: 32px;
+      width: 152px;
+      border: 1px solid #e6e9ef;
+      overflow: hidden;
+
+      .color-picker {
+        width: 24px;
+        height: 24px;
+        border-radius: 2px;
+        border: 1px solid transparent;
+
+        svg {
+          color: #fff;
+        }
+      }
+    }
+
+  }
+
+  .add-label {
+    border: 1px solid #e6e9ef;
+    width: 152px;
+    height: 32px;
+    border-radius: 4px;
+
+
+
+    .task-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      font: 400 14px Figtree;
+      line-height: 32px;
+      max-width: 152px;
+      height: 32px;
+
+      .task-title-input {
+        input {
+          font: 400 14px Figtree;
+          line-height: 32px;
+          width: 152px;
+          height: 32px;
+          max-width: 200px;
+          margin: 0;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .label-delete {
+    opacity: 0;
+  }
+
+  .drag {
+    opacity: 0;
+  }
+
+
+  & .label-row:hover {
+    .drag {
+      opacity: 1;
+    }
+
+    .label-delete {
+      opacity: 1;
+    }
+  }
+}
+
+
+#placeholder {
+  position: absolute;
+  border: 1px dashed gray;
+  width: 90%;
+  height: 32px;
+  border-radius: 4px;
+  margin: 5px;
+  transition: top 0.3s, left 0.3s;
+}
