@@ -141,6 +141,7 @@ export function GroupTableBody({
                 )}
               </Draggable>
             ))}
+            {provided.placeholder}
             <div className="table-body-row last-row-cell last-row">
               <div
                 style={{
@@ -164,7 +165,6 @@ export function GroupTableBody({
                 />
               </div>
             </div>
-            {provided.placeholder}
           </div>
         )}
       </Droppable>
