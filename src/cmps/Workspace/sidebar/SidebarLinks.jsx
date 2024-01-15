@@ -9,7 +9,7 @@ export function SidebarLinks() {
         <HomeIcon />
         <span>Home</span>
       </NavLink>
-      <NavLink to="/my_work" className={'flex align-center gap8 my-work'}>
+      <NavLink className={'flex align-center gap8 my-work'}>
         <MyWeekIcon />
         <span>My work</span>
       </NavLink>
