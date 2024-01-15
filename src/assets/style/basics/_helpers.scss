@@ -101,6 +101,9 @@
 .flex.gap16 {
   gap: 16px;
 }
+.flex.gap12 {
+  gap: 12px;
+}
 
 .flex.gap8 {
   gap: 8px;
@@ -109,7 +112,6 @@
 .flex.gap6 {
   gap: 6px;
 }
-
 
 // Text
 .text-center {
@@ -163,9 +165,6 @@
   z-index: 9999;
 }
 
-
-
-
 //board group
 $task-col: 200px;
 $first-col: $task-col + 42px;
@@ -177,7 +176,8 @@ $link-col: 139px;
 $file-col: 138px;
 $line-end: minmax(90px, 1fr);
 
-$board-grid: $first-col $person-col $status-col $priority-col $date-col $link-col $file-col $line-end;
+$board-grid: $first-col $person-col $status-col $priority-col $date-col
+  $link-col $file-col $line-end;
 
 .main-grid {
   display: grid;

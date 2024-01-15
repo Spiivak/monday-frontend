@@ -105,7 +105,7 @@ export function MemberPicker({
                 borderRadius: '50%',
               }}
             />
-            <h5>{user.fullname}</h5>
+            <p>{user.fullname}</p>
             <button
               className="btn-icon small-transparent"
               onClick={() => handleUpdateUser(user)}
@@ -125,7 +125,7 @@ export function MemberPicker({
             e.preventDefault()
           }}
         >
-          <h5>Suggested people</h5>
+          <p style={{ fontSize: '13px', color: '#777' }}>Suggested people</p>
         </div>
       ),
     },
@@ -135,7 +135,7 @@ export function MemberPicker({
         <div className="flex gap8 column" key={user._id}>
           <div
             onClick={() => handleUpdateUser(user)}
-            className="flex align-center gap8"
+            className="flex align-center gap12"
           >
             <img
               src={user.imgUrl}
@@ -146,7 +146,7 @@ export function MemberPicker({
                 borderRadius: '50%',
               }}
             />
-            <h5>{user.fullname}</h5>
+            <p>{user.fullname}</p>
           </div>
         </div>
       ),
