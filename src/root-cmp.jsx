@@ -12,6 +12,7 @@ import { WorkspaceIndex } from './cmps/Workspace/index/WorkspaceIndex'
 import { KanbanPreview } from './cmps/Workspace/kanban/KanbanPreview'
 import { FileImgModal } from './cmps/Workspace/board/groups/cells/modals/FileImgModal'
 import { EditLabelsModal } from './cmps/Workspace/board/groups/cells/modals/EditLabelsModal'
+import { LoginPage } from './pages/LoginPage'
 
 export function App() {
   return (
@@ -20,6 +21,7 @@ export function App() {
         <Router>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/user" element={<LoginPage />} />
             <Route path="/workspace" element={<WorkSpacePage />}>
               <Route index element={<WorkspaceIndex />} />
               <Route path="/workspace/:boardId" element={<WorkSpaceBoard />} />
