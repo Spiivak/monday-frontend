@@ -406,6 +406,13 @@ export function addLabel(data, board, accessor) {
 
   saveBoard(newBoard)
 }
+
+export function swapLabels(labels, board, accessor){
+  const newBoard = {...board, [accessor]: [...labels]}
+
+  saveBoard(newBoard)
+}
+
 export function removeLabel(board, labelId, accessor) {
   const newBoard = {
     ...board,

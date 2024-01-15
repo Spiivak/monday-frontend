@@ -5,11 +5,17 @@ import {
   labelChange,
   removeLabel,
   setLabels,
+  swapLabels,
 } from '../../../../../../store/actions/board.actions'
 import { EditableText } from '../../../editableText/EditableText'
 import { ColorPickerModal } from '../../../ColorPickerModal'
-import { CloseSmallIcon, ColorPalleteIcon, DragIcon, TextColorIndicatorIcon } from '../../../../../Icons'
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import {
+  CloseSmallIcon,
+  ColorPalleteIcon,
+  DragIcon,
+  TextColorIndicatorIcon,
+} from '../../../../../Icons'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
 export function EditLabelsModal() {
   const editLabelTarget = useSelector(
@@ -66,8 +72,8 @@ export function EditLabelsModal() {
       }
     }
     handleResize()
-    setCurrentBoard(()=>{
-      return boards.find(board=> board._id === selectedBoard._id)
+    setCurrentBoard(() => {
+      return boards.find((board) => board._id === selectedBoard._id)
     })
   }, [editLabelTarget, selectedBoard])
 
@@ -90,19 +96,17 @@ export function EditLabelsModal() {
   }
 
   const handleDragEnd = (result) => {
-    if (!result.destination) return; // Dragged outside the list
-    const startIndex = result.source.index;
-    const endIndex = result.destination.index;
+    if (!result.destination) return // Dragged outside the list
+    const startIndex = result.source.index
+    const endIndex = result.destination.index
 
     // Reorder the labels array
-    const reorderedLabels = Array.from(selectedBoard[editLabelTargetData]);
-    const [removed] = reorderedLabels.splice(startIndex, 1);
-    reorderedLabels.splice(endIndex, 0, removed);
+    const reorderedLabels = Array.from(selectedBoard[editLabelTargetData])
+    const [removed] = reorderedLabels.splice(startIndex, 1)
+    reorderedLabels.splice(endIndex, 0, removed)
 
-    // Update the labels order
-    // setLabels(editLabelTargetData, reorderedLabels);
-  };
-
+    swapLabels(reorderedLabels, currentBoard, editLabelTargetData)
+  }
 
   if (!editLabelTarget) return
   if (!!!boards) return
@@ -118,15 +122,14 @@ export function EditLabelsModal() {
         width: '100%',
         height: '100%',
         zIndex: '99999999999',
-      }}
-    >
+      }}>
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="labels">
           {(provided, snapshot) => (
             <div
               ref={(el) => {
-                labelsEditModal.current = el;
-                provided.innerRef(el);
+                labelsEditModal.current = el
+                provided.innerRef(el)
               }}
               {...provided.droppableProps}
               className="edit-labels-modal flex align-center column gap8 relative"
@@ -139,8 +142,7 @@ export function EditLabelsModal() {
                 zIndex: '2000',
                 width: 'fit-content',
                 height: 'fit-content',
-              }}
-            >
+              }}>
               {selectedBoard[editLabelTargetData].map((label, index) => (
                 <Draggable key={label.id} draggableId={label.id} index={index}>
                   {(provided, snapshot) => (
@@ -152,34 +154,30 @@ export function EditLabelsModal() {
                       style={{
                         ...provided.draggableProps.style,
                         opacity: snapshot.isDragging ? 0.5 : 1,
-                        
-                      }}
-                    >
+                      }}>
                       <div className="drag flex align-center">
                         <DragIcon />
                       </div>
                       <div
                         className="label flex"
-                        onClick={(ev) => ev.stopPropagation()}
-                      >
+                        onClick={(ev) => ev.stopPropagation()}>
                         <div
                           className="color-picker flex align-center justify-center absolute"
                           onClick={() => {
                             setIsColorModalOpen((prev) => {
-                              if (prev) return null;
-                              return label.id;
-                            });
+                              if (prev) return null
+                              return label.id
+                            })
                           }}
                           style={{
                             backgroundColor: label.color,
-                          }}
-                        >
+                          }}>
                           <ColorPalleteIcon />
                           {label.id === isColorModalOpen ? (
                             <div onClick={(ev) => ev.stopPropagation()}>
                               <ColorPickerModal
                                 handleColor={(color) =>
-                                  handleChange('color', color, label.id)
+                                  handleColorChange(color, label.id)
                                 }
                               />
                               {console.log(isColorModalOpen)}
@@ -190,17 +188,14 @@ export function EditLabelsModal() {
                           <EditableText
                             initialText={label.title}
                             type={'taskTitle'}
-                            onSave={(text) =>
-                              handleChange('title', text, label.id)
-                            }
+                            onSave={(text) => handleTextChange(text, label.id)}
                           />
                         </div>
                       </div>
                       <div className="label-delete">
                         <button
                           className="btn-icon small-transparent"
-                          onClick={() => onRemoveLabel(label.id)}
-                        >
+                          onClick={() => onRemoveLabel(label.id)}>
                           <CloseSmallIcon />
                         </button>
                       </div>
@@ -211,8 +206,7 @@ export function EditLabelsModal() {
               {provided.placeholder}
               <div
                 onClick={(ev) => ev.stopPropagation()}
-                className="add-label flex align-center justify-center"
-              >
+                className="add-label flex align-center justify-center">
                 <EditableText
                   initialText={'+ New label'}
                   type={'taskTitle'}
@@ -224,6 +218,5 @@ export function EditLabelsModal() {
         </Droppable>
       </DragDropContext>
     </div>
-  );
-
+  )
 }
