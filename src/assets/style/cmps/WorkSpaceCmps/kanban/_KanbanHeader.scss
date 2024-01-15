@@ -1,18 +1,11 @@
-.kanban-header {
-  .board-header {
-    padding: $spacing-xl  $spacing-xl  16px $spacing-xl;
-    border-top-left-radius: 8px;
-    padding-top: $spacing-medium;
-    padding-left: $spacing-xl + 6px;
-    position: sticky;
-    left: 0;
-    top: 0;
-    background-color: #fff;
-    z-index: 1000;
+  .kanban-section {
+
     .board-header {
+      padding: $spacing-xl $spacing-xl 0px $spacing-xl;
+      padding-top: $spacing-medium;
+      padding-left: $spacing-xl + 6px;
       background-color: white;
       // max-height: 40px;
-      padding: $spacing-xs 0;
 
       h2 {
         padding: 0 $spacing-xs;
@@ -37,10 +30,161 @@
         }
       }
     }
+
     @media (max-width: 600px) {
       .title-wrapper {
         flex-grow: 0;
       }
     }
   }
-}
+
+
+
+  .kanban-section {
+    font: 400 14px/24px Figtree;
+
+
+    .divider::before {
+      content: "";
+      height: 16px;
+      border-right: 1px solid;
+      border-color: #d0d4e4;
+      position: relative;
+      top: -2px;
+      left: 0px;
+    }
+
+    .board-tabs {
+      min-height: 36px;
+      margin-block-start: $spacing-small;
+
+      .tabs {
+        flex-grow: 0;
+        white-space: nowrap;
+        // overflow: hidden;
+
+        .tab {
+          margin-bottom: $spacing-xs;
+        }
+
+        a {
+          display: flex;
+
+          &.active button::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #0073EA;
+          }
+        }
+
+        .add-view-btn {
+          margin-top: $spacing-xs - 2px;
+          padding: $spacing-small - 2px;
+          height: 32px;
+        }
+      }
+
+      .expend-collapse {
+        border-radius: 1000px;
+        width: 26px;
+        height: 26px;
+        border: 1px solid #33333333;
+
+        button {
+          padding: 0;
+          border-radius: 1000px;
+          width: 26px;
+          height: 26px;
+
+          svg {
+            width: 16px;
+          }
+        }
+      }
+    }
+  }
+
+
+  .kanban-section {
+    color: #676879;
+
+    svg {
+      color: #676879;
+    }
+
+    .board-filter {
+
+      .new-item {
+        .new-item-btn {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          font: 400 14px/24px Figtree;
+        }
+
+        .new-item-arrow {
+          border-left: 1px solid #0060B9;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+
+          svg {
+            color: white;
+            width: 16px;
+            height: 16px;
+          }
+        }
+
+        margin-right: 14px;
+      }
+
+      button {
+        font: 400 14px/24px Figtree;
+      }
+
+      border-top: 1px solid #d0d4e4;
+      display: flex;
+      padding: $spacing-medium 0;
+      height: 65px;
+
+      .filter-item {
+        button {
+          height: 100%;
+        }
+
+        &:hover {
+          border-radius: $border-radius-small;
+          background-color: #d0d4e4;
+        }
+
+        .filter-btn-arrow {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          border-left: 1px solid white;
+
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+
+      .search-input {
+        padding-left: 2rem;
+      }
+
+      .search-icon {
+        position: absolute;
+        top: 63%;
+        left: 2.6%;
+        translate: 0 -50%
+      }
+
+      .search-input::placeholder {
+        font: 400 14px/24px Figtree;
+        translate: 1% -10%;
+      }
+
+    }
+  }
