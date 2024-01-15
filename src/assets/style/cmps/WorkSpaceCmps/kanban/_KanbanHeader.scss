@@ -50,19 +50,20 @@
       border-right: 1px solid;
       border-color: #d0d4e4;
       position: relative;
-      top: -2px;
+      top: 5px;
       left: 0px;
     }
 
     .board-tabs {
       min-height: 36px;
       margin-block-start: $spacing-small;
-
+      
       .tabs {
         flex-grow: 0;
         white-space: nowrap;
+        gap: 8px;
         // overflow: hidden;
-
+        
         .tab {
           margin-bottom: $spacing-xs;
         }
