@@ -12,12 +12,12 @@ export function GroupTableFooter({
   board = [],
   isTableOpen = true,
 }) {
-  console.log(board)
   return (
     <Suspense fallback={<Loading />}>
       <div
         className="table-body-row footer-row flex"
-        style={{ height: '100%' }}>
+        style={{ height: '100%' }}
+      >
         <div
           className="empty-column empty-1"
           style={{
@@ -27,7 +27,8 @@ export function GroupTableFooter({
             backgroundColor: '#fff',
             // gridRow: rows.length + 3,
             gridColumn: 1,
-          }}></div>
+          }}
+        ></div>
         <div
           className="empty-column empty-2"
           style={{
@@ -37,7 +38,8 @@ export function GroupTableFooter({
             backgroundColor: '#fff',
             // gridRow: rows.length + 3,
             gridColumn: 2,
-          }}></div>
+          }}
+        ></div>
         {Array.isArray(columns) &&
           columns.map((column, colIdx) => {
             let colSummary
@@ -65,7 +67,8 @@ export function GroupTableFooter({
                   }}
                   className={`group-table-cell cell ${
                     colIdx === 0 ? 'first-footer-cell' : ''
-                  }`}>
+                  }`}
+                >
                   {colSummary}
                 </div>
               </React.Fragment>
@@ -81,7 +84,8 @@ export function GroupTableFooter({
             minHeight: '36px',
             height: '100%',
           }}
-          className="group-table-cell cell"></div>
+          className="group-table-cell cell"
+        ></div>
       </div>
     </Suspense>
   )
@@ -130,7 +134,8 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
             gap: !isTableOpen && '8px',
             padding: !isTableOpen && '8px',
             maxWidth: '200px',
-          }}>
+          }}
+        >
           {!isTableOpen && (
             <div
               style={{
@@ -138,7 +143,8 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
                 textWrap: 'nowrap',
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
-              }}>
+              }}
+            >
               {column.cmp.title}
             </div>
           )}
@@ -161,7 +167,8 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
             gap: !isTableOpen && '8px',
             padding: !isTableOpen && '8px',
             maxWidth: '200px',
-          }}>
+          }}
+        >
           {!isTableOpen && (
             <div
               style={{
@@ -169,7 +176,8 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
                 textWrap: 'nowrap',
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
-              }}>
+              }}
+            >
               {column.cmp.title}
             </div>
           )}
@@ -180,7 +188,8 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
               background: calculateDateColor(group, minDate, maxDate),
               textAlign: 'center',
               color: 'white',
-            }}>
+            }}
+          >
             {utilService.formatDateRange([minDate, maxDate])}
           </div>
         </div>
@@ -199,7 +208,8 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
             gap: !isTableOpen && '8px',
             padding: !isTableOpen && '8px',
             maxWidth: '200px',
-          }}>
+          }}
+        >
           {!isTableOpen && (
             <div
               style={{
@@ -207,7 +217,8 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
                 textWrap: 'nowrap',
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
-              }}>
+              }}
+            >
               {column.cmp.title}
             </div>
           )}
@@ -234,7 +245,8 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
             gap: !isTableOpen && '8px',
             padding: !isTableOpen && '8px',
             maxWidth: '200px',
-          }}>
+          }}
+        >
           {!isTableOpen && (
             <div
               style={{
@@ -242,7 +254,8 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
                 textWrap: 'nowrap',
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
-              }}>
+              }}
+            >
               {column.cmp.title}
             </div>
           )}
@@ -253,7 +266,8 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
               background: calculateDateColor(group, minTimestamp, maxTimestamp),
               textAlign: 'center',
               color: 'white',
-            }}>
+            }}
+          >
             {utilService.formatDateRange([minTimestamp, maxTimestamp])}
           </div>
         </div>
@@ -276,7 +290,8 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
             gap: !isTableOpen && '8px',
             padding: !isTableOpen && '8px',
             maxWidth: '200px',
-          }}>
+          }}
+        >
           {!isTableOpen && (
             <div
               style={{
@@ -284,7 +299,8 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
                 textWrap: 'nowrap',
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
-              }}>
+              }}
+            >
               {column.cmp.title}
             </div>
           )}
@@ -306,7 +322,8 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
             gap: !isTableOpen && '8px',
             padding: !isTableOpen && '8px',
             maxWidth: '200px',
-          }}>
+          }}
+        >
           {!isTableOpen && (
             <div
               style={{
@@ -314,7 +331,8 @@ function groupSummaryByColumn(column, group, board, isTableOpen) {
                 textWrap: 'nowrap',
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
-              }}>
+              }}
+            >
               {column.cmp.title}
             </div>
           )}
@@ -361,7 +379,8 @@ function renderStatusBox(statusPercentages, board, column) {
         style={{
           width: `${percentage}%`,
           backgroundColor: colorMap[status],
-        }}></div>
+        }}
+      ></div>
     )
   )
 
@@ -439,7 +458,8 @@ function renderOverflowIndicator(members) {
       <div className="overflow-indicator flex align-center justify-center">
         <MultiLineTooltip
           title={members.map((member) => member.fullname).join('\n')}
-          arrow>
+          arrow
+        >
           <div className="overflow-tooltip-indicator">
             +{additionalMembersCount}
           </div>
