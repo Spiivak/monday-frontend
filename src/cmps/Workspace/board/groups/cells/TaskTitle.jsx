@@ -3,8 +3,7 @@ import {
   deactivateTask,
   setActiveTask,
 } from '../../../../../store/actions/board.actions'
-// import { EditableText } from '../../EditableText'
-import { NavigationChevronRightIcon, OpenIcon } from '../../../../Icons'
+import { OpenIcon } from '../../../../Icons'
 import { EditableText } from '../../editableText/EditableText'
 
 export function TaskTitle({ task, cmpId, handleUpdateTask }) {
@@ -19,10 +18,7 @@ export function TaskTitle({ task, cmpId, handleUpdateTask }) {
     }
   }
   return (
-    <div
-      className="task-title flex align-center"
-      data-task-details="true"
-    >
+    <div className="task-title flex align-center" data-task-details="true">
       <EditableText
         type={'taskTitle'}
         initialText={task.title}

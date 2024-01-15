@@ -58,7 +58,7 @@ export function NumbersPicker({
           },
         }}
         InputProps={{
-          disableUnderline: true, // This will remove the underline
+          disableUnderline: true,
         }}
       />
     </div>

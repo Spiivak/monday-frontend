@@ -3,7 +3,10 @@ import { DynamicTableCell } from '../DynamicTableCell'
 import { EditableText } from '../../editableText/EditableText'
 import { ContextBtn } from '../../../../ContextBtn'
 import { useSelector } from 'react-redux'
-import { saveSelectedTasks, updateTasks } from '../../../../../store/actions/board.actions'
+import {
+  saveSelectedTasks,
+  updateTasks,
+} from '../../../../../store/actions/board.actions'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 export function GroupTableBody({
@@ -47,7 +50,7 @@ export function GroupTableBody({
     const draggedRowIndex = result.source.index
     let droppedRowIndex = result.destination.index
 
-    if(draggedRowIndex <= droppedRowIndex) droppedRowIndex++
+    if (draggedRowIndex <= droppedRowIndex) droppedRowIndex++
 
     const updatedRows = [...rows]
 
@@ -64,12 +67,14 @@ export function GroupTableBody({
             {...provided.droppableProps}
             ref={provided.innerRef}
             className="board-group-table-container"
-            style={{ height: '100%' }}>
+            style={{ height: '100%' }}
+          >
             {rows.map((row, index) => (
               <Draggable
                 key={row.id}
                 draggableId={row.id.toString()}
-                index={index}>
+                index={index}
+              >
                 {(provided, snapshot) => (
                   <div
                     {...provided.draggableProps}
@@ -85,17 +90,20 @@ export function GroupTableBody({
                     style={{
                       ...provided.draggableProps.style,
                       // Add any styles for the dragged state if needed
-                    }}>
+                    }}
+                  >
                     <div
                       style={{
                         '--before-color': group.style.color,
                         // gridRow: index + 2,
                         gridColumn: 1,
                       }}
-                      className="first-column group-table-cell checkbox-cell flex align-center justify-center hoverable relative">
+                      className="first-column group-table-cell checkbox-cell flex align-center justify-center hoverable relative"
+                    >
                       <div
                         className="context absolute"
-                        style={{ zIndex: 1000, right: '115%' }}>
+                        style={{ zIndex: 1000, right: '115%' }}
+                      >
                         <ContextBtn
                           onDeleteRow={() => onDeleteTask(group.id, row.id)}
                           type={'row'}
@@ -118,7 +126,8 @@ export function GroupTableBody({
                             // gridRow: index + 2,
                             gridColumn: colIdx + 2,
                           }}
-                          className={`group-table-cell ${column.cmp.type}`}>
+                          className={`group-table-cell ${column.cmp.type}`}
+                        >
                           <DynamicTableCell
                             cmpsOrder={cmpsOrder}
                             cmp={column.cmp.type}
@@ -134,7 +143,8 @@ export function GroupTableBody({
                             // gridRow: index + 2,
                             gridColumn: columns.length + 2,
                           }}
-                          className="group-table-cell"></div>
+                          className="group-table-cell"
+                        ></div>
                       </React.Fragment>
                     ))}
                   </div>
@@ -147,14 +157,16 @@ export function GroupTableBody({
                 style={{
                   '--before-color': group.style.color,
                 }}
-                className="first-column last-row-cell  group-table-cell checkbox-cell flex align-center justify-center hoverable relative">
+                className="first-column last-row-cell  group-table-cell checkbox-cell flex align-center justify-center hoverable relative"
+              >
                 <input disabled type="checkbox" />
               </div>
               <div
                 className="group-table-cell wrapper flex align-center add-task-lr "
                 style={{
                   marginLeft: '20px',
-                }}>
+                }}
+              >
                 <EditableText
                   type={'addTask'}
                   initialText={initText}
