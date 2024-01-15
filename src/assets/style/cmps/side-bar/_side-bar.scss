@@ -8,6 +8,8 @@
     .side-bar-link-container {
       border-bottom: 1px solid #d0d4e4;
       gap: 2px;
+      overflow: hidden;
+      text-wrap: nowrap;
       padding-left: calc($spacing-small + 4px);
       padding-right: calc($spacing-xxl - 8px);
       padding-block: calc($spacing-small + 4px);
@@ -140,7 +142,8 @@
     border-radius: 0 $border-radius-medium 0 $border-radius-medium;
     background-color: #f6f7fb;
     position: absolute;
-    padding: calc($spacing-small + 4px) $spacing-small calc($spacing-small + 4px) $spacing-small;
+    padding: calc($spacing-small + 4px) $spacing-small
+      calc($spacing-small + 4px) $spacing-small;
     right: 0;
     top: 0;
     opacity: 0;
@@ -165,7 +168,7 @@
   &:hover {
     min-width: 255px;
     animation: none;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     z-index: 100000000;
 
     .side-bar-container {
@@ -178,7 +181,8 @@
 
 .workspaces-list {
   margin-top: 4px;
-
+  overflow: hidden;
+  text-wrap: nowrap;
   .workspace-item {
     .context-menu {
       position: absolute;
