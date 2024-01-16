@@ -109,7 +109,7 @@ export function TaskDetails() {
 
         <div className="task-header-tabs flex space-between">
           <div className="task-tabs quick-filters">
-            <div className="tabs">
+            <div className="tabs flex gap8">
               <div
                 className={`tab-container flex gap16`}
                 onClick={() => handleTabChange('updates')}>
