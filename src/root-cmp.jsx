@@ -20,8 +20,8 @@ export function App() {
       <Provider store={store}>
         <Router>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/user" element={<LoginPage />} />
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/home" element={<HomePage />} />
             <Route path="/workspace" element={<WorkSpacePage />}>
               <Route index element={<WorkspaceIndex />} />
               <Route path="/workspace/:boardId" element={<WorkSpaceBoard />} />

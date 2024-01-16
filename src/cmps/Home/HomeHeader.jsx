@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import Logo from '../../assets/img/monday-logo-x2.png'
 import { login, logout, signup } from '../../store/actions/user.actions'
@@ -9,51 +9,13 @@ import { useNavigate } from 'react-router-dom'
 export function HomeHeader() {
   const navigate = useNavigate()
   const user = useSelector((storeState) => storeState.userModule.user)
-
-  async function onLogin1(credentials) {
-    const newCredentials = {
-      username: 'dimarevelson@gmail.com',
-      password: '123123',
+  useEffect(() => {
+    if(!user) navigate('/')
+    socketService.login(user._id)
+    return () => {
+      socketService.logout()
     }
-    try {
-      const user = await login(newCredentials)
-      showSuccessMsg(`Welcome: ${user.fullname}`)
-      navigate('/workspace')
-    } catch (err) {
-      showErrorMsg('Cannot login')
-    }
-  }
-  async function onLogin2(credentials) {
-    const newCredentials = {
-      username: 'navedavid@gmail.com',
-      password: '123123',
-    }
-    try {
-      const user = await login(newCredentials)
-      showSuccessMsg(`Welcome: ${user.fullname}`)
-      navigate('/workspace')
-    } catch (err) {
-      showErrorMsg('Cannot login')
-    }
-  }
-
-  async function onSignup(credentials) {
-    try {
-      const user = await signup(credentials)
-      showSuccessMsg(`Welcome new user: ${user.fullname}`)
-    } catch (err) {
-      showErrorMsg('Cannot signup')
-    }
-  }
-  async function onLogout() {
-    try {
-      await logout()
-      showSuccessMsg(`Bye now`)
-    } catch (err) {
-      showErrorMsg('Cannot logout')
-    }
-  }
-
+  }, [user])
   return (
     <header className="home-header full flex space-between">
       <div className="right flex">
@@ -77,12 +39,7 @@ export function HomeHeader() {
             </section>
           )} */}
           <button
-            onClick={onLogin1}
-            className={'get-started-btn flex align-center justify-center'}>
-            Get Started
-          </button>
-          <button
-            onClick={onLogin2}
+            onClick={()=>{navigate('/workspace')}}
             className={'get-started-btn flex align-center justify-center'}>
             Get Started
           </button>

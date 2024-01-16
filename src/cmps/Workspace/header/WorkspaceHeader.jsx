@@ -59,7 +59,7 @@ export function WorkspaceHeader() {
       <header className="work-space-header full flex space-between align-center">
         <section className="header-logo-sect flex align-center">
           <div className="switcher-logo">
-            <Link className="btn-icon medium-transparent" to="/" style={{ padding: '10px'}}>
+            <Link className="btn-icon medium-transparent" to="/home" style={{ padding: '10px'}}>
               <MondayIcon />
             </Link>
           </div>

@@ -2,10 +2,63 @@ import { Widgets } from '@mui/icons-material'
 import { Grid } from '@mui/material'
 import React from 'react'
 import { EditableText } from '../cmps/Workspace/board/editableText/EditableText'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { useNavigate } from 'react-router'
+import { useSelector } from 'react-redux'
+import { login } from '../store/actions/user.actions'
 
 export function LoginPage() {
+  const navigate = useNavigate()
+  const user = useSelector((storeState) => storeState.userModule.user)
+
+  async function onLogin1(credentials) {
+    const newCredentials = {
+      username: 'navedavid@gmail.com',
+      password: '123123',
+    }
+    try {
+      const user = await login(newCredentials)
+      showSuccessMsg(`Welcome: ${user.fullname}`)
+      navigate('/home')
+    } catch (err) {
+      showErrorMsg('Cannot login')
+    }
+  }
+  async function onLogin2(credentials) {
+    const newCredentials = {
+      username: 'dimarevelson@gmail.com',
+      password: '123123',
+    }
+    try {
+      const user = await login(newCredentials)
+      showSuccessMsg(`Welcome: ${user.fullname}`)
+      navigate('/home')
+    } catch (err) {
+      showErrorMsg('Cannot login')
+    }
+  }
+  async function onLogin3(credentials) {
+    const newCredentials = {
+      username: 'edenspivak@gmail.com',
+      password: '123',
+    }
+    try {
+      const user = await login(newCredentials)
+      showSuccessMsg(`Welcome: ${user.fullname}`)
+      navigate('/home')
+    } catch (err) {
+      showErrorMsg('Cannot login')
+    }
+  }
   return (
-    <div className='flex' style={{ width: '100%', height: '100dvh',boxSizing:'border-box', backgroundColor: 'blue' }}>
+    <div
+      className="flex"
+      style={{
+        width: '100%',
+        height: '100dvh',
+        boxSizing: 'border-box',
+        backgroundColor: 'blue',
+      }}>
       <div
         className="flex column align-center justify-center gap16"
         style={{
@@ -22,19 +75,22 @@ export function LoginPage() {
           className="quick-login-options flex column"
           style={{ width: '400px', gap: '16px' }}>
           <button
+            onClick={onLogin1}
             className="btn-txt medium-sec"
             style={{ border: '1px solid darkgray' }}>
-            User1
+            Nave's User
           </button>
           <button
+            onClick={onLogin2}
             className="btn-txt medium-sec"
             style={{ border: '1px solid darkgray' }}>
-            User2
+            Dima's User
           </button>
           <button
+            onClick={onLogin3}
             className="btn-txt medium-sec"
             style={{ border: '1px solid darkgray' }}>
-            User3
+            Eden's User
           </button>
         </div>
         <div
@@ -66,8 +122,9 @@ export function LoginPage() {
           </p>
         </div>
       </div>
-      <div style={{width:'40%', height:'100%'}}>
-        <img style={{width:'100%', height:'100%', objectFit: 'cover'}}
+      <div style={{ width: '40%', height: '100%' }}>
+        <img
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           src="https://dapulse-res.cloudinary.com/image/upload/monday_platform/signup/signup-right-side-assets-new-flow/welcome-to-monday.png"
           alt=""
         />

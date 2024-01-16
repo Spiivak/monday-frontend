@@ -18,6 +18,7 @@ export function WorkSpacePage() {
   const navigate = useNavigate()
   useEffect(() => {
     loadAsync()
+    if (!user) navigate('/')
     socketService.login(user._id)
     return () => {
       socketService.logout()
