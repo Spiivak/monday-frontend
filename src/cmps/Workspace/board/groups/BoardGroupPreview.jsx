@@ -20,13 +20,13 @@ import { GroupTableFooter } from './table/GroupTableFooter'
 import { boardService } from '../../../../services/board.service'
 
 export function BoardGroupPreview({ board, group, boardId, cmpsOrder }) {
-  const [columns, setColumns] = useState([])
-  const [rows, setRows] = useState([])
+  // const [columns, setColumns] = useState([])
+  // const [rows, setRows] = useState([])
   const [initText, setInitText] = useState('')
   const [isTableOpen, setIsTableOpen] = useState(true)
 
-  useEffect(() => {
-    setColumns([
+
+    const columns = [
       {
         id: 0,
         Header: board?.option || 'Tasks',
@@ -70,9 +70,10 @@ export function BoardGroupPreview({ board, group, boardId, cmpsOrder }) {
           cmp,
         }
       }),
-    ])
-    setRows(group.tasks)
-  }, [cmpsOrder, group])
+    ]
+
+    const rows = group.tasks
+
 
   // * TASK
   function onTaskUpdate(cmpType, cmpId, data, task) {

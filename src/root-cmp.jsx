@@ -13,6 +13,7 @@ import { KanbanPreview } from './cmps/Workspace/kanban/KanbanPreview'
 import { FileImgModal } from './cmps/Workspace/board/groups/cells/modals/FileImgModal'
 import { EditLabelsModal } from './cmps/Workspace/board/groups/cells/modals/EditLabelsModal'
 import { LoginPage } from './pages/LoginPage'
+import { ChartPreview } from './cmps/Workspace/charts/ChartPreview'
 
 export function App() {
   return (
@@ -28,6 +29,10 @@ export function App() {
               <Route
                 path="/workspace/:boardId/views"
                 element={<KanbanPreview />}
+              />
+              <Route
+                path="/workspace/:boardId/chart"
+                element={<ChartPreview />}
               />
             </Route>
           </Routes>
