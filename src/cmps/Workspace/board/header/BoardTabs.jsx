@@ -6,7 +6,7 @@ export function BoardTabs({ isCollapsed, onCollapse, board }) {
   return (
     <section className={`board-tabs flex space-between`}>
       <div className="tabs flex">
-        <NavLink to={`/workspace/${boardId}`}>
+        <NavLink end to={`/workspace/${boardId}`}>
           <button className="btn-icon medium-transparent flex gap8">
             <HomeIcon />
             Main Table
