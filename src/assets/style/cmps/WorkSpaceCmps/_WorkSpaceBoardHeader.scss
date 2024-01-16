@@ -9,7 +9,7 @@
 
     padding: $spacing-xl $spacing-xl 0px $spacing-xl;
     padding-top: $spacing-medium;
-    padding-left: $spacing-xl +6px;
+    padding-left: $spacing-xl (+6px);
     position: sticky;
     left: 0;
     top: 0;
@@ -54,7 +54,7 @@
       .wrapper {
         display: none;
       }
-      
+
       .phone-header {
         padding: 16px;
         background-color: #111111;
