@@ -1,11 +1,5 @@
 .work-space-board {
   .workspace-board-header {
-    .phone-header {
-      display: none;
-    }
-    .phone-add-group {
-      display: none;
-    }
 
     padding: $spacing-xl $spacing-xl 0px $spacing-xl;
     padding-top: $spacing-medium;
@@ -17,8 +11,14 @@
     z-index: 1000;
 
     .board-header {
+      .phone-header {
+        display: none;
+      }
+      .phone-add-group {
+        display: none;
+      }
+  
       background-color: white;
-      // max-height: 40px;
       padding: $spacing-xs 0;
 
       h2 {
@@ -58,7 +58,7 @@
       .phone-header {
         padding: 16px;
         background-color: #111111;
-        display: flex;
+        display: flex !important;
         svg {
           color: white;
         }
@@ -68,7 +68,7 @@
         }
         .left-side {
           button {
-            display: flex;
+            display: flex !important;
             gap: 8px;
             padding: 4px 6px;
             max-height: 32px;
@@ -89,7 +89,7 @@
       }
 
       .phone-add-group {
-        display: flex;
+        display: flex !important;
         position: fixed;
         bottom: 16px;
         right: 16px;
