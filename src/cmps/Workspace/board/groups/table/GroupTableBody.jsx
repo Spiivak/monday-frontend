@@ -41,12 +41,6 @@ export function GroupTableBody({
     return updatedTasks
   }
 
-<<<<<<< HEAD
-=======
-  useEffect(()=>{
-  },[checkedTaskIds])
-
->>>>>>> 5a20f6ee4dd7b9e6802e64e7d524f5fe2711f949
   const onDragEnd = (result) => {
     if (!result.destination) {
       return
