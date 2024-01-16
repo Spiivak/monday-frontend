@@ -1,6 +1,6 @@
-import { useRef, useState, useEffect } from "react"
+import { useRef, useState, useEffect } from 'react'
 
-export function TaskTitle({ initialText, onSave, placeholder, type }) {
+export function TaskTitle({ initialText, onSave, placeholder, type, group }) {
   const editableTextRef = useRef()
   const textInputRef = useRef()
   const [inputText, setInputText] = useState('')
@@ -11,7 +11,6 @@ export function TaskTitle({ initialText, onSave, placeholder, type }) {
     setInputText(initialText)
     setSavedText(initialText)
   }, [initialText])
-
 
   function handleChange(ev) {
     const target = ev.target
@@ -37,9 +36,7 @@ export function TaskTitle({ initialText, onSave, placeholder, type }) {
     }, 30)
   }
   return (
-    <div className="task-title"
-      style={{width: '250px'}}
-    >
+    <div className="task-title" style={{ width: '250px' }}>
       {isEditing ? (
         <div ref={editableTextRef} className="task-title-input">
           <input
@@ -51,12 +48,22 @@ export function TaskTitle({ initialText, onSave, placeholder, type }) {
             placeholder={placeholder}
             onKeyDown={handleKeyDown}
             autoFocus
-            style={{width: '250px'}}
+            style={{ width: '250px' }}
           />
         </div>
       ) : (
         // <div className="editable-txt editable-task-title task-title-text" onClick={handleToggleEditing}>
-          <span style={{width: '250px', textWrap:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}} onClick={handleToggleEditing} className="flex align-center editable-txt editable-task-title task-title-text"><span>{inputText || placeholder}</span></span>
+        <span
+          style={{
+            width: '250px',
+            textWrap: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          }}
+          onClick={handleToggleEditing}
+          className="flex align-center editable-txt editable-task-title task-title-text">
+          <span>{inputText || placeholder}</span>
+        </span>
         // </div>
       )}
     </div>

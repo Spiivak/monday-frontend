@@ -10,6 +10,7 @@ export function EditableText({
   placeholder,
   type,
   textColor,
+  group,
 }) {
   switch (type) {
     case 'addTask':
@@ -17,7 +18,7 @@ export function EditableText({
     case 'columnTitle':
       return <ColumnTitle {...{ initialText, onSave, placeholder, type }} />
     case 'taskTitle':
-      return <TaskTitle {...{ initialText, onSave, placeholder, type }} />
+      return <TaskTitle {...{ initialText, onSave, placeholder, type, group }} />
     case 'groupTitle':
       return (
         <GroupTitle

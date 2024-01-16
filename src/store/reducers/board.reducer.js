@@ -52,6 +52,7 @@ const initialState = {
   activeContextBtn: null,
   activeContextBtnData: null,
   activeTask: null,
+  activeGroup: null,
   activeBoard: null,
   isAddingColumn: false,
   checkedTaskIds: [],
@@ -260,7 +261,7 @@ export function boardReducer(state = initialState, action = {}) {
 
     // * ACTIVE TASK
     case SET_ACTIVE_TASK:
-      return { ...state, activeTask: action.activeTask }
+      return { ...state, activeTask: action.activeTask, activeGroup: action.activeGroup }
     case DEACTIVATE_TASK:
       return { ...state, activeTask: null }
 

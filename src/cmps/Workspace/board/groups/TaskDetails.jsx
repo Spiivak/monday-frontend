@@ -6,9 +6,12 @@ import { useSelector } from 'react-redux'
 import {
   deactivateBoard,
   deactivateTask,
+  updateTask,
 } from '../../../../store/actions/board.actions'
 import { ActivityLogPreview } from './cells/cellsPreview/ActivityLogPreview'
 import emptyState from '../../../../assets/img/empty-state.svg'
+import { MsgsLogPreview } from './cells/cellsPreview/MsgsLogPreview'
+import { useParams } from 'react-router'
 
 export function TaskDetails() {
   const activeTask = useSelector(
@@ -17,6 +20,13 @@ export function TaskDetails() {
   const activeBoard = useSelector(
     (storeState) => storeState.boardModule.activeBoard
   )
+  const activeGroup = useSelector(
+    (storeState) => storeState.boardModule.activeGroup
+  )
+
+  const boards = useSelector((storeState) => storeState.boardModule.boards)
+
+  const { boardId } = useParams()
 
   const [activeTab, setActiveTab] = useState('activityLog') // Default to 'updates'
 
@@ -45,6 +55,28 @@ export function TaskDetails() {
   const handleTabChange = (tab) => {
     setActiveTab(tab)
   }
+
+  function onAddMsgLog(msgLog) {
+    const board = boards.find((board) =>
+      board.groups.some((group) => group.id === activeGroup.id)
+    )
+
+    let newTask
+    if (activeTask.msgs)
+      newTask = { ...activeTask, msgs: [...activeTask.msgs, msgLog] }
+    else newTask = { ...activeTask, msgs: [msgLog] }
+
+    updateTask(
+      board._id,
+      activeGroup.id,
+      activeTask.id,
+      null,
+      null,
+      newTask,
+      null
+    )
+  }
+
   if (!activeTask && !activeBoard) return
   return (
     <div className="task-details-modal" ref={modalRef}>
@@ -53,8 +85,7 @@ export function TaskDetails() {
       <div className="header">
         <button
           className="btn-icon small-transparent btn-close"
-          onClick={() => deactivateTask() || deactivateBoard()}
-        >
+          onClick={() => deactivateTask() || deactivateBoard()}>
           <CloseSmallIcon />
         </button>
 
@@ -81,8 +112,7 @@ export function TaskDetails() {
             <div className="tabs">
               <div
                 className={`tab-container flex gap16`}
-                onClick={() => handleTabChange('updates')}
-              >
+                onClick={() => handleTabChange('updates')}>
                 <div className="tab-label flex gap8 align-center btn-txt medium-sec">
                   <HomeIcon />
                   <div className="tab">
@@ -90,38 +120,33 @@ export function TaskDetails() {
                     <span
                       className={
                         activeTab === 'updates' ? 'underline-active' : ''
-                      }
-                    ></span>
+                      }></span>
                   </div>
                 </div>
               </div>
               <div
                 className={`tab-container`}
-                onClick={() => handleTabChange('files')}
-              >
+                onClick={() => handleTabChange('files')}>
                 <div className="tab-label btn-txt medium-sec">
                   <span>Files</span>
                   {activeTab === 'files' && (
                     <span
                       className={
                         activeTab === 'files' ? 'underline-active' : ''
-                      }
-                    ></span>
+                      }></span>
                   )}
                 </div>
               </div>
               <div
                 className={`tab-container`}
-                onClick={() => handleTabChange('activityLog')}
-              >
+                onClick={() => handleTabChange('activityLog')}>
                 <div className="tab-label btn-txt medium-sec">
                   <span>Activity Log</span>
                   {activeTab === 'activityLog' && (
                     <span
                       className={
                         activeTab === 'activityLog' ? 'underline-active' : ''
-                      }
-                    ></span>
+                      }></span>
                   )}
                 </div>
               </div>
@@ -136,11 +161,7 @@ export function TaskDetails() {
       </div>
 
       {activeTab === 'updates' && (
-        <div>
-          <h2>No updates yet for this item</h2>
-          <p>Be the first one to update about progress, mention someone</p>
-          <p>or upload files to share with your team members</p>
-        </div>
+        <MsgsLogPreview {...{ activeTask, activeBoard, onAddMsgLog }} />
       )}
 
       {activeTab === 'files' && (

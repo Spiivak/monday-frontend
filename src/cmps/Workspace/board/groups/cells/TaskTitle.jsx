@@ -6,7 +6,7 @@ import {
 import { OpenIcon } from '../../../../Icons'
 import { EditableText } from '../../editableText/EditableText'
 
-export function TaskTitle({ task, cmpId, handleUpdateTask }) {
+export function TaskTitle({ task, cmpId, handleUpdateTask, group }) {
   const activeTask = useSelector(
     (storeState) => storeState.boardModule.activeTask
   )
@@ -14,7 +14,7 @@ export function TaskTitle({ task, cmpId, handleUpdateTask }) {
     if (activeTask) {
       deactivateTask()
     } else {
-      setActiveTask(task)
+      setActiveTask(task,group)
     }
   }
   return (
@@ -22,6 +22,7 @@ export function TaskTitle({ task, cmpId, handleUpdateTask }) {
       <EditableText
         type={'taskTitle'}
         initialText={task.title}
+        group={group}
         onSave={(text) => handleUpdateTask('task', text, task)}
       />
       <button className="btn-icon small-transparent" onClick={onOpenTask}>

@@ -176,6 +176,9 @@ export async function updateTask(
     case 'MemberPicker':
       newTask = { ...task, ['members' + cmpId]: data }
       break
+    default:
+      newTask = { ...task }
+      break
   }
   try {
     const task = await boardService.updateTask(
@@ -355,8 +358,8 @@ export function deactivateContextBtn() {
 
 // * ACTIVE TASK
 
-export function setActiveTask(activeTask) {
-  store.dispatch({ type: SET_ACTIVE_TASK, activeTask })
+export function setActiveTask(activeTask, activeGroup) {
+  store.dispatch({ type: SET_ACTIVE_TASK, activeTask, activeGroup,  })
 }
 
 export function deactivateTask() {

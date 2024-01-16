@@ -1,11 +1,12 @@
 import { utilService } from '../../../../../../services/util.service'
 import { NavigationChevronDownIcon, TimeIcon } from '../../../../../Icons'
 export function ActivityLogPreview({ activeTask, activeBoard }) {
-  const selectedLog = activeTask
+  let selectedLog = activeTask
     ? activeTask.activity || []
     : activeBoard.groups.flatMap((group) =>
         group.tasks.flatMap((task) => task.activity)
       )
+  selectedLog.sort((a,b)=>b.createdAt - a.createdAt)
 
   return (
     <div className="activity-log flex column align-center">

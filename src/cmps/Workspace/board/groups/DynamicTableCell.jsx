@@ -28,7 +28,7 @@ export function DynamicTableCell({
 
   switch (cmp) {
     case 'title':
-      return <TaskTitle {...{ task, cmpId, handleUpdateTask, cmpsOrder }} />
+      return <TaskTitle {...{ task, cmpId, handleUpdateTask, cmpsOrder, group }} />
     case 'StatusPicker':
       return (
         <StatusPicker
