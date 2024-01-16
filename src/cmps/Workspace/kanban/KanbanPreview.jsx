@@ -11,13 +11,11 @@ import { loadBoards, saveBoard } from '../../../store/actions/board.actions'
 import { useParams } from 'react-router'
 import { ToolTip } from '../../ToolTip'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { KanbanHeader } from './KanbanHeader'
 
 export function KanbanPreview() {
   const boards = useSelector((storeState) => storeState.boardModule.boards)
   const { boardId } = useParams()
   const [selectedBoard, setSelectedBoard] = useState(null)
-  const [statusPickerCmp, setStatusPickerCmp] = useState(null)
 
   useEffect(() => {
     loadBoards()
@@ -65,13 +63,13 @@ export function KanbanPreview() {
       return task['members' + memberPicker[0].id].map((member) => {
         return (
           <img
+            key={member._id}
             src={member.imgUrl}
             alt="member"
             style={{ width: '25px', height: '25px', borderRadius: '50%' }}
           />
         )
       })
-      // console.log('memberPicker  memberPicker:', memberPicker[0].id)
     }
   }
 
@@ -80,8 +78,6 @@ export function KanbanPreview() {
   }
 
   const renderLabels = () => {
-    // const uniqueStatuses = new Set();
-
     if (selectedBoard) {
       const statusPickers = selectedBoard.cmpsOrder.reduce((acc, cmp) => {
         if (cmp.type !== 'StatusPicker') return acc
@@ -205,10 +201,6 @@ export function KanbanPreview() {
         )
       })
     }
-
-    // ... (other code)
-
-    // ... (other code)
   }
   if (!selectedBoard || !selectedBoard.groups) {
     return <div>Loading...</div>
@@ -225,10 +217,7 @@ export function KanbanPreview() {
       <BoardHeader board={selectedBoard} {...{ onUpdateBoard }} />
       <main>
         <div className="group-container">
-          <div className="group-tasks flex gap16">
-            {/* Render here labels */}
-            {renderLabels()}
-          </div>
+          <div className="group-tasks flex gap16">{renderLabels()}</div>
         </div>
       </main>
     </section>
