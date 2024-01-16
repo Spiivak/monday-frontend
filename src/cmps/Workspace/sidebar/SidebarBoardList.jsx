@@ -23,7 +23,10 @@ export function SidebarBoardList({ onRemoveBoard }) {
     <DragDropContext onDragEnd={handleDragEnd}>
       <Droppable droppableId="boards" direction="vertical">
         {(provided) => (
-          <div {...provided.droppableProps} ref={provided.innerRef} className="workspaces-list flex column">
+          <div
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+            className="workspaces-list flex column">
             {boards.map((board, index) => (
               <Draggable key={board._id} draggableId={board._id} index={index}>
                 {(provided, snapshot) => (
@@ -35,14 +38,15 @@ export function SidebarBoardList({ onRemoveBoard }) {
                     style={{
                       ...provided.draggableProps.style,
                       userSelect: 'none',
-                    }}
-                  >
+                    }}>
                     <div className="workspace-item flex align-center space-between">
                       <NavLink
                         to={`/workspace/${board._id}`}
                         className="flex gap8 align-center hoverable space-between"
-                        onClick={(ev) => ev.stopPropagation()}
-                      >
+                        onClick={(ev) => {
+                          setBoardLoading(true)
+                          ev.stopPropagation()
+                        }}>
                         <div className="link flex space-between">
                           <div className="nav-link-content flex space-between align-center gap8">
                             <BoardIcon />

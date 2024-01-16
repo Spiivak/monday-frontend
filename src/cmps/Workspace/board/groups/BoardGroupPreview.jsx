@@ -117,7 +117,6 @@ export function BoardGroupPreview({ board, group, boardId, cmpsOrder }) {
     updateGroup(boardId, groupId, newGroup)
   }
 
-  //!!! TURN OFF BOARD LOADER !!!//
   const toggleTable = () => {
     setIsTableOpen(!isTableOpen)
   }

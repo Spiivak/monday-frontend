@@ -33,12 +33,6 @@ export function WorkSpaceBoard() {
   }, [boardId])
 
   useEffect(() => {
-    if (boardLoading && filteredBoard) {
-      setBoardLoading(false)
-    }
-  }, [filteredBoard])
-
-  useEffect(() => {
     if (boardId) {
       setSelectedBoard(boards.find((board) => board._id === boardId))
       setFilteredBoard(boards.find((board) => board._id === boardId))

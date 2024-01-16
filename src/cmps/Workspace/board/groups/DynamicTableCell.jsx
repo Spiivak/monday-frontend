@@ -7,6 +7,8 @@ import { DatePickerC } from './cells/DatePickerC'
 import { NumbersPicker } from './cells/NumbersPicker'
 import { TaskTitle } from './cells/TaskTitle'
 import { useSelector } from 'react-redux'
+import { setBoardLoading } from '../../../../store/actions/board.actions'
+import { useEffect } from 'react'
 
 export function DynamicTableCell({ board, cmp, cmpId, task, onTaskUpdate, group, cmpsOrder }) {
   const loggedInUser = useSelector((storeState) => storeState.userModule.user)
@@ -17,6 +19,10 @@ export function DynamicTableCell({ board, cmp, cmpId, task, onTaskUpdate, group,
       console.error(err)
     }
   }
+
+  useEffect(()=>{
+    setBoardLoading(false)
+  },[])
 
   switch (cmp) {
     case 'title':
@@ -39,7 +45,7 @@ export function DynamicTableCell({ board, cmp, cmpId, task, onTaskUpdate, group,
 
     case 'FilePicker':
       return <FilePicker {...{ task, cmpId, handleUpdateTask, cmpsOrder }} />
-      
+
     case 'NumbersPicker':
       return <NumbersPicker {...{ task, cmpId, handleUpdateTask, cmpsOrder, loggedInUser, }} />
 
