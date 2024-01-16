@@ -72,7 +72,7 @@
 
   @media (max-width: 600px) {
     .title {
-      width: 156px !important;
+      width: 200px !important;
       overflow: hidden;
       text-overflow: ellipsis;
     }
@@ -83,7 +83,7 @@
 .status-picker-cell {
   min-width: 180px;
   @media (max-width: 600px) {
-    width: 90px;
+    width: 180px;
   }
   // TODO: Add corner fold effect
 }
@@ -91,7 +91,7 @@
 .member-picker-cell {
   min-width: 160px;
   @media (max-width: 600px) {
-    width: 80px;
+    width: 180px;
   }
 }
 
@@ -112,7 +112,7 @@
     }
   }
   @media (max-width: 600px) {
-    width: 85px;
+    width: 180px;
   }
 }
 
@@ -145,7 +145,7 @@
   }
 
   @media (max-width: 600px) {
-    width: 90px;
+    width: 180px;
   }
 }
 
@@ -167,7 +167,7 @@
     }
   }
   @media (max-width: 600px) {
-    width: 100px;
+    width: 180px;
   }
 }
 
@@ -203,10 +203,16 @@
       }
     }
   }
+  @media (max-width: 600px) {
+    width: 180px;
+  }
 }
 
 .number-picker-cell {
   min-width: 180px;
+  @media (max-width: 600px) {
+    width: 180px;
+  }
 }
 
 .empty-add-cell {}
