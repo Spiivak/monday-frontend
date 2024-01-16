@@ -8,7 +8,7 @@ import {
   deactivateTask,
 } from '../../../../store/actions/board.actions'
 import { ActivityLogPreview } from './cells/cellsPreview/ActivityLogPreview'
-import emptyState from '../../../../assets/img/empty-state.svg'
+import FilesPreview from './cells/cellsPreview/FilesPreview'
 
 export function TaskDetails() {
   const activeTask = useSelector(
@@ -144,16 +144,7 @@ export function TaskDetails() {
       )}
 
       {activeTab === 'files' && (
-        <div>
-          <img src={emptyState} alt="" />
-          <p>
-            <b>Drag & drop</b> or <b>add files here</b>
-          </p>
-          <p>
-            Upload, comment and review all files in this item to easily
-            collaborate in context
-          </p>
-        </div>
+        <FilesPreview {...{ activeTask, activeBoard }}/>
       )}
 
       {activeTab === 'activityLog' && (

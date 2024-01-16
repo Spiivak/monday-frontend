@@ -217,4 +217,30 @@
       }
     }
   }
+
+  .files-preview-tab {
+    padding: 24px 20px 0;
+    // background: red;
+    height: 710px;
+
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    .header {
+    }
+
+    .empty-state {
+      img {
+        width: 300px;
+      }
+    }
+
+    .gallery {
+      img {
+        width: 220px;
+        height: 132px;
+      }
+    }
+  
+  }
 }
