@@ -1,14 +1,21 @@
 .work-space-board {
   .workspace-board-header {
-    padding: $spacing-xl  $spacing-xl  0px $spacing-xl;
-    padding-top: $spacing-medium;
-    padding-left: $spacing-xl + 6px;
+    .phone-header {
+      display: none;
+    }
+    .phone-add-group {
+      display: none;
+    }
 
+    padding: $spacing-xl $spacing-xl 0px $spacing-xl;
+    padding-top: $spacing-medium;
+    padding-left: $spacing-xl +6px;
     position: sticky;
     left: 0;
     top: 0;
     background-color: #fff;
     z-index: 1000;
+
     .board-header {
       background-color: white;
       // max-height: 40px;
@@ -37,9 +44,65 @@
         }
       }
     }
+
     @media (max-width: 600px) {
-      .title-wrapper {
-        flex-grow: 0;
+      padding: 0;
+      color: white;
+      .board-header {
+        padding: 0;
+      }
+      .wrapper {
+        display: none;
+      }
+      
+      .phone-header {
+        padding: 16px;
+        background-color: #111111;
+        display: flex;
+        svg {
+          color: white;
+        }
+
+        button {
+          background-color: #3a3a3a5c;
+        }
+        .left-side {
+          button {
+            display: flex;
+            gap: 8px;
+            padding: 4px 6px;
+            max-height: 32px;
+          }
+          .right {
+            button {
+              padding: 6px;
+            }
+          }
+        }
+
+        .right-side {
+          button {
+            background-color: red;
+            padding: 6px;
+          }
+        }
+      }
+
+      .phone-add-group {
+        display: flex;
+        position: fixed;
+        bottom: 16px;
+        right: 16px;
+
+        button {
+          background: rgb(43, 70, 226);
+          width: 40px;
+          height: 40px;
+          border-radius: 16px;
+          svg {
+            color: white;
+          }
+        }
       }
     }
   }

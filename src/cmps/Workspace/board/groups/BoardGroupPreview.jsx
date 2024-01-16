@@ -151,12 +151,8 @@ export function BoardGroupPreview({ board, group, boardId, cmpsOrder }) {
           </div>
 
           {/* Render table only if it's open */}
-          <div
-            style={{
-              '--gtc': `39px 350px repeat(${
-                columns.length - 1
-              },200px) minmax(80px,1fr)`,
-            }}
+          <div style={{'--gtc': `39px 350px repeat(${columns.length - 1},200px) minmax(80px,1fr)`,
+                      '--gtc-mobile': `0 100px repeat(${columns.length - 1}, 100) minmax(40px, 1fr)` }}
             className="board-group-table-container">
             <GroupTableHeaders
               columns={columns}

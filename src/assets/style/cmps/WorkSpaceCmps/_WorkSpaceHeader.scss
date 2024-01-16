@@ -94,4 +94,21 @@
       border-radius: $border-radius-small;
     }
   }
+
+  @media (max-width: 600px) {
+    .header-action-btns-sect {
+      display: none;
+    }
+
+    .header-logo-sect {
+      .work-management-logo {
+        display: none;
+      }
+      h1 {
+        span {
+          display: none;
+        }
+      }
+    }
+  }
 }
