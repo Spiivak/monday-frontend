@@ -1,5 +1,4 @@
 import { boardService } from '../../services/board.service'
-import { socketService } from '../../services/socket.service'
 import { utilService } from '../../services/util.service'
 
 import {
@@ -33,7 +32,6 @@ import {
   UPDATE_GROUP,
   UPDATE_TASK,
 } from '../reducers/board.reducer'
-import { GET_BOARD_BY_ID } from '../reducers/board.reducer'
 
 import { store } from '../store'
 
@@ -216,7 +214,6 @@ export async function updateTasks(boardId, groupId, tasks) {
   try {
     store.dispatch({ type: SET_TASKS, boardId, groupId, tasks })
     const updatedTasks = await boardService.updateTasks(boardId, groupId, tasks)
-    console.log(updatedTasks)
   } catch (err) {}
 }
 
@@ -359,7 +356,7 @@ export function deactivateContextBtn() {
 // * ACTIVE TASK
 
 export function setActiveTask(activeTask, activeGroup) {
-  store.dispatch({ type: SET_ACTIVE_TASK, activeTask, activeGroup,  })
+  store.dispatch({ type: SET_ACTIVE_TASK, activeTask, activeGroup })
 }
 
 export function deactivateTask() {
