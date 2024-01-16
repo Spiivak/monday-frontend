@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { BoardIcon } from '../../Icons'
 import { ContextBtn } from '../../ContextBtn'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { updateBoards } from '../../../store/actions/board.actions'
+import { setBoardLoading, updateBoards } from '../../../store/actions/board.actions'
 
 export function SidebarBoardList({ onRemoveBoard }) {
   const boards = useSelector((storeState) => storeState.boardModule.boards)
