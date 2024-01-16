@@ -19,11 +19,15 @@ export function GroupTableHeaders({
 
   const handleGroupCheckboxChange = (event) => {
     const { checked } = event.target
-    const allTaskIds = group.tasks.map((task) => task.id)
+    const allTaskIds = group.tasks.map((task) => ({
+      taskId: task.id,
+      groupId: group.id,
+      boardId: boardId,
+    }))
 
     const updatedTasks = checked
-      ? [...checkedTaskIds, ...allTaskIds]
-      : checkedTaskIds.filter((id) => !allTaskIds.includes(id))
+      ? [...allTaskIds]
+      : []
 
     saveSelectedTasks(updatedTasks)
     return updatedTasks
@@ -33,15 +37,13 @@ export function GroupTableHeaders({
     <div className="table-body-row table-header">
       <div
         style={{ '--before-color': group.style.color }}
-        className="first-column group-table-header-cell checkbox-cell flex align-center justify-center first-row-cell"
-      >
+        className="first-column group-table-header-cell checkbox-cell flex align-center justify-center first-row-cell">
         <input type="checkbox" onChange={handleGroupCheckboxChange} />
       </div>
       {columns.map((column, idx) => (
         <div
           key={column.id}
-          className={`group-table-header-cell wrapper th-header flex align-center justify-center pad8 ${column.cmp.type}`}
-        >
+          className={`group-table-header-cell wrapper th-header flex align-center justify-center pad8 ${column.cmp.type}`}>
           {idx !== 0 ? (
             <EditableText
               type={'columnTitle'}
