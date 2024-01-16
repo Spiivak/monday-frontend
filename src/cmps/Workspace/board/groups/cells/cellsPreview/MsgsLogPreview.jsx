@@ -85,7 +85,7 @@ export function MsgsLogPreview({ activeTask, activeBoard, onAddMsgLog }) {
                 />
                 <span>{msgLog.createdBy.fullname}</span>
               </div>
-              <span className="time-format">
+              <span className="time-format flex align-center gap4">
                 <TimeIcon />
                 {utilService.timeDiff(msgLog.createdAt)}
               </span>

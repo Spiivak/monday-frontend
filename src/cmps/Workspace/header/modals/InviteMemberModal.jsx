@@ -68,7 +68,7 @@ export function InviteMemberModal({ onClose }) {
           <CloseIcon />
         </button>
         <div className="header">
-          <h2>Invite to Monday</h2>
+          <h2>Invite to Anotherday</h2>
         </div>
 
         <div className="body flex column">

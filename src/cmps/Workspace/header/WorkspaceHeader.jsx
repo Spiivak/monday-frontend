@@ -67,7 +67,7 @@ export function WorkspaceHeader() {
             <MwmIcon />
           </div>
           <h1 className="logo-title">
-            monday <span className="logo-title-span">work management</span>
+            anotherday <span className="logo-title-span">work management</span>
           </h1>
           {/* <LogoBtn>See plans</LogoBtn> */}
         </section>
