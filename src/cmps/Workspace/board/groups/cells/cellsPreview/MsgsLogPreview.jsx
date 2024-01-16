@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import { utilService } from '../../../../../../services/util.service'
-import { NavigationChevronDownIcon, TimeIcon } from '../../../../../Icons'
+import { TimeIcon } from '../../../../../Icons'
 import { useSelector } from 'react-redux'
 export function MsgsLogPreview({ activeTask, activeBoard, onAddMsgLog }) {
   const [msg, setMsg] = useState('')
   const user = useSelector((storeState) => storeState.userModule.user)
 
   const selectedLog = activeTask
-  ? activeTask.msgs || []
-  : activeBoard.groups.flatMap((group) =>
-  group.tasks.flatMap((task) => task.msgs)
-  )
+    ? activeTask.msgs || []
+    : activeBoard.groups.flatMap((group) =>
+        group.tasks.flatMap((task) => task.msgs)
+      )
 
   selectedLog.sort((a, b) => b.createdAt - a.createdAt)
 
@@ -38,7 +38,8 @@ export function MsgsLogPreview({ activeTask, activeBoard, onAddMsgLog }) {
         onSubmit={(ev) => {
           ev.preventDefault()
           handleSubmit(ev)
-        }}>
+        }}
+      >
         <input
           value={msg}
           type="text"
@@ -54,7 +55,8 @@ export function MsgsLogPreview({ activeTask, activeBoard, onAddMsgLog }) {
             top: '50%',
             translate: '-20% -50%',
           }}
-          className="btn-ctn small-primary">
+          className="btn-ctn small-primary"
+        >
           Send
         </button>
       </form>
@@ -71,7 +73,8 @@ export function MsgsLogPreview({ activeTask, activeBoard, onAddMsgLog }) {
               padding: '16px',
               marginBlockEnd: '16px',
             }}
-            key={msgLog.createdAt}>
+            key={msgLog.createdAt}
+          >
             <div className="card-header flex space-between align-center">
               <div className="user-name-wrapper flex align-center gap12">
                 <img

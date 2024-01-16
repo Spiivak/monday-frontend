@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { BoardHeader } from '../board/header/BoardHeader'
-import { ChatIcon, ConvertToItemIcon, MenuIcon, PersonRoundedIcon, SubitemsIcon } from '../../Icons'
+import {
+  ChatIcon,
+  MenuIcon,
+  PersonRoundedIcon,
+  SubitemsIcon,
+} from '../../Icons'
 import { loadBoards, saveBoard } from '../../../store/actions/board.actions'
 import { useParams } from 'react-router'
 import { ToolTip } from '../../ToolTip'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { KanbanHeader } from './KanbanHeader'
 
 export function KanbanPreview() {
@@ -21,7 +26,6 @@ export function KanbanPreview() {
     const fetchBoard = async () => {
       try {
         const currBoard = await boards.find((board) => board._id === boardId)
-        console.log('fetchBoard  currBoard:', currBoard)
         setSelectedBoard(currBoard)
       } catch (error) {
         console.error('Error fetching board:', error)
@@ -53,18 +57,27 @@ export function KanbanPreview() {
         if (cmp.type !== 'MemberPicker') return acc
         return [...acc, cmp]
       }, [])
-      if(!task["members" + memberPicker[0].id] || task["members" + memberPicker[0].id].length === 0) return <PersonRoundedIcon/>
-      return task["members" + memberPicker[0].id].map(member => {
-        return <img src={member.imgUrl} alt='member' style={{ width: '25px', height: '25px', borderRadius: '50%'}}/>
+      if (
+        !task['members' + memberPicker[0].id] ||
+        task['members' + memberPicker[0].id].length === 0
+      )
+        return <PersonRoundedIcon />
+      return task['members' + memberPicker[0].id].map((member) => {
+        return (
+          <img
+            src={member.imgUrl}
+            alt="member"
+            style={{ width: '25px', height: '25px', borderRadius: '50%' }}
+          />
+        )
       })
       // console.log('memberPicker  memberPicker:', memberPicker[0].id)
-      
     }
   }
 
   const handleDragEnd = (result) => {
     console.log('handleDragEnd  result:', result)
-    };
+  }
 
   const renderLabels = () => {
     // const uniqueStatuses = new Set();
@@ -99,78 +112,86 @@ export function KanbanPreview() {
         return { statusPickerLabels, statusPerPicker }
       })
       return statusPickersWithTasks.map((current, index) => {
-        const { statusPickerLabels, statusPerPicker } = current;
+        const { statusPickerLabels, statusPerPicker } = current
         return (
-          <div key={index} className='flex gap16'>
+          <div key={index} className="flex gap16">
             {statusPickerLabels.map((label, index) => {
               return (
                 <div key={index} className="board-section">
-                  <div style={{ backgroundColor: label.color }} className='label flex align-center justify-center'>
+                  <div
+                    style={{ backgroundColor: label.color }}
+                    className="label flex align-center justify-center"
+                  >
                     {label.title}
                   </div>
                   <div className="task-container">
                     <DragDropContext onDragEnd={handleDragEnd}>
-                      <Droppable droppableId={`droppable-${label.id}`} type="TASK">
+                      <Droppable
+                        droppableId={`droppable-${label.id}`}
+                        type="TASK"
+                      >
                         {(provided, snapshot) => (
                           <div
                             {...provided.droppableProps}
                             ref={provided.innerRef}
                             className="card-container"
                           >
-                            {Object.entries(statusPerPicker).map(([key, value]) => {
-                              if (key !== label.id) return null;
-                              return value.map((task, idx) => (
-                                <Draggable
-                                  key={task.id}
-                                  draggableId={`draggable-${task.id}`}
-                                  index={idx}
-                                >
-                                  {(provided, snapshot) => (
-                                    <div
-                                      ref={provided.innerRef}
-                                      {...provided.draggableProps}
-                                      {...provided.dragHandleProps}
-                                    >
-                                      <div className='card-container'>
-                                        <div className="task-card flex column">
-                                          <div className="card-header flex space-between">
-                                            <div className="card-title">
-                                              <span>{task.title}</span>
+                            {Object.entries(statusPerPicker).map(
+                              ([key, value]) => {
+                                if (key !== label.id) return null
+                                return value.map((task, idx) => (
+                                  <Draggable
+                                    key={task.id}
+                                    draggableId={`draggable-${task.id}`}
+                                    index={idx}
+                                  >
+                                    {(provided, snapshot) => (
+                                      <div
+                                        ref={provided.innerRef}
+                                        {...provided.draggableProps}
+                                        {...provided.dragHandleProps}
+                                      >
+                                        <div className="card-container">
+                                          <div className="task-card flex column">
+                                            <div className="card-header flex space-between">
+                                              <div className="card-title">
+                                                <span>{task.title}</span>
+                                              </div>
+                                              <div className="card-actions flex gap8">
+                                                <ChatIcon />
+                                                <MenuIcon />
+                                              </div>
                                             </div>
-                                            <div className="card-actions flex gap8">
-                                              <ChatIcon/>
-                                              <MenuIcon/>
+                                            <div className="task-people flex align-center space-between">
+                                              <div className="people-title flex align-center">
+                                                <span className="flex align-center">
+                                                  <PersonRoundedIcon />
+                                                </span>
+                                                <span>Person</span>
+                                              </div>
+                                              <div className="persons flex align-center justify-center">
+                                                {renderPersons(task)}
+                                              </div>
                                             </div>
-                                          </div>
-                                          <div className="task-people flex align-center space-between">
-                                            <div className="people-title flex align-center">
-                                              <span className='flex align-center'>
-                                                <PersonRoundedIcon/>
+                                            <div className="task-subitem flex space-between align-center">
+                                              <span className="flex align-center gap8">
+                                                <SubitemsIcon />
                                               </span>
-                                              <span>Person</span>
-                                            </div>
-                                            <div className="persons flex align-center justify-center">
-                                              {renderPersons(task)}
-                                            </div>
-                                          </div>
-                                          <div className="task-subitem flex space-between align-center">
-                                            <span className='flex align-center gap8'>
-                                              <SubitemsIcon/>
-                                            </span>
-                                            <ToolTip title="Subitems">
-                                              <span>Subitems</span>
-                                            </ToolTip>
-                                            <div className="subitem-actions flex align-center justify-center">
-                                              <SubitemsIcon/>
+                                              <ToolTip title="Subitems">
+                                                <span>Subitems</span>
+                                              </ToolTip>
+                                              <div className="subitem-actions flex align-center justify-center">
+                                                <SubitemsIcon />
+                                              </div>
                                             </div>
                                           </div>
                                         </div>
                                       </div>
-                                    </div>
-                                  )}
-                                </Draggable>
-                              ));
-                            })}
+                                    )}
+                                  </Draggable>
+                                ))
+                              }
+                            )}
                             {provided.placeholder}
                           </div>
                         )}
@@ -178,19 +199,18 @@ export function KanbanPreview() {
                     </DragDropContext>
                   </div>
                 </div>
-              );
+              )
             })}
           </div>
-        );
-      });
-    };
-  
-    // ... (other code)
-  
+        )
+      })
+    }
 
-  
     // ... (other code)
-  };  if (!selectedBoard || !selectedBoard.groups) {
+
+    // ... (other code)
+  }
+  if (!selectedBoard || !selectedBoard.groups) {
     return <div>Loading...</div>
   }
   async function onUpdateBoard(boardToUpdate) {
@@ -202,7 +222,7 @@ export function KanbanPreview() {
   }
   return (
     <section className="kanban-section">
-          <BoardHeader board={selectedBoard} {...{ onUpdateBoard }} />
+      <BoardHeader board={selectedBoard} {...{ onUpdateBoard }} />
       <main>
         <div className="group-container">
           <div className="group-tasks flex gap16">
