@@ -1,14 +1,22 @@
 import { useState, useEffect } from 'react'
 import {
   ActivityIcon,
+  AddIcon,
+  ColumnIcon,
+  FilterIcon,
   InfoIcon,
   InviteMembersIcon,
+  MenuIcon,
+  NavigationChevronDownIcon,
+  NavigationChevronLeftIcon,
   NavigationChevronUpIcon,
+  SearchIcon,
 } from '../../../Icons'
 import { BoardTabs } from './BoardTabs'
 import { BoardHeaderFilter } from './BoardHeaderFilter'
 import { EditableText } from '../editableText/EditableText'
 import {
+  addTask,
   deactivateBoard,
   setActiveBoard,
 } from '../../../../store/actions/board.actions'
@@ -45,8 +53,20 @@ export function BoardHeader({ board, onUpdateBoard }) {
     onUpdateBoard(board)
   }
 
+  function handleAdd() {
+    addTask(
+      board._id,
+      board.groups[0].id,
+      {
+        title: `New ${board?.option ? board.option.slice(0, -1) : 'Task'}`,
+      },
+      'first'
+    )
+  }
+
   return (
     <section className={'board-header flex column'}>
+
       <div className="wrapper flex column">
         <div className="flex">
           {!!board && (
@@ -114,6 +134,28 @@ export function BoardHeader({ board, onUpdateBoard }) {
           />
         )}
         <BoardHeaderFilter board={board} isCollapsed={isCollapsed} />
+      </div>
+
+      <div className="phone-header flex column gap16">
+        <div className="top-header flex align-center space-between">
+          <button className='btn-ctn medium-primary'><NavigationChevronLeftIcon/></button>
+          {board?.title}
+          <button className='btn-ctn medium-primary'><MenuIcon/></button>
+        </div>
+        <div className="left-side flex space-between gap8">
+          <div className="left flex gap8">
+          <button className='btn-ctn medium-primary' ><ColumnIcon /> Main Table <NavigationChevronDownIcon /></button>
+          <button className='btn-ctn medium-primary' ><FilterIcon /></button>
+          </div>
+        <div className="right">
+          <button className='btn-ctn medium-primary'><SearchIcon /></button>
+        </div>
+        </div>
+      </div>
+      <div className="phone-add-group">
+        <div className="add-button">
+          <button className='btn-ctn medium-primary'><AddIcon/></button>
+        </div>
       </div>
     </section>
   )

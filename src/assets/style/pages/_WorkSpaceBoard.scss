@@ -10,5 +10,10 @@
     padding-bottom: 40px;
     padding-left: 40px;
   }
+  @media (max-width: 600px) {
+    .table-section {
+      padding: 0;
+    }
+  }
   // padding: $spacing-medium $spacing-xl;
 }
