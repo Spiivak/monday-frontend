@@ -186,6 +186,7 @@
 
 @media (max-width: 600px) {
   .board-group-table-container {
+    // padding-left: 16px;
     background-color: #111111;
     color: white;
     border: none !important;
@@ -195,6 +196,9 @@
     }
     .task-title {
       padding: 0;
+      padding-left: 6px;
+      position: flex;
+      // margin-right: 16px;
       left: 0 !important;
     }
     

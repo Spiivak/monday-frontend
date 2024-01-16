@@ -136,7 +136,7 @@ export function BoardHeader({ board, onUpdateBoard }) {
         <BoardHeaderFilter board={board} isCollapsed={isCollapsed} />
       </div>
 
-      <div className="phone-header flex column gap16">
+      <div className="phone-header flex column gap16 hide">
         <div className="top-header flex align-center space-between">
           <button className='btn-ctn medium-primary'><NavigationChevronLeftIcon/></button>
           {board?.title}
@@ -152,7 +152,7 @@ export function BoardHeader({ board, onUpdateBoard }) {
         </div>
         </div>
       </div>
-      <div className="phone-add-group">
+      <div className="phone-add-group hide">
         <div className="add-button">
           <button className='btn-ctn medium-primary'><AddIcon/></button>
         </div>

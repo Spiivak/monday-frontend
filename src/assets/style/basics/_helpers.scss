@@ -195,3 +195,7 @@ $board-grid: $first-col $person-col $status-col $priority-col $date-col
 // grid-template-columns: subgrid;
 // grid-column: 1 / -1;
 // }
+
+.hide {
+  display: none
+}

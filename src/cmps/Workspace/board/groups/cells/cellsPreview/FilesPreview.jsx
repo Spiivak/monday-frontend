@@ -2,13 +2,20 @@ import React from 'react'
 import emptyState from '../../../../../../assets/img/empty-state.svg'
 
 export default function FilesPreview({ activeTask, activeBoard }) {
-  if (!activeTask) return
-  const fileKeys = Object.keys(activeTask).filter((key) =>
-    key.startsWith('file')
-  )
+  if (!activeTask && !activeBoard) return
+  const fileKeys = activeTask
+    ? Object.values(activeTask)
+        .filter((key) => key && key.imgUrl !== undefined)
+        .map((key) => key.imgUrl)
+    : activeBoard.groups.flatMap((group) =>
+        group.tasks.flatMap((task) =>
+          Object.values(task)
+            .filter((key) => key && key.imgUrl !== undefined)
+            .map((key) => key.imgUrl)
+        )
+      )
 
-  const fileValues = fileKeys.map((key) => activeTask[key])
-  const imgUrls = fileValues.map((file) => file.imgUrl)
+  const imgUrls = fileKeys
 
   return (
     <div
@@ -18,10 +25,7 @@ export default function FilesPreview({ activeTask, activeBoard }) {
     >
       {imgUrls.length > 0 ? (
         <>
-          {/* <div className="files-header">
-            <button className='btn-outline medium-secondery'>Add file</button>
-          </div> */}
-          <div className="gallery">
+          <div className="gallery flex gap16">
             {imgUrls.map((img, index) => (
               <img
                 style={{ objectFit: 'cover', objectPosition: '0% 70%' }}
