@@ -154,6 +154,10 @@
       opacity: 1;
     }
   }
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 }
 
 .side-bar-close {
