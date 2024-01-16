@@ -69,17 +69,17 @@ export function HomePage() {
 
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-    
+
       if (scrollPosition >= 2500 && scrollPosition <= 4100) {
         const parallaxSpeed = 6;
         const translateY = (scrollPosition - 2400) * parallaxSpeed / 9;
-    
+
         // Apply the parallax effect to your video element
         video.style.transform = `translateY(${translateY}px)`;
         video.style.overflow = 'hidden';
-      } 
+      }
     };
-    
+
     window.addEventListener('scroll', handleScroll);
 
     return () => {
@@ -241,7 +241,7 @@ export function HomePage() {
                     <div className="comment">
                       <div className="avatar-comment">
                         <span className="span-comment">
-                          “We use monday.com for a plethora of use cases, the
+                          “We use anotherday.com for a plethora of use cases, the
                           opportunities this platform provides are limitless.”
                         </span>
                       </div>
@@ -281,7 +281,7 @@ export function HomePage() {
                     <div className="comment">
                       <div className="avatar-comment">
                         <span className="span-comment">
-                          “Since adopting monday.com, our global marketing
+                          “Since adopting anotherday.com, our global marketing
                           department has seen a 40% improvement in cross-team
                           collaboration.”
                         </span>
@@ -354,7 +354,7 @@ export function HomePage() {
           <div className="worflow-section-wrapper flex column align-center">
             <h2>Everything you need for any workflow</h2>
             <span>
-              Easily build your ideal workflow with monday.com building blocks.
+              Easily build your ideal workflow with anotherday.com building blocks.
             </span>
           </div>
           <div className="building-blocks-tbs flex column align-center">
@@ -370,7 +370,7 @@ export function HomePage() {
           </div>
         </section>
         <div className="monday-products-wrapper flex column justify-center align-center">
-          <img src={MondayProducts} alt="Monday products" />
+          <img src={MondayProducts} alt="anotherday products" />
           <h2>End-to-end products to run the core of your business</h2>
           <p className="subtitle">
             Tailored products designed for every aspect of your teams' needs.
