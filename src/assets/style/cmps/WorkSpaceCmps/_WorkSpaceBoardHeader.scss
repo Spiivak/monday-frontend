@@ -89,7 +89,7 @@
       }
 
       .phone-add-group {
-        display: flex;
+        display: flex !important;
         position: fixed;
         bottom: 16px;
         right: 16px;
