@@ -62,9 +62,9 @@ export async function saveBoard(board) {
   const type = board._id ? UPDATE_BOARD : ADD_BOARD
   const errType = board._id ? 'update' : 'add'
   try {
+    store.dispatch({ type, board: board })
     const boardToSave = await boardService.save(board)
     console.log('saveBoard', boardToSave)
-    store.dispatch({ type, board: boardToSave })
     return boardToSave
   } catch (err) {
     console.error(`board action -> cannot ${errType}`, err)
