@@ -21,7 +21,7 @@ export function WorkSpaceBoard() {
   const boards = useSelector((storeState) => storeState.boardModule.boards)
   const filterBy = useSelector((storeState) => storeState.boardModule.filterBy)
   const { boardId } = useParams()
-
+  console.log('workspaceboard - ',boardId)
   let filteredBoard = boards.find((board) => board._id === boardId)
   const selectedBoard = boards.find((board) => board._id === boardId)
   const boardLoading = useSelector(
