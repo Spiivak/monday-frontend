@@ -159,6 +159,9 @@
     // left: 68px;
     // top: 0;
     // z-index: 15;
+    @media (max-width) {
+      left: 17px !important;
+    }
   }
   &:has(.empty-column) {
     border: none;
