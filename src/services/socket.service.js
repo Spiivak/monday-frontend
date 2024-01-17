@@ -73,8 +73,8 @@ function createSocketService() {
 socketService.on('add-task', (data) => {
   const user = userService.getLoggedinUser()
   console.log(user.fullname, ':', data)
-  const { boardId, groupId, task } = data
-  store.dispatch({ type: ADD_TASK, boardId, groupId, task })
+  const { boardId, groupId, task, at } = data
+  store.dispatch({ type: ADD_TASK, boardId, groupId, task, at })
 })
 socketService.on('update-task', (data) => {
   const user = userService.getLoggedinUser()

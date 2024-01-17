@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router'
 import { MondayLoader } from '../MondayLoader'
 import { BatchMenu } from './groups/table/BatchMenu'
+import { socketService } from '../../../services/socket.service'
 export function WorkSpaceBoard() {
   // const [selectedBoard, setSelectedBoard] = useState(null)
   // const [filteredBoard, setFilteredBoard] = useState(null)
@@ -35,15 +36,21 @@ export function WorkSpaceBoard() {
     }
   }, [boardId])
 
+  useEffect(()=>{
+    socketService.emit('workspace-set-board', boardId)
+    return ()=>{
+      socketService.emit('workspace-set-board', boardId)
+
+    }
+  },[boardId, boards])
+
   // useEffect(() => {
   //   if (boardId) {
   //     setSelectedBoard(boards.find((board) => board._id === boardId))
   //     setFilteredBoard(boards.find((board) => board._id === boardId))
-  //     socketService.emit('workspace-set-board', boardId)
   //   } else {
   //     setSelectedBoard(boards[0])
   //     setFilteredBoard(boards[0])
-  //     socketService.emit('workspace-set-board', boards[0])
   //   }
   // }, [boardId, boards])
 
