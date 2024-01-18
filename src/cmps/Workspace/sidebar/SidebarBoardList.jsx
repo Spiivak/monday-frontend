@@ -28,7 +28,7 @@ export function SidebarBoardList({ onRemoveBoard }) {
             ref={provided.innerRef}
             className="workspaces-list flex column">
             {boards.map((board, index) => (
-              <Draggable key={board._id} draggableId={board._id} index={index}>
+              <Draggable key={index} draggableId={board._id} index={index}>
                 {(provided, snapshot) => (
                   <div
                     key={board._id}
@@ -44,6 +44,7 @@ export function SidebarBoardList({ onRemoveBoard }) {
                         to={`/workspace/${board._id}`}
                         className="flex gap8 align-center hoverable space-between"
                         onClick={(ev) => {
+                          console.log(board._id)
                           setBoardLoading(true)
                           ev.stopPropagation()
                         }}>

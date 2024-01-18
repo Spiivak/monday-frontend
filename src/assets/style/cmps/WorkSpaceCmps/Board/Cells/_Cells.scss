@@ -72,9 +72,22 @@
 
   @media (max-width: 600px) {
     .title {
+      position: relative;
       width: 200px !important;
       overflow: hidden;
       text-overflow: ellipsis;
+      border-top: 1.25px solid #d0d4e4;
+      border-collapse: collapse;
+    }
+    .title::before{
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 50%;
+      translate: 0 -50%;
+      height: calc(100% - 2px);
+      width: 10px;
+      background-color: black;
     }
   }
 
