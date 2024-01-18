@@ -34,9 +34,15 @@ import MondayProducts from '../assets/img/mp.png'
 import MWork from '../assets/img/mwm.png'
 import MSales from '../assets/img/msc.png'
 import MDev from '../assets/img/mdev.png'
+import Logo from '../assets/img/tabs/anotherday-logo.png'
 
 import { CheckIcon } from '../cmps/Icons'
 import { Hidden } from '@mui/material'
+
+
+import Baptise from '../assets/img/baptiste.avif'
+import Jane from '../assets/img/jane.avif'
+import Sarah from '../assets/img/sarah.avif'
 
 export function HomePage() {
   const [activeTab, setActiveTab] = useState('work-management-tab')
@@ -235,7 +241,7 @@ export function HomePage() {
                   </div>
                   <div className="user-comment flex align-center">
                     <div className="avatar">
-                      <img src={WmDark} alt="Avatar" />
+                      <img src={Jane} alt="Avatar" style={{ minWidth: '72px', height: '72px'}} />
                     </div>
 
                     <div className="comment">
@@ -276,7 +282,7 @@ export function HomePage() {
                   </div>
                   <div className="user-comment flex align-center">
                     <div className="avatar">
-                      <img src={WmDark} alt="Avatar" />
+                    <img src={Sarah} alt="Avatar" style={{ minWidth: '72px', height: '72px'}} />
                     </div>
                     <div className="comment">
                       <div className="avatar-comment">
@@ -315,7 +321,7 @@ export function HomePage() {
                   </button>
                   <div className="user-comment flex align-center">
                     <div className="avatar">
-                      <img src={WmDark} alt="Avatar" />
+                    <img src={Baptise} alt="Avatar" style={{ minWidth: '72px', height: '72px'}} />
                     </div>
                     <div className="comment">
                       <div className="avatar-comment">
@@ -370,7 +376,9 @@ export function HomePage() {
           </div>
         </section>
         <div className="monday-products-wrapper flex column justify-center align-center">
-          <img src={MondayProducts} alt="anotherday products" />
+          <div className='flex align-center gap8'>
+          <img src={Logo} alt="anotherday products" style={{ width: '300px'}} />
+          </div>
           <h2>End-to-end products to run the core of your business</h2>
           <p className="subtitle">
             Tailored products designed for every aspect of your teams' needs.

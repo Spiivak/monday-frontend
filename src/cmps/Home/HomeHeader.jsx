@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import Logo from '../../assets/img/monday-logo-x2.png'
+import Logo from '../../assets/img/tabs/anotherday-logo.png'
 import { login, logout, signup } from '../../store/actions/user.actions'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 import { useSelector } from 'react-redux'
