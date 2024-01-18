@@ -105,7 +105,9 @@ export function HomePage() {
           </h2>
           <Tabs activeTab={activeTab} onTabClick={handleTabClick} />
           <div className="tabs-preview flex column">
+            <div className="tab">
             {renderTabContent()}
+            </div>
             <div className="tabs-preview-actions flex column align-center">
               <button className="get-started-btn">Get Started</button>
               <span className="tabs-preview-info">

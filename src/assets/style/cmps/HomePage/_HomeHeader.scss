@@ -41,6 +41,14 @@
     color: #ffffff;
     }
   }
+
+  @media screen and (max-width: 680px) {
+    padding: 0 16px;
+  }
+
+  @media screen and (max-width: 1218px) {
+    padding: 0 32px;
+  }
 }
 
 header {
