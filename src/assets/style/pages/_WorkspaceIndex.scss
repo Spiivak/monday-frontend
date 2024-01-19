@@ -101,11 +101,13 @@
             white-space: nowrap;
             margin-top: 4px;
             font: 400 14px Figtree;
+
             span {
-              svg{
+              svg {
                 rotate: -90deg;
               }
             }
+
             svg {
               width: 18px;
               height: 18px;
@@ -138,4 +140,147 @@
     }
   }
 
+  @media screen and (max-width: 1350px) {
+    .workspace-index-header {
+      padding: 16px 32px;
+
+      img {
+        display: none;
+      }
+    }
+
+    .boost {
+      display: none;
+    }
+
+    .workspace-content {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media screen and (max-width: 1065px) {
+    .workspace-index-header {
+      .greeting-actions {
+        display: none;
+      }
+    }
+
+    .workspace-boards {
+      .side-bar {
+        display: none;
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .workspace-index-header {
+      display: none;
+    }
+
+    .workspace-index {
+
+      .main-content {
+        background-color: red;
+
+        .workspace-list {
+
+
+          .workspace-card {
+
+            .board-title {}
+
+            .img {
+
+              img {}
+            }
+
+            .breadcrumbs {
+              span {
+                svg {}
+              }
+
+              svg {}
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+
+@media screen and (max-width: 1065px) {
+  .workspace-index-header {
+    display: none;
+  }
+  .workspace-boards {
+    .side-bar {
+      display: none;
+    }
+
+    .workspace-index-header {
+      width: 97.5vw;
+      border-radius: 0;
+    }
+
+
+    main {
+      display: flex;
+      grid-column: 1 / -1;
+
+      .workspace-index {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+
+        .main-content {}
+      }
+    }
+  }
+
+}
+
+
+.workspace-index {
+  width: 100%;
+  
+
+  @media screen and (max-width: 600px) {
+
+    .main-content {
+      margin-block-start: 64px;
+      .workspace-content {
+        .workspace-list {
+          .workspace-card {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            .breadcrumbs {
+              display: none;
+            }
+
+            .img {
+              margin: 0;
+
+              img {
+                width: 40px;
+                height: 40px;
+              }
+            }
+            .board-title {
+              margin: 0;
+              display: flex;
+              justify-content: space-between;
+              :first-child {
+                svg {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
